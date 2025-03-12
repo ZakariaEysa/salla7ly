@@ -1,17 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:salahly/utils/navigation.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:salla7ly/utils/navigation.dart';
 
-class SplashScreen extends StatelessWidget {
+import '../onBoarding/presentation/views/OnBoarding.dart';
+
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 3), () {
+      navigateAndReplace(context: context, screen: OnBoarding());
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        navigateTo(context: context, screen: Container());
-      },
-      child: Container(
-        child: Text("hello"),
+    var theme = Theme.of(context);
+    return Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Spacer(),
+          Image.asset(
+            fit: BoxFit.cover,
+            "assets/images/Logo.png",
+          ),
+          SizedBox(
+            height: 28.h,
+          ),
+          Text(
+            "Salla7ly",
+            style: TextStyle(
+              color: theme.splashColor,
+              fontSize: 50.sp,
+            ),
+          ),
+          const Spacer(
+            flex: 4,
+          )
+        ],
       ),
     );
   }

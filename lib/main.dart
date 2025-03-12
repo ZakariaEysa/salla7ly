@@ -4,17 +4,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:salahly/utils/app_logs.dart';
-import 'package:salahly/widgets/application_theme/applicaton_theme.dart'; // تأكد من المسار صحيح
-import 'package:salahly/data/hive_storage.dart';
+import 'utils/app_logs.dart';
+import 'widgets/application_theme/application_theme.dart';
+import 'data/hive_storage.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:salahly/generated/l10n.dart';
-import 'package:salahly/services/simple_bloc_observer_service.dart';
-import 'package:salahly/config/language_bloc/switch_language_bloc.dart';
-import 'package:salahly/data/hive_keys.dart';
-import 'package:salahly/features/user_flow/splash_screen/splash_screen.dart';
+import 'generated/l10n.dart';
+import 'services/simple_bloc_observer_service.dart';
+import 'config/language_bloc/switch_language_bloc.dart';
+import 'data/hive_keys.dart';
+import 'features/user_flow/splash_screen/splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'widgets/application_theme/theme_provider.dart'; // استيراد ملف الثيم Provider
+import 'widgets/application_theme/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,9 +36,8 @@ void main() async {
     HiveStorage.set(HiveKeys.isArabic, false);
   }
   AppLogs.infoLog('isDark: ${HiveStorage.get(HiveKeys.isDark)}');
-  // إضافة تخزين حالة الثيم في Hive (اختياري)
   if (HiveStorage.get(HiveKeys.isDark) == null) {
-    HiveStorage.set(HiveKeys.isDark, true); // افتراضي Dark
+    HiveStorage.set(HiveKeys.isDark, true);
   }
 
   runApp(
@@ -46,7 +45,7 @@ void main() async {
       enabled: kDebugMode,
       builder: (context) => BlocProvider<SwitchLanguageCubit>(
         create: (context) => SwitchLanguageCubit(),
-        child: ProviderScope(
+        child: const ProviderScope(
           child: MyApp(),
         ),
       ),
@@ -55,7 +54,6 @@ void main() async {
 }
 
 class MyApp extends ConsumerWidget {
-  // تغيير إلى ConsumerWidget
   const MyApp({super.key});
 
   static void restartApp(BuildContext context) {
@@ -64,7 +62,6 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // مراقبة حالة الثيم من Riverpod
     final isDark = ref.watch(themeProvider);
 
     return BlocBuilder<SwitchLanguageCubit, SwitchLanguageState>(
@@ -79,8 +76,7 @@ class MyApp extends ConsumerWidget {
             return MaterialApp(
               theme: ApplicationTheme.lightTheme,
               darkTheme: ApplicationTheme.darkTheme,
-              themeMode:
-                  getThemeMode(isDark), // استخدام Riverpod للتحكم في الثيم
+              themeMode: getThemeMode(isDark),
               locale: HiveStorage.get(HiveKeys.isArabic)
                   ? const Locale('ar')
                   : const Locale('en'),
@@ -115,7 +111,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    // هنا بنستخدم ConsumerWidget بدل State مباشرة
     return const MyApp();
   }
 }

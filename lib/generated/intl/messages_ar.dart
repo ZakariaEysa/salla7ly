@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a en locale. All the
+// This is a library that provides messages for a ar locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -18,24 +18,24 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'en';
+  String get localeName => 'ar';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "Next": MessageLookupByLibrary.simpleMessage("Next"),
-        "Skip": MessageLookupByLibrary.simpleMessage("Skip"),
-        "Start": MessageLookupByLibrary.simpleMessage("Start"),
+        "Next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "Skip": MessageLookupByLibrary.simpleMessage("تخطى"),
+        "Start": MessageLookupByLibrary.simpleMessage("ابدا"),
         "on1Content": MessageLookupByLibrary.simpleMessage(
-            "Connect easily with skilled craftsmen and get personalized service recommendations tailored to your needs."),
+            "تواصل بسهولة مع الحرفيين المهرة واحصل على توصيات خدمة مخصصة مصممة خصيصا لاحتياجاتك."),
         "on2Content": MessageLookupByLibrary.simpleMessage(
-            " We connect you with expert craftsmen delivering top-quality      service with professionalism and     care."),
-        "on2Title": MessageLookupByLibrary.simpleMessage(
-            "Skilled Hands, Trusted Service!"),
+            "نحن نربطك بالحرفيين الخبراء الذين يقدمون خدمة عالية الجودة باحتراف وعناية."),
+        "on2Title":
+            MessageLookupByLibrary.simpleMessage("أيدي ماهرة ، خدمة موثوقة!"),
         "on3Content": MessageLookupByLibrary.simpleMessage(
-            "Craftsmen can discover job opportunities effortlessly, while users  can post their needs and connect with  skilled professionals. "),
+            "يمكن لرجال WCraftsmen اكتشاف فرص العمل دون عناء ، بينما المستخدمين يمكن أن ينشر احتياجاتهم ويتواصل معهم المهنيين المهرة."),
         "on3Title": MessageLookupByLibrary.simpleMessage(
-            "Find Work Easily, Get the Right Help!"),
+            "ابحث عن عمل بسهولة ، احصل على المساعدة المناسبة!"),
         "welcomeToSalla7ly":
-            MessageLookupByLibrary.simpleMessage("Welcome to  Salla7ly !")
+            MessageLookupByLibrary.simpleMessage("مرحبا بكم في صلحلي")
       };
 }

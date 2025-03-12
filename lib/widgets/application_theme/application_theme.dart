@@ -32,6 +32,23 @@ class ApplicationTheme {
       selectedIconTheme: IconThemeData(color: Colors.black, size: 32.sp),
       unselectedIconTheme: IconThemeData(color: Colors.white, size: 24.sp),
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(
+          Color(0xFF4A90E2), // Fallback to a solid color (lighter blue)
+        ),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0), // Rounded corners
+          ),
+        ),
+        foregroundColor:
+            MaterialStateProperty.all<Color>(Colors.white), // Text/icon color
+        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+          EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+        ),
+      ),
+    ),
     textTheme: TextTheme(
       titleLarge: GoogleFonts.poppins(
         fontSize: 30.sp,
@@ -59,6 +76,7 @@ class ApplicationTheme {
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     primaryColor: const Color(0xFF2E1371),
+    splashColor: const Color(0xff6DE5E5),
     scaffoldBackgroundColor: const Color(0xFF130B2B),
     colorScheme: ColorScheme.fromSeed(
       seedColor: const Color(0xFF2E1371),
@@ -86,6 +104,23 @@ class ApplicationTheme {
       unselectedItemColor: Colors.grey,
       selectedIconTheme: IconThemeData(color: Colors.white, size: 32.sp),
       unselectedIconTheme: IconThemeData(color: Colors.grey, size: 24.sp),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(
+          Color(0xFF4A90E2), // Fallback to a solid color (lighter blue)
+        ),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0), // Rounded corners
+          ),
+        ),
+        foregroundColor:
+            MaterialStateProperty.all<Color>(Colors.white), // Text/icon color
+        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+          EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+        ),
+      ),
     ),
     textTheme: TextTheme(
       titleLarge: GoogleFonts.poppins(

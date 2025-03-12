@@ -49,6 +49,96 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Welcome to  Salla7ly !`
+  String get welcomeToSalla7ly {
+    return Intl.message(
+      'Welcome to  Salla7ly !',
+      name: 'welcomeToSalla7ly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connect easily with skilled craftsmen and get personalized service recommendations tailored to your needs.`
+  String get on1Content {
+    return Intl.message(
+      'Connect easily with skilled craftsmen and get personalized service recommendations tailored to your needs.',
+      name: 'on1Content',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` We connect you with expert craftsmen delivering top-quality      service with professionalism and     care.`
+  String get on2Content {
+    return Intl.message(
+      ' We connect you with expert craftsmen delivering top-quality      service with professionalism and     care.',
+      name: 'on2Content',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Craftsmen can discover job opportunities effortlessly, while users  can post their needs and connect with  skilled professionals. `
+  String get on3Content {
+    return Intl.message(
+      'Craftsmen can discover job opportunities effortlessly, while users  can post their needs and connect with  skilled professionals. ',
+      name: 'on3Content',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skilled Hands, Trusted Service!`
+  String get on2Title {
+    return Intl.message(
+      'Skilled Hands, Trusted Service!',
+      name: 'on2Title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Find Work Easily, Get the Right Help!`
+  String get on3Title {
+    return Intl.message(
+      'Find Work Easily, Get the Right Help!',
+      name: 'on3Title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get Next {
+    return Intl.message(
+      'Next',
+      name: 'Next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get Skip {
+    return Intl.message(
+      'Skip',
+      name: 'Skip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start`
+  String get Start {
+    return Intl.message(
+      'Start',
+      name: 'Start',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -57,6 +147,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'ar'),
     ];
   }
 
