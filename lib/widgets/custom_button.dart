@@ -1,15 +1,16 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'application_theme/theme_extention.dart';
+
 class CustomButton extends StatelessWidget {
   const CustomButton({
-    Key? key,
+    super.key,
     required this.width,
     required this.height,
     this.text,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final double width;
   final double height;
@@ -28,11 +29,7 @@ class CustomButton extends StatelessWidget {
                 width: width,
                 height: height,
                 decoration: ShapeDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment(0.50, 0.00),
-                    end: Alignment(1.07, 1.00),
-                    colors: [Color(0xFF0138FD), Color(0xFF0FF0FF)],
-                  ),
+                  gradient: theme.extension<GradientTheme>()?.buttonGradient,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -43,16 +40,16 @@ class CustomButton extends StatelessWidget {
                   children: [
                     Text(
                       text!,
-                      style: TextStyle(
+                      style: theme.textTheme.bodyMedium?.copyWith(
                         fontSize: 18.sp,
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    Icon(Icons.arrow_forward)
+                   const   Icon(Icons.arrow_forward)
                   ],
                 )),
           ),
-        SizedBox(width: 8.0),
+      const  SizedBox(width: 8.0),
         if (text == null)
           GestureDetector(
             onTap: onTap,
@@ -60,7 +57,7 @@ class CustomButton extends StatelessWidget {
               width: width,
               height: height,
               decoration: ShapeDecoration(
-                color: Color(0xFFF3F9FF),
+                color: const Color(0xFFF3F9FF),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),

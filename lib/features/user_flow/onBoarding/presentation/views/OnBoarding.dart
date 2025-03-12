@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/widgets/custom_button.dart';
+import '../../../../../data/hive_keys.dart';
+import '../../../../../data/hive_storage.dart';
+import '../../../../../utils/navigation.dart';
+import '../../../../../widgets/custom_button.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
 
-import '../widgets/OnboardingContent.dart';
+import '../../../home/presentation/views/home_screen.dart';
+import '../widgets/onboarding_content.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
@@ -26,7 +31,7 @@ class _OnBoardingState extends State<OnBoarding> {
   Widget build(BuildContext context) {
     var lang = S.of(context);
     var theme = Theme.of(context);
-    return Scaffold(
+    return ScaffoldF(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -73,7 +78,7 @@ class _OnBoardingState extends State<OnBoarding> {
                           Text(
                             getOnBoardingContents(context)[index].description,
                             textAlign: TextAlign.center,
-                            style: theme.textTheme.bodyMedium!
+                            style: theme.textTheme.labelLarge!
                                 .copyWith(fontSize: 16.sp),
                           ),
                           SizedBox(height: 40.h),
@@ -114,9 +119,25 @@ class _OnBoardingState extends State<OnBoarding> {
                                     SizedBox(width: 20.w),
                                     Expanded(
                                       child: CustomButton(
-                                        text: lang.Next,
+                                        text: currentPage ==
+                                                getOnBoardingContents(context)
+                                                        .length -
+                                                    1
+                                            ? lang.Start
+                                            : lang.Next,
                                         onTap: () {
-                                          if (currentPage <
+                                          if (currentPage ==
+                                              getOnBoardingContents(context)
+                                                      .length -
+                                                  1) {
+                                            HiveStorage.set(
+                                                HiveKeys.passUserOnboarding,
+                                                true);
+
+                                            navigateAndRemoveUntil(
+                                                context: context,
+                                                screen: const HomeScreen());
+                                          } else if (currentPage <
                                               getOnBoardingContents(context)
                                                       .length -
                                                   1) {
@@ -148,10 +169,10 @@ class _OnBoardingState extends State<OnBoarding> {
 
   Widget buildDot(int index) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 300), // نفس مدة انتقال الصفحة
+      duration: const Duration(milliseconds: 300), 
       curve: Curves.easeInOut,
       height: 12.h,
-      width: 12.w, // الدوت النشط يكبر
+      width: 12.w, 
       margin: EdgeInsets.only(right: 5.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.sp),

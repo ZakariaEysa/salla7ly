@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/utils/navigation.dart';
-
-import '../onBoarding/presentation/views/OnBoarding.dart';
+import '../../../data/hive_keys.dart';
+import '../../../data/hive_storage.dart';
+import '../../../utils/navigation.dart';
+import '../../../widgets/scaffold/scaffold_f.dart';
+import '../home/presentation/views/home_screen.dart';
+import '../onBoarding/presentation/views/onboarding.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,7 +18,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 3), () {
-      navigateAndReplace(context: context, screen: OnBoarding());
+      if (HiveStorage.get(
+            HiveKeys.passUserOnboarding,
+          ) ==
+          true) {
+        navigateAndReplace(context: context, screen: const HomeScreen());
+      } else {
+        navigateAndReplace(context: context, screen: const OnBoarding());
+      }
     });
     super.initState();
   }
@@ -23,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return Scaffold(
+    return ScaffoldF(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -35,53 +45,12 @@ class _SplashScreenState extends State<SplashScreen> {
           SizedBox(
             height: 28.h,
           ),
-          Text(
-            "Salla7ly",
-            style: TextStyle(
-              color: theme.splashColor,
-              fontSize: 50.sp,
-            ),
-          ),
+          Text("Salla7ly", style: theme.textTheme.bodyLarge),
           const Spacer(
-            flex: 4,
+            flex: 3,
           )
         ],
       ),
     );
   }
 }
-
-// class ThemeToggleScreenExample extends ConsumerWidget {
-//   const ThemeToggleScreenExample({super.key});
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     final isDark = ref.watch(themeProvider); // مراقبة حالة الثيم
-
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text("Theme Switcher"),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Text(
-//               "Current Theme: ${isDark ? 'Dark' : 'Light'}",
-//               style: Theme.of(context).textTheme.bodyLarge,
-//             ),
-//             SizedBox(height: 20.h),
-//             ElevatedButton(
-//               onPressed: () {
-//                 ref.read(themeProvider.notifier).state = !isDark; 
-//                 HiveStorage.set(
-//                     HiveKeys.isDark, !isDark);
-//               },
-//               child: const Text("Toggle Theme"),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'utils/app_logs.dart';
-import 'widgets/application_theme/application_theme.dart';
 import 'data/hive_storage.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
@@ -14,7 +13,11 @@ import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
 import 'features/user_flow/splash_screen/splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'widgets/application_theme/theme_provider.dart';
+import 'widgets/application_theme/application_theme.dart';
+import 'widgets/application_theme/theme_provider.dart'; 
+
+ThemeMode getThemeMode(bool isDark) =>
+    isDark ? ThemeMode.dark : ThemeMode.light;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +31,8 @@ void main() async {
 
   await HiveStorage.init();
 
+  HiveStorage.set(HiveKeys.passUserOnboarding, false);
+
   if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
     HiveStorage.set(HiveKeys.passUserOnboarding, false);
   }
@@ -35,6 +40,7 @@ void main() async {
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(HiveKeys.isArabic, false);
   }
+
   AppLogs.infoLog('isDark: ${HiveStorage.get(HiveKeys.isDark)}');
   if (HiveStorage.get(HiveKeys.isDark) == null) {
     HiveStorage.set(HiveKeys.isDark, true);
@@ -100,7 +106,7 @@ class MyApp extends ConsumerWidget {
   }
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends ConsumerState<MyApp> {
   Key key = UniqueKey();
 
   void restartApp() {
