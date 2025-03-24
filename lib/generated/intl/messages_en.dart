@@ -28,7 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "on1Content": MessageLookupByLibrary.simpleMessage(
             "Connect easily with skilled craftsmen and get personalized service recommendations tailored to your needs."),
         "on2Content": MessageLookupByLibrary.simpleMessage(
-            " We connect you with expert craftsmen delivering top-quality      service with professionalism and     care."),
+            " We connect you with expert craftsmen delivering top-quality service with professionalism and care."),
         "on2Title": MessageLookupByLibrary.simpleMessage(
             "Skilled Hands, Trusted Service!"),
         "on3Content": MessageLookupByLibrary.simpleMessage(

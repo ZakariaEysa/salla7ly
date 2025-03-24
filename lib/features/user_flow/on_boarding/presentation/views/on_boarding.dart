@@ -178,7 +178,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                       onTap: _currentPage == _getPageCount() - 1
                                           ? _startApp
                                           : _goToNextPage,
-                                      width: 210.w,
+                                      width: 190.w,
                                       height: 58.h,
                                     ),
                                   ),

@@ -70,10 +70,10 @@ class S {
     );
   }
 
-  /// ` We connect you with expert craftsmen delivering top-quality      service with professionalism and     care.`
+  /// ` We connect you with expert craftsmen delivering top-quality service with professionalism and care.`
   String get on2Content {
     return Intl.message(
-      ' We connect you with expert craftsmen delivering top-quality      service with professionalism and     care.',
+      ' We connect you with expert craftsmen delivering top-quality service with professionalism and care.',
       name: 'on2Content',
       desc: '',
       args: [],
