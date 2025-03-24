@@ -21,5 +21,21 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Next": MessageLookupByLibrary.simpleMessage("Next"),
+        "Skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "Start": MessageLookupByLibrary.simpleMessage("Start"),
+        "on1Content": MessageLookupByLibrary.simpleMessage(
+            "Connect easily with skilled craftsmen and get personalized service recommendations tailored to your needs."),
+        "on2Content": MessageLookupByLibrary.simpleMessage(
+            " We connect you with expert craftsmen delivering top-quality service with professionalism and care."),
+        "on2Title": MessageLookupByLibrary.simpleMessage(
+            "Skilled Hands, Trusted Service!"),
+        "on3Content": MessageLookupByLibrary.simpleMessage(
+            "Craftsmen can discover job opportunities effortlessly, while users  can post their needs and connect with  skilled professionals. "),
+        "on3Title": MessageLookupByLibrary.simpleMessage(
+            "Find Work Easily, Get the Right Help!"),
+        "welcomeToSalla7ly":
+            MessageLookupByLibrary.simpleMessage("Welcome to  Salla7ly !")
+      };
 }

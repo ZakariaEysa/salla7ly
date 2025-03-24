@@ -1,53 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:salahly/utils/navigation.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../data/hive_keys.dart';
+import '../../../data/hive_storage.dart';
+import '../../../utils/navigation.dart';
+import '../../../widgets/scaffold/scaffold_f.dart';
+import '../on_boarding/presentation/views/on_boarding.dart';
+import '../home/presentation/views/home_screen.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 3), () {
+      if (HiveStorage.get(
+            HiveKeys.passUserOnboarding,
+          ) ==
+          true) {
+        navigateAndReplace(context: context, screen: const HomeScreen());
+      } else {
+        navigateAndReplace(context: context, screen: const OnBoarding());
+      }
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        navigateTo(context: context, screen: Container());
-      },
-      child: Container(
-        child: Text("hello"),
+    var theme = Theme.of(context);
+    return ScaffoldF(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Spacer(),
+          Image.asset(
+            fit: BoxFit.cover,
+            "assets/images/Logo.png",
+          ),
+          SizedBox(
+            height: 28.h,
+          ),
+          Text("Salla7ly", style: theme.textTheme.bodyLarge),
+          const Spacer(
+            flex: 3,
+          )
+        ],
       ),
     );
   }
 }
-
-// class ThemeToggleScreenExample extends ConsumerWidget {
-//   const ThemeToggleScreenExample({super.key});
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     final isDark = ref.watch(themeProvider); // مراقبة حالة الثيم
-
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text("Theme Switcher"),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Text(
-//               "Current Theme: ${isDark ? 'Dark' : 'Light'}",
-//               style: Theme.of(context).textTheme.bodyLarge,
-//             ),
-//             SizedBox(height: 20.h),
-//             ElevatedButton(
-//               onPressed: () {
-//                 ref.read(themeProvider.notifier).state = !isDark; 
-//                 HiveStorage.set(
-//                     HiveKeys.isDark, !isDark);
-//               },
-//               child: const Text("Toggle Theme"),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

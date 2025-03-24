@@ -1,1 +1,17 @@
-{}
+{
+    "@@locale": "en",
+
+   "welcomeToSalla7ly": "Welcome to  Salla7ly !" ,
+   "on1Content":"Connect easily with skilled craftsmen and get personalized service recommendations tailored to your needs."
+
+   ,"on2Content":" We connect you with expert craftsmen delivering top-quality service with professionalism and care.",
+
+   "on3Content":"Craftsmen can discover job opportunities effortlessly, while users  can post their needs and connect with  skilled professionals. "
+
+   ,"on2Title":"Skilled Hands, Trusted Service!"
+   
+,"on3Title":"Find Work Easily, Get the Right Help!",
+"Next":"Next",
+"Skip":"Skip",
+"Start":"Start"
+}
