@@ -21,5 +21,10 @@
 "orSignInWith": "أو تسجيل الدخول باستخدام",
 "continueWithGoogle": "متابعة باستخدام جوجل",
 "dontHaveAccount": "ليس لديك حساب؟",
-"signUp": "إنشاء حساب"
+"signUp": "إنشاء حساب",
+"selectAccountType": "يرجى تحديد نوع حسابك للمتابعة:",
+"userDescription": "مستخدم – إذا كنت تبحث عن محترفين لإنجاز مهامك.",
+"craftsmanDescription": "حرفي – إذا كنت تقدم خدمات يدوية",
+"userButton": "مستخدم",
+"craftsmanButton": "حرفي"
 }

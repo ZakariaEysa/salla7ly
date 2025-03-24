@@ -27,6 +27,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Start": MessageLookupByLibrary.simpleMessage("Start"),
         "continueWithGoogle":
             MessageLookupByLibrary.simpleMessage("Continue With Google"),
+        "craftsmanButton": MessageLookupByLibrary.simpleMessage("Craftsman"),
+        "craftsmanDescription": MessageLookupByLibrary.simpleMessage(
+            "Craftsman – If you offer manual services"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have account ?"),
         "emailHint":
@@ -49,9 +52,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "orSignInWith": MessageLookupByLibrary.simpleMessage("Or sign in With"),
         "passwordHint": MessageLookupByLibrary.simpleMessage("Aa1234?#"),
         "passwordLabel": MessageLookupByLibrary.simpleMessage("Password :"),
+        "selectAccountType": MessageLookupByLibrary.simpleMessage(
+            "Please select your account type to continue:"),
         "signIn": MessageLookupByLibrary.simpleMessage("sign in"),
         "signInButton": MessageLookupByLibrary.simpleMessage("sign in"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "userButton": MessageLookupByLibrary.simpleMessage("User"),
+        "userDescription": MessageLookupByLibrary.simpleMessage(
+            "User – If you\'re looking for professionals to get your tasks done."),
         "welcomeToSalla7ly":
             MessageLookupByLibrary.simpleMessage("Welcome to  Salla7ly !")
       };

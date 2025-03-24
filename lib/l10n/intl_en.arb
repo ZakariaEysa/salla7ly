@@ -25,5 +25,10 @@
 "orSignInWith": "Or sign in With",
 "continueWithGoogle": "Continue With Google",
 "dontHaveAccount": "Don't have account ?",
-"signUp": "Sign up"
+"signUp": "Sign up",
+"selectAccountType": "Please select your account type to continue:",
+"userDescription": "User – If you're looking for professionals to get your tasks done.",
+"craftsmanDescription": "Craftsman – If you offer manual services",
+"userButton": "User",
+"craftsmanButton": "Craftsman"
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/generated/l10n.dart';
+import 'package:salla7ly/features/user_flow/auth/presentation/views/account_type_screen.dart';
 
 /// كلاس لزر تسجيل الدخول
 class SignInButton extends StatelessWidget {
@@ -26,7 +27,14 @@ class SignInButton extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(30.r),
-          onTap: () {},
+          onTap: () {
+            // التنقل إلى صفحة اختيار نوع الحساب
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const AccountTypeScreen(),
+              ),
+            );
+          },
           child: Center(
             child: Text(
               S.of(context).signInButton,

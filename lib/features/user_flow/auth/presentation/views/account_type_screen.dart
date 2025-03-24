@@ -1,0 +1,78 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:salla7ly/generated/l10n.dart';
+import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
+
+import '../widgets/account_type/account_type_buttons_row.dart';
+import '../widgets/account_type/description_text.dart';
+import '../widgets/account_type/title_text.dart';
+
+/// شاشة اختيار نوع الحساب (مستخدم أو حرفي)
+class AccountTypeScreen extends StatelessWidget {
+  const AccountTypeScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaffoldF(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 30.h),
+              // صورة OR
+              Container(
+                width: 372.w,
+                height: 463.h,
+                decoration: ShapeDecoration(
+                  color: const Color(0xFF182F4C),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                ),
+                child: Image.asset(
+                  'assets/images/OR.png',
+                  height: 300.h,
+                  width: 300.w,
+                  fit: BoxFit.contain,
+                ),
+              ),
+
+              SizedBox(height: 30.h),
+
+              // عنوان الصفحة
+              const TitleText(),
+
+              SizedBox(height: 30.h),
+
+              // وصف المستخدم
+              DescriptionText(text: S.of(context).userDescription),
+
+              SizedBox(height: 10.h),
+
+              // وصف الحرفي
+              DescriptionText(text: S.of(context).craftsmanDescription),
+
+              SizedBox(height: 50.h),
+
+              // صف الأزرار
+              AccountTypeButtonsRow(
+                onUserPressed: () {
+                  // التوجه إلى الصفحة المناسبة للمستخدم
+                  Navigator.of(context).pushReplacementNamed('/home_user');
+                },
+                onCraftsmanPressed: () {
+                  // التوجه إلى الصفحة المناسبة للحرفي
+                  Navigator.of(context).pushReplacementNamed('/home_craftsman');
+                },
+              ),
+
+              SizedBox(height: 30.h),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

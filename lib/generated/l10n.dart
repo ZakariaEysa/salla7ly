@@ -259,6 +259,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Please select your account type to continue:`
+  String get selectAccountType {
+    return Intl.message(
+      'Please select your account type to continue:',
+      name: 'selectAccountType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User – If you're looking for professionals to get your tasks done.`
+  String get userDescription {
+    return Intl.message(
+      'User – If you\'re looking for professionals to get your tasks done.',
+      name: 'userDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Craftsman – If you offer manual services`
+  String get craftsmanDescription {
+    return Intl.message(
+      'Craftsman – If you offer manual services',
+      name: 'craftsmanDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User`
+  String get userButton {
+    return Intl.message(
+      'User',
+      name: 'userButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Craftsman`
+  String get craftsmanButton {
+    return Intl.message(
+      'Craftsman',
+      name: 'craftsmanButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

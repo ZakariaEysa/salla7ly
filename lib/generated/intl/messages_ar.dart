@@ -27,6 +27,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Start": MessageLookupByLibrary.simpleMessage("ابدا"),
         "continueWithGoogle":
             MessageLookupByLibrary.simpleMessage("متابعة باستخدام جوجل"),
+        "craftsmanButton": MessageLookupByLibrary.simpleMessage("حرفي"),
+        "craftsmanDescription": MessageLookupByLibrary.simpleMessage(
+            "حرفي – إذا كنت تقدم خدمات يدوية"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "emailHint":
@@ -51,9 +54,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أو تسجيل الدخول باستخدام"),
         "passwordHint": MessageLookupByLibrary.simpleMessage("Aa1234?#"),
         "passwordLabel": MessageLookupByLibrary.simpleMessage("كلمة المرور :"),
+        "selectAccountType": MessageLookupByLibrary.simpleMessage(
+            "يرجى تحديد نوع حسابك للمتابعة:"),
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signInButton": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+        "userButton": MessageLookupByLibrary.simpleMessage("مستخدم"),
+        "userDescription": MessageLookupByLibrary.simpleMessage(
+            "مستخدم – إذا كنت تبحث عن محترفين لإنجاز مهامك."),
         "welcomeToSalla7ly":
             MessageLookupByLibrary.simpleMessage("مرحبا بكم في صلحلي")
       };
