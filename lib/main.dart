@@ -31,7 +31,7 @@ void main() async {
 
   await HiveStorage.init();
 
-  HiveStorage.set(HiveKeys.passUserOnboarding, false);
+  // HiveStorage.set(HiveKeys.passUserOnboarding, false);
 
   if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
     HiveStorage.set(HiveKeys.passUserOnboarding, false);
@@ -46,7 +46,6 @@ void main() async {
     HiveStorage.set(HiveKeys.isDark, true);
   }
 
-  // إخفاء شاشة السبلاش الافتراضية للنظام
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 
   runApp(

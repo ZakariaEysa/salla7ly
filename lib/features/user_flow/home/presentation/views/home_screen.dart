@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
+import '../../../auth/presentation/views/sign_in.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,8 +12,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const  ScaffoldF(
-      body: Center(child: Text("Home Screen")),
+    return const ScaffoldF(
+      // body: Center(child: Text("Home Screen")),
+      body: SignInScreen(),
     );
   }
 }

@@ -13,5 +13,17 @@
 ,"on3Title":"Find Work Easily, Get the Right Help!",
 "Next":"Next",
 "Skip":"Skip",
-"Start":"Start"
+"Start":"Start",
+"signIn": "sign in",
+"fillCredentials": "please fill the credentials.",
+"emailLabel": "Email :",
+"emailHint": "example93@gmail.com",
+"passwordLabel": "Password :",
+"passwordHint": "Aa1234?#",
+"forgotPassword": "Forgot password?",
+"signInButton": "sign in",
+"orSignInWith": "Or sign in With",
+"continueWithGoogle": "Continue With Google",
+"dontHaveAccount": "Don't have account ?",
+"signUp": "Sign up"
 }

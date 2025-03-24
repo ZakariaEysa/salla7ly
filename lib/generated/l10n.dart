@@ -139,6 +139,126 @@ class S {
       args: [],
     );
   }
+
+  /// `sign in`
+  String get signIn {
+    return Intl.message(
+      'sign in',
+      name: 'signIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please fill the credentials.`
+  String get fillCredentials {
+    return Intl.message(
+      'please fill the credentials.',
+      name: 'fillCredentials',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email :`
+  String get emailLabel {
+    return Intl.message(
+      'Email :',
+      name: 'emailLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `example93@gmail.com`
+  String get emailHint {
+    return Intl.message(
+      'example93@gmail.com',
+      name: 'emailHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password :`
+  String get passwordLabel {
+    return Intl.message(
+      'Password :',
+      name: 'passwordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aa1234?#`
+  String get passwordHint {
+    return Intl.message(
+      'Aa1234?#',
+      name: 'passwordHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot password?`
+  String get forgotPassword {
+    return Intl.message(
+      'Forgot password?',
+      name: 'forgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `sign in`
+  String get signInButton {
+    return Intl.message(
+      'sign in',
+      name: 'signInButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Or sign in With`
+  String get orSignInWith {
+    return Intl.message(
+      'Or sign in With',
+      name: 'orSignInWith',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue With Google`
+  String get continueWithGoogle {
+    return Intl.message(
+      'Continue With Google',
+      name: 'continueWithGoogle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't have account ?`
+  String get dontHaveAccount {
+    return Intl.message(
+      'Don\'t have account ?',
+      name: 'dontHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign up`
+  String get signUp {
+    return Intl.message(
+      'Sign up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

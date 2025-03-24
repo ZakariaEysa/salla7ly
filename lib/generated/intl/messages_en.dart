@@ -25,6 +25,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "Next": MessageLookupByLibrary.simpleMessage("Next"),
         "Skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "Start": MessageLookupByLibrary.simpleMessage("Start"),
+        "continueWithGoogle":
+            MessageLookupByLibrary.simpleMessage("Continue With Google"),
+        "dontHaveAccount":
+            MessageLookupByLibrary.simpleMessage("Don\'t have account ?"),
+        "emailHint":
+            MessageLookupByLibrary.simpleMessage("example93@gmail.com"),
+        "emailLabel": MessageLookupByLibrary.simpleMessage("Email :"),
+        "fillCredentials": MessageLookupByLibrary.simpleMessage(
+            "please fill the credentials."),
+        "forgotPassword":
+            MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "on1Content": MessageLookupByLibrary.simpleMessage(
             "Connect easily with skilled craftsmen and get personalized service recommendations tailored to your needs."),
         "on2Content": MessageLookupByLibrary.simpleMessage(
@@ -35,6 +46,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Craftsmen can discover job opportunities effortlessly, while users  can post their needs and connect with  skilled professionals. "),
         "on3Title": MessageLookupByLibrary.simpleMessage(
             "Find Work Easily, Get the Right Help!"),
+        "orSignInWith": MessageLookupByLibrary.simpleMessage("Or sign in With"),
+        "passwordHint": MessageLookupByLibrary.simpleMessage("Aa1234?#"),
+        "passwordLabel": MessageLookupByLibrary.simpleMessage("Password :"),
+        "signIn": MessageLookupByLibrary.simpleMessage("sign in"),
+        "signInButton": MessageLookupByLibrary.simpleMessage("sign in"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
         "welcomeToSalla7ly":
             MessageLookupByLibrary.simpleMessage("Welcome to  Salla7ly !")
       };

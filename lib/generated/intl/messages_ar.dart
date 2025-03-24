@@ -25,6 +25,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "Next": MessageLookupByLibrary.simpleMessage("التالي"),
         "Skip": MessageLookupByLibrary.simpleMessage("تخطى"),
         "Start": MessageLookupByLibrary.simpleMessage("ابدا"),
+        "continueWithGoogle":
+            MessageLookupByLibrary.simpleMessage("متابعة باستخدام جوجل"),
+        "dontHaveAccount":
+            MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+        "emailHint":
+            MessageLookupByLibrary.simpleMessage("example93@gmail.com"),
+        "emailLabel":
+            MessageLookupByLibrary.simpleMessage("البريد الإلكتروني :"),
+        "fillCredentials":
+            MessageLookupByLibrary.simpleMessage("يرجى ملء بيانات الاعتماد."),
+        "forgotPassword":
+            MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "on1Content": MessageLookupByLibrary.simpleMessage(
             "تواصل بسهولة مع الحرفيين المهرة واحصل على توصيات خدمة مخصصة مصممة خصيصا لاحتياجاتك."),
         "on2Content": MessageLookupByLibrary.simpleMessage(
@@ -35,6 +47,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "يمكن لرجال WCraftsmen اكتشاف فرص العمل دون عناء ، بينما المستخدمين يمكن أن ينشر احتياجاتهم ويتواصل معهم المهنيين المهرة."),
         "on3Title": MessageLookupByLibrary.simpleMessage(
             "ابحث عن عمل بسهولة ، احصل على المساعدة المناسبة!"),
+        "orSignInWith":
+            MessageLookupByLibrary.simpleMessage("أو تسجيل الدخول باستخدام"),
+        "passwordHint": MessageLookupByLibrary.simpleMessage("Aa1234?#"),
+        "passwordLabel": MessageLookupByLibrary.simpleMessage("كلمة المرور :"),
+        "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "signInButton": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "welcomeToSalla7ly":
             MessageLookupByLibrary.simpleMessage("مرحبا بكم في صلحلي")
       };

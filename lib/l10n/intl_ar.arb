@@ -9,5 +9,17 @@
 ,"on3Title":"ابحث عن عمل بسهولة ، احصل على المساعدة المناسبة!"
 ,"Next":"التالي",
 "Skip":"تخطى",
-"Start":"ابدا"
+"Start":"ابدا",
+"signIn": "تسجيل الدخول",
+"fillCredentials": "يرجى ملء بيانات الاعتماد.",
+"emailLabel": "البريد الإلكتروني :",
+"emailHint": "example93@gmail.com",
+"passwordLabel": "كلمة المرور :",
+"passwordHint": "Aa1234?#",
+"forgotPassword": "نسيت كلمة المرور؟",
+"signInButton": "تسجيل الدخول",
+"orSignInWith": "أو تسجيل الدخول باستخدام",
+"continueWithGoogle": "متابعة باستخدام جوجل",
+"dontHaveAccount": "ليس لديك حساب؟",
+"signUp": "إنشاء حساب"
 }
