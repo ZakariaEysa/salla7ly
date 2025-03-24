@@ -4,8 +4,8 @@ import '../../../data/hive_keys.dart';
 import '../../../data/hive_storage.dart';
 import '../../../utils/navigation.dart';
 import '../../../widgets/scaffold/scaffold_f.dart';
+import '../on_boarding/presentation/views/on_boarding.dart';
 import '../home/presentation/views/home_screen.dart';
-import '../onBoarding/presentation/views/onboarding.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
