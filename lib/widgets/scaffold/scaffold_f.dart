@@ -17,23 +17,25 @@ class ScaffoldF extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context).extension<GradientTheme>();
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      appBar: appBar,
-      bottomNavigationBar: bottomNavigationBar,
-      body: Container(
-          width: 500.w,
-          height: 900.h,
-          decoration: BoxDecoration(gradient: theme?.backgroundGradient),
-          child: body),
-      // appBar: title != null
-      //     ? PreferredSize(
-      //         preferredSize: Size.fromHeight(50.h),
-      //         child: BuilderAppBar(
-      //           actions: actions,
-      //           title: title ?? "",
-      //         ))
-      //     : null,
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        appBar: appBar,
+        bottomNavigationBar: bottomNavigationBar,
+        body: Container(
+            width: 500.w,
+            height: 900.h,
+            decoration: BoxDecoration(gradient: theme?.backgroundGradient),
+            child: body),
+        // appBar: title != null
+        //     ? PreferredSize(
+        //         preferredSize: Size.fromHeight(50.h),
+        //         child: BuilderAppBar(
+        //           actions: actions,
+        //           title: title ?? "",
+        //         ))
+        //     : null,
+      ),
     );
   }
 }
