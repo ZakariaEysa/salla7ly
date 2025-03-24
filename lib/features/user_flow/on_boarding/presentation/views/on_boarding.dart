@@ -87,9 +87,6 @@ class _OnBoardingState extends State<OnBoarding> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // مساحة علوية
-          SizedBox(height: 50.h),
-
           // عرض الصفحات
           Expanded(
             child: PageView.builder(
@@ -102,58 +99,70 @@ class _OnBoardingState extends State<OnBoarding> {
               },
               itemBuilder: (context, index) {
                 final content = getOnBoardingContents(context)[index];
-                return SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Padding(
-                    padding: EdgeInsets.all(30.sp),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // صورة الصفحة
-                        Image.asset(
-                          content.image,
-                          height: 300.h,
-                          fit: BoxFit.contain,
-                        ),
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30.sp),
+                  child: Column(
+                    children: [
+                      // منطقة قابلة للتمرير تحتوي على المحتوى
+                      Expanded(
+                        child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(height: 30.h),
 
-                        SizedBox(height: 15.h),
+                              // صورة الصفحة
+                              Image.asset(
+                                content.image,
+                                height: 300.h,
+                                fit: BoxFit.contain,
+                              ),
 
-                        // نقاط الانتقال (بعد الصورة وقبل النص)
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(
-                            _getPageCount(),
-                            (index) =>
-                                DotIndicator(isActive: _currentPage == index),
+                              SizedBox(height: 15.h),
+
+                              // نقاط الانتقال (بعد الصورة وقبل النص)
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: List.generate(
+                                  _getPageCount(),
+                                  (index) => DotIndicator(
+                                      isActive: _currentPage == index),
+                                ),
+                              ),
+
+                              SizedBox(height: 15.h),
+
+                              // عنوان الصفحة
+                              Text(
+                                content.title,
+                                style: theme.textTheme.labelLarge?.copyWith(
+                                  fontSize: 35.sp,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+
+                              SizedBox(height: 15.h),
+
+                              // وصف الصفحة
+                              Text(
+                                content.description,
+                                textAlign: TextAlign.center,
+                                style: theme.textTheme.labelLarge?.copyWith(
+                                  fontSize: 16.sp,
+                                ),
+                              ),
+
+                              SizedBox(height: 30.h),
+                            ],
                           ),
                         ),
+                      ),
 
-                        SizedBox(height: 15.h),
-
-                        // عنوان الصفحة
-                        Text(
-                          content.title,
-                          style: theme.textTheme.labelLarge?.copyWith(
-                            fontSize: 35.sp,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-
-                        SizedBox(height: 15.h),
-
-                        // وصف الصفحة
-                        Text(
-                          content.description,
-                          textAlign: TextAlign.center,
-                          style: theme.textTheme.labelLarge?.copyWith(
-                            fontSize: 16.sp,
-                          ),
-                        ),
-
-                        SizedBox(height: 40.h),
-
-                        // أزرار التنقل (بنفس الأحجام الأصلية)
-                        _currentPage == 0
+                      // منطقة الأزرار في الأسفل (خارج منطقة التمرير)
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 15.h, top: 10.h),
+                        child: _currentPage == 0
                             ? CustomButton(
                                 text: S.of(context).Next,
                                 onTap: _goToNextPage,
@@ -184,8 +193,9 @@ class _OnBoardingState extends State<OnBoarding> {
                                   ),
                                 ],
                               ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 18.h),
+                    ],
                   ),
                 );
               },
