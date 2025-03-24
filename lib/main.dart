@@ -14,7 +14,7 @@ import 'data/hive_keys.dart';
 import 'features/user_flow/splash_screen/splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'widgets/application_theme/application_theme.dart';
-import 'widgets/application_theme/theme_provider.dart'; 
+import 'widgets/application_theme/theme_provider.dart';
 
 ThemeMode getThemeMode(bool isDark) =>
     isDark ? ThemeMode.dark : ThemeMode.light;
@@ -45,6 +45,9 @@ void main() async {
   if (HiveStorage.get(HiveKeys.isDark) == null) {
     HiveStorage.set(HiveKeys.isDark, true);
   }
+
+  // إخفاء شاشة السبلاش الافتراضية للنظام
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 
   runApp(
     DevicePreview(
@@ -83,6 +86,7 @@ class MyApp extends ConsumerWidget {
               theme: ApplicationTheme.lightTheme,
               darkTheme: ApplicationTheme.darkTheme,
               themeMode: getThemeMode(isDark),
+              title: "",
               locale: HiveStorage.get(HiveKeys.isArabic)
                   ? const Locale('ar')
                   : const Locale('en'),
