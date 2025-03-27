@@ -25,6 +25,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "Next": MessageLookupByLibrary.simpleMessage("التالي"),
         "Skip": MessageLookupByLibrary.simpleMessage("تخطى"),
         "Start": MessageLookupByLibrary.simpleMessage("ابدا"),
+        "continueWithGoogle":
+            MessageLookupByLibrary.simpleMessage("متابعة باستخدام جوجل"),
+        "craftsmanButton": MessageLookupByLibrary.simpleMessage("حرفي"),
+        "craftsmanDescription": MessageLookupByLibrary.simpleMessage(
+            "حرفي – إذا كنت تقدم خدمات يدوية"),
+        "dontHaveAccount":
+            MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+        "emailHint":
+            MessageLookupByLibrary.simpleMessage("example93@gmail.com"),
+        "emailLabel":
+            MessageLookupByLibrary.simpleMessage("البريد الإلكتروني :"),
+        "emailRequired":
+            MessageLookupByLibrary.simpleMessage("البريد الإلكتروني مطلوب"),
+        "fillCredentials":
+            MessageLookupByLibrary.simpleMessage("يرجى ملء بيانات الاعتماد."),
+        "forgotPassword":
+            MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+        "invalidEmail": MessageLookupByLibrary.simpleMessage(
+            "الرجاء إدخال بريد إلكتروني صحيح"),
         "on1Content": MessageLookupByLibrary.simpleMessage(
             "تواصل بسهولة مع الحرفيين المهرة واحصل على توصيات خدمة مخصصة مصممة خصيصا لاحتياجاتك."),
         "on2Content": MessageLookupByLibrary.simpleMessage(
@@ -35,6 +54,36 @@ class MessageLookup extends MessageLookupByLibrary {
             "يمكن لرجال WCraftsmen اكتشاف فرص العمل دون عناء ، بينما المستخدمين يمكن أن ينشر احتياجاتهم ويتواصل معهم المهنيين المهرة."),
         "on3Title": MessageLookupByLibrary.simpleMessage(
             "ابحث عن عمل بسهولة ، احصل على المساعدة المناسبة!"),
+        "orSignInWith":
+            MessageLookupByLibrary.simpleMessage("أو تسجيل الدخول باستخدام"),
+        "passwordComplexityError": MessageLookupByLibrary.simpleMessage(
+            "كلمة المرور ضعيفة، استخدم مزيجاً من الأحرف\n والأرقام والرموز (مثال: Aa@#1234)"),
+        "passwordHint": MessageLookupByLibrary.simpleMessage("Aa1234?#"),
+        "passwordLabel": MessageLookupByLibrary.simpleMessage("كلمة المرور :"),
+        "passwordNoNumber": MessageLookupByLibrary.simpleMessage(
+            "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل"),
+        "passwordNoUppercase": MessageLookupByLibrary.simpleMessage(
+            "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل"),
+        "passwordRequired":
+            MessageLookupByLibrary.simpleMessage("كلمة المرور مطلوبة"),
+        "passwordTooShort": MessageLookupByLibrary.simpleMessage(
+            "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل"),
+        "selectAccountType": MessageLookupByLibrary.simpleMessage(
+            "يرجى تحديد نوع حسابك للمتابعة:"),
+        "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "signInButton": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+        "userButton": MessageLookupByLibrary.simpleMessage("مستخدم"),
+        "userDescription": MessageLookupByLibrary.simpleMessage(
+            "مستخدم – إذا كنت تبحث عن محترفين لإنجاز مهامك."),
+        "usernameHasNumbers": MessageLookupByLibrary.simpleMessage(
+            "لا يمكن أن يحتوي اسم المستخدم على أرقام"),
+        "usernameRequired":
+            MessageLookupByLibrary.simpleMessage("اسم المستخدم مطلوب"),
+        "usernameStartsWithSpace": MessageLookupByLibrary.simpleMessage(
+            "لا يمكن أن يبدأ اسم المستخدم بمسافة"),
+        "usernameTooShort": MessageLookupByLibrary.simpleMessage(
+            "يجب أن يتكون اسم المستخدم من 3 أحرف على الأقل"),
         "welcomeToSalla7ly":
             MessageLookupByLibrary.simpleMessage("مرحبا بكم في صلحلي")
       };

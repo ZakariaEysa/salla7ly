@@ -9,10 +9,10 @@ class DotIndicator extends StatelessWidget {
   final bool isActive;
 
   /// لون النقطة النشطة
-  final Color activeColor;
+  final Color? activeColor;
 
   /// لون النقطة غير النشطة
-  final Color inactiveColor;
+  final Color? inactiveColor;
 
   /// حجم النقطة
   final double size;
@@ -26,13 +26,18 @@ class DotIndicator extends StatelessWidget {
   const DotIndicator({
     Key? key,
     required this.isActive,
-    this.activeColor = const Color(0xFF0062FF),
-    this.inactiveColor = Colors.white,
+    this.activeColor,
+    this.inactiveColor,
     this.size = 12.0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final Color dotActiveColor = activeColor ?? theme.colorScheme.primary;
+    final Color dotInactiveColor =
+        inactiveColor ?? theme.textTheme.bodyMedium?.color ?? Colors.white;
+
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
@@ -41,7 +46,7 @@ class DotIndicator extends StatelessWidget {
       margin: EdgeInsets.only(right: 5.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.sp),
-        color: isActive ? activeColor : inactiveColor,
+        color: isActive ? dotActiveColor : dotInactiveColor,
       ),
     );
   }
@@ -58,10 +63,10 @@ class DotIndicatorRow extends StatelessWidget {
   final int currentIndex;
 
   /// لون النقطة النشطة
-  final Color activeColor;
+  final Color? activeColor;
 
   /// لون النقطة غير النشطة
-  final Color inactiveColor;
+  final Color? inactiveColor;
 
   /// حجم النقطة
   final double dotSize;
@@ -74,21 +79,26 @@ class DotIndicatorRow extends StatelessWidget {
     Key? key,
     required this.count,
     required this.currentIndex,
-    this.activeColor = const Color(0xFF0062FF),
-    this.inactiveColor = Colors.white,
+    this.activeColor,
+    this.inactiveColor,
     this.dotSize = 12.0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final Color dotActiveColor = activeColor ?? theme.colorScheme.primary;
+    final Color dotInactiveColor =
+        inactiveColor ?? theme.textTheme.bodyMedium?.color ?? Colors.white;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         count,
         (index) => DotIndicator(
           isActive: currentIndex == index,
-          activeColor: activeColor,
-          inactiveColor: inactiveColor,
+          activeColor: dotActiveColor,
+          inactiveColor: dotInactiveColor,
           size: dotSize,
         ),
       ),

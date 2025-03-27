@@ -25,6 +25,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "Next": MessageLookupByLibrary.simpleMessage("Next"),
         "Skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "Start": MessageLookupByLibrary.simpleMessage("Start"),
+        "continueWithGoogle":
+            MessageLookupByLibrary.simpleMessage("Continue With Google"),
+        "craftsmanButton": MessageLookupByLibrary.simpleMessage("Craftsman"),
+        "craftsmanDescription": MessageLookupByLibrary.simpleMessage(
+            "Craftsman – If you offer manual services"),
+        "dontHaveAccount":
+            MessageLookupByLibrary.simpleMessage("Don\'t have account ?"),
+        "emailHint":
+            MessageLookupByLibrary.simpleMessage("example93@gmail.com"),
+        "emailLabel": MessageLookupByLibrary.simpleMessage("Email :"),
+        "emailRequired":
+            MessageLookupByLibrary.simpleMessage("Email is required"),
+        "fillCredentials": MessageLookupByLibrary.simpleMessage(
+            "please fill the credentials."),
+        "forgotPassword":
+            MessageLookupByLibrary.simpleMessage("Forgot password?"),
+        "invalidEmail":
+            MessageLookupByLibrary.simpleMessage("Please enter a valid email"),
         "on1Content": MessageLookupByLibrary.simpleMessage(
             "Connect easily with skilled craftsmen and get personalized service recommendations tailored to your needs."),
         "on2Content": MessageLookupByLibrary.simpleMessage(
@@ -35,6 +53,35 @@ class MessageLookup extends MessageLookupByLibrary {
             "Craftsmen can discover job opportunities effortlessly, while users  can post their needs and connect with  skilled professionals. "),
         "on3Title": MessageLookupByLibrary.simpleMessage(
             "Find Work Easily, Get the Right Help!"),
+        "orSignInWith": MessageLookupByLibrary.simpleMessage("Or sign in With"),
+        "passwordComplexityError": MessageLookupByLibrary.simpleMessage(
+            "Weak password, use a mix of letters,\n numbers and symbols (example: Aa@#1234)"),
+        "passwordHint": MessageLookupByLibrary.simpleMessage("Aa1234?#"),
+        "passwordLabel": MessageLookupByLibrary.simpleMessage("Password :"),
+        "passwordNoNumber": MessageLookupByLibrary.simpleMessage(
+            "Password must contain at least one number"),
+        "passwordNoUppercase": MessageLookupByLibrary.simpleMessage(
+            "Password must contain at least one uppercase letter"),
+        "passwordRequired":
+            MessageLookupByLibrary.simpleMessage("Password is required"),
+        "passwordTooShort": MessageLookupByLibrary.simpleMessage(
+            "Password must be at least 8 characters long"),
+        "selectAccountType": MessageLookupByLibrary.simpleMessage(
+            "Please select your account type to continue:"),
+        "signIn": MessageLookupByLibrary.simpleMessage("sign in"),
+        "signInButton": MessageLookupByLibrary.simpleMessage("sign in"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "userButton": MessageLookupByLibrary.simpleMessage("User"),
+        "userDescription": MessageLookupByLibrary.simpleMessage(
+            "User – If you\'re looking for professionals to get your tasks done."),
+        "usernameHasNumbers": MessageLookupByLibrary.simpleMessage(
+            "Username cannot contain numbers"),
+        "usernameRequired":
+            MessageLookupByLibrary.simpleMessage("Username is required"),
+        "usernameStartsWithSpace": MessageLookupByLibrary.simpleMessage(
+            "Username cannot start with a space"),
+        "usernameTooShort": MessageLookupByLibrary.simpleMessage(
+            "Username must be at least 3 characters long"),
         "welcomeToSalla7ly":
             MessageLookupByLibrary.simpleMessage("Welcome to  Salla7ly !")
       };

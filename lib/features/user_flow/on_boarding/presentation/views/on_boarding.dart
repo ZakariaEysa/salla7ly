@@ -9,12 +9,8 @@ import '../../../../../generated/l10n.dart';
 import '../../../home/presentation/views/home_screen.dart';
 import '../widgets/dot_indicator.dart';
 import '../widgets/onboarding_content.dart';
-import '../widgets/onboarding_page.dart';
 import '../widgets/navigation_buttons.dart';
 
-/// شاشة الأونبوردينج الرئيسية
-///
-/// تُعرض عند أول استخدام للتطبيق لتقديم نظرة عامة على ميزاته
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
 
@@ -23,20 +19,16 @@ class OnBoarding extends StatefulWidget {
 }
 
 class _OnBoardingState extends State<OnBoarding> {
-  /// متحكم في عرض الصفحات
   final PageController _pageController = PageController();
 
-  /// رقم الصفحة الحالية
   int _currentPage = 0;
 
   @override
   void dispose() {
-    // التخلص من الموارد عند إغلاق الشاشة
     _pageController.dispose();
     super.dispose();
   }
 
-  /// الانتقال إلى الصفحة التالية
   void _goToNextPage() {
     if (_currentPage < _getPageCount() - 1) {
       _pageController.nextPage(
