@@ -18,11 +18,10 @@ class AccountTypeButtonsRow extends StatefulWidget {
 }
 
 class _AccountTypeButtonsRowState extends State<AccountTypeButtonsRow> {
-  // تعريف متغير لتتبع الاختيار الحالي (افتراضياً المستخدم)
-  bool _isUserSelected = true;
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
       height: 60.h,
       width: double.infinity,
@@ -42,24 +41,18 @@ class _AccountTypeButtonsRowState extends State<AccountTypeButtonsRow> {
           // زر المستخدم (الجزء الأزرق)
           Expanded(
             child: Material(
-              color: _isUserSelected
-                  ? const Color(0xFF0066FF)
-                  : const Color(0xFF0066FF).withOpacity(0.7),
+              color: theme.colorScheme.primary,
               child: InkWell(
                 onTap: () {
-                  setState(() {
-                    _isUserSelected = true;
-                  });
                   widget.onUserPressed();
                 },
                 child: Center(
                   child: Text(
                     S.of(context).userButton,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: theme.textTheme.bodyMedium?.color,
                       fontSize: 24.sp,
-                      fontWeight:
-                          _isUserSelected ? FontWeight.bold : FontWeight.w500,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
@@ -70,24 +63,18 @@ class _AccountTypeButtonsRowState extends State<AccountTypeButtonsRow> {
           // زر الحرفي (الجزء الأبيض)
           Expanded(
             child: Material(
-              color: !_isUserSelected
-                  ? Colors.white
-                  : Colors.white.withOpacity(0.8),
+              color: theme.textTheme.bodyMedium?.color,
               child: InkWell(
                 onTap: () {
-                  setState(() {
-                    _isUserSelected = false;
-                  });
                   widget.onCraftsmanPressed();
                 },
                 child: Center(
                   child: Text(
                     S.of(context).craftsmanButton,
                     style: TextStyle(
-                      color: const Color(0xFF0066FF),
+                      color: theme.colorScheme.primary,
                       fontSize: 24.sp,
-                      fontWeight:
-                          !_isUserSelected ? FontWeight.bold : FontWeight.w500,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

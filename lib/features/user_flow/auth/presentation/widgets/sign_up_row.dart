@@ -10,14 +10,16 @@ class SignUpRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           S.of(context).dontHaveAccount,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 20,
+          style: TextStyle(
+            color: theme.textTheme.bodyMedium?.color,
+            fontSize: 20.sp,
             fontFamily: 'Inter',
             fontWeight: FontWeight.w400,
           ),
@@ -38,9 +40,9 @@ class SignUpRow extends StatelessWidget {
           ),
           child: Text(
             S.of(context).signUp,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 20,
+            style: TextStyle(
+              color: theme.textTheme.bodyMedium?.color,
+              fontSize: 20.sp,
               fontFamily: 'Inter',
               fontWeight: FontWeight.w900,
               height: 1.10,

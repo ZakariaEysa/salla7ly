@@ -9,11 +9,13 @@ class PageTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Center(
       child: Text(
         title,
         style: TextStyle(
-          color: Colors.white,
+          color: theme.textTheme.headlineLarge?.color,
           fontSize: 48.sp,
           fontWeight: FontWeight.w500,
           letterSpacing: 1.2,

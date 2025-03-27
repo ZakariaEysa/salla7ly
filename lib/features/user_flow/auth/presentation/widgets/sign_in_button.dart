@@ -9,18 +9,21 @@ class SignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
+      width: 250.w,
       height: 52.h,
       decoration: ShapeDecoration(
-        color: const Color(0x77182F4C),
+        color: theme.colorScheme.surface.withOpacity(0.45),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(40),
+          borderRadius: BorderRadius.circular(40.r),
         ),
         shadows: [
-          const BoxShadow(
-            color: const Color(0x3F000000),
-            blurRadius: 4,
-            offset: const Offset(0, 4),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            blurRadius: 4.r,
+            offset: Offset(0, 4.h),
             spreadRadius: 0,
           )
         ],
@@ -34,7 +37,7 @@ class SignInButton extends StatelessWidget {
             child: Text(
               S.of(context).signInButton,
               style: TextStyle(
-                color: Colors.white,
+                color: theme.textTheme.bodyMedium?.color,
                 fontSize: 24.sp,
                 fontWeight: FontWeight.w500,
                 letterSpacing: 1.2,

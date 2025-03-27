@@ -8,11 +8,13 @@ class OrSignInWithDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Row(
       children: [
         Expanded(
           child: Divider(
-            color: const Color(0xff6DE5E5),
+            color: theme.textTheme.bodyMedium?.color,
             thickness: 1.h,
           ),
         ),
@@ -20,8 +22,8 @@ class OrSignInWithDivider extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: Text(
             S.of(context).orSignInWith,
-            style:  TextStyle(
-              color: Colors.white,
+            style: TextStyle(
+              color: theme.textTheme.bodyMedium?.color,
               fontSize: 20.sp,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w700,
@@ -30,7 +32,7 @@ class OrSignInWithDivider extends StatelessWidget {
         ),
         Expanded(
           child: Divider(
-            color: const Color(0xff6DE5E5),
+            color: theme.textTheme.bodyMedium?.color,
             thickness: 1.h,
           ),
         ),

@@ -132,7 +132,7 @@ class _CustomButtonState extends State<CustomButton>
                 decoration: ShapeDecoration(
                   gradient: theme.extension<GradientTheme>()?.buttonGradient,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(12.r),
                   ),
                 ),
                 alignment: Alignment.center,
@@ -158,7 +158,7 @@ class _CustomButtonState extends State<CustomButton>
                   builder: (context, child) {
                     return DecoratedBox(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                         gradient: _createShimmerGradient(isRTL),
                       ),
                     );
@@ -186,7 +186,7 @@ class _CustomButtonState extends State<CustomButton>
             decoration: ShapeDecoration(
               color: const Color(0xFFF3F9FF),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12.r),
               ),
             ),
             child: const Icon(
@@ -216,7 +216,7 @@ class _CustomButtonState extends State<CustomButton>
             onTap: widget.onTap,
             child: _buildTextButton(theme, isRTL),
           ),
-        const SizedBox(width: 8.0),
+        SizedBox(width: 8.w),
         if (widget.text == null)
           GestureDetector(
             onTapDown: _handleTapDown,

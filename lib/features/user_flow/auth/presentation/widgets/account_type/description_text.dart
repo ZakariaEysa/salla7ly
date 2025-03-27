@@ -9,10 +9,12 @@ class DescriptionText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Text(
       text,
       style: TextStyle(
-        color: Colors.white,
+        color: theme.textTheme.bodyMedium?.color,
         fontSize: 16.sp,
         fontWeight: FontWeight.w400,
       ),

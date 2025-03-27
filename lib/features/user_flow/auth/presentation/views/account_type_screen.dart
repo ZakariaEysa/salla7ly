@@ -27,7 +27,7 @@ class AccountTypeScreen extends StatelessWidget {
                 width: 372.w,
                 height: 463.h,
                 decoration: ShapeDecoration(
-                  color: const Color(0xFF182F4C),
+                  color: Theme.of(context).colorScheme.shadow,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
@@ -57,15 +57,12 @@ class AccountTypeScreen extends StatelessWidget {
 
               SizedBox(height: 50.h),
 
-              // صف الأزرار
               AccountTypeButtonsRow(
                 onUserPressed: () {
-                  // التوجه إلى الصفحة المناسبة للمستخدم
-                  Navigator.of(context).pushReplacementNamed('/home_user');
+                  // Navigator.of(context).pushReplacementNamed('/home_user');
                 },
                 onCraftsmanPressed: () {
-                  // التوجه إلى الصفحة المناسبة للحرفي
-                  Navigator.of(context).pushReplacementNamed('/home_craftsman');
+                  // Navigator.of(context).pushReplacementNamed('/home_craftsman');
                 },
               ),
 

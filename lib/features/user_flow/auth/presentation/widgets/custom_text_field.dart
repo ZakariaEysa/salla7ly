@@ -29,22 +29,24 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
       height: 65.h,
       decoration: ShapeDecoration(
-        color: const Color(0xFF182F4C),
+        color: theme.colorScheme.surface,
         shape: RoundedRectangleBorder(
-          side: const BorderSide(
-            width: 1,
-            color: const Color(0xFF218C83),
+          side: BorderSide(
+            width: 1.w,
+            color: theme.colorScheme.secondary,
           ),
-          borderRadius: BorderRadius.circular(13),
+          borderRadius: BorderRadius.circular(13.r),
         ),
         shadows: [
-          const BoxShadow(
-            color: const Color(0x3F000000),
-            blurRadius: 4,
-            offset: const Offset(0, 4),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            blurRadius: 4.r,
+            offset: Offset(0, 4.h),
             spreadRadius: 0,
           )
         ],
@@ -52,20 +54,14 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         keyboardType: keyboardType,
         autofillHints: autofillHints != null ? [autofillHints!] : null,
-        cursorColor: Theme.of(context).colorScheme.primary,
+        cursorColor: theme.colorScheme.primary,
         controller: controller,
         obscureText: isPassword && obscureText != null ? obscureText! : false,
-        style: TextStyle(color: Colors.white, fontSize: 18.sp),
+        style: TextStyle(
+            color: theme.textTheme.bodyMedium?.color, fontSize: 18.sp),
         decoration: InputDecoration(
-          // disabledBorder: const OutlineInputBorder(
-          //   borderSide: BorderSide(color: Color(0xff218C83)),
-          // ),
-
           hintText: hintText,
-          hintStyle: TextStyle(
-            color: Colors.white.withOpacity(0.5),
-            fontSize: 16.sp,
-          ),
+          hintStyle: theme.inputDecorationTheme.hintStyle,
           prefixIcon: Padding(
             padding: EdgeInsetsDirectional.only(start: 10.w, end: 10.w),
             child: SizedBox(
@@ -74,14 +70,12 @@ class CustomTextField extends StatelessWidget {
               child: prefixWidget ??
                   Icon(
                     prefixIcon,
-                    color: Colors.white,
-                    // size: 22.sp,
+                    color: theme.textTheme.bodyMedium?.color,
                   ),
             ),
           ),
           prefixIconConstraints: BoxConstraints(minWidth: 20.w),
           suffixIconConstraints: BoxConstraints(minWidth: 20.w),
-
           suffixIcon: isPassword
               ? Padding(
                   padding: EdgeInsetsDirectional.only(end: 10.w, start: 10.w),
@@ -96,7 +90,7 @@ class CustomTextField extends StatelessWidget {
                               obscureText!
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined,
-                              color: Colors.white,
+                              color: theme.textTheme.bodyMedium?.color,
                             ),
                             onPressed: onTogglePasswordVisibility,
                           ),
@@ -104,11 +98,7 @@ class CustomTextField extends StatelessWidget {
                   ))
               : null,
           border: InputBorder.none,
-          contentPadding: EdgeInsetsDirectional.only(
-            top: 20.h,
-            bottom: 20.h,
-            end: 20.w,
-          ),
+          contentPadding: theme.inputDecorationTheme.contentPadding,
         ),
       ),
     );

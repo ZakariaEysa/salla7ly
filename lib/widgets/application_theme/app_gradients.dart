@@ -20,7 +20,7 @@ class AppGradients {
   );
 
   // Light Mode Gradients
-  static const LinearGradient lightBackgroundGradient = LinearGradient(
+  static LinearGradient lightBackgroundGradient = const LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [

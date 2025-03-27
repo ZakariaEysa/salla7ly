@@ -41,7 +41,7 @@ class _SignInScreenState extends State<SignInScreen> {
             child: Image.asset(
               'assets/images/Union.png',
               width: 400.w,
-              height: 500.h,
+              height: 600.h,
               fit: BoxFit.contain,
             ),
           ),
@@ -97,7 +97,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   const ForgotPasswordButton(),
                   SizedBox(height: 10.h),
-                  const SignInButton(),
+                  const Align(
+                      alignment: Alignment.center, child: const SignInButton()),
                   SizedBox(height: 30.h),
                   const OrSignInWithDivider(),
                   SizedBox(height: 30.h),

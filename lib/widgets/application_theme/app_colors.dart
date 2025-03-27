@@ -22,4 +22,13 @@ class AppColors {
   static const Color lightButtonEnd = Color(0xFF1976D2);
   static const Color lightTextPrimary = Color(0xFF212121);
   static const Color lightTextSecondary = Color(0xFF757575);
+
+  // Auth Colors
+  static const Color textFieldBackground = Color(0xFF182F4C);
+  static const Color textFieldBorder = Color(0xFF218C83);
+  static const Color signInButtonBackground = Color(0x77182F4C);
+  static const Color navyBlue = Color(0xFF172E4A);
+  static const Color primaryBlue = Color(0xFF0062FF);
+  static const Color accountTypeBlue = Color(0xFF0066FF);
+  static const Color shadowColor = Color(0xFF0D1B2A);
 }

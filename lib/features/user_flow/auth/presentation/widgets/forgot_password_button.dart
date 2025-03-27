@@ -8,15 +8,17 @@ class ForgotPasswordButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {},
         child: Text(
           S.of(context).forgotPassword,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
+          style: TextStyle(
+            color: theme.textTheme.bodyMedium?.color,
+            fontSize: 16.sp,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w400,
           ),

@@ -8,11 +8,13 @@ class GoogleSignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
       width: double.infinity,
       height: 60.h,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: theme.textTheme.bodyMedium?.color,
         borderRadius: BorderRadius.circular(15.r),
         boxShadow: [
           BoxShadow(
@@ -38,12 +40,11 @@ class GoogleSignInButton extends StatelessWidget {
               SizedBox(width: 12.w),
               Text(
                 S.of(context).continueWithGoogle,
-                style: const TextStyle(
-                  color: const Color(0xFF172E4A),
-                  fontSize: 20,
+                style: TextStyle(
+                  color: theme.colorScheme.tertiary,
+                  fontSize: 20.sp,
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w700,
-                  height: 1.10,
                   letterSpacing: -0.41,
                 ),
               ),

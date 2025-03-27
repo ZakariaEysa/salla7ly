@@ -8,11 +8,13 @@ class TitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Text(
       S.of(context).selectAccountType,
       style: TextStyle(
-        color: Colors.white,
-        fontSize: 36.sp,
+        color: theme.textTheme.headlineLarge?.color,
+        fontSize: 25.sp,
         fontWeight: FontWeight.bold,
       ),
       textAlign: TextAlign.center,
