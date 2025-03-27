@@ -31,4 +31,5 @@ class AppColors {
   static const Color primaryBlue = Color(0xFF0062FF);
   static const Color accountTypeBlue = Color(0xFF0066FF);
   static const Color shadowColor = Color(0xFF0D1B2A);
+  static const Color errorColor = Colors.red;
 }

@@ -309,6 +309,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Email is required`
+  String get emailRequired {
+    return Intl.message(
+      'Email is required',
+      name: 'emailRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid email`
+  String get invalidEmail {
+    return Intl.message(
+      'Please enter a valid email',
+      name: 'invalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is required`
+  String get passwordRequired {
+    return Intl.message(
+      'Password is required',
+      name: 'passwordRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be at least 8 characters long`
+  String get passwordTooShort {
+    return Intl.message(
+      'Password must be at least 8 characters long',
+      name: 'passwordTooShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must contain at least one uppercase letter`
+  String get passwordNoUppercase {
+    return Intl.message(
+      'Password must contain at least one uppercase letter',
+      name: 'passwordNoUppercase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must contain at least one number`
+  String get passwordNoNumber {
+    return Intl.message(
+      'Password must contain at least one number',
+      name: 'passwordNoNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username is required`
+  String get usernameRequired {
+    return Intl.message(
+      'Username is required',
+      name: 'usernameRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username cannot start with a space`
+  String get usernameStartsWithSpace {
+    return Intl.message(
+      'Username cannot start with a space',
+      name: 'usernameStartsWithSpace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username must be at least 3 characters long`
+  String get usernameTooShort {
+    return Intl.message(
+      'Username must be at least 3 characters long',
+      name: 'usernameTooShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username cannot contain numbers`
+  String get usernameHasNumbers {
+    return Intl.message(
+      'Username cannot contain numbers',
+      name: 'usernameHasNumbers',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

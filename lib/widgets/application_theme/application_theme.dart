@@ -104,10 +104,31 @@ class ApplicationTheme {
         fontSize: 16.sp,
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(13),
-        borderSide: const BorderSide(
+        borderRadius: BorderRadius.circular(13.r),
+        borderSide: BorderSide(
+          width: 1.w,
           color: AppColors.textFieldBorder,
-          width: 1,
+        ),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(13.r),
+        borderSide: BorderSide(
+          width: 1.w,
+          color: AppColors.errorColor,
+        ),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(13.r),
+        borderSide: BorderSide(
+          width: 1.w,
+          color: AppColors.errorColor,
+        ),
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(13.r),
+        borderSide: BorderSide(
+          width: 1.w,
+          color: AppColors.textFieldBorder,
         ),
       ),
       focusedBorder: OutlineInputBorder(

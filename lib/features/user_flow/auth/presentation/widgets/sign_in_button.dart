@@ -5,8 +5,8 @@ import 'package:salla7ly/features/user_flow/auth/presentation/views/account_type
 
 /// كلاس لزر تسجيل الدخول
 class SignInButton extends StatelessWidget {
-  const SignInButton({Key? key}) : super(key: key);
-
+  const SignInButton({Key? key, this.onTap}) : super(key: key);
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -32,7 +32,7 @@ class SignInButton extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(30.r),
-          onTap: () {},
+          onTap: onTap,
           child: Center(
             child: Text(
               S.of(context).signInButton,

@@ -30,5 +30,16 @@
 "userDescription": "User – If you're looking for professionals to get your tasks done.",
 "craftsmanDescription": "Craftsman – If you offer manual services",
 "userButton": "User",
-"craftsmanButton": "Craftsman"
+"craftsmanButton": "Craftsman",
+
+"emailRequired": "Email is required",
+"invalidEmail": "Please enter a valid email",
+"passwordRequired": "Password is required",
+"passwordTooShort": "Password must be at least 8 characters long",
+"passwordNoUppercase": "Password must contain at least one uppercase letter",
+"passwordNoNumber": "Password must contain at least one number",
+"usernameRequired": "Username is required",
+"usernameStartsWithSpace": "Username cannot start with a space",
+"usernameTooShort": "Username must be at least 3 characters long",
+"usernameHasNumbers": "Username cannot contain numbers"
 }

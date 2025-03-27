@@ -7,9 +7,8 @@ import '../widgets/account_type/account_type_buttons_row.dart';
 import '../widgets/account_type/description_text.dart';
 import '../widgets/account_type/title_text.dart';
 
-/// شاشة اختيار نوع الحساب (مستخدم أو حرفي)
 class AccountTypeScreen extends StatelessWidget {
-  const AccountTypeScreen({Key? key}) : super(key: key);
+  const AccountTypeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,6 @@ class AccountTypeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 30.h),
-              // صورة OR
               Container(
                 width: 372.w,
                 height: 463.h,
@@ -39,24 +37,13 @@ class AccountTypeScreen extends StatelessWidget {
                   fit: BoxFit.contain,
                 ),
               ),
-
               SizedBox(height: 30.h),
-
-              // عنوان الصفحة
               const TitleText(),
-
               SizedBox(height: 30.h),
-
-              // وصف المستخدم
               DescriptionText(text: S.of(context).userDescription),
-
               SizedBox(height: 10.h),
-
-              // وصف الحرفي
               DescriptionText(text: S.of(context).craftsmanDescription),
-
               SizedBox(height: 50.h),
-
               AccountTypeButtonsRow(
                 onUserPressed: () {
                   // Navigator.of(context).pushReplacementNamed('/home_user');
@@ -65,7 +52,6 @@ class AccountTypeScreen extends StatelessWidget {
                   // Navigator.of(context).pushReplacementNamed('/home_craftsman');
                 },
               ),
-
               SizedBox(height: 30.h),
             ],
           ),
