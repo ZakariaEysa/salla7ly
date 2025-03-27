@@ -56,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "ابحث عن عمل بسهولة ، احصل على المساعدة المناسبة!"),
         "orSignInWith":
             MessageLookupByLibrary.simpleMessage("أو تسجيل الدخول باستخدام"),
+        "passwordComplexityError": MessageLookupByLibrary.simpleMessage(
+            "كلمة المرور ضعيفة، استخدم مزيجاً من الأحرف\n والأرقام والرموز (مثال: Aa@#1234)"),
         "passwordHint": MessageLookupByLibrary.simpleMessage("Aa1234?#"),
         "passwordLabel": MessageLookupByLibrary.simpleMessage("كلمة المرور :"),
         "passwordNoNumber": MessageLookupByLibrary.simpleMessage(

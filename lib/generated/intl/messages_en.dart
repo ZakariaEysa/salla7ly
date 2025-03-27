@@ -54,6 +54,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "on3Title": MessageLookupByLibrary.simpleMessage(
             "Find Work Easily, Get the Right Help!"),
         "orSignInWith": MessageLookupByLibrary.simpleMessage("Or sign in With"),
+        "passwordComplexityError": MessageLookupByLibrary.simpleMessage(
+            "Weak password, use a mix of letters,\n numbers and symbols (example: Aa@#1234)"),
         "passwordHint": MessageLookupByLibrary.simpleMessage("Aa1234?#"),
         "passwordLabel": MessageLookupByLibrary.simpleMessage("Password :"),
         "passwordNoNumber": MessageLookupByLibrary.simpleMessage(

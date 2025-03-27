@@ -29,6 +29,7 @@ class ValidationUtils {
   /// - لا تقل عن 8 أحرف
   /// - تحتوي على حرف كبير واحد على الأقل
   /// - تحتوي على رقم واحد على الأقل
+  /// - تحتوي على رمز خاص واحد على الأقل
   static String? validatePassword(String? value, BuildContext context) {
     final localizations = S.of(context);
 
@@ -36,18 +37,14 @@ class ValidationUtils {
       return localizations.passwordRequired;
     }
 
-    if (value.length < 8) {
-      return localizations.passwordTooShort;
-    }
+    // التحقق من كل المتطلبات دفعة واحدة
+    final hasMinLength = value.length >= 8;
+    final hasUppercase = RegExp(r'[A-Z]').hasMatch(value);
+    final hasNumber = RegExp(r'[0-9]').hasMatch(value);
+    final hasSpecialChar = RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value);
 
-    // التحقق من وجود حرف كبير
-    if (!RegExp(r'[A-Z]').hasMatch(value)) {
-      return localizations.passwordNoUppercase;
-    }
-
-    // التحقق من وجود رقم
-    if (!RegExp(r'[0-9]').hasMatch(value)) {
-      return localizations.passwordNoNumber;
+    if (!hasMinLength || !hasUppercase || !hasNumber || !hasSpecialChar) {
+      return localizations.passwordComplexityError;
     }
 
     return null;

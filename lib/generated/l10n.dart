@@ -409,6 +409,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Weak password, use a mix of letters,\n numbers and symbols (example: Aa@#1234)`
+  String get passwordComplexityError {
+    return Intl.message(
+      'Weak password, use a mix of letters,\n numbers and symbols (example: Aa@#1234)',
+      name: 'passwordComplexityError',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
