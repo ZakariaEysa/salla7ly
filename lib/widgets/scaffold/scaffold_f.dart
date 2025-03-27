@@ -9,17 +9,19 @@ class ScaffoldF extends StatelessWidget {
     required this.body,
     this.appBar,
     this.actions,
+    this.resizeToAvoidBottomInset,
   });
   final Widget? bottomNavigationBar;
   final Widget body;
   final PreferredSizeWidget? appBar;
   final List<Widget>? actions;
+  final bool? resizeToAvoidBottomInset;
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context).extension<GradientTheme>();
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,
       body: Container(
