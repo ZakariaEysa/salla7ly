@@ -12,7 +12,7 @@ class OrSignInWithDivider extends StatelessWidget {
       children: [
         Expanded(
           child: Divider(
-            color: Colors.white.withOpacity(0.5),
+            color: const Color(0xff6DE5E5),
             thickness: 1.h,
           ),
         ),
@@ -20,15 +20,17 @@ class OrSignInWithDivider extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: Text(
             S.of(context).orSignInWith,
-            style: TextStyle(
+            style:  TextStyle(
               color: Colors.white,
-              fontSize: 16.sp,
+              fontSize: 20.sp,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),
         Expanded(
           child: Divider(
-            color: Colors.white.withOpacity(0.5),
+            color: const Color(0xff6DE5E5),
             thickness: 1.h,
           ),
         ),

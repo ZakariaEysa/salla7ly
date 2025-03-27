@@ -15,6 +15,7 @@ class AccountTypeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScaffoldF(
       body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: Column(

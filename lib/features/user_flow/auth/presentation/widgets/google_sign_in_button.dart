@@ -13,7 +13,7 @@ class GoogleSignInButton extends StatelessWidget {
       height: 60.h,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(30.r),
+        borderRadius: BorderRadius.circular(15.r),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -31,7 +31,6 @@ class GoogleSignInButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // استخدام صورة جوجل المحلية
               Image.asset(
                 'assets/images/google.png',
                 height: 24.h,
@@ -39,10 +38,13 @@ class GoogleSignInButton extends StatelessWidget {
               SizedBox(width: 12.w),
               Text(
                 S.of(context).continueWithGoogle,
-                style: TextStyle(
-                  color: const Color(0xFF0A1A3B),
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w600,
+                style: const TextStyle(
+                  color: const Color(0xFF172E4A),
+                  fontSize: 20,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w700,
+                  height: 1.10,
+                  letterSpacing: -0.41,
                 ),
               ),
             ],

@@ -10,31 +10,26 @@ class SignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: 60.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30.r),
-        color: const Color(0xFF091534),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 10.r,
-            offset: Offset(0, 5.h),
-          ),
+      height: 52.h,
+      decoration: ShapeDecoration(
+        color: const Color(0x77182F4C),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(40),
+        ),
+        shadows: [
+          const BoxShadow(
+            color: const Color(0x3F000000),
+            blurRadius: 4,
+            offset: const Offset(0, 4),
+            spreadRadius: 0,
+          )
         ],
       ),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(30.r),
-          onTap: () {
-            // التنقل إلى صفحة اختيار نوع الحساب
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const AccountTypeScreen(),
-              ),
-            );
-          },
+          onTap: () {},
           child: Center(
             child: Text(
               S.of(context).signInButton,

@@ -14,9 +14,11 @@ class ForgotPasswordButton extends StatelessWidget {
         onPressed: () {},
         child: Text(
           S.of(context).forgotPassword,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
-            fontSize: 16.sp,
+            fontSize: 16,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w400,
           ),
         ),
       ),
