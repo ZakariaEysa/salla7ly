@@ -46,7 +46,8 @@ void main() async {
     HiveStorage.set(HiveKeys.isDark, true);
   }
 
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+  //     overlays: [SystemUiOverlay.top]);
 
   runApp(
     DevicePreview(

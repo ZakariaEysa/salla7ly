@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// كلاس لنص الترحيب
 class WelcomeText extends StatelessWidget {
@@ -11,13 +12,11 @@ class WelcomeText extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Text(
-      text,
-      style: TextStyle(
-        color: theme.textTheme.bodyMedium?.color,
-        fontSize: 22.sp,
-        fontWeight: FontWeight.w400,
-      ),
-    );
+    return Text(text,
+        style: GoogleFonts.vollkorn(
+          color: theme.textTheme.bodyMedium?.color,
+          fontWeight: FontWeight.w500,
+          fontSize: 19.sp,
+        ));
   }
 }

@@ -37,98 +37,94 @@ class _SignInScreenState extends State<SignInScreen> {
     return ScaffoldF(
       body: Form(
         key: signInKey,
-        child: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Positioned(
-                top: -100.h,
-                right: -120.w,
-                child: Image.asset(
-                  'assets/images/Union.png',
-                  width: 400.w,
-                  height: 600.h,
-                  fit: BoxFit.contain,
+        child: Stack(
+          children: [
+            Positioned(
+              top: -100.h,
+              right: -120.w,
+              child: Image.asset(
+                'assets/images/Union.png',
+                width: 400.w,
+                height: 600.h,
+                fit: BoxFit.contain,
+              ),
+            ),
+            Positioned(
+              top: 100.h,
+              left: -60.w,
+              child: Image.asset(
+                'assets/images/Ellipse 5.png',
+                width: 200.w,
+                height: 57.h,
+                fit: BoxFit.contain,
+              ),
+            ),
+            Positioned(
+              top: 185.h,
+              left: -10.w,
+              child: Image.asset(
+                'assets/images/Ellipse 5.png',
+                width: 200.w,
+                height: 30.h,
+                fit: BoxFit.contain,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 13.h),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 30.h),
+                    PageTitle(title: S.of(context).signIn),
+                    SizedBox(height: 40.h),
+                    WelcomeText(text: S.of(context).fillCredentials),
+                    SizedBox(height: 60.h),
+                    LabelText(text: S.of(context).emailLabel),
+                    SizedBox(height: 10.h),
+                    CustomTextField(
+                      validator: (value) {
+                        return ValidationUtils.validateEmail(value, context);
+                      },
+                      prefixWidget: Image.asset("assets/icons/emailIcon.png"),
+                      // prefixIcon: Icons.mail,
+                      hintText: S.of(context).emailHint,
+                    ),
+                    SizedBox(height: 20.h),
+                    LabelText(text: S.of(context).passwordLabel),
+                    SizedBox(height: 10.h),
+                    CustomTextField(
+                      validator: (value) {
+                        return ValidationUtils.validatePassword(value, context);
+                      },
+                      prefixWidget: Image.asset("assets/icons/lockIcon.png"),
+                      suffixWidget: Image.asset("assets/icons/EyeIcon.png"),
+                      // prefixIcon: Icons.lock_outline,
+                      hintText: S.of(context).passwordHint,
+                      isPassword: true,
+                      obscureText: _obscurePassword,
+                      onTogglePasswordVisibility: _togglePasswordVisibility,
+                    ),
+                    const ForgotPasswordButton(),
+                    SizedBox(height: 10.h),
+                    Align(
+                        alignment: Alignment.center,
+                        child: SignInButton(
+                          onTap: () {
+                            if (signInKey.currentState!.validate()) {}
+                          },
+                        )),
+                    SizedBox(height: 30.h),
+                    const OrSignInWithDivider(),
+                    SizedBox(height: 30.h),
+                    const GoogleSignInButton(),
+                    SizedBox(height: 30.h),
+                    const SignUpRow(),
+                  ],
                 ),
               ),
-              Positioned(
-                top: 100.h,
-                left: -60.w,
-                child: Image.asset(
-                  'assets/images/Ellipse 5.png',
-                  width: 200.w,
-                  height: 57.h,
-                  fit: BoxFit.contain,
-                ),
-              ),
-              Positioned(
-                top: 185.h,
-                left: -10.w,
-                child: Image.asset(
-                  'assets/images/Ellipse 5.png',
-                  width: 200.w,
-                  height: 30.h,
-                  fit: BoxFit.contain,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.w),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 50.h),
-                      PageTitle(title: S.of(context).signIn),
-                      SizedBox(height: 40.h),
-                      WelcomeText(text: S.of(context).fillCredentials),
-                      SizedBox(height: 60.h),
-                      LabelText(text: S.of(context).emailLabel),
-                      SizedBox(height: 10.h),
-                      CustomTextField(
-                        validator: (value) {
-                          return ValidationUtils.validateEmail(value, context);
-                        },
-                        prefixWidget: Image.asset("assets/icons/emailIcon.png"),
-                        // prefixIcon: Icons.mail,
-                        hintText: S.of(context).emailHint,
-                      ),
-                      SizedBox(height: 20.h),
-                      LabelText(text: S.of(context).passwordLabel),
-                      SizedBox(height: 10.h),
-                      CustomTextField(
-                        validator: (value) {
-                          return ValidationUtils.validatePassword(
-                              value, context);
-                        },
-                        prefixWidget: Image.asset("assets/icons/lockIcon.png"),
-                        suffixWidget: Image.asset("assets/icons/EyeIcon.png"),
-                        // prefixIcon: Icons.lock_outline,
-                        hintText: S.of(context).passwordHint,
-                        isPassword: true,
-                        obscureText: _obscurePassword,
-                        onTogglePasswordVisibility: _togglePasswordVisibility,
-                      ),
-                      const ForgotPasswordButton(),
-                      SizedBox(height: 10.h),
-                      Align(
-                          alignment: Alignment.center,
-                          child: SignInButton(
-                            onTap: () {
-                              if (signInKey.currentState!.validate()) {}
-                            },
-                          )),
-                      SizedBox(height: 30.h),
-                      const OrSignInWithDivider(),
-                      SizedBox(height: 30.h),
-                      const GoogleSignInButton(),
-                      SizedBox(height: 40.h),
-                      const SignUpRow(),
-                      SizedBox(height: 20.h),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/generated/l10n.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../views/account_type_screen.dart';
 

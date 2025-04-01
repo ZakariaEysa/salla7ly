@@ -16,7 +16,7 @@ class AccountTypeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 25.h),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -37,7 +37,7 @@ class AccountTypeScreen extends StatelessWidget {
                   fit: BoxFit.contain,
                 ),
               ),
-              SizedBox(height: 30.h),
+              SizedBox(height: 25.h),
               const TitleText(),
               SizedBox(height: 30.h),
               DescriptionText(text: S.of(context).userDescription),
@@ -52,7 +52,6 @@ class AccountTypeScreen extends StatelessWidget {
                   // Navigator.of(context).pushReplacementNamed('/home_craftsman');
                 },
               ),
-              SizedBox(height: 30.h),
             ],
           ),
         ),
