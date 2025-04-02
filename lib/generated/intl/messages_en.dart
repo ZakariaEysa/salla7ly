@@ -25,6 +25,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "Next": MessageLookupByLibrary.simpleMessage("Next"),
         "Skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "Start": MessageLookupByLibrary.simpleMessage("Start"),
+        "alreadyHaveAccount":
+            MessageLookupByLibrary.simpleMessage("Already have an account?"),
+        "birthDateLabel": MessageLookupByLibrary.simpleMessage("Birth Date :"),
+        "birthDateRequired":
+            MessageLookupByLibrary.simpleMessage("Birth date is required"),
+        "confirmPasswordHint":
+            MessageLookupByLibrary.simpleMessage("Enter your password again"),
+        "confirmPasswordLabel":
+            MessageLookupByLibrary.simpleMessage("Confirm Password :"),
+        "confirmPasswordRequired": MessageLookupByLibrary.simpleMessage(
+            "Please confirm your password"),
         "continueWithGoogle":
             MessageLookupByLibrary.simpleMessage("Continue With Google"),
         "craftsmanButton": MessageLookupByLibrary.simpleMessage("Craftsman"),
@@ -41,8 +52,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "please fill the credentials."),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
+        "idPhotoRequired": MessageLookupByLibrary.simpleMessage(
+            "National ID photo is required"),
         "invalidEmail":
             MessageLookupByLibrary.simpleMessage("Please enter a valid email"),
+        "nameHint": MessageLookupByLibrary.simpleMessage("Enter your name"),
+        "nameLabel": MessageLookupByLibrary.simpleMessage("Name :"),
+        "nameRequired":
+            MessageLookupByLibrary.simpleMessage("Name is required"),
         "on1Content": MessageLookupByLibrary.simpleMessage(
             "Connect easily with skilled craftsmen and get personalized service recommendations tailored to your needs."),
         "on2Content": MessageLookupByLibrary.simpleMessage(
@@ -66,11 +83,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Password is required"),
         "passwordTooShort": MessageLookupByLibrary.simpleMessage(
             "Password must be at least 8 characters long"),
+        "passwordsDoNotMatch":
+            MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "selectAccountType": MessageLookupByLibrary.simpleMessage(
             "Please select your account type to continue:"),
         "signIn": MessageLookupByLibrary.simpleMessage("sign in"),
         "signInButton": MessageLookupByLibrary.simpleMessage("sign in"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "signUpButton": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "uploadIdLabel":
+            MessageLookupByLibrary.simpleMessage("Upload a National ID :"),
+        "uploadPhoto": MessageLookupByLibrary.simpleMessage("Upload photo"),
         "userButton": MessageLookupByLibrary.simpleMessage("User"),
         "userDescription": MessageLookupByLibrary.simpleMessage(
             "User – If you\'re looking for professionals to get your tasks done."),

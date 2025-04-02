@@ -43,5 +43,19 @@
 "usernameTooShort": "Username must be at least 3 characters long",
 "usernameHasNumbers": "Username cannot contain numbers"
 ,
-"passwordComplexityError": "Weak password, use a mix of letters,\n numbers and symbols (example: Aa@#1234)"
+"passwordComplexityError": "Weak password, use a mix of letters,\n numbers and symbols (example: Aa@#1234)",
+"nameLabel": "Name :",
+"nameHint": "Enter your name",
+"confirmPasswordLabel": "Confirm Password :",
+"confirmPasswordHint": "Enter your password again",
+"birthDateLabel": "Birth Date :",
+"uploadIdLabel": "Upload a National ID :",
+"uploadPhoto": "Upload photo",
+"alreadyHaveAccount": "Already have an account?",
+"signUpButton": "Sign up",
+"nameRequired": "Name is required",
+"confirmPasswordRequired": "Please confirm your password",
+"passwordsDoNotMatch": "Passwords do not match",
+"birthDateRequired": "Birth date is required",
+"idPhotoRequired": "National ID photo is required"
 }

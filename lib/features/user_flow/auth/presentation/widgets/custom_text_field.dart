@@ -43,7 +43,6 @@ class CustomTextField extends StatelessWidget {
       style:
           TextStyle(color: theme.textTheme.bodyMedium?.color, fontSize: 18.sp),
       decoration: InputDecoration(
-      
         hintText: hintText,
         hintStyle: theme.inputDecorationTheme.hintStyle,
         prefixIcon: Padding(

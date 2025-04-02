@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/generated/l10n.dart';
+import 'package:salla7ly/utils/navigation.dart';
 import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
 
 import '../widgets/account_type/account_type_buttons_row.dart';
 import '../widgets/account_type/description_text.dart';
 import '../widgets/account_type/title_text.dart';
+import 'sign_up_view.dart';
 
 class AccountTypeScreen extends StatelessWidget {
   const AccountTypeScreen({super.key});
@@ -49,6 +51,7 @@ class AccountTypeScreen extends StatelessWidget {
                   // Navigator.of(context).pushReplacementNamed('/home_user');
                 },
                 onCraftsmanPressed: () {
+                  navigateTo(context: context, screen: const SignUpView());
                   // Navigator.of(context).pushReplacementNamed('/home_craftsman');
                 },
               ),

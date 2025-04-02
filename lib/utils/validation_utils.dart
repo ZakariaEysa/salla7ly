@@ -6,21 +6,12 @@ class ValidationUtils {
   /// التحقق من صحة البريد الإلكتروني
   /// يتحقق من أن البريد الإلكتروني له تنسيق صحيح
   static String? validateEmail(String? value, BuildContext context) {
-    final localizations = S.of(context);
-
     if (value == null || value.isEmpty) {
-      return localizations.emailRequired;
+      return S.of(context).emailRequired;
     }
-
-    // التعبير النمطي للتحقق من صحة البريد الإلكتروني
-    final emailRegex = RegExp(
-      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-    );
-
-    if (!emailRegex.hasMatch(value)) {
-      return localizations.invalidEmail;
+    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+      return S.of(context).invalidEmail;
     }
-
     return null;
   }
 
@@ -31,22 +22,21 @@ class ValidationUtils {
   /// - تحتوي على رقم واحد على الأقل
   /// - تحتوي على رمز خاص واحد على الأقل
   static String? validatePassword(String? value, BuildContext context) {
-    final localizations = S.of(context);
-
     if (value == null || value.isEmpty) {
-      return localizations.passwordRequired;
+      return S.of(context).passwordRequired;
     }
-
-    // التحقق من كل المتطلبات دفعة واحدة
-    final hasMinLength = value.length >= 8;
-    final hasUppercase = RegExp(r'[A-Z]').hasMatch(value);
-    final hasNumber = RegExp(r'[0-9]').hasMatch(value);
-    final hasSpecialChar = RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value);
-
-    if (!hasMinLength || !hasUppercase || !hasNumber || !hasSpecialChar) {
-      return localizations.passwordComplexityError;
+    if (value.length < 8) {
+      return S.of(context).passwordTooShort;
     }
-
+    if (!RegExp(r'[A-Z]').hasMatch(value)) {
+      return S.of(context).passwordNoUppercase;
+    }
+    if (!RegExp(r'[0-9]').hasMatch(value)) {
+      return S.of(context).passwordNoNumber;
+    }
+    if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
+      return S.of(context).passwordComplexityError;
+    }
     return null;
   }
 
@@ -77,6 +67,33 @@ class ValidationUtils {
       return localizations.usernameHasNumbers;
     }
 
+    return null;
+  }
+
+  static String? validateName(String? value, BuildContext context) {
+    if (value == null || value.isEmpty) {
+      return S.of(context).nameRequired;
+    }
+    if (value.startsWith(' ')) {
+      return S.of(context).usernameStartsWithSpace;
+    }
+    if (value.length < 3) {
+      return S.of(context).usernameTooShort;
+    }
+    if (RegExp(r'[0-9]').hasMatch(value)) {
+      return S.of(context).usernameHasNumbers;
+    }
+    return null;
+  }
+
+  static String? validateConfirmPassword(
+      String? value, BuildContext context, String password) {
+    if (value == null || value.isEmpty) {
+      return S.of(context).confirmPasswordRequired;
+    }
+    if (value != password) {
+      return S.of(context).passwordsDoNotMatch;
+    }
     return null;
   }
 }

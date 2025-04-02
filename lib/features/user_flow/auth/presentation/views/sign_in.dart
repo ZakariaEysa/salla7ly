@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:salla7ly/features/user_flow/auth/presentation/views/account_type_screen.dart';
 
 import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
 import 'package:salla7ly/generated/l10n.dart';
@@ -119,7 +120,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 30.h),
                     const GoogleSignInButton(),
                     SizedBox(height: 30.h),
-                    const SignUpRow(),
+                    SignUpRow(
+                      navigationWidget: const AccountTypeScreen(),
+                      text: S.of(context).signUp,
+                      // التنقل إلى صفحة اختيار نوع الحساب
+                    ),
                   ],
                 ),
               ),

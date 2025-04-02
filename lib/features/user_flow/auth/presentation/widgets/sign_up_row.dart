@@ -5,10 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../views/account_type_screen.dart';
 
-/// كلاس لسطر التسجيل للحساب الجديد
 class SignUpRow extends StatelessWidget {
-  const SignUpRow({Key? key}) : super(key: key);
-
+  const SignUpRow(
+      {Key? key, required this.text, required this.navigationWidget})
+      : super(key: key);
+  final String text;
+  final Widget navigationWidget;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -29,7 +31,7 @@ class SignUpRow extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => const AccountTypeScreen(),
+                builder: (context) => navigationWidget,
               ),
             );
             // التنقل إلى صفحة اختيار نوع الحساب
@@ -40,7 +42,7 @@ class SignUpRow extends StatelessWidget {
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
-            S.of(context).signUp,
+            text,
             style: TextStyle(
               color: theme.textTheme.bodyMedium?.color,
               fontSize: 20.sp,

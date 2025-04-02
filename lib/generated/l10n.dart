@@ -419,6 +419,146 @@ class S {
       args: [],
     );
   }
+
+  /// `Name :`
+  String get nameLabel {
+    return Intl.message(
+      'Name :',
+      name: 'nameLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your name`
+  String get nameHint {
+    return Intl.message(
+      'Enter your name',
+      name: 'nameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password :`
+  String get confirmPasswordLabel {
+    return Intl.message(
+      'Confirm Password :',
+      name: 'confirmPasswordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your password again`
+  String get confirmPasswordHint {
+    return Intl.message(
+      'Enter your password again',
+      name: 'confirmPasswordHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birth Date :`
+  String get birthDateLabel {
+    return Intl.message(
+      'Birth Date :',
+      name: 'birthDateLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload a National ID :`
+  String get uploadIdLabel {
+    return Intl.message(
+      'Upload a National ID :',
+      name: 'uploadIdLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload photo`
+  String get uploadPhoto {
+    return Intl.message(
+      'Upload photo',
+      name: 'uploadPhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account?`
+  String get alreadyHaveAccount {
+    return Intl.message(
+      'Already have an account?',
+      name: 'alreadyHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign up`
+  String get signUpButton {
+    return Intl.message(
+      'Sign up',
+      name: 'signUpButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name is required`
+  String get nameRequired {
+    return Intl.message(
+      'Name is required',
+      name: 'nameRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please confirm your password`
+  String get confirmPasswordRequired {
+    return Intl.message(
+      'Please confirm your password',
+      name: 'confirmPasswordRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords do not match`
+  String get passwordsDoNotMatch {
+    return Intl.message(
+      'Passwords do not match',
+      name: 'passwordsDoNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birth date is required`
+  String get birthDateRequired {
+    return Intl.message(
+      'Birth date is required',
+      name: 'birthDateRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `National ID photo is required`
+  String get idPhotoRequired {
+    return Intl.message(
+      'National ID photo is required',
+      name: 'idPhotoRequired',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
