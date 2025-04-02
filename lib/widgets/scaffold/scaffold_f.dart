@@ -21,12 +21,16 @@ class ScaffoldF extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context).extension<GradientTheme>();
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset ?? true,
       appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,
-      body: Container(
-        decoration: BoxDecoration(gradient: theme?.backgroundGradient),
-        child: body,
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(gradient: theme?.backgroundGradient),
+          ),
+          body,
+        ],
       ),
     );
   }

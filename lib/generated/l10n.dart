@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Welcome to  Salla7ly !`
+  /// `Welcome to Salla7ly`
   String get welcomeToSalla7ly {
     return Intl.message(
-      'Welcome to  Salla7ly !',
+      'Welcome to Salla7ly',
       name: 'welcomeToSalla7ly',
       desc: '',
       args: [],
@@ -140,10 +140,10 @@ class S {
     );
   }
 
-  /// `sign in`
+  /// `Sign In`
   String get signIn {
     return Intl.message(
-      'sign in',
+      'Sign In',
       name: 'signIn',
       desc: '',
       args: [],
@@ -160,50 +160,50 @@ class S {
     );
   }
 
-  /// `Email :`
+  /// `Email`
   String get emailLabel {
     return Intl.message(
-      'Email :',
+      'Email',
       name: 'emailLabel',
       desc: '',
       args: [],
     );
   }
 
-  /// `example93@gmail.com`
+  /// `Email`
   String get emailHint {
     return Intl.message(
-      'example93@gmail.com',
+      'Email',
       name: 'emailHint',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password :`
+  /// `Password`
   String get passwordLabel {
     return Intl.message(
-      'Password :',
+      'Password',
       name: 'passwordLabel',
       desc: '',
       args: [],
     );
   }
 
-  /// `Aa1234?#`
+  /// `Password`
   String get passwordHint {
     return Intl.message(
-      'Aa1234?#',
+      'Password',
       name: 'passwordHint',
       desc: '',
       args: [],
     );
   }
 
-  /// `Forgot password?`
+  /// `Forgot Password?`
   String get forgotPassword {
     return Intl.message(
-      'Forgot password?',
+      'Forgot Password?',
       name: 'forgotPassword',
       desc: '',
       args: [],
@@ -250,10 +250,10 @@ class S {
     );
   }
 
-  /// `Sign up`
+  /// `Sign Up`
   String get signUp {
     return Intl.message(
-      'Sign up',
+      'Sign Up',
       name: 'signUp',
       desc: '',
       args: [],
@@ -320,11 +320,21 @@ class S {
     );
   }
 
-  /// `Please enter a valid email`
+  /// `Invalid email format`
   String get invalidEmail {
     return Intl.message(
-      'Please enter a valid email',
+      'Invalid email format',
       name: 'invalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email already exists`
+  String get emailAlreadyExists {
+    return Intl.message(
+      'Email already exists',
+      name: 'emailAlreadyExists',
       desc: '',
       args: [],
     );
@@ -340,10 +350,10 @@ class S {
     );
   }
 
-  /// `Password must be at least 8 characters long`
+  /// `Password must be at least 8 characters`
   String get passwordTooShort {
     return Intl.message(
-      'Password must be at least 8 characters long',
+      'Password must be at least 8 characters',
       name: 'passwordTooShort',
       desc: '',
       args: [],
@@ -370,6 +380,26 @@ class S {
     );
   }
 
+  /// `Username`
+  String get usernameLabel {
+    return Intl.message(
+      'Username',
+      name: 'usernameLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter username`
+  String get usernameHint {
+    return Intl.message(
+      'Enter username',
+      name: 'usernameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Username is required`
   String get usernameRequired {
     return Intl.message(
@@ -390,10 +420,10 @@ class S {
     );
   }
 
-  /// `Username must be at least 3 characters long`
+  /// `Username must be at least 5 characters`
   String get usernameTooShort {
     return Intl.message(
-      'Username must be at least 3 characters long',
+      'Username must be at least 5 characters',
       name: 'usernameTooShort',
       desc: '',
       args: [],
@@ -410,11 +440,151 @@ class S {
     );
   }
 
-  /// `Weak password, use a mix of letters,\n numbers and symbols (example: Aa@#1234)`
+  /// `Weak password, use a mix of letters, numbers and symbols (example: Aa@#1234)`
   String get passwordComplexityError {
     return Intl.message(
-      'Weak password, use a mix of letters,\n numbers and symbols (example: Aa@#1234)',
+      'Weak password, use a mix of letters, numbers and symbols (example: Aa@#1234)',
       name: 'passwordComplexityError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `UserName :`
+  String get nameLabel {
+    return Intl.message(
+      'UserName :',
+      name: 'nameLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your Username`
+  String get nameHint {
+    return Intl.message(
+      'Enter your Username',
+      name: 'nameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get confirmPasswordLabel {
+    return Intl.message(
+      'Confirm Password',
+      name: 'confirmPasswordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get confirmPasswordHint {
+    return Intl.message(
+      'Confirm Password',
+      name: 'confirmPasswordHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birth Date`
+  String get birthDateLabel {
+    return Intl.message(
+      'Birth Date',
+      name: 'birthDateLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload ID Photo`
+  String get uploadIdLabel {
+    return Intl.message(
+      'Upload ID Photo',
+      name: 'uploadIdLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload a photo`
+  String get uploadPhoto {
+    return Intl.message(
+      'Upload a photo',
+      name: 'uploadPhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account?`
+  String get alreadyHaveAccount {
+    return Intl.message(
+      'Already have an account?',
+      name: 'alreadyHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signUpButton {
+    return Intl.message(
+      'Sign Up',
+      name: 'signUpButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `UserName is required`
+  String get nameRequired {
+    return Intl.message(
+      'UserName is required',
+      name: 'nameRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password is required`
+  String get confirmPasswordRequired {
+    return Intl.message(
+      'Confirm password is required',
+      name: 'confirmPasswordRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords do not match`
+  String get passwordsDoNotMatch {
+    return Intl.message(
+      'Passwords do not match',
+      name: 'passwordsDoNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birth date is required`
+  String get birthDateRequired {
+    return Intl.message(
+      'Birth date is required',
+      name: 'birthDateRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `National ID photo is required`
+  String get idPhotoRequired {
+    return Intl.message(
+      'National ID photo is required',
+      name: 'idPhotoRequired',
       desc: '',
       args: [],
     );

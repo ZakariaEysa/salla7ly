@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/generated/l10n.dart';
-import 'package:salla7ly/features/user_flow/auth/presentation/views/account_type_screen.dart';
 
 /// كلاس لزر تسجيل الدخول
-class SignInButton extends StatelessWidget {
-  const SignInButton({Key? key, this.onTap}) : super(key: key);
+class AuthButton extends StatelessWidget {
+  const AuthButton({Key? key, this.onTap, required this.text})
+      : super(key: key);
   final void Function()? onTap;
+  final String text;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -35,7 +36,7 @@ class SignInButton extends StatelessWidget {
           onTap: onTap,
           child: Center(
             child: Text(
-              S.of(context).signInButton,
+              text,
               style: TextStyle(
                 color: theme.textTheme.bodyMedium?.color,
                 fontSize: 24.sp,

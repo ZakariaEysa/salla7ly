@@ -11,7 +11,7 @@ import 'generated/l10n.dart';
 import 'services/simple_bloc_observer_service.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
-import 'features/user_flow/splash_screen/splash_screen.dart';
+import 'features/shared/splash_screen/splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'widgets/application_theme/application_theme.dart';
 import 'widgets/application_theme/theme_provider.dart';
@@ -46,7 +46,8 @@ void main() async {
     HiveStorage.set(HiveKeys.isDark, true);
   }
 
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+  //     overlays: [SystemUiOverlay.top]);
 
   runApp(
     DevicePreview(

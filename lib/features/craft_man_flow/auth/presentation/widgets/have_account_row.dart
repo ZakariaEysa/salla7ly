@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/generated/l10n.dart';
+import 'package:salla7ly/utils/navigation.dart';
 
-import '../views/account_type_screen.dart';
 
-/// كلاس لسطر التسجيل للحساب الجديد
-class SignUpRow extends StatelessWidget {
-  const SignUpRow({Key? key}) : super(key: key);
-
+class AccountRow extends StatelessWidget {
+  const AccountRow(
+      {Key? key,
+      required this.text,
+      required this.navigationWidget,
+      required this.title})
+      : super(key: key);
+  final String text;
+  final String title;
+  final Widget navigationWidget;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -16,7 +21,7 @@ class SignUpRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          S.of(context).dontHaveAccount,
+          title,
           style: TextStyle(
             color: theme.textTheme.bodyMedium?.color,
             fontSize: 20.sp,
@@ -26,12 +31,11 @@ class SignUpRow extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const AccountTypeScreen(),
-              ),
-            );
-            // التنقل إلى صفحة اختيار نوع الحساب
+            if (navigationWidget.toString() == "AccountTypeScreen") {
+              navigateTo(context: context, screen: navigationWidget);
+            } else
+              navigateAndRemoveUntil(
+                  context: context, screen: navigationWidget);
           },
           style: TextButton.styleFrom(
             minimumSize: Size.zero,
@@ -39,7 +43,7 @@ class SignUpRow extends StatelessWidget {
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
-            S.of(context).signUp,
+            text,
             style: TextStyle(
               color: theme.textTheme.bodyMedium?.color,
               fontSize: 20.sp,
