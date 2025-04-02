@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/features/user_flow/auth/presentation/views/account_type_screen.dart';
+import 'package:salla7ly/widgets/page_title.dart';
 
 import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
 import 'package:salla7ly/generated/l10n.dart';
 import '../../../../../utils/validation_utils.dart';
-import '../widgets/custom_text_field.dart';
-import '../widgets/forgot_password_button.dart';
-import '../widgets/google_sign_in_button.dart';
-import '../widgets/label_text.dart';
-import '../widgets/or_sign_in_with_divider.dart';
-import '../widgets/page_title.dart';
-import '../widgets/sign_in_button.dart';
-import '../widgets/sign_up_row.dart';
-import '../widgets/welcome_text.dart';
+import '../../../../../widgets/custom_text_field.dart';
+import '../../../../../widgets/label_text.dart';
 
-/// الشاشة الرئيسية لتسجيل الدخول
+import '../widgets/have_account_row.dart';
+import '../widgets/sign_in/forgot_password_button.dart';
+import '../widgets/sign_in/google_sign_in_button.dart';
+import '../widgets/sign_in/or_sign_in_with_divider.dart';
+import '../widgets/auth_button.dart';
+import '../widgets/sign_in/welcome_text.dart';
+
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
@@ -110,7 +110,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 10.h),
                     Align(
                         alignment: Alignment.center,
-                        child: SignInButton(
+                        child: AuthButton(
+                          text: S.of(context).signInButton,
                           onTap: () {
                             if (signInKey.currentState!.validate()) {}
                           },
@@ -120,7 +121,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 30.h),
                     const GoogleSignInButton(),
                     SizedBox(height: 30.h),
-                    SignUpRow(
+                    AccountRow(
+                      title:  S.of(context).dontHaveAccount,
                       navigationWidget: const AccountTypeScreen(),
                       text: S.of(context).signUp,
                       // التنقل إلى صفحة اختيار نوع الحساب

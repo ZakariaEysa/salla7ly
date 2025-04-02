@@ -27,15 +27,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "Start": MessageLookupByLibrary.simpleMessage("Start"),
         "alreadyHaveAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
-        "birthDateLabel": MessageLookupByLibrary.simpleMessage("Birth Date :"),
+        "birthDateLabel": MessageLookupByLibrary.simpleMessage("Birth Date"),
         "birthDateRequired":
             MessageLookupByLibrary.simpleMessage("Birth date is required"),
         "confirmPasswordHint":
-            MessageLookupByLibrary.simpleMessage("Enter your password again"),
+            MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "confirmPasswordLabel":
-            MessageLookupByLibrary.simpleMessage("Confirm Password :"),
+            MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "confirmPasswordRequired": MessageLookupByLibrary.simpleMessage(
-            "Please confirm your password"),
+            "Confirm password is required"),
         "continueWithGoogle":
             MessageLookupByLibrary.simpleMessage("Continue With Google"),
         "craftsmanButton": MessageLookupByLibrary.simpleMessage("Craftsman"),
@@ -43,23 +43,24 @@ class MessageLookup extends MessageLookupByLibrary {
             "Craftsman – If you offer manual services"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have account ?"),
-        "emailHint":
-            MessageLookupByLibrary.simpleMessage("example93@gmail.com"),
-        "emailLabel": MessageLookupByLibrary.simpleMessage("Email :"),
+        "emailAlreadyExists":
+            MessageLookupByLibrary.simpleMessage("Email already exists"),
+        "emailHint": MessageLookupByLibrary.simpleMessage("Email"),
+        "emailLabel": MessageLookupByLibrary.simpleMessage("Email"),
         "emailRequired":
             MessageLookupByLibrary.simpleMessage("Email is required"),
         "fillCredentials": MessageLookupByLibrary.simpleMessage(
             "please fill the credentials."),
         "forgotPassword":
-            MessageLookupByLibrary.simpleMessage("Forgot password?"),
+            MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "idPhotoRequired": MessageLookupByLibrary.simpleMessage(
             "National ID photo is required"),
         "invalidEmail":
-            MessageLookupByLibrary.simpleMessage("Please enter a valid email"),
-        "nameHint": MessageLookupByLibrary.simpleMessage("Enter your name"),
-        "nameLabel": MessageLookupByLibrary.simpleMessage("Name :"),
+            MessageLookupByLibrary.simpleMessage("Invalid email format"),
+        "nameHint": MessageLookupByLibrary.simpleMessage("Enter your Username"),
+        "nameLabel": MessageLookupByLibrary.simpleMessage("UserName :"),
         "nameRequired":
-            MessageLookupByLibrary.simpleMessage("Name is required"),
+            MessageLookupByLibrary.simpleMessage("UserName is required"),
         "on1Content": MessageLookupByLibrary.simpleMessage(
             "Connect easily with skilled craftsmen and get personalized service recommendations tailored to your needs."),
         "on2Content": MessageLookupByLibrary.simpleMessage(
@@ -72,9 +73,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Find Work Easily, Get the Right Help!"),
         "orSignInWith": MessageLookupByLibrary.simpleMessage("Or sign in With"),
         "passwordComplexityError": MessageLookupByLibrary.simpleMessage(
-            "Weak password, use a mix of letters,\n numbers and symbols (example: Aa@#1234)"),
-        "passwordHint": MessageLookupByLibrary.simpleMessage("Aa1234?#"),
-        "passwordLabel": MessageLookupByLibrary.simpleMessage("Password :"),
+            "Weak password, use a mix of letters, numbers and symbols (example: Aa@#1234)"),
+        "passwordHint": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordLabel": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordNoNumber": MessageLookupByLibrary.simpleMessage(
             "Password must contain at least one number"),
         "passwordNoUppercase": MessageLookupByLibrary.simpleMessage(
@@ -82,30 +83,32 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordRequired":
             MessageLookupByLibrary.simpleMessage("Password is required"),
         "passwordTooShort": MessageLookupByLibrary.simpleMessage(
-            "Password must be at least 8 characters long"),
+            "Password must be at least 8 characters"),
         "passwordsDoNotMatch":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "selectAccountType": MessageLookupByLibrary.simpleMessage(
             "Please select your account type to continue:"),
-        "signIn": MessageLookupByLibrary.simpleMessage("sign in"),
+        "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
         "signInButton": MessageLookupByLibrary.simpleMessage("sign in"),
-        "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
-        "signUpButton": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "signUpButton": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "uploadIdLabel":
-            MessageLookupByLibrary.simpleMessage("Upload a National ID :"),
-        "uploadPhoto": MessageLookupByLibrary.simpleMessage("Upload photo"),
+            MessageLookupByLibrary.simpleMessage("Upload ID Photo"),
+        "uploadPhoto": MessageLookupByLibrary.simpleMessage("Upload a photo"),
         "userButton": MessageLookupByLibrary.simpleMessage("User"),
         "userDescription": MessageLookupByLibrary.simpleMessage(
             "User – If you\'re looking for professionals to get your tasks done."),
         "usernameHasNumbers": MessageLookupByLibrary.simpleMessage(
             "Username cannot contain numbers"),
+        "usernameHint": MessageLookupByLibrary.simpleMessage("Enter username"),
+        "usernameLabel": MessageLookupByLibrary.simpleMessage("Username"),
         "usernameRequired":
             MessageLookupByLibrary.simpleMessage("Username is required"),
         "usernameStartsWithSpace": MessageLookupByLibrary.simpleMessage(
             "Username cannot start with a space"),
         "usernameTooShort": MessageLookupByLibrary.simpleMessage(
-            "Username must be at least 3 characters long"),
+            "Username must be at least 3 characters"),
         "welcomeToSalla7ly":
-            MessageLookupByLibrary.simpleMessage("Welcome to  Salla7ly !")
+            MessageLookupByLibrary.simpleMessage("Welcome to Salla7ly")
       };
 }

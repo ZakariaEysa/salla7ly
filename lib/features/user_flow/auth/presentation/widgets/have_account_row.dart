@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/generated/l10n.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../views/account_type_screen.dart';
-
-class SignUpRow extends StatelessWidget {
-  const SignUpRow(
-      {Key? key, required this.text, required this.navigationWidget})
+class AccountRow extends StatelessWidget {
+  const AccountRow(
+      {Key? key, required this.text, required this.navigationWidget, required this.title})
       : super(key: key);
   final String text;
+  final String title;
   final Widget navigationWidget;
   @override
   Widget build(BuildContext context) {
@@ -19,7 +17,7 @@ class SignUpRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          S.of(context).dontHaveAccount,
+          title,
           style: TextStyle(
             color: theme.textTheme.bodyMedium?.color,
             fontSize: 20.sp,

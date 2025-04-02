@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/features/user_flow/auth/presentation/views/sign_in.dart';
-import 'package:salla7ly/features/user_flow/auth/presentation/views/sign_up_view.dart';
 import 'package:salla7ly/generated/l10n.dart';
 import 'package:salla7ly/utils/validation_utils.dart';
-import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
-import '../../widgets/custom_text_field.dart';
-import '../../widgets/label_text.dart';
-import '../../widgets/page_title.dart';
-import '../sign_up_row.dart';
+import '../../../../../../widgets/custom_text_field.dart';
+import '../../../../../../widgets/label_text.dart';
+import '../have_account_row.dart';
+import '../auth_button.dart';
 import 'birth_date_selector.dart';
 import 'upload_id_button.dart';
 
@@ -49,7 +47,7 @@ class _SignUpFormState extends State<SignUpForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LabelText(text: S.of(context).nameLabel),
+            LabelText(text: S.of(context).usernameLabel),
             SizedBox(height: 10.h),
             CustomTextField(
               controller: _userNameController,
@@ -57,7 +55,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 return ValidationUtils.validateName(value, context);
               },
               prefixWidget: Image.asset("assets/icons/user.png"),
-              hintText: S.of(context).nameHint,
+              hintText: S.of(context).usernameHint,
             ),
             SizedBox(height: 20.h),
             LabelText(text: S.of(context).emailLabel),
@@ -108,40 +106,27 @@ class _SignUpFormState extends State<SignUpForm> {
             const BirthDateSelector(),
             SizedBox(height: 20.h),
             LabelText(text: S.of(context).uploadIdLabel),
-            SizedBox(height: 10.h),
-            const UploadIdButton(),
-            SizedBox(height: 40.h),
-            SizedBox(
-              width: double.infinity,
-              height: 50.h,
-              child: ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    // TODO: Implement sign up logic
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                ),
-                child: Text(
-                  S.of(context).signUpButton,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
             SizedBox(height: 20.h),
-            SignUpRow(
+            UploadIdButton(
+              width: 300.w,
+              height: 48.h,
+            ),
+            SizedBox(height: 30.h),
+            Align(
+                alignment: Alignment.center,
+                child: AuthButton(
+                  onTap: () {
+                    if (_formKey.currentState!.validate()) {}
+                  },
+                  text: S.of(context).signUpButton,
+                )),
+            //signUpButton
+
+            SizedBox(height: 20.h),
+            AccountRow(
+              title: S.of(context).alreadyHaveAccount,
               navigationWidget: const SignInScreen(),
               text: S.of(context).signIn,
-
-              // التنقل إلى صفحة اختيار نوع الحساب
             ),
           ],
         ),

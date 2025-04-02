@@ -27,14 +27,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "Start": MessageLookupByLibrary.simpleMessage("ابدا"),
         "alreadyHaveAccount":
             MessageLookupByLibrary.simpleMessage("لديك حساب بالفعل؟"),
-        "birthDateLabel":
-            MessageLookupByLibrary.simpleMessage("تاريخ الميلاد :"),
+        "birthDateLabel": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "birthDateRequired":
             MessageLookupByLibrary.simpleMessage("تاريخ الميلاد مطلوب"),
         "confirmPasswordHint":
-            MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور مرة أخرى"),
+            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "confirmPasswordLabel":
-            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور :"),
+            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "confirmPasswordRequired":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور مطلوب"),
         "continueWithGoogle":
@@ -44,10 +43,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "حرفي – إذا كنت تقدم خدمات يدوية"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
-        "emailHint":
-            MessageLookupByLibrary.simpleMessage("example93@gmail.com"),
-        "emailLabel":
-            MessageLookupByLibrary.simpleMessage("البريد الإلكتروني :"),
+        "emailAlreadyExists": MessageLookupByLibrary.simpleMessage(
+            "البريد الإلكتروني موجود بالفعل"),
+        "emailHint": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+        "emailLabel": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "emailRequired":
             MessageLookupByLibrary.simpleMessage("البريد الإلكتروني مطلوب"),
         "fillCredentials":
@@ -56,8 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "idPhotoRequired":
             MessageLookupByLibrary.simpleMessage("صورة الهوية مطلوبة"),
-        "invalidEmail": MessageLookupByLibrary.simpleMessage(
-            "الرجاء إدخال بريد إلكتروني صحيح"),
+        "invalidEmail":
+            MessageLookupByLibrary.simpleMessage("البريد الإلكتروني غير صالح"),
         "nameHint": MessageLookupByLibrary.simpleMessage("أدخل اسمك"),
         "nameLabel": MessageLookupByLibrary.simpleMessage("الاسم :"),
         "nameRequired": MessageLookupByLibrary.simpleMessage("الاسم مطلوب"),
@@ -74,19 +73,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "orSignInWith":
             MessageLookupByLibrary.simpleMessage("أو تسجيل الدخول باستخدام"),
         "passwordComplexityError": MessageLookupByLibrary.simpleMessage(
-            "كلمة المرور ضعيفة، استخدم مزيجاً من الأحرف\n والأرقام والرموز (مثال: Aa@#1234)"),
-        "passwordHint": MessageLookupByLibrary.simpleMessage("Aa1234?#"),
-        "passwordLabel": MessageLookupByLibrary.simpleMessage("كلمة المرور :"),
+            "كلمة المرور ضعيفة، استخدم مزيجاً من الأحرف والأرقام والرموز (مثال: Aa@#1234)"),
+        "passwordHint": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "passwordLabel": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordNoNumber": MessageLookupByLibrary.simpleMessage(
-            "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل"),
+            "كلمة المرور يجب أن تحتوي على رقم واحد على الأقل"),
         "passwordNoUppercase": MessageLookupByLibrary.simpleMessage(
-            "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل"),
+            "كلمة المرور يجب أن تحتوي على حرف كبير واحد على الأقل"),
         "passwordRequired":
             MessageLookupByLibrary.simpleMessage("كلمة المرور مطلوبة"),
         "passwordTooShort": MessageLookupByLibrary.simpleMessage(
-            "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل"),
+            "كلمة المرور يجب أن تكون 8 أحرف على الأقل"),
         "passwordsDoNotMatch":
-            MessageLookupByLibrary.simpleMessage("كلمات المرور غير متطابقة"),
+            MessageLookupByLibrary.simpleMessage("كلمتا المرور غير متطابقتين"),
         "selectAccountType": MessageLookupByLibrary.simpleMessage(
             "يرجى تحديد نوع حسابك للمتابعة:"),
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
@@ -94,20 +93,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "signUpButton": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "uploadIdLabel":
-            MessageLookupByLibrary.simpleMessage("رفع صورة الهوية :"),
-        "uploadPhoto": MessageLookupByLibrary.simpleMessage("رفع صورة"),
+            MessageLookupByLibrary.simpleMessage("رفع صورة الهوية"),
+        "uploadPhoto": MessageLookupByLibrary.simpleMessage("قم برفع صورة"),
         "userButton": MessageLookupByLibrary.simpleMessage("مستخدم"),
         "userDescription": MessageLookupByLibrary.simpleMessage(
             "مستخدم – إذا كنت تبحث عن محترفين لإنجاز مهامك."),
         "usernameHasNumbers": MessageLookupByLibrary.simpleMessage(
             "لا يمكن أن يحتوي اسم المستخدم على أرقام"),
+        "usernameHint":
+            MessageLookupByLibrary.simpleMessage("أدخل اسم المستخدم"),
+        "usernameLabel": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "usernameRequired":
             MessageLookupByLibrary.simpleMessage("اسم المستخدم مطلوب"),
         "usernameStartsWithSpace": MessageLookupByLibrary.simpleMessage(
             "لا يمكن أن يبدأ اسم المستخدم بمسافة"),
         "usernameTooShort": MessageLookupByLibrary.simpleMessage(
-            "يجب أن يتكون اسم المستخدم من 3 أحرف على الأقل"),
+            "اسم المستخدم يجب أن يكون 3 أحرف على الأقل"),
         "welcomeToSalla7ly":
-            MessageLookupByLibrary.simpleMessage("مرحبا بكم في صلحلي")
+            MessageLookupByLibrary.simpleMessage("مرحباً بك في سلعة")
       };
 }

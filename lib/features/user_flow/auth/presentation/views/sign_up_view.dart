@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../widgets/page_title.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
+import '../widgets/sign_in/welcome_text.dart';
 import '../widgets/sign_up/sign_up_form.dart';
-import '../widgets/page_title.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salla7ly/generated/l10n.dart';
 
-import '../widgets/welcome_text.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
@@ -61,7 +61,7 @@ class _SignUpViewState extends State<SignUpView> {
                   PageTitle(title: S.of(context).signUp),
                   SizedBox(height: 40.h),
                   WelcomeText(text: S.of(context).fillCredentials),
-                  SizedBox(height: 60.h),
+                  SizedBox(height: 40.h),
                   const SignUpForm(),
                   SizedBox(height: 20.h),
                 ],
