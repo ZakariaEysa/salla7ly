@@ -107,7 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "usernameStartsWithSpace": MessageLookupByLibrary.simpleMessage(
             "Username cannot start with a space"),
         "usernameTooShort": MessageLookupByLibrary.simpleMessage(
-            "Username must be at least 3 characters"),
+            "Username must be at least 5 characters"),
         "welcomeToSalla7ly":
             MessageLookupByLibrary.simpleMessage("Welcome to Salla7ly")
       };

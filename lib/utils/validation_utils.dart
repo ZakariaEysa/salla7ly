@@ -40,11 +40,6 @@ class ValidationUtils {
     return null;
   }
 
-  /// التحقق من صحة اسم المستخدم
-  /// - لا يمكن أن تكون فارغة
-  /// - يمكن أن تحتوي على مسافة في الوسط
-  /// - لا يمكن أن تبدأ بمسافة
-  /// - لا يمكن أن تحتوي على أرقام
   static String? validateUsername(String? value, BuildContext context) {
     final localizations = S.of(context);
 
@@ -58,31 +53,10 @@ class ValidationUtils {
     }
 
     // التحقق من الطول (اختياري)
-    if (value.length < 3) {
+    if (value.length < 5) {
       return localizations.usernameTooShort;
     }
 
-    // التحقق من عدم وجود أرقام
-    if (RegExp(r'[0-9]').hasMatch(value)) {
-      return localizations.usernameHasNumbers;
-    }
-
-    return null;
-  }
-
-  static String? validateName(String? value, BuildContext context) {
-    if (value == null || value.isEmpty) {
-      return S.of(context).nameRequired;
-    }
-    if (value.startsWith(' ')) {
-      return S.of(context).usernameStartsWithSpace;
-    }
-    if (value.length < 3) {
-      return S.of(context).usernameTooShort;
-    }
-    if (RegExp(r'[0-9]').hasMatch(value)) {
-      return S.of(context).usernameHasNumbers;
-    }
     return null;
   }
 

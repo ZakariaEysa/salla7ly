@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:salla7ly/generated/l10n.dart';
 import 'package:salla7ly/utils/validation_utils.dart';
 import '../../../../../../widgets/custom_text_field.dart';
 import '../../../../../../widgets/label_text.dart';
+import '../../../../../shared/auth/presentation/views/sign_in.dart';
 import '../have_account_row.dart';
 import '../auth_button.dart';
 import 'birth_date_selector.dart';
@@ -52,7 +52,7 @@ class _SignUpFormState extends State<SignUpForm> {
             CustomTextField(
               controller: _userNameController,
               validator: (value) {
-                return ValidationUtils.validateName(value, context);
+                return ValidationUtils.validateUsername(value, context);
               },
               prefixWidget: Image.asset("assets/icons/user.png"),
               hintText: S.of(context).usernameHint,

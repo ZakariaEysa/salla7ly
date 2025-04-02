@@ -2,20 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../widgets/page_title.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
-import '../widgets/sign_in/welcome_text.dart';
+import '../../../../shared/auth/presentation/widgets/sign_in/welcome_text.dart';
 import '../widgets/sign_up/sign_up_form.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:salla7ly/generated/l10n.dart';
 
-
-class SignUpView extends StatefulWidget {
-  const SignUpView({super.key});
+class CraftManSignUpView extends StatefulWidget {
+  const CraftManSignUpView({super.key});
 
   @override
-  State<SignUpView> createState() => _SignUpViewState();
+  State<CraftManSignUpView> createState() => _CraftManSignUpViewState();
 }
 
-class _SignUpViewState extends State<SignUpView> {
+class _CraftManSignUpViewState extends State<CraftManSignUpView> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldF(

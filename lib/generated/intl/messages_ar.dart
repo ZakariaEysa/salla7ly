@@ -108,7 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "usernameStartsWithSpace": MessageLookupByLibrary.simpleMessage(
             "لا يمكن أن يبدأ اسم المستخدم بمسافة"),
         "usernameTooShort": MessageLookupByLibrary.simpleMessage(
-            "اسم المستخدم يجب أن يكون 3 أحرف على الأقل"),
+            "اسم المستخدم يجب أن يكون 5 أحرف على الأقل"),
         "welcomeToSalla7ly":
             MessageLookupByLibrary.simpleMessage("مرحباً بك في سلعة")
       };

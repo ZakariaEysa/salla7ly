@@ -43,7 +43,7 @@
 "usernameHint": "Enter username",
 "usernameRequired": "Username is required",
 "usernameStartsWithSpace": "Username cannot start with a space",
-"usernameTooShort": "Username must be at least 3 characters",
+"usernameTooShort": "Username must be at least 5 characters",
 "usernameHasNumbers": "Username cannot contain numbers",
 "passwordComplexityError": "Weak password, use a mix of letters, numbers and symbols (example: Aa@#1234)",
 "nameLabel": "UserName :",

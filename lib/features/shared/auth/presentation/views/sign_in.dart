@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/features/user_flow/auth/presentation/views/account_type_screen.dart';
 import 'package:salla7ly/widgets/page_title.dart';
 
 import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
@@ -15,6 +14,7 @@ import '../widgets/sign_in/google_sign_in_button.dart';
 import '../widgets/sign_in/or_sign_in_with_divider.dart';
 import '../widgets/auth_button.dart';
 import '../widgets/sign_in/welcome_text.dart';
+import 'account_type_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);

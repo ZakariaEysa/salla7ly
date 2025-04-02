@@ -15,24 +15,24 @@ class _BirthDateSelectorState extends State<BirthDateSelector> {
   String? selectedYear = '2002';
 
   final List<String> months = [
-    'January',
-    'February',
+    'Jan',
+    'Feb',
     'March',
     'April',
     'May',
     'June',
     'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
   ];
 
   List<String> days = List.generate(31, (index) => '${index + 1}');
   List<String> years = List.generate(
-    100,
-    (index) => '${DateTime.now().year - index}',
+    70,
+    (index) => '${DateTime.now().year - 15 - index}',
   );
 
   @override
@@ -41,6 +41,7 @@ class _BirthDateSelectorState extends State<BirthDateSelector> {
       children: [
         Expanded(
           child: _buildDropdown(
+            context: context,
             value: selectedMonth,
             items: months,
             onChanged: (value) {
@@ -53,6 +54,7 @@ class _BirthDateSelectorState extends State<BirthDateSelector> {
         SizedBox(width: 12.w),
         Expanded(
           child: _buildDropdown(
+            context: context,
             value: selectedDay,
             items: days,
             onChanged: (value) {
@@ -65,6 +67,7 @@ class _BirthDateSelectorState extends State<BirthDateSelector> {
         SizedBox(width: 12.w),
         Expanded(
           child: _buildDropdown(
+            context: context,
             value: selectedYear,
             items: years,
             onChanged: (value) {
@@ -82,12 +85,17 @@ class _BirthDateSelectorState extends State<BirthDateSelector> {
     required String? value,
     required List<String> items,
     required void Function(String?)? onChanged,
+    required BuildContext context,
   }) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12.w),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12.r),
+      decoration: ShapeDecoration(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 1,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ),
       ),
       child: DropdownButton<String>(
         value: value,

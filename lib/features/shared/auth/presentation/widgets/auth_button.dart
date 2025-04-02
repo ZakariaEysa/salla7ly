@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/generated/l10n.dart';
-import 'package:salla7ly/features/user_flow/auth/presentation/views/account_type_screen.dart';
 
 /// كلاس لزر تسجيل الدخول
 class AuthButton extends StatelessWidget {

@@ -420,10 +420,10 @@ class S {
     );
   }
 
-  /// `Username must be at least 3 characters`
+  /// `Username must be at least 5 characters`
   String get usernameTooShort {
     return Intl.message(
-      'Username must be at least 3 characters',
+      'Username must be at least 5 characters',
       name: 'usernameTooShort',
       desc: '',
       args: [],

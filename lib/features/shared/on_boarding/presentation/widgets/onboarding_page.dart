@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../widgets/onboarding_content.dart';
+import 'onboarding_content.dart';
 
 /// مكوّن لعرض صفحة فردية في الأونبوردينج
 class OnboardingPage extends StatelessWidget {

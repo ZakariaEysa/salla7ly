@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/generated/l10n.dart';
+import 'package:salla7ly/utils/navigation.dart';
+
 
 class AccountRow extends StatelessWidget {
   const AccountRow(
-      {Key? key, required this.text, required this.navigationWidget, required this.title})
+      {Key? key,
+      required this.text,
+      required this.navigationWidget,
+      required this.title})
       : super(key: key);
   final String text;
   final String title;
@@ -27,12 +31,11 @@ class AccountRow extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => navigationWidget,
-              ),
-            );
-            // التنقل إلى صفحة اختيار نوع الحساب
+            if (navigationWidget.toString() == "AccountTypeScreen") {
+              navigateTo(context: context, screen: navigationWidget);
+            } else
+              navigateAndRemoveUntil(
+                  context: context, screen: navigationWidget);
           },
           style: TextButton.styleFrom(
             minimumSize: Size.zero,

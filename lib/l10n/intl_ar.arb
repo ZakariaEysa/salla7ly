@@ -52,6 +52,6 @@
     "usernameHint": "أدخل اسم المستخدم",
     "usernameRequired": "اسم المستخدم مطلوب",
     "usernameStartsWithSpace": "لا يمكن أن يبدأ اسم المستخدم بمسافة",
-    "usernameTooShort": "اسم المستخدم يجب أن يكون 3 أحرف على الأقل",
+    "usernameTooShort": "اسم المستخدم يجب أن يكون 5 أحرف على الأقل",
     "usernameHasNumbers": "لا يمكن أن يحتوي اسم المستخدم على أرقام"
 }
