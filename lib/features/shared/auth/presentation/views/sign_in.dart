@@ -36,6 +36,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldF(
+      resizeToAvoidBottomInset: true,
       body: Form(
         key: signInKey,
         child: Stack(
@@ -122,7 +123,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     const GoogleSignInButton(),
                     SizedBox(height: 30.h),
                     AccountRow(
-                      title:  S.of(context).dontHaveAccount,
+                      title: S.of(context).dontHaveAccount,
                       navigationWidget: const AccountTypeScreen(),
                       text: S.of(context).signUp,
                       // التنقل إلى صفحة اختيار نوع الحساب
