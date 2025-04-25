@@ -22,10 +22,10 @@ class AccountTypeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 30.h),
+              SizedBox(height: 20.h),
               Container(
                 width: 372.w,
-                height: 463.h,
+                height: 370.h,
                 decoration: ShapeDecoration(
                   color: Theme.of(context).colorScheme.shadow,
                   shape: RoundedRectangleBorder(
@@ -34,7 +34,7 @@ class AccountTypeScreen extends StatelessWidget {
                 ),
                 child: Image.asset(
                   'assets/images/OR.png',
-                  height: 300.h,
+                  height: 280.h,
                   width: 300.w,
                   fit: BoxFit.contain,
                 ),

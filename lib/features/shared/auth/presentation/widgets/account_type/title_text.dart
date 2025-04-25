@@ -14,7 +14,7 @@ class TitleText extends StatelessWidget {
       S.of(context).selectAccountType,
       style: TextStyle(
         color: theme.textTheme.headlineLarge?.color,
-        fontSize: 25.sp,
+        fontSize: 18.sp,
         fontWeight: FontWeight.bold,
       ),
       textAlign: TextAlign.center,

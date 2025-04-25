@@ -9,9 +9,11 @@ class UploadIdButton extends StatefulWidget {
     Key? key,
     required this.width,
     required this.height,
+    this.onTap,
   }) : super(key: key);
   final double width;
   final double height;
+  final void Function()? onTap;
   @override
   State<UploadIdButton> createState() => _UploadIdButtonState();
 }
@@ -105,62 +107,64 @@ class _UploadIdButtonState extends State<UploadIdButton>
 
   // بناء زر نصي مع أيقونة للأمام
   Widget _buildTextButton(ThemeData theme, bool isRTL) {
-    return RepaintBoundary(
-      child: AnimatedScale(
-        scale: _isPressed ? 0.95 : 1.0,
-        duration: const Duration(milliseconds: 150),
-        child: Opacity(
-          opacity: _isPressed ? 0.8 : 1.0,
-          child: Stack(
-            children: [
-              // الزر الأساسي
-              Container(
-                width: widget.width,
-                height: widget.height,
-                decoration: ShapeDecoration(
-                  gradient: theme.extension<GradientTheme>()?.buttonGradient,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.r),
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: RepaintBoundary(
+        child: AnimatedScale(
+          scale: _isPressed ? 0.95 : 1.0,
+          duration: const Duration(milliseconds: 150),
+          child: Opacity(
+            opacity: _isPressed ? 0.8 : 1.0,
+            child: Stack(
+              children: [
+                Container(
+                  width: widget.width,
+                  height: widget.height,
+                  decoration: ShapeDecoration(
+                    gradient: theme.extension<GradientTheme>()?.buttonGradient,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                  ),
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/icons/uploadImage.png",
+                        width: 30.w,
+                        height: 30.h,
+                      ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Text(
+                        S.of(context).uploadPhoto,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontSize: 18.sp,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ),
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      "assets/icons/uploadImage.png",
-                      width: 30.w,
-                      height: 30.h,
-                    ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    Text(
-                      S.of(context).uploadPhoto,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        fontSize: 18.sp,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
 
-              // طبقة تأثير الضوء المتحرك
-              Positioned.fill(
-                child: AnimatedBuilder(
-                  animation: _shimmerAnimation,
-                  builder: (context, child) {
-                    return DecoratedBox(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.r),
-                        gradient: _createShimmerGradient(isRTL),
-                      ),
-                    );
-                  },
+                // طبقة تأثير الضوء المتحرك
+                Positioned.fill(
+                  child: AnimatedBuilder(
+                    animation: _shimmerAnimation,
+                    builder: (context, child) {
+                      return DecoratedBox(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.r),
+                          gradient: _createShimmerGradient(isRTL),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
