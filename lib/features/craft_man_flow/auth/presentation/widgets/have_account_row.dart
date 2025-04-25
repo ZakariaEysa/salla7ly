@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/utils/navigation.dart';
 
-
 class AccountRow extends StatelessWidget {
   const AccountRow(
       {Key? key,
@@ -24,7 +23,7 @@ class AccountRow extends StatelessWidget {
           title,
           style: TextStyle(
             color: theme.textTheme.bodyMedium?.color,
-            fontSize: 20.sp,
+            fontSize: 18.sp,
             fontFamily: 'Inter',
             fontWeight: FontWeight.w400,
           ),
@@ -39,7 +38,6 @@ class AccountRow extends StatelessWidget {
           },
           style: TextButton.styleFrom(
             minimumSize: Size.zero,
-            padding: EdgeInsets.only(left: 8.w),
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
@@ -49,8 +47,6 @@ class AccountRow extends StatelessWidget {
               fontSize: 20.sp,
               fontFamily: 'Inter',
               fontWeight: FontWeight.w900,
-              height: 1.10,
-              letterSpacing: -0.41,
             ),
           ),
         ),

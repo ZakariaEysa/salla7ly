@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/auth_cubit.dart';
 
 class BirthDateSelector extends StatefulWidget {
   const BirthDateSelector({super.key});
@@ -10,10 +11,6 @@ class BirthDateSelector extends StatefulWidget {
 }
 
 class _BirthDateSelectorState extends State<BirthDateSelector> {
-  String? selectedMonth = 'May';
-  String? selectedDay = '12';
-  String? selectedYear = '2002';
-
   final List<String> months = [
     'Jan',
     'Feb',
@@ -37,16 +34,17 @@ class _BirthDateSelectorState extends State<BirthDateSelector> {
 
   @override
   Widget build(BuildContext context) {
+    AuthCubit cubit = AuthCubit().get(context);
     return Row(
       children: [
         Expanded(
           child: _buildDropdown(
             context: context,
-            value: selectedMonth,
+            value: cubit.selectedMonth,
             items: months,
             onChanged: (value) {
               setState(() {
-                selectedMonth = value;
+                cubit.selectedMonth = value;
               });
             },
           ),
@@ -55,11 +53,11 @@ class _BirthDateSelectorState extends State<BirthDateSelector> {
         Expanded(
           child: _buildDropdown(
             context: context,
-            value: selectedDay,
+            value: cubit.selectedDay,
             items: days,
             onChanged: (value) {
               setState(() {
-                selectedDay = value;
+                cubit.selectedDay = value;
               });
             },
           ),
@@ -68,11 +66,11 @@ class _BirthDateSelectorState extends State<BirthDateSelector> {
         Expanded(
           child: _buildDropdown(
             context: context,
-            value: selectedYear,
+            value: cubit.selectedYear,
             items: years,
             onChanged: (value) {
               setState(() {
-                selectedYear = value;
+                cubit.selectedYear = value;
               });
             },
           ),

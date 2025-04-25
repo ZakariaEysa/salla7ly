@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/auth_cubit.dart';
+import 'package:salla7ly/features/craft_man_flow/auth/presentation/views/national_id.dart';
 import 'package:salla7ly/generated/l10n.dart';
+import 'package:salla7ly/utils/app_logs.dart';
+import 'package:salla7ly/utils/navigation.dart';
 import 'package:salla7ly/utils/validation_utils.dart';
 import '../../../../../../widgets/custom_text_field.dart';
 import '../../../../../../widgets/label_text.dart';
@@ -18,31 +23,28 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  final _formKey = GlobalKey<FormState>();
-  bool _obscurePassword = true;
-  bool _obscureConfirmPassword = true;
+  final formKey = GlobalKey<FormState>();
+  bool obscurePassword = true;
+  bool obscureConfirmPassword = true;
 
-  void _togglePasswordVisibility() {
+  void _togglePasswordVisibility(AuthCubit cubit) {
     setState(() {
-      _obscurePassword = !_obscurePassword;
+      cubit.obscurePassword = !cubit.obscurePassword;
     });
   }
 
-  void _toggleConfirmPasswordVisibility() {
+  void _toggleConfirmPasswordVisibility(AuthCubit cubit) {
     setState(() {
-      _obscureConfirmPassword = !_obscureConfirmPassword;
+      cubit.obscureConfirmPassword = !cubit.obscureConfirmPassword;
     });
   }
-
-  final _confirmPasswordController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _userNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    AuthCubit cubit = AuthCubit().get(context);
+
     return Form(
-      key: _formKey,
+      key: cubit.formKey,
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +52,7 @@ class _SignUpFormState extends State<SignUpForm> {
             LabelText(text: S.of(context).usernameLabel),
             SizedBox(height: 10.h),
             CustomTextField(
-              controller: _userNameController,
+              controller: cubit.userNameController,
               validator: (value) {
                 return ValidationUtils.validateUsername(value, context);
               },
@@ -61,7 +63,7 @@ class _SignUpFormState extends State<SignUpForm> {
             LabelText(text: S.of(context).emailLabel),
             SizedBox(height: 10.h),
             CustomTextField(
-              controller: _emailController,
+              controller: cubit.emailController,
               validator: (value) {
                 return ValidationUtils.validateEmail(value, context);
               },
@@ -72,33 +74,35 @@ class _SignUpFormState extends State<SignUpForm> {
             LabelText(text: S.of(context).passwordLabel),
             SizedBox(height: 10.h),
             CustomTextField(
-              controller: _passwordController,
+              controller: cubit.passwordController,
               validator: (value) {
                 return ValidationUtils.validatePassword(value, context);
               },
               prefixWidget: Image.asset("assets/icons/lockIcon.png"),
               suffixWidget: Image.asset("assets/icons/EyeIcon.png"),
-              // prefixIcon: Icons.lock_outline,
+              // prefixIcon: Icons.lockcubit.outline,
               hintText: S.of(context).passwordHint,
               isPassword: true,
-              obscureText: _obscurePassword,
-              onTogglePasswordVisibility: _togglePasswordVisibility,
+              obscureText: cubit.obscurePassword,
+              onTogglePasswordVisibility: () =>
+                  _togglePasswordVisibility(cubit),
             ),
             SizedBox(height: 20.h),
             LabelText(text: S.of(context).confirmPasswordLabel),
             SizedBox(height: 10.h),
             CustomTextField(
-              controller: _confirmPasswordController,
+              controller: cubit.confirmPasswordController,
               validator: (value) {
                 return ValidationUtils.validateConfirmPassword(
-                    value, context, _passwordController.text);
+                    value, context, cubit.passwordController.text);
               },
               prefixWidget: Image.asset("assets/icons/lockIcon2.png"),
               suffixWidget: Image.asset("assets/icons/EyeIcon.png"),
               hintText: S.of(context).confirmPasswordHint,
               isPassword: true,
-              obscureText: _obscureConfirmPassword,
-              onTogglePasswordVisibility: _toggleConfirmPasswordVisibility,
+              obscureText: cubit.obscureConfirmPassword,
+              onTogglePasswordVisibility: () =>
+                  _toggleConfirmPasswordVisibility(cubit),
             ),
             SizedBox(height: 20.h),
             LabelText(text: S.of(context).birthDateLabel),
@@ -108,15 +112,70 @@ class _SignUpFormState extends State<SignUpForm> {
             LabelText(text: S.of(context).uploadIdLabel),
             SizedBox(height: 20.h),
             UploadIdButton(
+              onTap: () {
+                AppLogs.scussessLog("Upload ID");
+                navigateTo(
+                    context: context,
+                    screen: NationalId(
+                        onTap: () {
+                          AppLogs.scussessLog("front");
+                          AppLogs.scussessLog(
+                              AuthCubit().get(context).frontId ?? "");
+                          AppLogs.scussessLog("Back");
+
+                          AppLogs.scussessLog(
+                              AuthCubit().get(context).backId ?? "");
+                          AppLogs.scussessLog("NextPage");
+                          if (AuthCubit().get(context).frontId != null) {
+                            navigateTo(
+                                context: context,
+                                screen: NationalId(
+                                    onTap: () {
+                                      if (AuthCubit().get(context).backId !=
+                                          null) {
+                                        int count = 0;
+                                        Navigator.popUntil(context, (route) {
+                                          return count++ == 2;
+                                        });
+                                        AppLogs.scussessLog("front");
+                                        AppLogs.scussessLog(
+                                            AuthCubit().get(context).frontId ??
+                                                "");
+                                        AppLogs.scussessLog("Back");
+
+                                        AppLogs.scussessLog(
+                                            AuthCubit().get(context).backId ??
+                                                "");
+                                      } else {
+                                        Fluttertoast.showToast(
+                                            msg:
+                                                "Please upload the back of the National ID card first.");
+                                      }
+                                    },
+                                    buttonText: "SignUp",
+                                    text:
+                                        "Upload the Back of the National ID card."));
+                          } else {
+                            AppLogs.scussessLog(
+                                AuthCubit().get(context).frontId.toString());
+                            Fluttertoast.showToast(
+                                msg:
+                                    "Please upload the front of the National ID card first.");
+                          }
+                        },
+                        buttonText: "continue",
+                        text: "Upload the front of the National ID card."));
+              },
               width: 300.w,
               height: 48.h,
             ),
+
             SizedBox(height: 30.h),
             Align(
                 alignment: Alignment.center,
                 child: AuthButton(
                   onTap: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (cubit.formKey.currentState!.validate()) {}
                   },
                   text: S.of(context).signUpButton,
                 )),

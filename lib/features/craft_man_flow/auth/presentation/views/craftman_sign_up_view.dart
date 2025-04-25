@@ -50,7 +50,7 @@ class _CraftManSignUpViewState extends State<CraftManSignUpView> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

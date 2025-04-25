@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/auth_cubit.dart';
 import 'utils/app_logs.dart';
 import 'data/hive_storage.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,6 +16,22 @@ import 'features/shared/splash_screen/splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'widgets/application_theme/application_theme.dart';
 import 'widgets/application_theme/theme_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+Future<void> requestGalleryPermission() async {
+  final status = await Permission.photos.request(); // iOS
+  // لو Android استخدم Permission.storage
+  // final status = await Permission.storage.request();
+
+  if (status.isGranted) {
+    debugPrint('تم منح الإذن للوصول إلى الصور');
+  } else if (status.isDenied) {
+    debugPrint('تم رفض الإذن، تقدر تطلبه تاني لاحقًا');
+  } else if (status.isPermanentlyDenied) {
+    debugPrint('تم رفض الإذن بشكل دائم، افتح الإعدادات يدويًا');
+    await openAppSettings();
+  }
+}
 
 ThemeMode getThemeMode(bool isDark) =>
     isDark ? ThemeMode.dark : ThemeMode.light;
@@ -30,6 +47,7 @@ void main() async {
   SimpleBlocObserverService();
 
   await HiveStorage.init();
+  await requestGalleryPermission();
 
   // HiveStorage.set(HiveKeys.passUserOnboarding, false);
 
@@ -50,12 +68,19 @@ void main() async {
   //     overlays: [SystemUiOverlay.top]);
 
   runApp(
-    DevicePreview(
-      enabled: kDebugMode,
-      builder: (context) => BlocProvider<SwitchLanguageCubit>(
-        create: (context) => SwitchLanguageCubit(),
-        child: const ProviderScope(
-          child: MyApp(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthCubit>(
+          create: (context) => AuthCubit(),
+        ),
+      ],
+      child: DevicePreview(
+        enabled: kDebugMode,
+        builder: (context) => BlocProvider<SwitchLanguageCubit>(
+          create: (context) => SwitchLanguageCubit(),
+          child: const ProviderScope(
+            child: MyApp(),
+          ),
         ),
       ),
     ),

@@ -15,7 +15,7 @@ class DescriptionText extends StatelessWidget {
       text,
       style: TextStyle(
         color: theme.textTheme.bodyMedium?.color,
-        fontSize: 16.sp,
+        fontSize: 14.sp,
         fontWeight: FontWeight.w400,
       ),
       textAlign: TextAlign.center,

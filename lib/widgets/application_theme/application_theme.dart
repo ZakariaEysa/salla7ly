@@ -87,6 +87,12 @@ class ApplicationTheme {
           fontWeight: FontWeight.bold),
       bodyMedium:
           const TextStyle(color: AppColors.white, fontFamily: 'Poppins'),
+      bodySmall: TextStyle(
+        fontSize: 20.sp,
+        color: AppColors.lightTextPrimary,
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w400,
+      ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style:
@@ -154,6 +160,11 @@ class ApplicationTheme {
       background: AppColors.darkBackgroundEnd,
       tertiary: AppColors.navyBlue,
       shadow: AppColors.shadowColor,
+      onPrimaryFixed: AppColors.lightTextPrimary,
+      onSecondaryContainer: AppColors.borderColor,
+      tertiaryFixedDim: AppColors.sugarColor,
+      onTertiary: AppColors.sugarColor2,
+
     ),
     extensions: [
       GradientTheme(

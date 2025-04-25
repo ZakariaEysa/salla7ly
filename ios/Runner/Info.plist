@@ -54,5 +54,12 @@
 	<true/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+
+	<!-- Photo Library Permission -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>نحتاج إذن للوصول إلى مكتبة الصور لتحميل الصور من جهازك.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>نحتاج إذن لحفظ الصور داخل مكتبة الصور.</string>
+
 </dict>
 </plist>

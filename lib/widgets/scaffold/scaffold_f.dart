@@ -24,13 +24,11 @@ class ScaffoldF extends StatelessWidget {
       resizeToAvoidBottomInset: resizeToAvoidBottomInset ?? true,
       appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(gradient: theme?.backgroundGradient),
-          ),
-          body,
-        ],
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(gradient: theme?.backgroundGradient),
+          child: body,
+        ),
       ),
     );
   }
