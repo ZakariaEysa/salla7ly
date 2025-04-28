@@ -86,14 +86,14 @@ class NationalId extends StatelessWidget {
 
   Future<String> uploadFrontId(context) async {
     AppLogs.scussessLog("this is front");
-    AuthCubit().get(context).frontId = await pickImageAndConvertToBase64();
-    return AuthCubit().get(context).frontId!;
+    AuthCubit.get(context).frontId = await pickImageAndConvertToBase64();
+    return AuthCubit.get(context).frontId!;
   }
 
   Future<String> uploadBackId(context) async {
     AppLogs.scussessLog("this is back");
-    AuthCubit().get(context).backId = await pickImageAndConvertToBase64();
-    return AuthCubit().get(context).backId!;
+    AuthCubit.get(context).backId = await pickImageAndConvertToBase64();
+    return AuthCubit.get(context).backId!;
   }
 
   Future<String?> pickImageAndConvertToBase64() async {

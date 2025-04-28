@@ -34,7 +34,7 @@ class _BirthDateSelectorState extends State<BirthDateSelector> {
 
   @override
   Widget build(BuildContext context) {
-    AuthCubit cubit = AuthCubit().get(context);
+    AuthCubit cubit = AuthCubit.get(context);
     return Row(
       children: [
         Expanded(

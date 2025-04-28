@@ -7,7 +7,7 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
-  AuthCubit get(context) => BlocProvider.of<AuthCubit>(context);
+   static AuthCubit get(context) => BlocProvider.of<AuthCubit>(context);
   String? backId;
   String? frontId;
   final confirmPasswordController = TextEditingController();

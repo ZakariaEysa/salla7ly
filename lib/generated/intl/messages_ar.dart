@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Change_Password":
+            MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+        "Continue": MessageLookupByLibrary.simpleMessage("متابعة"),
         "Next": MessageLookupByLibrary.simpleMessage("التالي"),
         "Skip": MessageLookupByLibrary.simpleMessage("تخطى"),
         "Start": MessageLookupByLibrary.simpleMessage("ابدا"),
@@ -36,11 +39,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "confirmPasswordRequired":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور مطلوب"),
+        "confirm_otp_code":
+            MessageLookupByLibrary.simpleMessage("تأكيد رمز التحقق"),
+        "confirm_password":
+            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "continueWithGoogle":
             MessageLookupByLibrary.simpleMessage("متابعة باستخدام جوجل"),
         "craftsmanButton": MessageLookupByLibrary.simpleMessage("حرفي"),
         "craftsmanDescription": MessageLookupByLibrary.simpleMessage(
             "حرفي – إذا كنت تقدم خدمات يدوية"),
+        "create_new_password":
+            MessageLookupByLibrary.simpleMessage("إنشاء كلمة مرور جديدة"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "emailAlreadyExists": MessageLookupByLibrary.simpleMessage(
@@ -49,17 +58,33 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailLabel": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "emailRequired":
             MessageLookupByLibrary.simpleMessage("البريد الإلكتروني مطلوب"),
+        "enter_confirm_password":
+            MessageLookupByLibrary.simpleMessage("أدخل تأكيد كلمة المرور"),
+        "enter_email_address": MessageLookupByLibrary.simpleMessage(
+            "أدخل عنوان البريد الإلكتروني"),
+        "enter_password":
+            MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
+        "enter_valid_email": MessageLookupByLibrary.simpleMessage(
+            "أدخل بريدًا إلكترونيًا صحيحًا"),
         "fillCredentials":
             MessageLookupByLibrary.simpleMessage("يرجى ملء بيانات الاعتماد."),
         "forgotPassword":
-            MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+            MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور"),
         "idPhotoRequired":
             MessageLookupByLibrary.simpleMessage("صورة الهوية مطلوبة"),
         "invalidEmail":
             MessageLookupByLibrary.simpleMessage("البريد الإلكتروني غير صالح"),
+        "invalid_email_address":
+            MessageLookupByLibrary.simpleMessage("البريد الإلكتروني غير صالح"),
+        "invalid_email_format": MessageLookupByLibrary.simpleMessage(
+            "تنسيق البريد الإلكتروني غير صحيح"),
+        "invalid_otp":
+            MessageLookupByLibrary.simpleMessage("رمز التحقق غير صحيح"),
         "nameHint": MessageLookupByLibrary.simpleMessage("أدخل اسمك"),
         "nameLabel": MessageLookupByLibrary.simpleMessage("الاسم :"),
         "nameRequired": MessageLookupByLibrary.simpleMessage("الاسم مطلوب"),
+        "new_password":
+            MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "on1Content": MessageLookupByLibrary.simpleMessage(
             "تواصل بسهولة مع الحرفيين المهرة واحصل على توصيات خدمة مخصصة مصممة خصيصا لاحتياجاتك."),
         "on2Content": MessageLookupByLibrary.simpleMessage(
@@ -72,6 +97,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "ابحث عن عمل بسهولة ، احصل على المساعدة المناسبة!"),
         "orSignInWith":
             MessageLookupByLibrary.simpleMessage("أو تسجيل الدخول باستخدام"),
+        "otp_has_been_resent":
+            MessageLookupByLibrary.simpleMessage("تمت إعادة إرسال رمز التحقق"),
+        "otp_sent_successfully":
+            MessageLookupByLibrary.simpleMessage("تم إرسال رمز التحقق بنجاح"),
         "passwordComplexityError": MessageLookupByLibrary.simpleMessage(
             "كلمة المرور ضعيفة، استخدم مزيجاً من الأحرف والأرقام والرموز (مثال: Aa@#1234)"),
         "passwordHint": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
@@ -84,20 +113,43 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("كلمة المرور مطلوبة"),
         "passwordTooShort": MessageLookupByLibrary.simpleMessage(
             "كلمة المرور يجب أن تكون 8 أحرف على الأقل"),
+        "password_updated_successfully":
+            MessageLookupByLibrary.simpleMessage("تم تحديث كلمة المرور بنجاح"),
+        "password_validation":
+            MessageLookupByLibrary.simpleMessage("التحقق من كلمة المرور"),
         "passwordsDoNotMatch":
             MessageLookupByLibrary.simpleMessage("كلمتا المرور غير متطابقتين"),
+        "please_enter_all_numbers_otp": MessageLookupByLibrary.simpleMessage(
+            "من فضلك أدخل جميع أرقام رمز التحقق"),
+        "please_enter_the_6_digit_code_sent_to_your_email":
+            MessageLookupByLibrary.simpleMessage(
+                "من فضلك أدخل الرمز المكون من 6 أرقام المرسل إلى بريدك الإلكتروني"),
+        "please_enter_your_email_to_receive_a_verification_card":
+            MessageLookupByLibrary.simpleMessage(
+                "يرجى إدخال بريدك الإلكتروني لاستلام بطاقة التحقق"),
+        "resend": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
+        "resend_limit_reached_for_today": MessageLookupByLibrary.simpleMessage(
+            "تم الوصول للحد الأقصى للإرسال اليوم"),
         "selectAccountType": MessageLookupByLibrary.simpleMessage(
             "يرجى تحديد نوع حسابك للمتابعة:"),
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signInButton": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "signUpButton": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+        "something_went_wrong_please_check_your_network":
+            MessageLookupByLibrary.simpleMessage(
+                "حدث خطأ ما، يرجى التحقق من الشبكة"),
+        "sorry_there_was_an_error_please_try_again_later":
+            MessageLookupByLibrary.simpleMessage(
+                "عذرًا، حدث خطأ. يرجى المحاولة لاحقًا"),
         "uploadIdLabel":
             MessageLookupByLibrary.simpleMessage("رفع صورة الهوية"),
         "uploadPhoto": MessageLookupByLibrary.simpleMessage("قم برفع صورة"),
         "userButton": MessageLookupByLibrary.simpleMessage("مستخدم"),
         "userDescription": MessageLookupByLibrary.simpleMessage(
             "مستخدم – إذا كنت تبحث عن محترفين لإنجاز مهامك."),
+        "user_not_found":
+            MessageLookupByLibrary.simpleMessage("مستخدم غير موجود"),
         "usernameHasNumbers": MessageLookupByLibrary.simpleMessage(
             "لا يمكن أن يحتوي اسم المستخدم على أرقام"),
         "usernameHint":
@@ -110,6 +162,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "usernameTooShort": MessageLookupByLibrary.simpleMessage(
             "اسم المستخدم يجب أن يكون 5 أحرف على الأقل"),
         "welcomeToSalla7ly":
-            MessageLookupByLibrary.simpleMessage("مرحباً بك في سلعة")
+            MessageLookupByLibrary.simpleMessage("مرحباً بك في سلعة"),
+        "wrong_confirm_password":
+            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور غير صحيح"),
+        "your_new_password_must_be_different_from_previously_used_password":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب أن تكون كلمة المرور الجديدة مختلفة عن الكلمات المستخدمة سابقًا")
       };
 }

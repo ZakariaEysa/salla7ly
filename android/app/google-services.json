@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "491223251945",
+    "project_id": "salla7lly-3c646",
+    "storage_bucket": "salla7lly-3c646.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491223251945:android:9df1e3c18d79bc75c3e978",
+        "android_client_info": {
+          "package_name": "com.example.salla7ly"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoRbqDYipAcYkbb1Lo7dzOS3O6rgTJ9pA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

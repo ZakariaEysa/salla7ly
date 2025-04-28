@@ -9,6 +9,7 @@ import 'package:salla7ly/utils/navigation.dart';
 import 'package:salla7ly/utils/validation_utils.dart';
 import '../../../../../../widgets/custom_text_field.dart';
 import '../../../../../../widgets/label_text.dart';
+import '../../../../../shared/auth/presentation/views/otp.dart';
 import '../../../../../shared/auth/presentation/views/sign_in.dart';
 import '../have_account_row.dart';
 import '../auth_button.dart';
@@ -41,7 +42,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    AuthCubit cubit = AuthCubit().get(context);
+    AuthCubit cubit = AuthCubit.get(context);
 
     return Form(
       key: cubit.formKey,
@@ -120,18 +121,18 @@ class _SignUpFormState extends State<SignUpForm> {
                         onTap: () {
                           AppLogs.scussessLog("front");
                           AppLogs.scussessLog(
-                              AuthCubit().get(context).frontId ?? "");
+                              AuthCubit.get(context).frontId ?? "");
                           AppLogs.scussessLog("Back");
 
                           AppLogs.scussessLog(
-                              AuthCubit().get(context).backId ?? "");
+                              AuthCubit.get(context).backId ?? "");
                           AppLogs.scussessLog("NextPage");
-                          if (AuthCubit().get(context).frontId != null) {
+                          if (AuthCubit.get(context).frontId != null) {
                             navigateTo(
                                 context: context,
                                 screen: NationalId(
                                     onTap: () {
-                                      if (AuthCubit().get(context).backId !=
+                                      if (AuthCubit.get(context).backId !=
                                           null) {
                                         int count = 0;
                                         Navigator.popUntil(context, (route) {
@@ -139,12 +140,12 @@ class _SignUpFormState extends State<SignUpForm> {
                                         });
                                         AppLogs.scussessLog("front");
                                         AppLogs.scussessLog(
-                                            AuthCubit().get(context).frontId ??
+                                            AuthCubit.get(context).frontId ??
                                                 "");
                                         AppLogs.scussessLog("Back");
 
                                         AppLogs.scussessLog(
-                                            AuthCubit().get(context).backId ??
+                                            AuthCubit.get(context).backId ??
                                                 "");
                                       } else {
                                         Fluttertoast.showToast(
@@ -157,7 +158,7 @@ class _SignUpFormState extends State<SignUpForm> {
                                         "Upload the Back of the National ID card."));
                           } else {
                             AppLogs.scussessLog(
-                                AuthCubit().get(context).frontId.toString());
+                                AuthCubit.get(context).frontId.toString());
                             Fluttertoast.showToast(
                                 msg:
                                     "Please upload the front of the National ID card first.");
@@ -175,7 +176,10 @@ class _SignUpFormState extends State<SignUpForm> {
                 alignment: Alignment.center,
                 child: AuthButton(
                   onTap: () {
-                    if (cubit.formKey.currentState!.validate()) {}
+                    navigateTo(context: context, screen: Otp());
+                    if (cubit.formKey.currentState!.validate()) {
+                      navigateTo(context: context, screen: Otp());
+                    }
                   },
                   text: S.of(context).signUpButton,
                 )),

@@ -12,6 +12,7 @@ class LabelText extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Text(
+     
       text,
       style: TextStyle(
         color: theme.textTheme.bodyMedium?.color,

@@ -164,7 +164,7 @@ class ApplicationTheme {
       onSecondaryContainer: AppColors.borderColor,
       tertiaryFixedDim: AppColors.sugarColor,
       onTertiary: AppColors.sugarColor2,
-
+      error: AppColors.errorColor,
     ),
     extensions: [
       GradientTheme(

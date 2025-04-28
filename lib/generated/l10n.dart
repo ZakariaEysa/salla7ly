@@ -200,10 +200,10 @@ class S {
     );
   }
 
-  /// `Forgot Password?`
+  /// `Forgot Password`
   String get forgotPassword {
     return Intl.message(
-      'Forgot Password?',
+      'Forgot Password',
       name: 'forgotPassword',
       desc: '',
       args: [],
@@ -585,6 +585,276 @@ class S {
     return Intl.message(
       'National ID photo is required',
       name: 'idPhotoRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend limit reached for today`
+  String get resend_limit_reached_for_today {
+    return Intl.message(
+      'Resend limit reached for today',
+      name: 'resend_limit_reached_for_today',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend`
+  String get resend {
+    return Intl.message(
+      'Resend',
+      name: 'resend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OTP has been resent`
+  String get otp_has_been_resent {
+    return Intl.message(
+      'OTP has been resent',
+      name: 'otp_has_been_resent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm OTP code`
+  String get confirm_otp_code {
+    return Intl.message(
+      'Confirm OTP code',
+      name: 'confirm_otp_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the 6-digit code sent to your email`
+  String get please_enter_the_6_digit_code_sent_to_your_email {
+    return Intl.message(
+      'Please enter the 6-digit code sent to your email',
+      name: 'please_enter_the_6_digit_code_sent_to_your_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get Continue {
+    return Intl.message(
+      'Continue',
+      name: 'Continue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter all numbers OTP`
+  String get please_enter_all_numbers_otp {
+    return Intl.message(
+      'Please enter all numbers OTP',
+      name: 'please_enter_all_numbers_otp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid OTP`
+  String get invalid_otp {
+    return Intl.message(
+      'Invalid OTP',
+      name: 'invalid_otp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OTP sent successfully`
+  String get otp_sent_successfully {
+    return Intl.message(
+      'OTP sent successfully',
+      name: 'otp_sent_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid E-Mail Address`
+  String get invalid_email_address {
+    return Intl.message(
+      'Invalid E-Mail Address',
+      name: 'invalid_email_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your email to receive a verification card`
+  String get please_enter_your_email_to_receive_a_verification_card {
+    return Intl.message(
+      'Please enter your email to receive a verification card',
+      name: 'please_enter_your_email_to_receive_a_verification_card',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter email address`
+  String get enter_email_address {
+    return Intl.message(
+      'Enter email address',
+      name: 'enter_email_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid email format`
+  String get invalid_email_format {
+    return Intl.message(
+      'Invalid email format',
+      name: 'invalid_email_format',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter valid email`
+  String get enter_valid_email {
+    return Intl.message(
+      'Enter valid email',
+      name: 'enter_valid_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong, please check your network`
+  String get something_went_wrong_please_check_your_network {
+    return Intl.message(
+      'Something went wrong, please check your network',
+      name: 'something_went_wrong_please_check_your_network',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create new password`
+  String get create_new_password {
+    return Intl.message(
+      'Create new password',
+      name: 'create_new_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password updated successfully`
+  String get password_updated_successfully {
+    return Intl.message(
+      'Password updated successfully',
+      name: 'password_updated_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry, there was an error. Please try again later`
+  String get sorry_there_was_an_error_please_try_again_later {
+    return Intl.message(
+      'Sorry, there was an error. Please try again later',
+      name: 'sorry_there_was_an_error_please_try_again_later',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your new password must be different from previously used password`
+  String get your_new_password_must_be_different_from_previously_used_password {
+    return Intl.message(
+      'Your new password must be different from previously used password',
+      name: 'your_new_password_must_be_different_from_previously_used_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter password`
+  String get enter_password {
+    return Intl.message(
+      'Enter password',
+      name: 'enter_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password validation`
+  String get password_validation {
+    return Intl.message(
+      'Password validation',
+      name: 'password_validation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New password`
+  String get new_password {
+    return Intl.message(
+      'New password',
+      name: 'new_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter confirm password`
+  String get enter_confirm_password {
+    return Intl.message(
+      'Enter confirm password',
+      name: 'enter_confirm_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wrong confirm password`
+  String get wrong_confirm_password {
+    return Intl.message(
+      'Wrong confirm password',
+      name: 'wrong_confirm_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password`
+  String get confirm_password {
+    return Intl.message(
+      'Confirm password',
+      name: 'confirm_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User not found`
+  String get user_not_found {
+    return Intl.message(
+      'User not found',
+      name: 'user_not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Password`
+  String get Change_Password {
+    return Intl.message(
+      'Change Password',
+      name: 'Change_Password',
       desc: '',
       args: [],
     );

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/generated/l10n.dart';
 
+import '../../../../../../utils/navigation.dart';
+import '../../views/forget.dart';
+
 /// كلاس لزر نسيت كلمة المرور
 class ForgotPasswordButton extends StatelessWidget {
   const ForgotPasswordButton({Key? key}) : super(key: key);
@@ -13,7 +16,9 @@ class ForgotPasswordButton extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          navigateTo(context: context, screen: ForgotPassword());
+        },
         child: Text(
           S.of(context).forgotPassword,
           style: TextStyle(

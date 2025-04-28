@@ -191,8 +191,8 @@ class _UploadImageContainerState extends State<UploadImageContainer> {
                         onTap: () => showBase64ImageOverlay(
                           context,
                           widget.isFront
-                              ? AuthCubit().get(context).frontId ?? ""
-                              : AuthCubit().get(context).backId ?? "",
+                              ? AuthCubit.get(context).frontId ?? ""
+                              : AuthCubit.get(context).backId ?? "",
                         ),
                         child: SizedBox(
                           height: 20,
