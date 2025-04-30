@@ -15,4 +15,5 @@ final themeProvider = StateProvider<bool>((ref) {
 });
 
 // دالة لتحديد الـ ThemeMode بناءً على القيمة
-ThemeMode getThemeMode(bool isDark) => isDark ? ThemeMode.dark : ThemeMode.light;
+ThemeMode getThemeMode(bool isDark) =>
+    isDark ? ThemeMode.dark : ThemeMode.light;

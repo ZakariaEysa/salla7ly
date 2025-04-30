@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/auth_cubit.dart';
+import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 import 'package:salla7ly/features/craft_man_flow/auth/presentation/views/craftman_sign_up_view.dart';
 import 'package:salla7ly/utils/app_logs.dart';
 import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
@@ -86,14 +86,14 @@ class NationalId extends StatelessWidget {
 
   Future<String> uploadFrontId(context) async {
     AppLogs.scussessLog("this is front");
-    AuthCubit().get(context).frontId = await pickImageAndConvertToBase64();
-    return AuthCubit().get(context).frontId!;
+    CraftAuthCubit.get(context).frontId = await pickImageAndConvertToBase64();
+    return CraftAuthCubit.get(context).frontId!;
   }
 
   Future<String> uploadBackId(context) async {
     AppLogs.scussessLog("this is back");
-    AuthCubit().get(context).backId = await pickImageAndConvertToBase64();
-    return AuthCubit().get(context).backId!;
+    CraftAuthCubit.get(context).backId = await pickImageAndConvertToBase64();
+    return CraftAuthCubit.get(context).backId!;
   }
 
   Future<String?> pickImageAndConvertToBase64() async {

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/auth_cubit.dart';
+import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 import 'package:salla7ly/features/craft_man_flow/auth/presentation/views/national_id.dart';
 import 'package:salla7ly/generated/l10n.dart';
+import 'package:salla7ly/services/failure_service.dart';
 import 'package:salla7ly/utils/app_logs.dart';
 import 'package:salla7ly/utils/navigation.dart';
 import 'package:salla7ly/utils/validation_utils.dart';
 import '../../../../../../widgets/custom_text_field.dart';
 import '../../../../../../widgets/label_text.dart';
+import '../../../../../shared/auth/presentation/views/otp.dart';
 import '../../../../../shared/auth/presentation/views/sign_in.dart';
 import '../have_account_row.dart';
 import '../auth_button.dart';
@@ -27,13 +30,13 @@ class _SignUpFormState extends State<SignUpForm> {
   bool obscurePassword = true;
   bool obscureConfirmPassword = true;
 
-  void _togglePasswordVisibility(AuthCubit cubit) {
+  void _togglePasswordVisibility(CraftAuthCubit cubit) {
     setState(() {
       cubit.obscurePassword = !cubit.obscurePassword;
     });
   }
 
-  void _toggleConfirmPasswordVisibility(AuthCubit cubit) {
+  void _toggleConfirmPasswordVisibility(CraftAuthCubit cubit) {
     setState(() {
       cubit.obscureConfirmPassword = !cubit.obscureConfirmPassword;
     });
@@ -41,7 +44,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    AuthCubit cubit = AuthCubit().get(context);
+    CraftAuthCubit cubit = CraftAuthCubit.get(context);
 
     return Form(
       key: cubit.formKey,
@@ -120,18 +123,18 @@ class _SignUpFormState extends State<SignUpForm> {
                         onTap: () {
                           AppLogs.scussessLog("front");
                           AppLogs.scussessLog(
-                              AuthCubit().get(context).frontId ?? "");
+                              CraftAuthCubit.get(context).frontId ?? "");
                           AppLogs.scussessLog("Back");
 
                           AppLogs.scussessLog(
-                              AuthCubit().get(context).backId ?? "");
+                              CraftAuthCubit.get(context).backId ?? "");
                           AppLogs.scussessLog("NextPage");
-                          if (AuthCubit().get(context).frontId != null) {
+                          if (CraftAuthCubit.get(context).frontId != null) {
                             navigateTo(
                                 context: context,
                                 screen: NationalId(
                                     onTap: () {
-                                      if (AuthCubit().get(context).backId !=
+                                      if (CraftAuthCubit.get(context).backId !=
                                           null) {
                                         int count = 0;
                                         Navigator.popUntil(context, (route) {
@@ -139,12 +142,14 @@ class _SignUpFormState extends State<SignUpForm> {
                                         });
                                         AppLogs.scussessLog("front");
                                         AppLogs.scussessLog(
-                                            AuthCubit().get(context).frontId ??
+                                            CraftAuthCubit.get(context)
+                                                    .frontId ??
                                                 "");
                                         AppLogs.scussessLog("Back");
 
                                         AppLogs.scussessLog(
-                                            AuthCubit().get(context).backId ??
+                                            CraftAuthCubit.get(context)
+                                                    .backId ??
                                                 "");
                                       } else {
                                         Fluttertoast.showToast(
@@ -157,7 +162,7 @@ class _SignUpFormState extends State<SignUpForm> {
                                         "Upload the Back of the National ID card."));
                           } else {
                             AppLogs.scussessLog(
-                                AuthCubit().get(context).frontId.toString());
+                                CraftAuthCubit.get(context).frontId.toString());
                             Fluttertoast.showToast(
                                 msg:
                                     "Please upload the front of the National ID card first.");
@@ -171,14 +176,27 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
 
             SizedBox(height: 30.h),
-            Align(
-                alignment: Alignment.center,
-                child: AuthButton(
-                  onTap: () {
-                    if (cubit.formKey.currentState!.validate()) {}
-                  },
-                  text: S.of(context).signUpButton,
-                )),
+            BlocListener<CraftAuthCubit, CraftAuthState>(
+              listener: (context, state) {
+                AppLogs.scussessLog(state.toString());
+                if (state is OtpSuccessState) {
+                  navigateTo(context: context, screen: Otp());
+                } else if (state is OtpErrorState) {
+                  Fluttertoast.showToast(
+                      msg: ServiceFailure(state.message.errorMsg).errorMsg);
+                }
+              },
+              child: Align(
+                  alignment: Alignment.center,
+                  child: AuthButton(
+                    onTap: () {
+                      if (cubit.formKey.currentState!.validate()) {
+                        CraftAuthCubit.get(context).sendVerificationOtp();
+                      }
+                    },
+                    text: S.of(context).signUpButton,
+                  )),
+            ),
             //signUpButton
 
             SizedBox(height: 20.h),

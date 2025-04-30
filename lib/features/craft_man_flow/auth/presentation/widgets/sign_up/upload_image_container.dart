@@ -4,7 +4,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/auth_cubit.dart';
+import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 
 class UploadImageContainer extends StatefulWidget {
   UploadImageContainer({
@@ -191,8 +191,8 @@ class _UploadImageContainerState extends State<UploadImageContainer> {
                         onTap: () => showBase64ImageOverlay(
                           context,
                           widget.isFront
-                              ? AuthCubit().get(context).frontId ?? ""
-                              : AuthCubit().get(context).backId ?? "",
+                              ? CraftAuthCubit.get(context).frontId ?? ""
+                              : CraftAuthCubit.get(context).backId ?? "",
                         ),
                         child: SizedBox(
                           height: 20,

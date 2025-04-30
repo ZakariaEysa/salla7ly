@@ -1,6 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-
 class HiveStorage {
   static late Box box;
   // static late Box<GoogleUserModel> box1;
@@ -44,9 +43,6 @@ class HiveStorage {
 
   // // Save GoogleUserModel to the box
   // static Future<void> saveGoogleUser(GoogleUserModel user) async {
-
-
-    
 
   //   await box1.put(HiveKeys.userGData, user);
   // }
