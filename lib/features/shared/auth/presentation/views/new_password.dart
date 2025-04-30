@@ -15,7 +15,7 @@ import '../../../../../data/hive_keys.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/loading_indicator.dart';
 
-import '../../../../craft_man_flow/auth/presentation/cubit/cubit/auth_cubit.dart';
+import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 import 'forget.dart';
 
 class NewPassword extends StatefulWidget {
@@ -32,13 +32,13 @@ class _NewPasswordState extends State<NewPassword> {
   TextEditingController confirmPasswordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
 
-  void _togglePasswordVisibility(AuthCubit cubit) {
+  void _togglePasswordVisibility(CraftAuthCubit cubit) {
     setState(() {
       cubit.obscurePassword = !cubit.obscurePassword;
     });
   }
 
-  void _toggleConfirmPasswordVisibility(AuthCubit cubit) {
+  void _toggleConfirmPasswordVisibility(CraftAuthCubit cubit) {
     setState(() {
       cubit.obscureConfirmPassword = !cubit.obscureConfirmPassword;
     });
@@ -46,7 +46,7 @@ class _NewPasswordState extends State<NewPassword> {
 
   @override
   Widget build(BuildContext context) {
-    AuthCubit cubit = AuthCubit.get(context);
+    CraftAuthCubit cubit = CraftAuthCubit.get(context);
 
     final theme = Theme.of(context);
     var lang = S.of(context);
@@ -142,7 +142,7 @@ class _NewPasswordState extends State<NewPassword> {
                           onTap: () async {
                             if (!formKey.currentState!.validate()) return;
 
-                            AuthCubit cubit = AuthCubit.get(context);
+                            CraftAuthCubit cubit = CraftAuthCubit.get(context);
 
                             // await cubit.updateUserPassword(
                             // cubit.emailController.text,

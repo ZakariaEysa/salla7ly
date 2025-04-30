@@ -1,4 +1,3 @@
-
 void serviceLocator() {
   // getIt.registerSingleton<ApiService>(
   //   ApiService(

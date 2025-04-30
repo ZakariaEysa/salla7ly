@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/auth_cubit.dart';
+import 'package:salla7ly/features/craft_man_flow/auth/data/remote_data_source/craft_auth_remote_data_source.dart';
+import 'package:salla7ly/features/craft_man_flow/auth/data/repos_impl/craft_auth_repo_impl.dart';
+import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
+import 'core/Network/api_service.dart';
 import 'firebase_options.dart';
 import 'utils/app_logs.dart';
 import 'data/hive_storage.dart';
@@ -76,8 +80,9 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider<AuthCubit>(
-          create: (context) => AuthCubit(),
+        BlocProvider<CraftAuthCubit>(
+          create: (context) => CraftAuthCubit(CraftAuthRepoImpl(
+              CraftAuthRemoteDataSourceImpl(ApiService(dio: Dio())))),
         ),
       ],
       child: DevicePreview(

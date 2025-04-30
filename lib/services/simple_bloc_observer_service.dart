@@ -23,10 +23,8 @@ class SimpleBlocObserverService implements BlocObserver {
   }
 
   @override
-  void onEvent(Bloc bloc, Object? event) {
-  }
+  void onEvent(Bloc bloc, Object? event) {}
 
   @override
-  void onTransition(Bloc bloc, Transition transition) {
-  }
+  void onTransition(Bloc bloc, Transition transition) {}
 }

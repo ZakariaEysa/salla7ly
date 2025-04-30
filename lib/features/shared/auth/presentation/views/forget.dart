@@ -6,7 +6,7 @@ import 'package:salla7ly/features/shared/auth/presentation/views/sign_in.dart';
 
 import '../../../../../widgets/custom_text_field.dart';
 import '../../../../../widgets/label_text.dart';
-import '../../../../craft_man_flow/auth/presentation/cubit/cubit/auth_cubit.dart';
+import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 import 'new_password.dart';
 import 'otp.dart';
 
@@ -29,7 +29,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    AuthCubit cubit = AuthCubit.get(context);
+    CraftAuthCubit cubit = CraftAuthCubit.get(context);
 
     var lang = S.of(context);
     return ScaffoldF(

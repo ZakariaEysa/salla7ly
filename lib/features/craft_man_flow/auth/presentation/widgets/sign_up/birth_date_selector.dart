@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/auth_cubit.dart';
+import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 
 class BirthDateSelector extends StatefulWidget {
   const BirthDateSelector({super.key});
@@ -34,7 +34,7 @@ class _BirthDateSelectorState extends State<BirthDateSelector> {
 
   @override
   Widget build(BuildContext context) {
-    AuthCubit cubit = AuthCubit.get(context);
+    CraftAuthCubit cubit = CraftAuthCubit.get(context);
     return Row(
       children: [
         Expanded(

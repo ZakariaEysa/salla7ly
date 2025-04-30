@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../utils/app_logs.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
-import '../../../../craft_man_flow/auth/presentation/cubit/cubit/auth_cubit.dart';
+import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 import '../../../../craft_man_flow/auth/presentation/widgets/auth_button.dart';
 import '../widgets/otp/otp_textfield.dart';
 import '../widgets/otp/timer.dart';
@@ -15,6 +16,11 @@ class Otp extends StatefulWidget {
 }
 
 class _OtpState extends State<Otp> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   TextEditingController N1 = TextEditingController();
   TextEditingController N2 = TextEditingController();
   TextEditingController N3 = TextEditingController();
@@ -102,7 +108,7 @@ class _OtpState extends State<Otp> {
         children: [
           SizedBox(height: 40.h),
           Text(
-              lang.please_enter_the_6_digit_code_sent_to_your_email,
+            lang.please_enter_the_6_digit_code_sent_to_your_email,
             style: theme.textTheme.bodyMedium!.copyWith(fontSize: 20),
             textAlign: TextAlign.center,
           ),
@@ -161,7 +167,7 @@ class _OtpState extends State<Otp> {
                 CountdownTimer(
                   onResend: () async {
                     String email =
-                        AuthCubit.get(context).emailController.text ?? '';
+                        CraftAuthCubit.get(context).emailController.text ?? '';
                     if (email.isNotEmpty) {
                       // AuthCubit.get(context).sendOtp(email);
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -193,16 +199,18 @@ class _OtpState extends State<Otp> {
                   N5.text.isEmpty ||
                   N6.text.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                   SnackBar(
+                  SnackBar(
                     content: Text(lang.please_enter_all_numbers_otp),
                     backgroundColor: Colors.white,
                   ),
                 );
               } else {
-                String otp =
+                CraftAuthCubit.get(context).otp =
                     N1.text + N2.text + N3.text + N4.text + N5.text + N6.text;
-                print("OTP entered: $otp");
-                verifyOtp(context, otp);
+                AppLogs.scussessLog("sending");
+                CraftAuthCubit.get(context).craftManSignUp();
+
+                // verifyOtp(context, otp);
               }
             },
           )
