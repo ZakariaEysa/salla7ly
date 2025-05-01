@@ -62,11 +62,11 @@ void main() async {
   await HiveStorage.init();
   serviceLocator();
   await requestGalleryPermission();
-  // AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.accessToken)}');
-  // AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.refreshToken)}');
-  // AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.email)}');
-  // AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.id)}');
-  // AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.username)}');
+  AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.accessToken)}');
+  AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.refreshToken)}');
+  AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.email)}');
+  AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.id)}');
+  AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.username)}');
   // HiveStorage.set(HiveKeys.passUserOnboarding, false);
 
   if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {

@@ -23,12 +23,26 @@ class AuthRepoImpl implements AuthRepo {
       return Left(ServiceFailure(e.toString()));
     }
   }
+
   @override
   Future<Either<FailureService, AuthResponseModel>> signIn(
       {required SignInModel signInModel}) async {
     try {
       final result =
           await authRemoteDataSource.signIn(signInModel: signInModel);
+
+      return Right(result);
+    } catch (e) {
+      return Left(ServiceFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<FailureService, AuthResponseModel>> googleSignIn(
+      {required GoogleSignInModel googleSignInModel}) async {
+    try {
+      final result = await authRemoteDataSource.googleSignIn(
+          googleSignInModel: googleSignInModel);
 
       return Right(result);
     } catch (e) {

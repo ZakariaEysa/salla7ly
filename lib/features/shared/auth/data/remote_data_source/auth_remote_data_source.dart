@@ -12,6 +12,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthRemoteDataSource {
   Future<GoogleSignInModel> signInWithGoogle();
+  Future<AuthResponseModel> googleSignIn(
+      {required GoogleSignInModel googleSignInModel});
 
   Future<AuthResponseModel> signIn({required SignInModel signInModel});
 }
@@ -23,6 +25,32 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final GoogleSignIn _googleSignIn;
 
   @override
+  Future<AuthResponseModel> googleSignIn(
+      {required GoogleSignInModel googleSignInModel}) async {
+    try {
+      final response = await apiService.postWithoutToken(
+          endPoint: EndPoints.googleSignIn, body: googleSignInModel.toJson());
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        AppLogs.scussessLog("success");
+        AppLogs.infoLog(response.data.toString());
+        AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
+        return AuthResponseModel.fromJson(response.data);
+      } else {
+        AppLogs.errorLog(response.data.toString());
+
+        AppLogs.errorLog(response.data);
+        throw Exception(response.data);
+
+        // return [];
+      }
+    } catch (e) {
+      AppLogs.errorLog(e.toString());
+
+      rethrow;
+    }
+  }
+
   @override
   Future<AuthResponseModel> signIn({required SignInModel signInModel}) async {
     try {

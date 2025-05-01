@@ -6,6 +6,8 @@ import '../../data/model/sign_in_model.dart';
 
 abstract class AuthRepo {
     Future<Either<FailureService, GoogleSignInModel>> signInWithGoogle();
+    Future<Either<FailureService,AuthResponseModel> >googleSignIn(
+      {required GoogleSignInModel googleSignInModel}) ;
 
   Future<Either<FailureService, AuthResponseModel>> signIn(
       {required SignInModel signInModel});

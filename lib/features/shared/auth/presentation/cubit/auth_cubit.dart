@@ -7,6 +7,9 @@ import 'package:salla7ly/services/failure_service.dart';
 
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_storage.dart';
+import '../../../../../utils/app_logs.dart';
+import '../../data/model/auth_response_model.dart';
+import '../../data/model/google_sign_in_model.dart';
 import '../../data/model/sign_in_model.dart';
 
 part 'auth_state.dart';
@@ -24,13 +27,10 @@ class AuthCubit extends Cubit<AuthState> {
         signInModel: SignInModel(
             email: emailController.text, password: passwordController.text));
 
-    result.fold(
-        (l) => emit(AuthErrorState(message: ServiceFailure(l.errorMsg))), (r) {
-      HiveStorage.set(HiveKeys.accessToken, r.token);
-      HiveStorage.set(HiveKeys.refreshToken, r.refreshToken);
-      HiveStorage.set(HiveKeys.id, r.id);
-      HiveStorage.set(HiveKeys.email, r.email);
-      HiveStorage.set(HiveKeys.username, r.userName);
+    result
+        .fold((l) => emit(AuthErrorState(message: ServiceFailure(l.errorMsg))),
+            (r) async {
+      await saveData(r);
       emit(SignInSuccessState());
     });
   }
@@ -40,13 +40,48 @@ class AuthCubit extends Cubit<AuthState> {
     final response = await authRepo.signInWithGoogle();
 
     response.fold(
-      // (failure) => emit(GoogleAuthError(failure.errorMsg)),
-
       (failure) => emit(
         AuthErrorState(message: ServiceFailure(failure.errorMsg)),
       ),
-
-      (user) => emit(GoogleAuthSuccessState()),
+      (user) async {
+        await googleSignIn(googleSignInModel: user);
+      },
     );
+  }
+
+  Future<void> googleSignIn(
+      {required GoogleSignInModel googleSignInModel}) async {
+    final response =
+        await authRepo.googleSignIn(googleSignInModel: googleSignInModel);
+
+    response.fold(
+      (failure) => emit(
+        AuthErrorState(message: ServiceFailure(failure.errorMsg)),
+      ),
+      (r) async {
+        await saveData(r);
+
+        emit(GoogleAuthSuccessState());
+      },
+    );
+  }
+
+  Future<void> saveData(AuthResponseModel r) async {
+    HiveStorage.set(HiveKeys.accessToken, r.token);
+    HiveStorage.set(HiveKeys.refreshToken, r.refreshToken);
+    HiveStorage.set(HiveKeys.id, r.id);
+    HiveStorage.set(HiveKeys.email, r.email);
+    HiveStorage.set(HiveKeys.username, r.userName);
+    AppLogs.infoLog(r.toString());
+    AppLogs.infoLog("data Saved Successfully");
+  }
+
+  Future<void> signOut() async {
+    HiveStorage.set(HiveKeys.accessToken, null);
+    HiveStorage.set(HiveKeys.refreshToken, null);
+    HiveStorage.set(HiveKeys.id, null);
+    HiveStorage.set(HiveKeys.email, null);
+    HiveStorage.set(HiveKeys.username, null);
+    // emit(SignOutSuccessState());
   }
 }

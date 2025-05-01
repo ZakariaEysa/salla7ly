@@ -160,11 +160,11 @@ class _SignInScreenState extends State<SignInScreen> {
                         AppLogs.scussessLog(state.toString());
 
                         if (state is GoogleAuthSuccessState) {
-                          // navigateAndRemoveUntil(
-                          //     context: context,
-                          //     screen: Container(
-                          //       child: Text("home Page"),
-                          //     ));
+                          navigateAndRemoveUntil(
+                              context: context,
+                              screen: Container(
+                                child: Text("home Page"),
+                              ));
                         } else if (state is AuthErrorState) {
                           FailureToast.showToast(
                               ServiceFailure(state.message.errorMsg).errorMsg);

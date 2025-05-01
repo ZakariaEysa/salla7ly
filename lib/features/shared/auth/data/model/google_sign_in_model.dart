@@ -6,14 +6,15 @@ class GoogleSignInModel extends Equatable {
 
   const GoogleSignInModel({this.email, this.name});
 
-  factory GoogleSignInModel.fromJson(Map<String, dynamic> json) => GoogleSignInModel(
+  factory GoogleSignInModel.fromJson(Map<String, dynamic> json) =>
+      GoogleSignInModel(
         email: json['email'] as String?,
-        name: json['password'] as String?,
+        name: json['name'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
         'email': email,
-        'password': name,
+        'name': "${name?.trim()}1",
       };
 
   @override
