@@ -10,6 +10,7 @@ import 'package:salla7ly/utils/app_logs.dart';
 import 'package:salla7ly/utils/navigation.dart';
 import 'package:salla7ly/utils/validation_utils.dart';
 import '../../../../../../widgets/custom_text_field.dart';
+import '../../../../../../widgets/failure_toast.dart';
 import '../../../../../../widgets/label_text.dart';
 import '../../../../../../widgets/loading_indicator.dart';
 import '../../../../../shared/auth/presentation/views/otp.dart';
@@ -180,19 +181,12 @@ class _SignUpFormState extends State<SignUpForm> {
             BlocConsumer<CraftAuthCubit, CraftAuthState>(
               listener: (context, state) {
                 AppLogs.scussessLog(state.toString());
-                AppLogs.scussessLog(state.toString());
-                AppLogs.scussessLog(state.toString());
 
                 if (state is OtpSuccessState) {
                   navigateTo(context: context, screen: Otp());
                 } else if (state is SignUpErrorState) {
-                  Fluttertoast.showToast(
-                      toastLength: Toast.LENGTH_LONG,
-                      backgroundColor: Colors.black87,
-                      textColor: Colors.white,
-                      fontSize: 16.sp,
-                      gravity: ToastGravity.CENTER,
-                      msg: ServiceFailure(state.message.errorMsg).errorMsg);
+                  FailureToast.showToast(
+                      ServiceFailure(state.message.errorMsg).errorMsg);
                 }
               },
               builder: (context, state) {

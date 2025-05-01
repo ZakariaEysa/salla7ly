@@ -7,7 +7,7 @@ import 'package:salla7ly/features/craft_man_flow/auth/data/model/send_verificati
 
 import '../../../../../utils/app_logs.dart';
 import '../model/craft_signup_body_model.dart';
-import '../model/craft_signup_response_model.dart';
+import '../model/craft_response_model.dart';
 
 abstract class CraftAuthRemoteDataSource {
   Future<void> sendVerificationOtpModel(
