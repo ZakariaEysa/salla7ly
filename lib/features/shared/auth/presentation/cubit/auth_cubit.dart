@@ -10,7 +10,9 @@ import '../../../../../data/hive_storage.dart';
 import '../../../../../utils/app_logs.dart';
 import '../../data/model/auth_response_model.dart';
 import '../../data/model/google_sign_in_model.dart';
+import '../../data/model/send_forget_password_model.dart';
 import '../../data/model/sign_in_model.dart';
+import '../../data/model/validate_forget_password_otp_model.dart';
 
 part 'auth_state.dart';
 
@@ -18,6 +20,9 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this.authRepo) : super(AuthInitial());
   static AuthCubit get(context) => BlocProvider.of<AuthCubit>(context);
   final passwordController = TextEditingController();
+    final confirmPasswordController = TextEditingController();
+  bool obscurePassword = true;
+  bool obscureConfirmPassword = true;
   final emailController = TextEditingController();
   final signInKey = GlobalKey<FormState>();
   AuthRepo authRepo;
@@ -62,6 +67,56 @@ class AuthCubit extends Cubit<AuthState> {
         await saveData(r);
 
         emit(GoogleAuthSuccessState());
+      },
+    );
+  }
+
+  Future<void> validateForgetPasswordOtp(
+      {required ValidateForgetPasswordOtpModel
+          validateForgetPasswordOtpModel}) async {
+    emit(ResetPasswordLoadingState());
+
+    final response = await authRepo.validateForgetPasswordOtp(
+        validateForgetPasswordOtpModel: validateForgetPasswordOtpModel);
+
+    response.fold(
+      (failure) => emit(
+        AuthErrorState(message: ServiceFailure(failure.errorMsg)),
+      ),
+      (r) async {
+        emit(ValidateOtpSuccessState());
+      },
+    );
+  }
+
+  Future<void> sendForgetPassword(
+      {required SendForgetPasswordModel sendForgetPasswordModel}) async {
+    emit(ResetPasswordLoadingState());
+
+    final response = await authRepo.sendForgetPassword(
+        sendForgetPasswordModel: sendForgetPasswordModel);
+
+    response.fold(
+      (failure) => emit(
+        AuthErrorState(message: ServiceFailure(failure.errorMsg)),
+      ),
+      (r) async {
+        emit(SendForgetOtpSuccessState());
+      },
+    );
+  }
+
+  Future<void> changePassword({required SignInModel signInModel}) async {
+    emit(ResetPasswordLoadingState());
+
+    final response = await authRepo.changePassword(signInModel: signInModel);
+
+    response.fold(
+      (failure) => emit(
+        AuthErrorState(message: ServiceFailure(failure.errorMsg)),
+      ),
+      (r) async {
+        emit(ResetPasswordSuccessState());
       },
     );
   }

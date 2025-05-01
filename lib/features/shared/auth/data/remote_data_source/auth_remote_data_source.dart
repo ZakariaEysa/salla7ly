@@ -6,12 +6,22 @@ import 'package:salla7ly/core/Network/end_points.dart';
 import '../../../../../utils/app_logs.dart';
 import '../model/auth_response_model.dart';
 import '../model/google_sign_in_model.dart';
+import '../model/send_forget_password_model.dart';
 import '../model/sign_in_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../model/validate_forget_password_otp_model.dart';
+
 abstract class AuthRemoteDataSource {
+  Future<void> validateForgetPasswordOtp(
+      {required ValidateForgetPasswordOtpModel validateForgetPasswordOtpModel});
+  Future<void> sendForgetPassword(
+      {required SendForgetPasswordModel sendForgetPasswordModel});
+  Future<void> changePassword({required SignInModel signInModel});
+
   Future<GoogleSignInModel> signInWithGoogle();
+
   Future<AuthResponseModel> googleSignIn(
       {required GoogleSignInModel googleSignInModel});
 
@@ -24,12 +34,95 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
 
+  Future<void> validateForgetPasswordOtp(
+      {required ValidateForgetPasswordOtpModel
+          validateForgetPasswordOtpModel}) async {
+    try {
+      final response = await apiService.postWithoutToken(
+          endPoint: EndPoints.validateForgetPasswordOtp,
+          body: validateForgetPasswordOtpModel.toJson());
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        AppLogs.scussessLog("success");
+        AppLogs.infoLog(response.data.toString());
+        // AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
+        // return validateForgetPasswordOtpModel.fromJson(response.data);
+      } else {
+        AppLogs.errorLog(response.data.toString());
+
+        AppLogs.errorLog(response.data);
+        throw Exception(response.data);
+
+        // return [];
+      }
+    } catch (e) {
+      AppLogs.errorLog(e.toString());
+
+      rethrow;
+    }
+  }
+
+  Future<void> sendForgetPassword(
+      {required SendForgetPasswordModel sendForgetPasswordModel}) async {
+    try {
+      final response = await apiService.postWithoutToken(
+          endPoint: EndPoints.sendForgetPasswordOtp,
+          body: sendForgetPasswordModel.toJson());
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        AppLogs.scussessLog("success");
+        AppLogs.infoLog(response.data.toString());
+        // AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
+        // return AuthResponseModel.fromJson(response.data);
+      } else {
+        AppLogs.errorLog(response.data.toString());
+
+        AppLogs.errorLog(response.data);
+        throw Exception(response.data);
+
+        // return [];
+      }
+    } catch (e) {
+      AppLogs.errorLog(e.toString());
+
+      rethrow;
+    }
+  }
+
+  Future<void> changePassword({required SignInModel signInModel}) async {
+    try {
+      final response = await apiService.postWithoutToken(
+          endPoint: EndPoints.resetPassword, body: signInModel.toJson());
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        AppLogs.scussessLog("success");
+        AppLogs.infoLog(response.data.toString());
+        // AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
+        // return AuthResponseModel.fromJson(response.data);
+      } else {
+        AppLogs.errorLog(response.data.toString());
+
+        AppLogs.errorLog(response.data);
+        throw Exception(response.data);
+
+        // return [];
+      }
+    } catch (e) {
+      AppLogs.errorLog(e.toString());
+
+      rethrow;
+    }
+  }
+
   @override
   Future<AuthResponseModel> googleSignIn(
       {required GoogleSignInModel googleSignInModel}) async {
     try {
-      final response = await apiService.postWithoutToken(
-          endPoint: EndPoints.googleSignIn, body: googleSignInModel.toJson());
+      final response = await apiService
+          .postWithoutToken(endPoint: EndPoints.googleSignIn, body: {
+        'email': googleSignInModel.email,
+        // 'name': "${name?.trim()}1",
+      });
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         AppLogs.scussessLog("success");

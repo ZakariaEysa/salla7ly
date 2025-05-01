@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/features/craft_man_flow/auth/presentation/widgets/auth_button.dart';
 import 'package:salla7ly/features/shared/auth/presentation/views/sign_in.dart';
+import 'package:salla7ly/features/user_flow/home/presentation/views/home_screen.dart';
 
 import '../../../../../data/hive_storage.dart';
+import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/custom_text_field.dart';
@@ -16,6 +18,8 @@ import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/loading_indicator.dart';
 
 import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
+import '../../data/model/sign_in_model.dart';
+import '../cubit/auth_cubit.dart';
 import 'forget.dart';
 
 class NewPassword extends StatefulWidget {
@@ -30,15 +34,15 @@ class _NewPasswordState extends State<NewPassword> {
   bool obscure2 = true;
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
-  GlobalKey<FormState> formKey = GlobalKey();
+  final newPasswordUniqueKey = GlobalKey<FormState>();
 
-  void _togglePasswordVisibility(CraftAuthCubit cubit) {
+  void _togglePasswordVisibility(AuthCubit cubit) {
     setState(() {
       cubit.obscurePassword = !cubit.obscurePassword;
     });
   }
 
-  void _toggleConfirmPasswordVisibility(CraftAuthCubit cubit) {
+  void _toggleConfirmPasswordVisibility(AuthCubit cubit) {
     setState(() {
       cubit.obscureConfirmPassword = !cubit.obscureConfirmPassword;
     });
@@ -46,7 +50,7 @@ class _NewPasswordState extends State<NewPassword> {
 
   @override
   Widget build(BuildContext context) {
-    CraftAuthCubit cubit = CraftAuthCubit.get(context);
+    AuthCubit cubit = AuthCubit.get(context);
 
     final theme = Theme.of(context);
     var lang = S.of(context);
@@ -63,7 +67,7 @@ class _NewPasswordState extends State<NewPassword> {
           child: Stack(
             children: [
               Form(
-                key: formKey,
+                key: newPasswordUniqueKey,
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,25 +134,61 @@ class _NewPasswordState extends State<NewPassword> {
                       SizedBox(
                         height: 50.h,
                       ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: AuthButton(
-                          // width: 220.w,
-                          // height: 52.h,
-                          // image: HiveStorage.get(HiveKeys.isArabic)
-                          //     ? "assets/icons/save1_arabic.png"
-                          //     : "assets/icons/save1111.png",
-                          text: lang.Change_Password,
-                          onTap: () async {
-                            if (!formKey.currentState!.validate()) return;
+                      BlocConsumer<AuthCubit, AuthState>(
+                        listener: (context, state) {
+                          AppLogs.scussessLog(state.toString());
+                          if (state is ResetPasswordSuccessState) {
+                            if (!mounted) return;
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreen()),
+                              (Route<dynamic> route) => false,
+                            );
 
-                            CraftAuthCubit cubit = CraftAuthCubit.get(context);
+                            // )
+                            navigateAndRemoveUntil(
+                                context: context, screen: HomeScreen());
 
-                            // await cubit.updateUserPassword(
-                            // cubit.emailController.text,
-                            // newPasswordController.text);
-                          },
-                        ),
+                            // navigateAndRemoveUntil(
+                            //     context: context,
+                            //     screen: Container(
+                            //       child: Text("home Page"),
+                            //     ));
+                          } else if (state is AuthErrorState) {
+                            // Fluttertoast.showToast(
+                            //     msg: ServiceFailure(state.message.errorMsg).errorMsg);
+                          }
+                        },
+                        builder: (context, state) {
+                          return state is ResetPasswordLoadingState
+                              ? const LoadingIndicator()
+                              : Align(
+                                  alignment: Alignment.center,
+                                  child: AuthButton(
+                                    // width: 220.w,
+                                    // height: 52.h,
+                                    // image: HiveStorage.get(HiveKeys.isArabic)
+                                    //     ? "assets/icons/save1_arabic.png"
+                                    //     : "assets/icons/save1111.png",
+                                    text: lang.Change_Password,
+                                    onTap: () async {
+                                      if (!newPasswordUniqueKey.currentState!
+                                          .validate()) return;
+
+                                      cubit.changePassword(
+                                          signInModel: SignInModel(
+                                              email: cubit.emailController.text,
+                                              password: cubit
+                                                  .passwordController.text));
+
+                                      // await cubit.updateUserPassword(
+                                      // cubit.emailController.text,
+                                      // newPasswordController.text);
+                                    },
+                                  ),
+                                );
+                        },
                       ),
                       SizedBox(
                         height: 60.h,

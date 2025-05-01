@@ -14,7 +14,7 @@ class GoogleSignInModel extends Equatable {
 
   Map<String, dynamic> toJson() => {
         'email': email,
-        // 'name': "${name?.trim()}1",
+        'name': name,
       };
 
   @override

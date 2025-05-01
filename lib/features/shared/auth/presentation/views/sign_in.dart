@@ -23,6 +23,7 @@ import '../widgets/sign_in/or_sign_in_with_divider.dart';
 import '../widgets/auth_button.dart';
 import '../widgets/sign_in/welcome_text.dart';
 import 'account_type_screen.dart';
+import 'home_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -125,10 +126,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
                         if (state is SignInSuccessState) {
                           navigateAndRemoveUntil(
-                              context: context,
-                              screen: Container(
-                                child: Text("home Page"),
-                              ));
+                              context: context, screen: HomeScreen());
                         } else if (state is AuthErrorState) {
                           FailureToast.showToast(
                               ServiceFailure(state.message.errorMsg).errorMsg);
@@ -161,10 +159,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
                         if (state is GoogleAuthSuccessState) {
                           navigateAndRemoveUntil(
-                              context: context,
-                              screen: Container(
-                                child: Text("home Page"),
-                              ));
+                              context: context, screen: HomeScreen());
                         } else if (state is AuthErrorState) {
                           FailureToast.showToast(
                               ServiceFailure(state.message.errorMsg).errorMsg);
