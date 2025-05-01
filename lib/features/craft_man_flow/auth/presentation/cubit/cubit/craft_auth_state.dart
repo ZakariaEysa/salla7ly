@@ -13,11 +13,6 @@ final class OtpLoadingState extends CraftAuthState {}
 
 final class OtpSuccessState extends CraftAuthState {}
 
-final class OtpErrorState extends CraftAuthState {
-  final ServiceFailure message;
-  const OtpErrorState({required this.message});
-}
-
 final class SignUpLoadingState extends CraftAuthState {}
 
 final class SignUpSuccessState extends CraftAuthState {}

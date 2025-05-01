@@ -11,7 +11,7 @@ class CountdownTimer extends StatefulWidget {
 
   const CountdownTimer({
     Key? key,
-    this.startSeconds = 59,
+    this.startSeconds = 120,
     required this.onResend,
   }) : super(key: key);
 

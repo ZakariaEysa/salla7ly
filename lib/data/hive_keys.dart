@@ -5,9 +5,11 @@ class HiveKeys {
 
   static const String role = "role";
 
-  static const String userGData = 'userData';
-  static const String userDData = 'userData';
+  static const String email = 'email';
+  static const String id = 'id';
   static const String username = "username";
+  static const String accessToken = "accessToken";
+  static const String refreshToken = "refreshToken";
 }
 
 enum Role { guest, google, email, facebook }

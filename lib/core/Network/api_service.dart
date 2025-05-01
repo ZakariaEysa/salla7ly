@@ -1,59 +1,114 @@
+import 'dart:async';
 import 'package:dio/dio.dart';
-
-import '../../data/hive_keys.dart';
+import 'custom_interceptor.dart';
 import 'end_points.dart';
 
 class ApiService {
   final Dio dio;
 
-  ApiService({
-    required this.dio,
-  });
+  ApiService({required this.dio}) {
+    dio.options = BaseOptions(
+      baseUrl: EndPoints.baseUrl,
+      connectTimeout: const Duration(seconds: 10),
+      receiveTimeout: const Duration(seconds: 15),
+      responseType: ResponseType.json,
+    );
+
+    dio.interceptors.addAll([
+      CustomRetryInterceptor(dio: dio),
+      CustomLogInterceptor(),
+    ]);
+  }
+
+  Map<String, String> _getHeaders({String? token}) {
+    return {
+      'accept': '*/*',
+      'Content-Type': 'application/json',
+      if (token != null) 'Authorization': 'Bearer $token',
+    };
+  }
+
+  bool _validateStatus(int? status) => true;
+
+  // Error handling method
+  Future<dynamic> handleDioError(DioException e) async {
+    if (e.type == DioExceptionType.connectionError ||
+        e.type == DioExceptionType.connectionTimeout ||
+        e.type == DioExceptionType.receiveTimeout ||
+        e.type == DioExceptionType.unknown) {
+      // Return an empty string and the internet error message.
+      return 'مشكلة في الاتصال بالإنترنت';
+    } else {
+      // For other types of DioException, return the error message.
+      return e.response?.data["errors"][1];
+    }
+  }
+
+  // Function to handle response status and error handling
+  Future<Response> handleResponse(Response response) async {
+    if (response.statusCode != 200 && response.statusCode != 201) {
+      // If the status code is not 200 or 201, we throw a custom DioException
+      throw DioException(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioExceptionType.sendTimeout,
+        error: 'خطأ في الاستجابة: ${response.statusCode}',
+      );
+    }
+    return response;
+  }
 
   Future<Response> getWithToken({
     required String endPoint,
     required String token,
     Map<String, dynamic>? query,
   }) async {
-    dio.options.headers = {
-      "Authorization": 'Bearer $token',
-    };
-//    dio.interceptors.add(CustomLogInterceptor());
-    var response = await dio.get(
-      '${EndPoints.baseUrl}$endPoint',
-      queryParameters: query,
-      options: Options(
-        // validateStatus: (status) {
-        //   return status! == 200 ||
-        //       status == 201 ||
-        //       status == 204 ||
-        //       status == 400 ||
-        //       status == 500;
-        // },
-        validateStatus: (_) => true,
-      ),
-    );
+    try {
+      final response = await dio.get(
+        endPoint,
+        queryParameters: query,
+        options: Options(
+          headers: _getHeaders(token: token),
+          validateStatus: _validateStatus,
+        ),
+      );
 
-    return response;
+      // Check response status code
+      return await handleResponse(response);
+    } on DioException catch (e) {
+      var errorDetails =
+          await handleDioError(e); // Handle error for internet issues
+      return Response(
+        requestOptions: e.requestOptions,
+        data: errorDetails,
+      );
+    }
   }
 
-  Future<Response> getWithoutToken(
-      {required String endPoint, Map<String, dynamic>? query}) async {
-//    dio.interceptors.add(CustomLogInterceptor());
-    var response = await dio.get(
-      '${EndPoints.baseUrl}$endPoint',
-      queryParameters: query,
-      options: Options(
-        // validateStatus: (status) {
-        //   return status! == 200 ||
-        //       status == 201 ||
-        //       status == 401 ||
-        //       status == 500;
-        // },
-        validateStatus: (_) => true,
-      ),
-    );
-    return response;
+  Future<Response> getWithoutToken({
+    required String endPoint,
+    Map<String, dynamic>? query,
+  }) async {
+    try {
+      final response = await dio.get(
+        endPoint,
+        queryParameters: query,
+        options: Options(
+          headers: _getHeaders(),
+          validateStatus: _validateStatus,
+        ),
+      );
+
+      // Check response status code
+      return await handleResponse(response);
+    } on DioException catch (e) {
+      var errorDetails =
+          await handleDioError(e); // Handle error for internet issues
+      return Response(
+        requestOptions: e.requestOptions,
+        data: errorDetails,
+      );
+    }
   }
 
   Future<Response> postWithToken({
@@ -61,178 +116,53 @@ class ApiService {
     dynamic body,
     required String token,
   }) async {
-    dio.options.headers = {
-      "Authorization": 'Bearer $token',
-    };
-//    dio.interceptors.add(CustomLogInterceptor());
-    var response = await dio.post(
-      '${EndPoints.baseUrl}$endPoint',
-      data: body,
-      options: Options(
-        // validateStatus: (status) {
-        //   return status! == 200 ||
-        //       status == 201 ||
-        //       status == 400 ||
-        //       status == 500;
-        // },
-        validateStatus: (_) => true,
-      ),
-    );
+    try {
+      final response = await dio.post(
+        endPoint,
+        data: body,
+        options: Options(
+          headers: _getHeaders(token: token),
+          validateStatus: _validateStatus,
+        ),
+      );
 
-    return response;
+      // Check response status code
+      return await handleResponse(response);
+    } on DioException catch (e) {
+      var errorDetails =
+          await handleDioError(e); // Handle error for internet issues
+      return Response(
+        requestOptions: e.requestOptions,
+        data: errorDetails,
+      );
+    }
   }
 
   Future<Response> postWithoutToken({
     required String endPoint,
     dynamic body,
   }) async {
-    dio.options.headers = {
-      "accept": "*/*",
-      "Content-Type": 'application/json',
-    };
-//    dio.interceptors.add(CustomLogInterceptor());
+    try {
+      final response = await dio.post(
+        endPoint,
+        data: body,
+        options: Options(
+          headers: _getHeaders(),
+          validateStatus: _validateStatus,
+        ),
+      );
 
-    var response = await dio.post(
-      '${EndPoints.baseUrl}$endPoint',
-      data: body,
-      options: Options(
-        // validateStatus: (status) {
-        //   return status == 200 ||
-        //       status == 201 ||
-        //       status == 202 ||
-        //       status == 400 ||
-        //       status == 409 ||
-        //       status == 500;
-        // },
-        validateStatus: (_) => true,
-      ),
-    );
-    return response;
+      // Check response status code
+      return await handleResponse(response);
+    } on DioException catch (e) {
+      var errorDetails =
+          await handleDioError(e); // Handle error for internet issues
+      return Response(
+        requestOptions: e.requestOptions,
+        data: errorDetails,
+      );
+    }
   }
 
-  Future<Response> putWithoutToken({
-    required String endPoint,
-    dynamic body,
-  }) async {
-    dio.options.headers = {
-      "accept": "*/*",
-      "Content-Type": 'application/json',
-    };
-    // dio.interceptors.add(CustomLogInterceptor());
-
-    var response = await dio.post(
-      '${EndPoints.baseUrl}$endPoint',
-      data: body,
-      options: Options(
-        // validateStatus: (status) {
-        //   return status == 200 ||
-        //       status == 201 ||
-        //       status == 202 ||
-        //       status == 400 ||
-        //       status == 500;
-        // },
-        validateStatus: (_) => true,
-      ),
-    );
-    return response;
-  }
-
-  Future<Response> put({
-    Map<String, dynamic>? headers,
-    required String token,
-    required endPoint,
-    dynamic data,
-    Map<String, dynamic>? query,
-  }) async {
-    dio.options.headers = {
-      "accept": "*/*",
-      "Content-Type": 'application/json',
-      "Authorization": "Bearer $token",
-    };
-    // dio.interceptors.add(CustomLogInterceptor());
-    var response = await dio.put(
-      '${EndPoints.baseUrl}$endPoint',
-      queryParameters: query,
-      options: Options(
-        // validateStatus: (status) {
-        //   return status == 200 ||
-        //       status == 201 ||
-        //       status == 400 ||
-        //       status == 500;
-        // },
-        validateStatus: (_) => true,
-      ),
-      data: data,
-    );
-    return response;
-  }
-
-  // Future<Response> delete(
-  //     {required String endPoint, dynamic body, dynamic query}) async {
-  //   dio.options.headers = {
-  //     "Authorization": "Bearer ${HiveStorage.get(HiveKeys.token)}",
-  //     "accept": "*/*",
-  //   };
-  //   dio.interceptors.add(CustomLogInterceptor());
-
-  //   return await dio.delete(
-  //     '${EndPoints.baseUrl}$endPoint',
-  //     data: body,
-  //     queryParameters: query,
-  //     options: Options(
-  //       validateStatus: (status) {
-  //         return status == 200 ||
-  //             status == 201 ||
-  //             status == 202 ||
-  //             status == 400 ||
-  //             status == 500;
-  //       },
-  //     ),
-  //   );
-  // }
-  Future<Response> deleteWithoutToken(
-      {required String endPoint, dynamic body, dynamic query}) async {
-    dio.options.headers = {
-      // "Authorization": "Bearer ${HiveStorage.get(HiveKeys.token)}",
-      "accept": "*/*",
-    };
-    // dio.interceptors.add(CustomLogInterceptor());
-
-    return await dio.delete(
-      '${EndPoints.baseUrl}$endPoint',
-      data: body,
-      queryParameters: query,
-      options: Options(
-        // validateStatus: (status) {
-        //   return status == 200 ||
-        //       status == 201 ||
-        //       status == 202 ||
-        //       status == 400 ||
-        //       status == 500;
-        // },
-        validateStatus: (_) => true,
-      ),
-    );
-  }
+  // Additional methods (PUT, DELETE, etc.) can follow the same structure
 }
-
-// class CustomLogInterceptor extends LogInterceptor {
-//   @override
-//   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-//     // Log request URL and headers
-//     // ignore: avoid_print
-//     print('--> ${options.method} ${options.uri}');
-//     options.headers.forEach((key, value) {
-//       // ignore: avoid_print
-//       print('$key: $value');
-//     });
-
-//     // Log request body if it's present
-//     if (options.data != null) {
-//       // ignore: avoid_print
-//       print('Request body: ${options.data}');
-//     }
-
-//     super.onRequest(options, handler);
-//   }
-// }

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../../utils/app_logs.dart';
+import '../../../../../utils/navigation.dart';
+import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
@@ -34,55 +38,6 @@ class _OtpState extends State<Otp> {
   final FocusNode F4 = FocusNode();
   final FocusNode F5 = FocusNode();
   final FocusNode F6 = FocusNode();
-
-  // Future<void> sendOtpResend(String email) async {
-  //   try {
-  //     showDialog(
-  //       context: context,
-  //       builder: (context) {
-  //         return const Center(child: CircularProgressIndicator());
-  //       },
-  //     );
-  //
-  //     var res = await EmailOtpAuth.sendOTP(email: email);
-  //     if (context.mounted) {
-  //       Navigator.of(context).pop();
-  //     }
-  //     if (res["message"] == "Email Send" && context.mounted) {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         const SnackBar(content: Text("OTP Sent Successfully ✅")),
-  //       );
-  //     } else if (context.mounted) {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         const SnackBar(content: Text("Invalid E-Mail Address ❌")),
-  //       );
-  //     }
-  //   } catch (error) {
-  //     throw error.toString();
-  //   }
-  // }
-
-  Future<void> verifyOtp(BuildContext context, String otp) async {
-    // bool isOtpValid = (await EmailOtpAuth.verifyOtp(otp: otp))["message"] == "OTP Verified";
-    // if (isOtpValid) {
-    //   if (widget.isSuccessOtp == null) {
-    //     await AuthCubit.get(context).verifyedSendOtp();
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => const HomeLayout()),
-    //     );
-    //   } else {
-    //     await widget.isSuccessOtp!();
-    //   }
-    // } else {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     const SnackBar(
-    //       content: Text('Invalid OTP'),
-    //       backgroundColor: Colors.red,
-    //     ),
-    //   );
-    // }
-  }
 
   void nextField({
     required String value,
@@ -122,6 +77,7 @@ class _OtpState extends State<Otp> {
                   controller: N1,
                   currentFocus: F1,
                   nextFocus: F2,
+                  previousFocus: null, // أول حقل، مفيش قبله
                   nextField: nextField,
                   autofocus: true,
                 ),
@@ -129,30 +85,35 @@ class _OtpState extends State<Otp> {
                   controller: N2,
                   currentFocus: F2,
                   nextFocus: F3,
+                  previousFocus: F1,
                   nextField: nextField,
                 ),
                 OtpFieldWidget(
                   controller: N3,
                   currentFocus: F3,
                   nextFocus: F4,
+                  previousFocus: F2,
                   nextField: nextField,
                 ),
                 OtpFieldWidget(
                   controller: N4,
                   currentFocus: F4,
                   nextFocus: F5,
+                  previousFocus: F3,
                   nextField: nextField,
                 ),
                 OtpFieldWidget(
                   controller: N5,
                   currentFocus: F5,
                   nextFocus: F6,
+                  previousFocus: F4,
                   nextField: nextField,
                 ),
                 OtpFieldWidget(
                   controller: N6,
                   currentFocus: F6,
                   nextFocus: null,
+                  previousFocus: F5,
                   nextField: nextField,
                 ),
               ],
@@ -167,9 +128,11 @@ class _OtpState extends State<Otp> {
                 CountdownTimer(
                   onResend: () async {
                     String email =
-                        CraftAuthCubit.get(context).emailController.text ?? '';
+                        CraftAuthCubit.get(context).emailController.text;
                     if (email.isNotEmpty) {
                       // AuthCubit.get(context).sendOtp(email);
+                      CraftAuthCubit.get(context).sendVerificationOtp();
+
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
@@ -189,29 +152,52 @@ class _OtpState extends State<Otp> {
             ),
           ),
           SizedBox(height: 5.h),
-          AuthButton(
-            text: lang.Continue,
-            onTap: () {
-              if (N1.text.isEmpty ||
-                  N2.text.isEmpty ||
-                  N3.text.isEmpty ||
-                  N4.text.isEmpty ||
-                  N5.text.isEmpty ||
-                  N6.text.isEmpty) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(lang.please_enter_all_numbers_otp),
-                    backgroundColor: Colors.white,
-                  ),
-                );
-              } else {
-                CraftAuthCubit.get(context).otp =
-                    N1.text + N2.text + N3.text + N4.text + N5.text + N6.text;
-                AppLogs.scussessLog("sending");
-                CraftAuthCubit.get(context).craftManSignUp();
-
-                // verifyOtp(context, otp);
+          BlocConsumer<CraftAuthCubit, CraftAuthState>(
+            listener: (context, state) {
+              AppLogs.scussessLog(state.toString());
+              if (state is SignUpSuccessState) {
+                navigateAndRemoveUntil(
+                    context: context,
+                    screen: Container(
+                      child: Text("home Page"),
+                    ));
+              } else if (state is SignUpErrorState) {
+                // Fluttertoast.showToast(
+                //     msg: ServiceFailure(state.message.errorMsg).errorMsg);
               }
+            },
+            builder: (context, state) {
+              return state is SignUpLoadingState
+                  ? const LoadingIndicator()
+                  : AuthButton(
+                      text: lang.Continue,
+                      onTap: () {
+                        if (N1.text.isEmpty ||
+                            N2.text.isEmpty ||
+                            N3.text.isEmpty ||
+                            N4.text.isEmpty ||
+                            N5.text.isEmpty ||
+                            N6.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(lang.please_enter_all_numbers_otp),
+                              backgroundColor: Colors.white,
+                            ),
+                          );
+                        } else {
+                          CraftAuthCubit.get(context).otp = N1.text +
+                              N2.text +
+                              N3.text +
+                              N4.text +
+                              N5.text +
+                              N6.text;
+                          AppLogs.scussessLog("sending");
+                          CraftAuthCubit.get(context).craftManSignUp();
+
+                          // verifyOtp(context, otp);
+                        }
+                      },
+                    );
             },
           )
           // ButtonBuilder(

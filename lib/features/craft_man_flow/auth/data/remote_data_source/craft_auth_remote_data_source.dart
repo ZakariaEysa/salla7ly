@@ -24,7 +24,6 @@ class CraftAuthRemoteDataSourceImpl implements CraftAuthRemoteDataSource {
   Future<void> sendVerificationOtpModel(
       {required SendVerificationOtpModel sendVerificationOtpModel}) async {
     try {
-      AppLogs.scussessLog(sendVerificationOtpModel.toJson().toString());
       final response = await apiService.postWithoutToken(
           endPoint: EndPoints.sendVerificationOtp,
           body: sendVerificationOtpModel.toJson());
@@ -33,11 +32,13 @@ class CraftAuthRemoteDataSourceImpl implements CraftAuthRemoteDataSource {
         AppLogs.scussessLog("success");
         // return response.data["results"] ?? []; // إرجاع المعاملات
       } else {
-        AppLogs.scussessLog("Error fetching : ${response.data["errors"][1]}");
-        throw Exception("Error fetching : ${response.data["errors"][1]}");
+        AppLogs.errorLog(response.data.toString());
+        AppLogs.errorLog(response.data);
+        throw Exception(response.data);
       }
     } catch (e) {
-      AppLogs.scussessLog("Failed to fetch : ${e.toString()}");
+      AppLogs.errorLog(e.toString());
+      rethrow;
     }
   }
 
@@ -45,7 +46,6 @@ class CraftAuthRemoteDataSourceImpl implements CraftAuthRemoteDataSource {
   Future<CraftSignupResponseModel> craftManSignUp(
       {required CraftSignupBodyModel craftSignupBodyModel}) async {
     try {
-      AppLogs.scussessLog(craftSignupBodyModel.toJson().toString());
       final response = await apiService.postWithoutToken(
           endPoint: EndPoints.craftmanSignUp,
           body: craftSignupBodyModel.toJson());
@@ -54,8 +54,10 @@ class CraftAuthRemoteDataSourceImpl implements CraftAuthRemoteDataSource {
         AppLogs.scussessLog("success");
         return CraftSignupResponseModel.fromJson(response.data);
       } else {
-        AppLogs.scussessLog("Error fetching : ${response.data["errors"][1]}");
-        throw Exception("Error fetching : ${response.data["errors"][1]}");
+        AppLogs.errorLog(response.data.toString());
+
+        AppLogs.errorLog(response.data);
+        throw Exception(response.data);
 
         // return [];
       }
