@@ -10,7 +10,9 @@ import 'package:salla7ly/utils/app_logs.dart';
 import 'package:salla7ly/utils/navigation.dart';
 import 'package:salla7ly/utils/validation_utils.dart';
 import '../../../../../../widgets/custom_text_field.dart';
+import '../../../../../../widgets/failure_toast.dart';
 import '../../../../../../widgets/label_text.dart';
+import '../../../../../../widgets/loading_indicator.dart';
 import '../../../../../shared/auth/presentation/views/otp.dart';
 import '../../../../../shared/auth/presentation/views/sign_in.dart';
 import '../have_account_row.dart';
@@ -176,26 +178,31 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
 
             SizedBox(height: 30.h),
-            BlocListener<CraftAuthCubit, CraftAuthState>(
+            BlocConsumer<CraftAuthCubit, CraftAuthState>(
               listener: (context, state) {
                 AppLogs.scussessLog(state.toString());
+
                 if (state is OtpSuccessState) {
                   navigateTo(context: context, screen: Otp());
-                } else if (state is OtpErrorState) {
-                  Fluttertoast.showToast(
-                      msg: ServiceFailure(state.message.errorMsg).errorMsg);
+                } else if (state is SignUpErrorState) {
+                  FailureToast.showToast(
+                      ServiceFailure(state.message.errorMsg).errorMsg);
                 }
               },
-              child: Align(
-                  alignment: Alignment.center,
-                  child: AuthButton(
-                    onTap: () {
-                      if (cubit.formKey.currentState!.validate()) {
-                        CraftAuthCubit.get(context).sendVerificationOtp();
-                      }
-                    },
-                    text: S.of(context).signUpButton,
-                  )),
+              builder: (context, state) {
+                return state is OtpLoadingState
+                    ? const LoadingIndicator()
+                    : Align(
+                        alignment: Alignment.center,
+                        child: AuthButton(
+                          onTap: () {
+                            if (cubit.formKey.currentState!.validate()) {
+                              CraftAuthCubit.get(context).sendVerificationOtp();
+                            }
+                          },
+                          text: S.of(context).signUpButton,
+                        ));
+              },
             ),
             //signUpButton
 

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class Asfs extends Equatable {
+class AuthResponseModel extends Equatable {
   final String? id;
   final String? email;
   final String? userName;
@@ -9,7 +9,7 @@ class Asfs extends Equatable {
   final String? refreshToken;
   final DateTime? refreshTokenExpiration;
 
-  const Asfs({
+  const AuthResponseModel({
     this.id,
     this.email,
     this.userName,
@@ -19,7 +19,8 @@ class Asfs extends Equatable {
     this.refreshTokenExpiration,
   });
 
-  factory Asfs.fromJson(Map<String, dynamic> json) => Asfs(
+  factory AuthResponseModel.fromJson(Map<String, dynamic> json) =>
+      AuthResponseModel(
         id: json['id'] as String?,
         email: json['email'] as String?,
         userName: json['userName'] as String?,

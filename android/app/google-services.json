@@ -12,7 +12,20 @@
           "package_name": "com.example.salla7ly"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "491223251945-0vnto16qt1jn6atgiqjmertd9hjk80l5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.salla7ly",
+            "certificate_hash": "6a41de581b9d851c281e3878172064e0ae064ac8"
+          }
+        },
+        {
+          "client_id": "491223251945-rmprcn0apnej2bujc6j2nahc14hik2e0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAoRbqDYipAcYkbb1Lo7dzOS3O6rgTJ9pA"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "491223251945-1rfiqei21ahaokbm976ost3bf7qanadv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "491223251945-u2vjh31cv8hqnb0ithr2c0782iag3rqh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.salla7ly"
+              }
+            }
+          ]
         }
       }
     }

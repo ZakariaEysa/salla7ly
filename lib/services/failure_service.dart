@@ -1,7 +1,8 @@
 abstract class FailureService {
   final String errorMsg;
 
-  FailureService(this.errorMsg);
+  FailureService(String errorMsg)
+      : errorMsg = errorMsg.replaceAll('Exception:', '').trim();
 }
 
 class ServiceFailure extends FailureService {

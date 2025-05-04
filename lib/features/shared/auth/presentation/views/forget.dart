@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/features/craft_man_flow/auth/presentation/widgets/auth_button.dart';
+import 'package:salla7ly/features/shared/auth/presentation/views/forget_password_otp.dart';
 import 'package:salla7ly/features/shared/auth/presentation/views/sign_in.dart';
 
+import '../../../../../utils/app_logs.dart';
 import '../../../../../widgets/custom_text_field.dart';
 import '../../../../../widgets/label_text.dart';
+import '../../../../../widgets/loading_indicator.dart';
 import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
+import '../../data/model/send_forget_password_model.dart';
+import '../cubit/auth_cubit.dart';
 import 'new_password.dart';
 import 'otp.dart';
 
@@ -29,7 +34,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    CraftAuthCubit cubit = CraftAuthCubit.get(context);
+    AuthCubit cubit = AuthCubit.get(context);
 
     var lang = S.of(context);
     return ScaffoldF(
@@ -84,51 +89,76 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 SizedBox(
                   height: 60.h,
                 ),
-                AuthButton(
-                  // width: 191.w,
-                  // height: 48.h,
+                BlocConsumer<AuthCubit, AuthState>(
+                  listener: (context, state) {
+                    AppLogs.scussessLog(state.toString());
+                    if (state is SendForgetOtpSuccessState) {
+                      navigateTo(context: context, screen: ForgetPasswordOtp());
 
-                  text: 'Send',
-                  // style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  //   fontWeight: FontWeight.bold,
-                  // ),
-                  onTap: () async {
-                    navigateTo(context: context, screen: NewPassword());
+                      // navigateAndRemoveUntil(
+                      //     context: context,
+                      //     screen: Container(
+                      //       child: Text("home Page"),
+                      //     ));
+                    } else if (state is AuthErrorState) {
+                      // Fluttertoast.showToast(
+                      //     msg: ServiceFailure(state.message.errorMsg).errorMsg);
+                    }
+                  },
+                  builder: (context, state) {
+                    return state is ResetPasswordLoadingState
+                        ? const LoadingIndicator()
+                        : AuthButton(
+                            // width: 191.w,
+                            // height: 48.h,
 
-                    if (!formKeyForgot.currentState!.validate()) return;
-                    // if (isValidEmail(cubit.emailController.text)) {
-                    // } else {
-                    //   BotToast.showText(text: lang.enter_valid_email);
-                    //   return;
-                    // }
+                            text: 'Send',
+                            // style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            //   fontWeight: FontWeight.bold,
+                            // ),
+                            onTap: () async {
+                              if (!formKeyForgot.currentState!.validate())
+                                return;
 
-                    // TODO: check if the user exists or not first
-                    // try {
-                    //   final userDoc = await FirebaseFirestore.instance
+                              cubit.sendForgetPassword(
+                                  sendForgetPasswordModel:
+                                      SendForgetPasswordModel(
+                                          email: cubit.emailController.text));
+                              // if (isValidEmail(cubit.emailController.text)) {
+                              // } else {
+                              //   BotToast.showText(text: lang.enter_valid_email);
+                              //   return;
+                              // }
 
-                    //       .collection('users')
+                              // TODO: check if the user exists or not first
+                              // try {
+                              //   final userDoc = await FirebaseFirestore.instance
 
-                    //       .doc(cubit.emailController.text)
+                              //       .collection('users')
 
-                    //       .get().timeout(Duration(seconds: 1));
-                    //   if (userDoc.exists) {
-                    //     cubit.sendOtp(cubit.emailController.text);
-                    //     navigateTo(
-                    //         context: context,
-                    //         screen: Otp(
-                    //           isSuccessOtp: () async {
-                    //             navigateAndReplace(
-                    //                 context: context, screen: NewPassword());
-                    //           },
-                    //         ));
-                    //   } else {
-                    //     BotToast.showText(text: lang.user_not_found);
-                    //   }
-                    // } catch (e) {
+                              //       .doc(cubit.emailController.text)
 
-                    //   BotToast.showText(text: lang.something_went_wrong_please_check_your_network);
+                              //       .get().timeout(Duration(seconds: 1));
+                              //   if (userDoc.exists) {
+                              //     cubit.sendOtp(cubit.emailController.text);
+                              //     navigateTo(
+                              //         context: context,
+                              //         screen: Otp(
+                              //           isSuccessOtp: () async {
+                              //             navigateAndReplace(
+                              //                 context: context, screen: NewPassword());
+                              //           },
+                              //         ));
+                              //   } else {
+                              //     BotToast.showText(text: lang.user_not_found);
+                              //   }
+                              // } catch (e) {
 
-                    // }
+                              //   BotToast.showText(text: lang.something_went_wrong_please_check_your_network);
+
+                              // }
+                            },
+                          );
                   },
                 ),
                 SizedBox(

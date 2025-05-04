@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  another_flushbar: ^1.12.30
   bloc: ^9.0.0
   cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
@@ -35,6 +36,7 @@ dependencies:
   device_preview: ^1.2.0
   dio: ^5.8.0+1
   equatable: ^2.0.7
+  firebase_auth: ^5.5.3
   firebase_core: ^3.13.0
   flutter:
     sdk: flutter
@@ -47,6 +49,8 @@ dependencies:
   fluttertoast: ^8.2.12
   get_it: ^8.0.3
   google_fonts: ^6.2.1
+  google_sign_in: 
+
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   image_picker: ^1.1.2

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:salla7ly/features/shared/auth/presentation/cubit/auth_cubit.dart';
 
 import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/navigation.dart';
@@ -9,18 +10,20 @@ import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 import '../../../../craft_man_flow/auth/presentation/widgets/auth_button.dart';
+import '../../data/model/send_forget_password_model.dart';
+import '../../data/model/validate_forget_password_otp_model.dart';
 import '../widgets/otp/otp_textfield.dart';
 import '../widgets/otp/timer.dart';
-import 'home_screen.dart';
+import 'new_password.dart';
 
-class Otp extends StatefulWidget {
+class ForgetPasswordOtp extends StatefulWidget {
   final Future<void> Function()? isSuccessOtp;
-  Otp({super.key, this.isSuccessOtp});
+  ForgetPasswordOtp({super.key, this.isSuccessOtp});
   @override
-  _OtpState createState() => _OtpState();
+  _ForgetPasswordOtpState createState() => _ForgetPasswordOtpState();
 }
 
-class _OtpState extends State<Otp> {
+class _ForgetPasswordOtpState extends State<ForgetPasswordOtp> {
   @override
   void initState() {
     super.initState();
@@ -128,11 +131,12 @@ class _OtpState extends State<Otp> {
               children: [
                 CountdownTimer(
                   onResend: () async {
-                    String email =
-                        CraftAuthCubit.get(context).emailController.text;
+                    String email = AuthCubit.get(context).emailController.text;
                     if (email.isNotEmpty) {
                       // AuthCubit.get(context).sendOtp(email);
-                      CraftAuthCubit.get(context).sendVerificationOtp();
+                      AuthCubit.get(context).sendForgetPassword(
+                          sendForgetPasswordModel:
+                              SendForgetPasswordModel(email: email));
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -153,22 +157,27 @@ class _OtpState extends State<Otp> {
             ),
           ),
           SizedBox(height: 5.h),
-          BlocConsumer<CraftAuthCubit, CraftAuthState>(
+          BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
               AppLogs.scussessLog(state.toString());
-              if (state is SignUpSuccessState) {
-                navigateAndRemoveUntil(
-                    context: context,
-                    screen: HomeScreen(
-                      
-                    ));
-              } else if (state is SignUpErrorState) {
+              if (state is ValidateOtpSuccessState) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => NewPassword()),
+                );
+
+                // navigateAndRemoveUntil(
+                //     context: context,
+                //     screen: Container(
+                //       child: Text("home Page"),
+                //     ));
+              } else if (state is AuthErrorState) {
                 // Fluttertoast.showToast(
                 //     msg: ServiceFailure(state.message.errorMsg).errorMsg);
               }
             },
             builder: (context, state) {
-              return state is SignUpLoadingState
+              return state is ResetPasswordLoadingState
                   ? const LoadingIndicator()
                   : AuthButton(
                       text: lang.Continue,
@@ -186,14 +195,20 @@ class _OtpState extends State<Otp> {
                             ),
                           );
                         } else {
-                          CraftAuthCubit.get(context).otp = N1.text +
+                          String otp = N1.text +
                               N2.text +
                               N3.text +
                               N4.text +
                               N5.text +
                               N6.text;
                           AppLogs.scussessLog("sending");
-                          CraftAuthCubit.get(context).craftManSignUp();
+                          AuthCubit.get(context).validateForgetPasswordOtp(
+                              validateForgetPasswordOtpModel:
+                                  ValidateForgetPasswordOtpModel(
+                                      email: AuthCubit.get(context)
+                                          .emailController
+                                          .text,
+                                      otp: otp));
 
                           // verifyOtp(context, otp);
                         }

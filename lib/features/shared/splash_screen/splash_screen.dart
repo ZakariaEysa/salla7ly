@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:salla7ly/features/shared/auth/presentation/views/sign_in.dart';
 import '../../../data/hive_keys.dart';
 import '../../../data/hive_storage.dart';
 import '../../../utils/navigation.dart';
 import '../../../widgets/scaffold/scaffold_f.dart';
+import '../auth/presentation/views/home_screen.dart';
 import '../on_boarding/presentation/views/on_boarding.dart';
-import '../../user_flow/home/presentation/views/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -22,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
             HiveKeys.passUserOnboarding,
           ) ==
           true) {
-        navigateAndReplace(context: context, screen: const HomeScreen());
+        navigateAndReplace(context: context, screen: const SignInScreen());
       } else {
         navigateAndReplace(context: context, screen: const OnBoarding());
       }

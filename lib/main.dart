@@ -10,6 +10,8 @@ import 'package:salla7ly/features/craft_man_flow/auth/data/remote_data_source/cr
 import 'package:salla7ly/features/craft_man_flow/auth/data/repos_impl/craft_auth_repo_impl.dart';
 import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 import 'core/Network/api_service.dart';
+import 'features/shared/auth/data/repos_impl/auth_repo_impl.dart';
+import 'features/shared/auth/presentation/cubit/auth_cubit.dart';
 import 'firebase_options.dart';
 import 'utils/app_logs.dart';
 import 'data/hive_storage.dart';
@@ -20,6 +22,7 @@ import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
 import 'features/shared/splash_screen/splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'utils/service_locator.dart';
 import 'widgets/application_theme/application_theme.dart';
 import 'widgets/application_theme/theme_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -57,8 +60,13 @@ void main() async {
   SimpleBlocObserverService();
 
   await HiveStorage.init();
+  serviceLocator();
   await requestGalleryPermission();
-
+  AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.accessToken)}');
+  AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.refreshToken)}');
+  AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.email)}');
+  AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.id)}');
+  AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.username)}');
   // HiveStorage.set(HiveKeys.passUserOnboarding, false);
 
   if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
@@ -81,9 +89,9 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider<CraftAuthCubit>(
-          create: (context) => CraftAuthCubit(CraftAuthRepoImpl(
-              CraftAuthRemoteDataSourceImpl(ApiService(dio: Dio())))),
-        ),
+            create: (context) => CraftAuthCubit(getIt<CraftAuthRepoImpl>())),
+        BlocProvider<AuthCubit>(
+            create: (context) => AuthCubit(getIt<AuthRepoImpl>())),
       ],
       child: DevicePreview(
         enabled: kDebugMode,

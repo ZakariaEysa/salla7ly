@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:salla7ly/features/shared/auth/presentation/cubit/auth_cubit.dart';
+import 'package:salla7ly/widgets/failure_toast.dart';
+import 'package:salla7ly/widgets/loading_indicator.dart';
 import 'package:salla7ly/widgets/page_title.dart';
 
 import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
 import 'package:salla7ly/generated/l10n.dart';
+import '../../../../../services/failure_service.dart';
+import '../../../../../utils/app_logs.dart';
+import '../../../../../utils/navigation.dart';
 import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/custom_text_field.dart';
 import '../../../../../widgets/label_text.dart';
@@ -15,6 +23,7 @@ import '../widgets/sign_in/or_sign_in_with_divider.dart';
 import '../widgets/auth_button.dart';
 import '../widgets/sign_in/welcome_text.dart';
 import 'account_type_screen.dart';
+import 'home_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -25,13 +34,14 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   bool _obscurePassword = true;
-  final signInKey = GlobalKey<FormState>();
 
   void _togglePasswordVisibility() {
     setState(() {
       _obscurePassword = !_obscurePassword;
     });
   }
+
+  final signInKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +95,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     LabelText(text: S.of(context).emailLabel),
                     SizedBox(height: 10.h),
                     CustomTextField(
+                      controller: AuthCubit.get(context).emailController,
                       validator: (value) {
                         return ValidationUtils.validateEmail(value, context);
                       },
@@ -96,6 +107,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     LabelText(text: S.of(context).passwordLabel),
                     SizedBox(height: 10.h),
                     CustomTextField(
+                      controller: AuthCubit.get(context).passwordController,
+
                       validator: (value) {
                         return ValidationUtils.validatePassword(value, context);
                       },
@@ -109,18 +122,58 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     const ForgotPasswordButton(),
                     SizedBox(height: 10.h),
-                    Align(
-                        alignment: Alignment.center,
-                        child: AuthButton(
-                          text: S.of(context).signInButton,
-                          onTap: () {
-                            if (signInKey.currentState!.validate()) {}
-                          },
-                        )),
+                    BlocConsumer<AuthCubit, AuthState>(
+                      listener: (context, state) {
+                        AppLogs.scussessLog(state.toString());
+
+                        if (state is SignInSuccessState) {
+                          navigateAndRemoveUntil(
+                              context: context, screen: HomeScreen());
+                        } else if (state is AuthErrorState) {
+                          FailureToast.showToast(
+                              ServiceFailure(state.message.errorMsg).errorMsg);
+                        }
+                      },
+                      builder: (context, state) {
+                        return state is SignInLoadingState
+                            ? LoadingIndicator()
+                            : Align(
+                                alignment: Alignment.center,
+                                child: AuthButton(
+                                  text: S.of(context).signInButton,
+                                  onTap: () {
+                                    if (signInKey.currentState!.validate()) {
+                                      AuthCubit.get(context).signIn();
+                                    }
+                                  },
+                                ));
+                      },
+                    ),
                     SizedBox(height: 30.h),
                     const OrSignInWithDivider(),
                     SizedBox(height: 30.h),
-                    const GoogleSignInButton(),
+                    BlocConsumer<AuthCubit, AuthState>(
+                      listener: (context, state) {
+                        AppLogs.scussessLog(state.toString());
+
+                        if (state is GoogleAuthSuccessState) {
+                          navigateAndRemoveUntil(
+                              context: context, screen: HomeScreen());
+                        } else if (state is AuthErrorState) {
+                          FailureToast.showToast(
+                              ServiceFailure(state.message.errorMsg).errorMsg);
+                        }
+                      },
+                      builder: (context, state) {
+                        return state is GoogleAuthLoadingState
+                            ? LoadingIndicator()
+                            : GoogleSignInButton(
+                                onTap: () {
+                                  AuthCubit.get(context).signInWithGoogle();
+                                },
+                              );
+                      },
+                    ),
                     SizedBox(height: 30.h),
                     AccountRow(
                       title: S.of(context).dontHaveAccount,
