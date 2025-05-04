@@ -31,6 +31,8 @@ class CraftAuthCubit extends Cubit<CraftAuthState> {
   String? selectedYear = '2002';
   bool isLoaded = false;
   String otp = "";
+    bool isFirstOtp = true;
+
   Future<void> sendVerificationOtp() async {
     emit(OtpLoadingState());
     final result = await craftAuthRepo.sendVerificationOtpModel(

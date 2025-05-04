@@ -93,7 +93,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   listener: (context, state) {
                     AppLogs.scussessLog(state.toString());
                     if (state is SendForgetOtpSuccessState) {
-                      navigateTo(context: context, screen: ForgetPasswordOtp());
+                      if (AuthCubit.get(context).isFirstOtp) {
+                        AuthCubit.get(context).isFirstOtp = false;
+
+                        navigateTo(
+                            context: context, screen: ForgetPasswordOtp());
+                      }
 
                       // navigateAndRemoveUntil(
                       //     context: context,

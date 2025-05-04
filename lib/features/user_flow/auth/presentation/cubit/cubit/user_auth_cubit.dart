@@ -25,6 +25,7 @@ class UserAuthCubit extends Cubit<UserAuthState> {
   final userFormKey = GlobalKey<FormState>();
   bool obscurePassword = true;
   bool obscureConfirmPassword = true;
+  bool isFirstOtp = true;
 
   bool isLoaded = false;
   String otp = "";

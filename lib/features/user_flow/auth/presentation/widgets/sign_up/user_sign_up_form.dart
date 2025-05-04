@@ -115,7 +115,11 @@ class _SignUpFormState extends State<SignUpForm> {
                 AppLogs.scussessLog(state.toString());
 
                 if (state is OtpSuccessState) {
-                  navigateTo(context: context, screen: UserOtp());
+                  if (UserAuthCubit.get(context).isFirstOtp) {
+                    UserAuthCubit.get(context).isFirstOtp = false;
+
+                    navigateTo(context: context, screen: UserOtp());
+                  }
                 } else if (state is SignUpErrorState) {
                   FailureToast.showToast(
                       ServiceFailure(state.message.errorMsg).errorMsg);

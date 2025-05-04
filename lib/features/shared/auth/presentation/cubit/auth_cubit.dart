@@ -25,6 +25,8 @@ class AuthCubit extends Cubit<AuthState> {
   bool obscureConfirmPassword = true;
   final emailController = TextEditingController();
   AuthRepo authRepo;
+    bool isFirstOtp = true;
+
   Future<void> signIn() async {
     emit(SignInLoadingState());
     final result = await authRepo.signIn(
