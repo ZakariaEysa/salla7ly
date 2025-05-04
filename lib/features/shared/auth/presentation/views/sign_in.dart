@@ -41,12 +41,14 @@ class _SignInScreenState extends State<SignInScreen> {
     });
   }
 
+  final signInKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldF(
       resizeToAvoidBottomInset: true,
       body: Form(
-        key: AuthCubit.get(context).signInKey,
+        key: signInKey,
         child: Stack(
           children: [
             Positioned(
@@ -140,10 +142,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 child: AuthButton(
                                   text: S.of(context).signInButton,
                                   onTap: () {
-                                    if (AuthCubit.get(context)
-                                        .signInKey
-                                        .currentState!
-                                        .validate()) {
+                                    if (signInKey.currentState!.validate()) {
                                       AuthCubit.get(context).signIn();
                                     }
                                   },

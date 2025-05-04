@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/features/craft_man_flow/auth/presentation/widgets/auth_button.dart';
 import 'package:salla7ly/features/shared/auth/presentation/views/sign_in.dart';
-import 'package:salla7ly/features/user_flow/home/presentation/views/home_screen.dart';
 
 import '../../../../../data/hive_storage.dart';
 import '../../../../../utils/app_logs.dart';
@@ -21,6 +20,7 @@ import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubi
 import '../../data/model/sign_in_model.dart';
 import '../cubit/auth_cubit.dart';
 import 'forget.dart';
+import 'home_screen.dart';
 
 class NewPassword extends StatefulWidget {
   const NewPassword({super.key});
@@ -138,15 +138,16 @@ class _NewPasswordState extends State<NewPassword> {
                         listener: (context, state) {
                           AppLogs.scussessLog(state.toString());
                           if (state is ResetPasswordSuccessState) {
-                            if (!mounted) return;
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomeScreen()),
-                              (Route<dynamic> route) => false,
-                            );
+                            // if (!mounted) return;
+                            // Navigator.pushAndRemoveUntil(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => HomeScreen()),
+                            //   (Route<dynamic> route) => false,
+                            // );
 
                             // )
+
                             navigateAndRemoveUntil(
                                 context: context, screen: HomeScreen());
 
