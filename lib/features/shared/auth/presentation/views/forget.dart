@@ -13,7 +13,7 @@ import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubi
 import '../../data/model/send_forget_password_model.dart';
 import '../cubit/auth_cubit.dart';
 import 'new_password.dart';
-import 'otp.dart';
+import 'craft_man_otp.dart';
 
 import '../../../../../utils/navigation.dart';
 

@@ -3,21 +3,21 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:salla7ly/core/Network/api_service.dart';
 import 'package:salla7ly/core/Network/end_points.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/data/model/send_verification_otp_model.dart';
 
 import '../../../../../utils/app_logs.dart';
-import '../model/craft_signup_body_model.dart';
-import '../model/signup_response_model.dart';
+import '../../../../craft_man_flow/auth/data/model/send_verification_otp_model.dart';
+import '../../../../craft_man_flow/auth/data/model/signup_response_model.dart';
+import '../../data/model/user_signup_body_model.dart';
 
-abstract class CraftAuthRemoteDataSource {
+abstract class UserAuthRemoteDataSource {
   Future<void> sendVerificationOtpModel(
       {required SendVerificationOtpModel sendVerificationOtpModel});
-  Future<SignupResponseModel> craftManSignUp(
-      {required CraftSignupBodyModel craftSignupBodyModel});
+  Future<SignupResponseModel> userSignUp(
+      {required UserSignupBodyModel userSignupBodyModel});
 }
 
-class CraftAuthRemoteDataSourceImpl implements CraftAuthRemoteDataSource {
-  CraftAuthRemoteDataSourceImpl(this.apiService);
+class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource {
+  UserAuthRemoteDataSourceImpl(this.apiService);
   ApiService apiService;
 
   @override
@@ -43,12 +43,11 @@ class CraftAuthRemoteDataSourceImpl implements CraftAuthRemoteDataSource {
   }
 
   @override
-  Future<SignupResponseModel> craftManSignUp(
-      {required CraftSignupBodyModel craftSignupBodyModel}) async {
+  Future<SignupResponseModel> userSignUp(
+      {required UserSignupBodyModel userSignupBodyModel}) async {
     try {
       final response = await apiService.postWithoutToken(
-          endPoint: EndPoints.craftmanSignUp,
-          body: craftSignupBodyModel.toJson());
+          endPoint: EndPoints.userSignUp, body: userSignupBodyModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         AppLogs.scussessLog("success");

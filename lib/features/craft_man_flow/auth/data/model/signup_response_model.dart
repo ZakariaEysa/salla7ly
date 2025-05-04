@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class CraftSignupResponseModel extends Equatable {
+class SignupResponseModel extends Equatable {
   final String? id;
   final String? email;
   final String? userName;
@@ -9,7 +9,7 @@ class CraftSignupResponseModel extends Equatable {
   final String? refreshToken;
   final DateTime? refreshTokenExpiration;
 
-  const CraftSignupResponseModel({
+  const SignupResponseModel({
     this.id,
     this.email,
     this.userName,
@@ -19,8 +19,8 @@ class CraftSignupResponseModel extends Equatable {
     this.refreshTokenExpiration,
   });
 
-  factory CraftSignupResponseModel.fromJson(Map<String, dynamic> json) =>
-      CraftSignupResponseModel(
+  factory SignupResponseModel.fromJson(Map<String, dynamic> json) =>
+      SignupResponseModel(
         id: json['id'] as String?,
         email: json['email'] as String?,
         userName: json['userName'] as String?,

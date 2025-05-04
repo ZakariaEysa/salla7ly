@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../../services/failure_service.dart';
 import '../../domain/repos/craft_auth_repo.dart';
 import '../model/craft_signup_body_model.dart';
-import '../model/craft_response_model.dart';
+import '../model/signup_response_model.dart';
 import '../model/send_verification_otp_model.dart';
 import '../remote_data_source/craft_auth_remote_data_source.dart';
 
@@ -35,7 +35,7 @@ class CraftAuthRepoImpl implements CraftAuthRepo {
     }
   }
 
-  Future<Either<FailureService, CraftSignupResponseModel>> craftManSignUp(
+  Future<Either<FailureService, SignupResponseModel>> craftManSignUp(
       {required CraftSignupBodyModel craftSignupBodyModel}) async {
     try {
       final result = await craftAuthRemoteDataSource.craftManSignUp(
