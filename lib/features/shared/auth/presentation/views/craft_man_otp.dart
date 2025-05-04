@@ -13,14 +13,14 @@ import '../widgets/otp/otp_textfield.dart';
 import '../widgets/otp/timer.dart';
 import 'home_screen.dart';
 
-class Otp extends StatefulWidget {
+class CraftManOtp extends StatefulWidget {
   final Future<void> Function()? isSuccessOtp;
-  Otp({super.key, this.isSuccessOtp});
+  CraftManOtp({super.key, this.isSuccessOtp});
   @override
-  _OtpState createState() => _OtpState();
+  _CraftManOtpState createState() => _CraftManOtpState();
 }
 
-class _OtpState extends State<Otp> {
+class _CraftManOtpState extends State<CraftManOtp> {
   @override
   void initState() {
     super.initState();
@@ -157,11 +157,7 @@ class _OtpState extends State<Otp> {
             listener: (context, state) {
               AppLogs.scussessLog(state.toString());
               if (state is SignUpSuccessState) {
-                navigateAndRemoveUntil(
-                    context: context,
-                    screen: HomeScreen(
-                      
-                    ));
+                navigateAndRemoveUntil(context: context, screen: HomeScreen());
               } else if (state is SignUpErrorState) {
                 // Fluttertoast.showToast(
                 //     msg: ServiceFailure(state.message.errorMsg).errorMsg);

@@ -12,6 +12,8 @@ import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/c
 import 'core/Network/api_service.dart';
 import 'features/shared/auth/data/repos_impl/auth_repo_impl.dart';
 import 'features/shared/auth/presentation/cubit/auth_cubit.dart';
+import 'features/user_flow/auth/data/repos_impl/user_auth_repo_impl.dart';
+import 'features/user_flow/auth/presentation/cubit/cubit/user_auth_cubit.dart';
 import 'firebase_options.dart';
 import 'utils/app_logs.dart';
 import 'data/hive_storage.dart';
@@ -90,6 +92,8 @@ void main() async {
       providers: [
         BlocProvider<CraftAuthCubit>(
             create: (context) => CraftAuthCubit(getIt<CraftAuthRepoImpl>())),
+               BlocProvider<UserAuthCubit>(
+            create: (context) => UserAuthCubit(getIt<UserAuthRepoImpl>())),
         BlocProvider<AuthCubit>(
             create: (context) => AuthCubit(getIt<AuthRepoImpl>())),
       ],

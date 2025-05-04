@@ -5,6 +5,7 @@ import 'package:salla7ly/utils/navigation.dart';
 import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
 
 import '../../../../craft_man_flow/auth/presentation/views/craftman_sign_up_view.dart';
+import '../../../../user_flow/auth/presentation/views/user_sign_up_view.dart';
 import '../widgets/account_type/account_type_buttons_row.dart';
 import '../widgets/account_type/description_text.dart';
 import '../widgets/account_type/title_text.dart';
@@ -49,6 +50,7 @@ class AccountTypeScreen extends StatelessWidget {
               AccountTypeButtonsRow(
                 onUserPressed: () {
                   // Navigator.of(context).pushReplacementNamed('/home_user');
+                  navigateTo(context: context, screen: const UserSignUpView());
                 },
                 onCraftsmanPressed: () {
                   navigateTo(

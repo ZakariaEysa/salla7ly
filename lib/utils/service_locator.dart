@@ -8,6 +8,8 @@ import '../features/craft_man_flow/auth/data/remote_data_source/craft_auth_remot
 import '../features/craft_man_flow/auth/data/repos_impl/craft_auth_repo_impl.dart';
 import '../features/shared/auth/data/remote_data_source/auth_remote_data_source.dart';
 import '../features/shared/auth/data/repos_impl/auth_repo_impl.dart';
+import '../features/user_flow/auth/data/remote_data_source/user_auth_remote_data_source.dart';
+import '../features/user_flow/auth/data/repos_impl/user_auth_repo_impl.dart';
 
 final getIt = GetIt.instance;
 void serviceLocator() {
@@ -21,6 +23,11 @@ void serviceLocator() {
       CraftAuthRemoteDataSourceImpl(getIt<ApiService>()));
   getIt.registerSingleton<CraftAuthRepoImpl>(
       CraftAuthRepoImpl(getIt<CraftAuthRemoteDataSourceImpl>()));
+
+  getIt.registerSingleton<UserAuthRemoteDataSourceImpl>(
+      UserAuthRemoteDataSourceImpl(getIt<ApiService>()));
+  getIt.registerSingleton<UserAuthRepoImpl>(
+      UserAuthRepoImpl(getIt<UserAuthRemoteDataSourceImpl>()));
 
   getIt.registerSingleton<AuthRemoteDataSourceImpl>(AuthRemoteDataSourceImpl(
       getIt<ApiService>(), FirebaseAuth.instance, GoogleSignIn()));

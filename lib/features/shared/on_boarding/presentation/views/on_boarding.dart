@@ -6,7 +6,7 @@ import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/custom_button.dart';
 import '../../../../../generated/l10n.dart';
-import '../../../auth/presentation/views/home_screen.dart';
+import '../../../auth/presentation/views/sign_in.dart';
 import '../widgets/dot_indicator.dart';
 import '../widgets/onboarding_content.dart';
 import '../widgets/navigation_buttons.dart';
@@ -54,7 +54,7 @@ class _OnBoardingState extends State<OnBoarding> {
     HiveStorage.set(HiveKeys.passUserOnboarding, true);
 
     // الانتقال إلى الشاشة الرئيسية
-    navigateAndRemoveUntil(context: context, screen: const HomeScreen());
+    navigateAndRemoveUntil(context: context, screen: const SignInScreen());
   }
 
   /// الحصول على عدد صفحات الأونبوردينج

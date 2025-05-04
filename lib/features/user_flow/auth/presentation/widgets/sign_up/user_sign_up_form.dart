@@ -1,9 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/presentation/views/national_id.dart';
 import 'package:salla7ly/generated/l10n.dart';
 import 'package:salla7ly/services/failure_service.dart';
 import 'package:salla7ly/utils/app_logs.dart';
@@ -13,12 +12,12 @@ import '../../../../../../widgets/custom_text_field.dart';
 import '../../../../../../widgets/failure_toast.dart';
 import '../../../../../../widgets/label_text.dart';
 import '../../../../../../widgets/loading_indicator.dart';
+import '../../../../../craft_man_flow/auth/presentation/widgets/have_account_row.dart';
 import '../../../../../shared/auth/presentation/views/craft_man_otp.dart';
 import '../../../../../shared/auth/presentation/views/sign_in.dart';
-import '../have_account_row.dart';
+import '../../cubit/cubit/user_auth_cubit.dart';
+import '../../views/user_otp.dart';
 import '../auth_button.dart';
-import 'birth_date_selector.dart';
-import 'upload_id_button.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -32,13 +31,13 @@ class _SignUpFormState extends State<SignUpForm> {
   bool obscurePassword = true;
   bool obscureConfirmPassword = true;
 
-  void _togglePasswordVisibility(CraftAuthCubit cubit) {
+  void _togglePasswordVisibility(UserAuthCubit cubit) {
     setState(() {
       cubit.obscurePassword = !cubit.obscurePassword;
     });
   }
 
-  void _toggleConfirmPasswordVisibility(CraftAuthCubit cubit) {
+  void _toggleConfirmPasswordVisibility(UserAuthCubit cubit) {
     setState(() {
       cubit.obscureConfirmPassword = !cubit.obscureConfirmPassword;
     });
@@ -46,10 +45,10 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    CraftAuthCubit cubit = CraftAuthCubit.get(context);
+    UserAuthCubit cubit = UserAuthCubit.get(context);
 
     return Form(
-      key: cubit.formKey,
+      key: cubit.userFormKey,
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,80 +109,13 @@ class _SignUpFormState extends State<SignUpForm> {
                   _toggleConfirmPasswordVisibility(cubit),
             ),
             SizedBox(height: 20.h),
-            LabelText(text: S.of(context).birthDateLabel),
-            SizedBox(height: 10.h),
-            const BirthDateSelector(),
-            SizedBox(height: 20.h),
-            LabelText(text: S.of(context).uploadIdLabel),
-            SizedBox(height: 20.h),
-            UploadIdButton(
-              onTap: () {
-                AppLogs.scussessLog("Upload ID");
-                navigateTo(
-                    context: context,
-                    screen: NationalId(
-                        onTap: () {
-                          AppLogs.scussessLog("front");
-                          AppLogs.scussessLog(
-                              CraftAuthCubit.get(context).frontId ?? "");
-                          AppLogs.scussessLog("Back");
 
-                          AppLogs.scussessLog(
-                              CraftAuthCubit.get(context).backId ?? "");
-                          AppLogs.scussessLog("NextPage");
-                          if (CraftAuthCubit.get(context).frontId != null) {
-                            navigateTo(
-                                context: context,
-                                screen: NationalId(
-                                    onTap: () {
-                                      if (CraftAuthCubit.get(context).backId !=
-                                          null) {
-                                        int count = 0;
-                                        Navigator.popUntil(context, (route) {
-                                          return count++ == 2;
-                                        });
-                                        AppLogs.scussessLog("front");
-                                        AppLogs.scussessLog(
-                                            CraftAuthCubit.get(context)
-                                                    .frontId ??
-                                                "");
-                                        AppLogs.scussessLog("Back");
-
-                                        AppLogs.scussessLog(
-                                            CraftAuthCubit.get(context)
-                                                    .backId ??
-                                                "");
-                                      } else {
-                                        Fluttertoast.showToast(
-                                            msg:
-                                                "Please upload the back of the National ID card first.");
-                                      }
-                                    },
-                                    buttonText: "SignUp",
-                                    text:
-                                        "Upload the Back of the National ID card."));
-                          } else {
-                            AppLogs.scussessLog(
-                                CraftAuthCubit.get(context).frontId.toString());
-                            Fluttertoast.showToast(
-                                msg:
-                                    "Please upload the front of the National ID card first.");
-                          }
-                        },
-                        buttonText: "continue",
-                        text: "Upload the front of the National ID card."));
-              },
-              width: 300.w,
-              height: 48.h,
-            ),
-
-            SizedBox(height: 30.h),
-            BlocConsumer<CraftAuthCubit, CraftAuthState>(
+            BlocConsumer<UserAuthCubit, UserAuthState>(
               listener: (context, state) {
                 AppLogs.scussessLog(state.toString());
 
                 if (state is OtpSuccessState) {
-                  navigateTo(context: context, screen: CraftManOtp());
+                  navigateTo(context: context, screen: UserOtp());
                 } else if (state is SignUpErrorState) {
                   FailureToast.showToast(
                       ServiceFailure(state.message.errorMsg).errorMsg);
@@ -196,8 +128,8 @@ class _SignUpFormState extends State<SignUpForm> {
                         alignment: Alignment.center,
                         child: AuthButton(
                           onTap: () {
-                            if (cubit.formKey.currentState!.validate()) {
-                              CraftAuthCubit.get(context).sendVerificationOtp();
+                            if (cubit.userFormKey.currentState!.validate()) {
+                              UserAuthCubit.get(context).sendVerificationOtp();
                             }
                           },
                           text: S.of(context).signUpButton,
