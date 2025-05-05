@@ -8,7 +8,6 @@ import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
-import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 import '../../../../craft_man_flow/auth/presentation/widgets/auth_button.dart';
 import '../../data/model/send_forget_password_model.dart';
 import '../../data/model/validate_forget_password_otp_model.dart';
@@ -61,6 +60,17 @@ class _ForgetPasswordOtpState extends State<ForgetPasswordOtp> {
         centerTitle: true,
         title: Text(lang.confirm_otp_code,
             style: theme.textTheme.bodyMedium?.copyWith(fontSize: 23.sp)),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            AuthCubit.get(context).isFirstOtp = true;
+
+            navigatePop(context: context);
+          },
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,

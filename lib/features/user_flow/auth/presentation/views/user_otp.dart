@@ -58,6 +58,18 @@ class _UserOtpState extends State<UserOtp> {
         centerTitle: true,
         title: Text(lang.confirm_otp_code,
             style: theme.textTheme.bodyMedium?.copyWith(fontSize: 23.sp)),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            UserAuthCubit.get(context).isFirstOtp=true;
+
+            navigatePop(context: context);  
+          },
+        ),
+
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,

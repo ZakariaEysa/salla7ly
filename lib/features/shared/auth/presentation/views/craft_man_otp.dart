@@ -58,6 +58,17 @@ class _CraftManOtpState extends State<CraftManOtp> {
         centerTitle: true,
         title: Text(lang.confirm_otp_code,
             style: theme.textTheme.bodyMedium?.copyWith(fontSize: 23.sp)),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            CraftAuthCubit.get(context).isFirstOtp = true;
+
+            navigatePop(context: context);
+          },
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
