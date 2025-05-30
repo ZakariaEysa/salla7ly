@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:injectable/injectable.dart';
 import 'package:salla7ly/core/Network/api_service.dart';
 import 'package:salla7ly/core/Network/end_points.dart';
 
@@ -27,6 +28,9 @@ abstract class AuthRemoteDataSource {
 
   Future<AuthResponseModel> signIn({required SignInModel signInModel});
 }
+
+ @LazySingleton(as: AuthRemoteDataSource)
+
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl(this.apiService, this._auth, this._googleSignIn);

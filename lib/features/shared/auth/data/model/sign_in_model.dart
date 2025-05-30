@@ -1,21 +1,15 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class SignInModel extends Equatable {
-  final String? email;
-  final String? password;
+part 'sign_in_model.freezed.dart';
+part 'sign_in_model.g.dart';
 
-  const SignInModel({this.email, this.password});
+@freezed
+class SignInModel with _$SignInModel {
+  const factory SignInModel({
+    required String email,
+    required String password,
+  }) = _SignInModel;
 
-  factory SignInModel.fromJson(Map<String, dynamic> json) => SignInModel(
-        email: json['email'] as String?,
-        password: json['password'] as String?,
-      );
-
-  Map<String, dynamic> toJson() => {
-        'email': email,
-        'password': password,
-      };
-
-  @override
-  List<Object?> get props => [email, password];
+  factory SignInModel.fromJson(Map<String, dynamic> json) =>
+      _$SignInModelFromJson(json);
 }

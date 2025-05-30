@@ -7,12 +7,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:salla7ly/features/craft_man_flow/auth/data/remote_data_source/craft_auth_remote_data_source.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/data/repos_impl/craft_auth_repo_impl.dart';
 import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 import 'core/Network/api_service.dart';
+import 'features/craft_man_flow/auth/domain/repos/craft_auth_repo.dart';
 import 'features/shared/auth/data/repos_impl/auth_repo_impl.dart';
+import 'features/shared/auth/domain/repos/auth_repo.dart';
 import 'features/shared/auth/presentation/cubit/auth_cubit.dart';
 import 'features/user_flow/auth/data/repos_impl/user_auth_repo_impl.dart';
+import 'features/user_flow/auth/domain/repos/user_auth_repo.dart';
 import 'features/user_flow/auth/presentation/cubit/cubit/user_auth_cubit.dart';
 import 'firebase_options.dart';
 import 'utils/app_logs.dart';
@@ -24,7 +26,7 @@ import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
 import 'features/shared/splash_screen/splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'utils/service_locator.dart';
+import 'utils/di.dart';
 import 'widgets/application_theme/application_theme.dart';
 import 'widgets/application_theme/theme_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -62,7 +64,7 @@ void main() async {
   SimpleBlocObserverService();
 
   await HiveStorage.init();
-  serviceLocator();
+  configureDependencies();
   await requestGalleryPermission();
   AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.accessToken)}');
   AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.refreshToken)}');
@@ -91,11 +93,11 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider<CraftAuthCubit>(
-            create: (context) => CraftAuthCubit(getIt<CraftAuthRepoImpl>())),
-               BlocProvider<UserAuthCubit>(
-            create: (context) => UserAuthCubit(getIt<UserAuthRepoImpl>())),
+            create: (context) => CraftAuthCubit(getIt<CraftAuthRepo>())),
+        BlocProvider<UserAuthCubit>(
+            create: (context) => UserAuthCubit(getIt<UserAuthRepo>())),
         BlocProvider<AuthCubit>(
-            create: (context) => AuthCubit(getIt<AuthRepoImpl>())),
+            create: (context) => AuthCubit(getIt<AuthRepo>())),
       ],
       child: DevicePreview(
         enabled: kDebugMode,

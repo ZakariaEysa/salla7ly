@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:salla7ly/data/hive_storage.dart';
 import 'package:salla7ly/features/craft_man_flow/auth/domain/repos/craft_auth_repo.dart';
 import 'package:salla7ly/services/failure_service.dart';
@@ -11,7 +12,7 @@ import '../../../data/model/craft_signup_body_model.dart';
 import '../../../data/model/send_verification_otp_model.dart';
 
 part 'craft_auth_state.dart';
-
+@injectable
 class CraftAuthCubit extends Cubit<CraftAuthState> {
   CraftAuthRepo craftAuthRepo;
   CraftAuthCubit(this.craftAuthRepo) : super(AuthInitial());
