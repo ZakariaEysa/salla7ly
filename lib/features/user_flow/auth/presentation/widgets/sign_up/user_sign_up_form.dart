@@ -6,7 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:salla7ly/generated/l10n.dart';
 import 'package:salla7ly/services/failure_service.dart';
 import 'package:salla7ly/utils/app_logs.dart';
-import 'package:salla7ly/utils/navigation.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../../config/app_router.dart';
 import 'package:salla7ly/utils/validation_utils.dart';
 import '../../../../../../widgets/custom_text_field.dart';
 import '../../../../../../widgets/failure_toast.dart';
@@ -118,7 +119,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   if (UserAuthCubit.get(context).isFirstOtp) {
                     UserAuthCubit.get(context).isFirstOtp = false;
 
-                    navigateTo(context: context, screen: UserOtp());
+                    context.push(AppRouter.userOtp);
                   }
                 } else if (state is SignUpErrorState) {
                   FailureToast.showToast(
@@ -145,8 +146,9 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(height: 20.h),
             AccountRow(
               title: S.of(context).alreadyHaveAccount,
-              navigationWidget: const SignInScreen(),
+              navigationRoute: AppRouter.signIn,
               text: S.of(context).signIn,
+              isReplace: true,
             ),
           ],
         ),

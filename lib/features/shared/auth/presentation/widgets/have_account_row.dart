@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/generated/l10n.dart';
-import 'package:salla7ly/utils/navigation.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../utils/app_logs.dart';
 
@@ -9,12 +9,14 @@ class AccountRow extends StatelessWidget {
   const AccountRow(
       {Key? key,
       required this.text,
-      required this.navigationWidget,
-      required this.title})
+      required this.navigationRoute,
+      required this.title,
+      this.isReplace = false})
       : super(key: key);
   final String text;
   final String title;
-  final Widget navigationWidget;
+  final String navigationRoute;
+  final bool isReplace; // Whether to replace the current route or push
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -33,11 +35,11 @@ class AccountRow extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            if (navigationWidget.toString() == "AccountTypeScreen") {
-              navigateTo(context: context, screen: navigationWidget);
-            } else
-              navigateAndRemoveUntil(
-                  context: context, screen: navigationWidget);
+            if (isReplace) {
+              context.go(navigationRoute);
+            } else {
+              context.push(navigationRoute);
+            }
           },
           style: TextButton.styleFrom(
             minimumSize: Size.zero,

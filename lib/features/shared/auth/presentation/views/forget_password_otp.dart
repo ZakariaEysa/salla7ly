@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:salla7ly/config/app_router.dart';
 import 'package:salla7ly/features/shared/auth/presentation/cubit/auth_cubit.dart';
 
 import '../../../../../utils/app_logs.dart';
-import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
@@ -68,7 +69,7 @@ class _ForgetPasswordOtpState extends State<ForgetPasswordOtp> {
           onPressed: () {
             AuthCubit.get(context).isFirstOtp = true;
 
-            navigatePop(context: context);
+            context.pop();
           },
         ),
       ),
@@ -171,10 +172,7 @@ class _ForgetPasswordOtpState extends State<ForgetPasswordOtp> {
             listener: (context, state) {
               AppLogs.scussessLog(state.toString());
               if (state is ValidateOtpSuccessState) {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => NewPassword()),
-                );
+                context.pushReplacement(AppRouter.newPassword);
 
                 // navigateAndRemoveUntil(
                 //     context: context,

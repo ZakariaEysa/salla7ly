@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -6,14 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/data/remote_data_source/craft_auth_remote_data_source.dart';
 import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
-import 'core/Network/api_service.dart';
 import 'features/craft_man_flow/auth/domain/repos/craft_auth_repo.dart';
-import 'features/shared/auth/data/repos_impl/auth_repo_impl.dart';
 import 'features/shared/auth/domain/repos/auth_repo.dart';
 import 'features/shared/auth/presentation/cubit/auth_cubit.dart';
-import 'features/user_flow/auth/data/repos_impl/user_auth_repo_impl.dart';
 import 'features/user_flow/auth/domain/repos/user_auth_repo.dart';
 import 'features/user_flow/auth/presentation/cubit/cubit/user_auth_cubit.dart';
 import 'firebase_options.dart';
@@ -24,12 +19,12 @@ import 'generated/l10n.dart';
 import 'services/simple_bloc_observer_service.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
-import 'features/shared/splash_screen/splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'utils/di.dart';
 import 'widgets/application_theme/application_theme.dart';
 import 'widgets/application_theme/theme_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'config/app_router.dart';
 
 //  client id
 //968497369177-jm8e12fp5ll1n7e710tmvd5r69uqcm6j.apps.googleusercontent.com
@@ -132,7 +127,8 @@ class MyApp extends ConsumerWidget {
           ensureScreenSize: true,
           splitScreenMode: true,
           builder: (_, child) {
-            return MaterialApp(
+            return MaterialApp.router(
+              routerConfig: AppRouter.router,
               theme: ApplicationTheme.lightTheme,
               darkTheme: ApplicationTheme.darkTheme,
               themeMode: getThemeMode(isDark),
@@ -151,7 +147,6 @@ class MyApp extends ConsumerWidget {
               builder: (context, child) {
                 return DevicePreview.appBuilder(context, child);
               },
-              home: const SplashScreen(),
             );
           },
         );

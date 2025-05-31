@@ -6,7 +6,8 @@ import 'package:salla7ly/features/shared/auth/presentation/views/sign_in.dart';
 
 import '../../../../../data/hive_storage.dart';
 import '../../../../../utils/app_logs.dart';
-import '../../../../../utils/navigation.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../config/app_router.dart';
 import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/custom_text_field.dart';
 import '../../../../../widgets/label_text.dart';
@@ -148,8 +149,7 @@ class _NewPasswordState extends State<NewPassword> {
 
                             // )
 
-                            navigateAndRemoveUntil(
-                                context: context, screen: HomeScreen());
+                            context.go(AppRouter.home);
 
                             // navigateAndRemoveUntil(
                             //     context: context,

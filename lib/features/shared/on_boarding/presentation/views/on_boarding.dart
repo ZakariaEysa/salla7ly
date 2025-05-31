@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_storage.dart';
-import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/custom_button.dart';
 import '../../../../../generated/l10n.dart';
-import '../../../auth/presentation/views/sign_in.dart';
+import '../../../../../config/app_router.dart';
 import '../widgets/dot_indicator.dart';
 import '../widgets/onboarding_content.dart';
 import '../widgets/navigation_buttons.dart';
@@ -54,7 +54,7 @@ class _OnBoardingState extends State<OnBoarding> {
     HiveStorage.set(HiveKeys.passUserOnboarding, true);
 
     // الانتقال إلى الشاشة الرئيسية
-    navigateAndRemoveUntil(context: context, screen: const SignInScreen());
+    context.go(AppRouter.signIn);
   }
 
   /// الحصول على عدد صفحات الأونبوردينج
