@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:injectable/injectable.dart';
-import 'package:salla7ly/core/Network/api_service.dart';
-import 'package:salla7ly/core/Network/end_points.dart';
+import '../../../../../core/Network/api_service.dart';
+import '../../../../../core/Network/end_points.dart';
 
 import '../../../../../utils/app_logs.dart';
 import '../model/auth_response_model.dart';

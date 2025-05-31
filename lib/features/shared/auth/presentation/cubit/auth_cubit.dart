@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:salla7ly/features/shared/auth/domain/repos/auth_repo.dart';
-import 'package:salla7ly/services/failure_service.dart';
+import '../../domain/repos/auth_repo.dart';
+import '../../../../../services/failure_service.dart';
 
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_storage.dart';

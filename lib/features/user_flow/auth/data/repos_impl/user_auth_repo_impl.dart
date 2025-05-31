@@ -3,11 +3,10 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../services/failure_service.dart';
 import '../../../../craft_man_flow/auth/data/model/send_verification_otp_model.dart';
-import '../../domain/repos/user_auth_repo.dart';
-import '../remote_data_source/user_auth_remote_data_source.dart';
-
 import '../../../../craft_man_flow/auth/data/model/signup_response_model.dart';
 import '../../data/model/user_signup_body_model.dart';
+import '../../domain/repos/user_auth_repo.dart';
+import '../remote_data_source/user_auth_remote_data_source.dart';
 
 @LazySingleton(as: UserAuthRepo)
 class UserAuthRepoImpl implements UserAuthRepo {

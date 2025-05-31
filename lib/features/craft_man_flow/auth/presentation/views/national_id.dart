@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
-import 'package:salla7ly/utils/app_logs.dart';
-import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
+import '../cubit/cubit/craft_auth_cubit.dart';
+import '../../../../../utils/app_logs.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
 
 import '../widgets/sign_up/upload_image_container.dart';
 import 'dart:convert';

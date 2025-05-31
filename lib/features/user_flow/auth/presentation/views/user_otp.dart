@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../utils/app_logs.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../../../config/app_router.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../../../utils/app_logs.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
-import '../../../../../generated/l10n.dart';
+import '../../../../shared/auth/presentation/widgets/auth_button.dart';
 import '../../../../shared/auth/presentation/widgets/otp/otp_textfield.dart';
 import '../../../../shared/auth/presentation/widgets/otp/timer.dart';
 import '../cubit/cubit/user_auth_cubit.dart';
-import '../../../../shared/auth/presentation/widgets/auth_button.dart';
 
 class UserOtp extends StatefulWidget {
   final Future<void> Function()? isSuccessOtp;

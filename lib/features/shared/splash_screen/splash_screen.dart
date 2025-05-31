@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../config/app_router.dart';
 import '../../../data/hive_keys.dart';
 import '../../../data/hive_storage.dart';
 import '../../../widgets/scaffold/scaffold_f.dart';
-import '../../../config/app_router.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

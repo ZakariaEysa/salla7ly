@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/generated/l10n.dart';
-import 'package:salla7ly/services/failure_service.dart';
-import 'package:salla7ly/utils/app_logs.dart';
+import '../../../../../../generated/l10n.dart';
+import '../../../../../../services/failure_service.dart';
+import '../../../../../../utils/app_logs.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../../config/app_router.dart';
-import 'package:salla7ly/utils/validation_utils.dart';
+import '../../../../../../utils/validation_utils.dart';
 import '../../../../../../widgets/custom_text_field.dart';
 import '../../../../../../widgets/failure_toast.dart';
 import '../../../../../../widgets/label_text.dart';

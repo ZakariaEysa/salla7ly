@@ -2,9 +2,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:salla7ly/data/hive_storage.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/domain/repos/craft_auth_repo.dart';
-import 'package:salla7ly/services/failure_service.dart';
+import '../../../../../../data/hive_storage.dart';
+import '../../../domain/repos/craft_auth_repo.dart';
+import '../../../../../../services/failure_service.dart';
 
 import '../../../../../../data/hive_keys.dart';
 import '../../../data/model/craft_signup_body_model.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
+
+import '../../../../../widgets/scaffold/scaffold_f.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

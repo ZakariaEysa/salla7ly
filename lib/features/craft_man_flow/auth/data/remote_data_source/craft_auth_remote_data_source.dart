@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:injectable/injectable.dart';
-import 'package:salla7ly/core/Network/api_service.dart';
-import 'package:salla7ly/core/Network/end_points.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/data/model/send_verification_otp_model.dart';
+import '../../../../../core/Network/api_service.dart';
+import '../../../../../core/Network/end_points.dart';
+import '../model/send_verification_otp_model.dart';
 
 import '../../../../../utils/app_logs.dart';
 import '../model/craft_signup_body_model.dart';

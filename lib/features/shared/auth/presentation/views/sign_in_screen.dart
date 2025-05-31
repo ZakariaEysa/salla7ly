@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/features/shared/auth/presentation/cubit/auth_cubit.dart';
-import 'package:salla7ly/widgets/failure_toast.dart';
-import 'package:salla7ly/widgets/loading_indicator.dart';
-import 'package:salla7ly/widgets/page_title.dart';
+import '../cubit/auth_cubit.dart';
+import '../../../../../widgets/failure_toast.dart';
+import '../../../../../widgets/loading_indicator.dart';
+import '../../../../../widgets/page_title.dart';
 
-import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
-import 'package:salla7ly/generated/l10n.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../../../services/failure_service.dart';
 import '../../../../../utils/app_logs.dart';
 import 'package:go_router/go_router.dart';

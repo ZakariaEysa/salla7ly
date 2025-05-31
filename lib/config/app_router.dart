@@ -1,17 +1,18 @@
 import 'package:go_router/go_router.dart';
-import '../features/craft_man_flow/auth/presentation/views/craftsman_otp_screen.dart';
-import '../features/shared/splash_screen/splash_screen.dart';
-import '../features/shared/on_boarding/presentation/views/on_boarding.dart';
-import '../features/shared/auth/presentation/views/sign_in_screen.dart';
-import '../features/shared/auth/presentation/views/account_type_screen.dart';
-import '../features/shared/auth/presentation/views/home_screen.dart';
-import '../features/shared/auth/presentation/views/forgot_password_screen.dart';
-import '../features/shared/auth/presentation/views/forgot_password_otp_screen.dart';
-import '../features/shared/auth/presentation/views/new_password_screen.dart';
-import '../features/user_flow/auth/presentation/views/user_sign_up_view.dart';
-import '../features/user_flow/auth/presentation/views/user_otp.dart';
+
 import '../features/craft_man_flow/auth/presentation/views/craftman_sign_up_view.dart';
+import '../features/craft_man_flow/auth/presentation/views/craftsman_otp_screen.dart';
 import '../features/craft_man_flow/auth/presentation/views/national_id.dart';
+import '../features/shared/auth/presentation/views/account_type_screen.dart';
+import '../features/shared/auth/presentation/views/forgot_password_otp_screen.dart';
+import '../features/shared/auth/presentation/views/forgot_password_screen.dart';
+import '../features/shared/auth/presentation/views/home_screen.dart';
+import '../features/shared/auth/presentation/views/new_password_screen.dart';
+import '../features/shared/auth/presentation/views/sign_in_screen.dart';
+import '../features/shared/on_boarding/presentation/views/on_boarding.dart';
+import '../features/shared/splash_screen/splash_screen.dart';
+import '../features/user_flow/auth/presentation/views/user_otp.dart';
+import '../features/user_flow/auth/presentation/views/user_sign_up_view.dart';
 
 /// App Router Configuration using GoRouter
 class AppRouter {

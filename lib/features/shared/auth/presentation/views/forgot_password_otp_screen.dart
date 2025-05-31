@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:salla7ly/config/app_router.dart';
-import 'package:salla7ly/features/shared/auth/presentation/cubit/auth_cubit.dart';
+import '../../../../../config/app_router.dart';
+import '../cubit/auth_cubit.dart';
 
 import '../../../../../utils/app_logs.dart';
 import '../../../../../widgets/loading_indicator.dart';

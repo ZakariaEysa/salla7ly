@@ -1,30 +1,31 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:device_preview/device_preview.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+import 'config/app_router.dart';
+import 'config/language_bloc/switch_language_bloc.dart';
+import 'data/hive_keys.dart';
+import 'data/hive_storage.dart';
 import 'features/craft_man_flow/auth/domain/repos/craft_auth_repo.dart';
+import 'features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 import 'features/shared/auth/domain/repos/auth_repo.dart';
 import 'features/shared/auth/presentation/cubit/auth_cubit.dart';
 import 'features/user_flow/auth/domain/repos/user_auth_repo.dart';
 import 'features/user_flow/auth/presentation/cubit/cubit/user_auth_cubit.dart';
 import 'firebase_options.dart';
-import 'utils/app_logs.dart';
-import 'data/hive_storage.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 import 'services/simple_bloc_observer_service.dart';
-import 'config/language_bloc/switch_language_bloc.dart';
-import 'data/hive_keys.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'utils/app_logs.dart';
 import 'utils/di.dart';
 import 'widgets/application_theme/application_theme.dart';
 import 'widgets/application_theme/theme_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'config/app_router.dart';
 
 //  client id
 //968497369177-jm8e12fp5ll1n7e710tmvd5r69uqcm6j.apps.googleusercontent.com

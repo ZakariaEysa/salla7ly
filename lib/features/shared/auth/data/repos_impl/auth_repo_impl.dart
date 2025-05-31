@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../../services/failure_service.dart';
 import '../../domain/repos/auth_repo.dart';
 import '../model/auth_response_model.dart';

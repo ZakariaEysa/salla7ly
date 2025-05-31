@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../widgets/auth_button.dart';
-
-import '../../../../../utils/app_logs.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../../../config/app_router.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/custom_text_field.dart';
 import '../../../../../widgets/label_text.dart';
-import '../../../../../widgets/scaffold/scaffold_f.dart';
-
-import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/loading_indicator.dart';
-
+import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../data/model/sign_in_model.dart';
 import '../cubit/auth_cubit.dart';
+import '../widgets/auth_button.dart';
 
 class NewPasswordScreen extends StatefulWidget {
   const NewPasswordScreen({super.key});
