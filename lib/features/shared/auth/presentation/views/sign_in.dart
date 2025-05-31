@@ -17,6 +17,7 @@ import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/custom_text_field.dart';
 import '../../../../../widgets/label_text.dart';
 
+import '../../../../craft_man_flow/auth/presentation/widgets/have_account_row.dart';
 import '../widgets/have_account_row.dart';
 import '../widgets/sign_in/forgot_password_button.dart';
 import '../widgets/sign_in/google_sign_in_button.dart';
