@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:salla7ly/config/app_router.dart';
+import 'package:salla7ly/features/shared/auth/presentation/cubit/auth_cubit.dart';
 
 import '../../../../../utils/app_logs.dart';
-import 'package:go_router/go_router.dart';
-import '../../../../../config/app_router.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
-import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
-import '../../../../craft_man_flow/auth/presentation/widgets/auth_button.dart';
+import '../widgets/auth_button.dart';
+import '../../data/model/send_forget_password_model.dart';
+import '../../data/model/validate_forget_password_otp_model.dart';
 import '../widgets/otp/otp_textfield.dart';
 import '../widgets/otp/timer.dart';
-import 'home_screen.dart';
 
-class CraftManOtp extends StatefulWidget {
+class ForgotPasswordOtpScreen extends StatefulWidget {
   final Future<void> Function()? isSuccessOtp;
-  CraftManOtp({super.key, this.isSuccessOtp});
+  const ForgotPasswordOtpScreen({super.key, this.isSuccessOtp});
+
   @override
-  _CraftManOtpState createState() => _CraftManOtpState();
+  State<ForgotPasswordOtpScreen> createState() =>
+      _ForgotPasswordOtpScreenState();
 }
 
-class _CraftManOtpState extends State<CraftManOtp> {
+class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
   @override
   void initState() {
     super.initState();
@@ -65,8 +68,7 @@ class _CraftManOtpState extends State<CraftManOtp> {
             color: Colors.white,
           ),
           onPressed: () {
-            CraftAuthCubit.get(context).isFirstOtp = true;
-
+            AuthCubit.get(context).isFirstOtp = true;
             context.pop();
           },
         ),
@@ -90,7 +92,7 @@ class _CraftManOtpState extends State<CraftManOtp> {
                   controller: N1,
                   currentFocus: F1,
                   nextFocus: F2,
-                  previousFocus: null, // أول حقل، مفيش قبله
+                  previousFocus: null,
                   nextField: nextField,
                   autofocus: true,
                 ),
@@ -140,11 +142,11 @@ class _CraftManOtpState extends State<CraftManOtp> {
               children: [
                 CountdownTimer(
                   onResend: () async {
-                    String email =
-                        CraftAuthCubit.get(context).emailController.text;
+                    String email = AuthCubit.get(context).emailController.text;
                     if (email.isNotEmpty) {
-                      // AuthCubit.get(context).sendOtp(email);
-                      CraftAuthCubit.get(context).sendVerificationOtp();
+                      AuthCubit.get(context).sendForgetPassword(
+                          sendForgetPasswordModel:
+                              SendForgetPasswordModel(email: email));
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -165,18 +167,17 @@ class _CraftManOtpState extends State<CraftManOtp> {
             ),
           ),
           SizedBox(height: 5.h),
-          BlocConsumer<CraftAuthCubit, CraftAuthState>(
+          BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
               AppLogs.scussessLog(state.toString());
-              if (state is SignUpSuccessState) {
-                context.go(AppRouter.home);
-              } else if (state is SignUpErrorState) {
-                // Fluttertoast.showToast(
-                //     msg: ServiceFailure(state.message.errorMsg).errorMsg);
+              if (state is ValidateOtpSuccessState) {
+                context.pushReplacement(AppRouter.newPassword);
+              } else if (state is AuthErrorState) {
+                // Handle error
               }
             },
             builder: (context, state) {
-              return state is SignUpLoadingState
+              return state is ResetPasswordLoadingState
                   ? const LoadingIndicator()
                   : AuthButton(
                       text: lang.Continue,
@@ -194,38 +195,25 @@ class _CraftManOtpState extends State<CraftManOtp> {
                             ),
                           );
                         } else {
-                          CraftAuthCubit.get(context).otp = N1.text +
+                          String otp = N1.text +
                               N2.text +
                               N3.text +
                               N4.text +
                               N5.text +
                               N6.text;
                           AppLogs.scussessLog("sending");
-                          CraftAuthCubit.get(context).craftManSignUp();
-
-                          // verifyOtp(context, otp);
+                          AuthCubit.get(context).validateForgetPasswordOtp(
+                              validateForgetPasswordOtpModel:
+                                  ValidateForgetPasswordOtpModel(
+                                      email: AuthCubit.get(context)
+                                          .emailController
+                                          .text,
+                                      otp: otp));
                         }
                       },
                     );
             },
           )
-          // ButtonBuilder(
-          //   text: 'Continue',
-          //   onTap: () {
-          //     if (N1.text.isEmpty || N2.text.isEmpty || N3.text.isEmpty || N4.text.isEmpty || N5.text.isEmpty || N6.text.isEmpty) {
-          //       ScaffoldMessenger.of(context).showSnackBar(
-          //         const SnackBar(
-          //           content: Text('Please enter all numbers OTP'),
-          //           backgroundColor: Colors.red,
-          //         ),
-          //       );
-          //     } else {
-          //       String otp = N1.text + N2.text + N3.text + N4.text + N5.text + N6.text;
-          //       print("OTP entered: $otp");
-          //       verifyOtp(context, otp);
-          //     }
-          //   },
-          // )
         ],
       ),
     );

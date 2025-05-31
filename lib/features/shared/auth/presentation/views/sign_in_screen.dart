@@ -16,16 +16,12 @@ import '../../../../../config/app_router.dart';
 import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/custom_text_field.dart';
 import '../../../../../widgets/label_text.dart';
-
-import '../../../../craft_man_flow/auth/presentation/widgets/have_account_row.dart';
 import '../widgets/have_account_row.dart';
-import '../widgets/sign_in/forgot_password_button.dart';
 import '../widgets/sign_in/google_sign_in_button.dart';
 import '../widgets/sign_in/or_sign_in_with_divider.dart';
 import '../widgets/auth_button.dart';
 import '../widgets/sign_in/welcome_text.dart';
-import 'account_type_screen.dart';
-import 'home_screen.dart';
+import '../widgets/sign_in/forgot_password_button.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -102,7 +98,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         return ValidationUtils.validateEmail(value, context);
                       },
                       prefixWidget: Image.asset("assets/icons/emailIcon.png"),
-                      // prefixIcon: Icons.mail,
                       hintText: S.of(context).emailHint,
                     ),
                     SizedBox(height: 20.h),
@@ -110,13 +105,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 10.h),
                     CustomTextField(
                       controller: AuthCubit.get(context).passwordController,
-
                       validator: (value) {
                         return ValidationUtils.validatePassword(value, context);
                       },
                       prefixWidget: Image.asset("assets/icons/lockIcon.png"),
                       suffixWidget: Image.asset("assets/icons/EyeIcon.png"),
-                      // prefixIcon: Icons.lock_outline,
                       hintText: S.of(context).passwordHint,
                       isPassword: true,
                       obscureText: _obscurePassword,
@@ -180,7 +173,6 @@ class _SignInScreenState extends State<SignInScreen> {
                       navigationRoute: AppRouter.accountType,
                       text: S.of(context).signUp,
                       isReplace: false,
-                      // التنقل إلى صفحة اختيار نوع الحساب
                     ),
                   ],
                 ),

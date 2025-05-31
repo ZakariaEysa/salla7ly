@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:salla7ly/config/app_router.dart';
-import 'package:salla7ly/features/shared/auth/presentation/cubit/auth_cubit.dart';
 
 import '../../../../../utils/app_logs.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../config/app_router.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
-import '../../../../craft_man_flow/auth/presentation/widgets/auth_button.dart';
-import '../../data/model/send_forget_password_model.dart';
-import '../../data/model/validate_forget_password_otp_model.dart';
-import '../widgets/otp/otp_textfield.dart';
-import '../widgets/otp/timer.dart';
-import 'new_password.dart';
+import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
+import '../../../../shared/auth/presentation/widgets/auth_button.dart';
+import '../../../../shared/auth/presentation/widgets/otp/otp_textfield.dart';
+import '../../../../shared/auth/presentation/widgets/otp/timer.dart';
 
-class ForgetPasswordOtp extends StatefulWidget {
+
+class CraftsmanOtpScreen extends StatefulWidget {
   final Future<void> Function()? isSuccessOtp;
-  ForgetPasswordOtp({super.key, this.isSuccessOtp});
+  const CraftsmanOtpScreen({super.key, this.isSuccessOtp});
+
   @override
-  _ForgetPasswordOtpState createState() => _ForgetPasswordOtpState();
+  State<CraftsmanOtpScreen> createState() => _CraftsmanOtpScreenState();
 }
 
-class _ForgetPasswordOtpState extends State<ForgetPasswordOtp> {
+class _CraftsmanOtpScreenState extends State<CraftsmanOtpScreen> {
   @override
   void initState() {
     super.initState();
@@ -67,8 +66,7 @@ class _ForgetPasswordOtpState extends State<ForgetPasswordOtp> {
             color: Colors.white,
           ),
           onPressed: () {
-            AuthCubit.get(context).isFirstOtp = true;
-
+            CraftAuthCubit.get(context).isFirstOtp = true;
             context.pop();
           },
         ),
@@ -92,7 +90,7 @@ class _ForgetPasswordOtpState extends State<ForgetPasswordOtp> {
                   controller: N1,
                   currentFocus: F1,
                   nextFocus: F2,
-                  previousFocus: null, // أول حقل، مفيش قبله
+                  previousFocus: null,
                   nextField: nextField,
                   autofocus: true,
                 ),
@@ -142,12 +140,10 @@ class _ForgetPasswordOtpState extends State<ForgetPasswordOtp> {
               children: [
                 CountdownTimer(
                   onResend: () async {
-                    String email = AuthCubit.get(context).emailController.text;
+                    String email =
+                        CraftAuthCubit.get(context).emailController.text;
                     if (email.isNotEmpty) {
-                      // AuthCubit.get(context).sendOtp(email);
-                      AuthCubit.get(context).sendForgetPassword(
-                          sendForgetPasswordModel:
-                              SendForgetPasswordModel(email: email));
+                      CraftAuthCubit.get(context).sendVerificationOtp();
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -168,24 +164,17 @@ class _ForgetPasswordOtpState extends State<ForgetPasswordOtp> {
             ),
           ),
           SizedBox(height: 5.h),
-          BlocConsumer<AuthCubit, AuthState>(
+          BlocConsumer<CraftAuthCubit, CraftAuthState>(
             listener: (context, state) {
               AppLogs.scussessLog(state.toString());
-              if (state is ValidateOtpSuccessState) {
-                context.pushReplacement(AppRouter.newPassword);
-
-                // navigateAndRemoveUntil(
-                //     context: context,
-                //     screen: Container(
-                //       child: Text("home Page"),
-                //     ));
-              } else if (state is AuthErrorState) {
-                // Fluttertoast.showToast(
-                //     msg: ServiceFailure(state.message.errorMsg).errorMsg);
+              if (state is SignUpSuccessState) {
+                context.go(AppRouter.home);
+              } else if (state is SignUpErrorState) {
+                // Handle error
               }
             },
             builder: (context, state) {
-              return state is ResetPasswordLoadingState
+              return state is SignUpLoadingState
                   ? const LoadingIndicator()
                   : AuthButton(
                       text: lang.Continue,
@@ -203,44 +192,19 @@ class _ForgetPasswordOtpState extends State<ForgetPasswordOtp> {
                             ),
                           );
                         } else {
-                          String otp = N1.text +
+                          CraftAuthCubit.get(context).otp = N1.text +
                               N2.text +
                               N3.text +
                               N4.text +
                               N5.text +
                               N6.text;
                           AppLogs.scussessLog("sending");
-                          AuthCubit.get(context).validateForgetPasswordOtp(
-                              validateForgetPasswordOtpModel:
-                                  ValidateForgetPasswordOtpModel(
-                                      email: AuthCubit.get(context)
-                                          .emailController
-                                          .text,
-                                      otp: otp));
-
-                          // verifyOtp(context, otp);
+                          CraftAuthCubit.get(context).craftManSignUp();
                         }
                       },
                     );
             },
           )
-          // ButtonBuilder(
-          //   text: 'Continue',
-          //   onTap: () {
-          //     if (N1.text.isEmpty || N2.text.isEmpty || N3.text.isEmpty || N4.text.isEmpty || N5.text.isEmpty || N6.text.isEmpty) {
-          //       ScaffoldMessenger.of(context).showSnackBar(
-          //         const SnackBar(
-          //           content: Text('Please enter all numbers OTP'),
-          //           backgroundColor: Colors.red,
-          //         ),
-          //       );
-          //     } else {
-          //       String otp = N1.text + N2.text + N3.text + N4.text + N5.text + N6.text;
-          //       print("OTP entered: $otp");
-          //       verifyOtp(context, otp);
-          //     }
-          //   },
-          // )
         ],
       ),
     );

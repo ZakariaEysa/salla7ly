@@ -14,10 +14,8 @@ import '../../../../../../widgets/custom_text_field.dart';
 import '../../../../../../widgets/failure_toast.dart';
 import '../../../../../../widgets/label_text.dart';
 import '../../../../../../widgets/loading_indicator.dart';
-import '../../../../../shared/auth/presentation/views/craft_man_otp.dart';
-import '../../../../../shared/auth/presentation/views/sign_in.dart';
-import '../have_account_row.dart';
-import '../auth_button.dart';
+import '../../../../../shared/auth/presentation/widgets/have_account_row.dart';
+import '../../../../../shared/auth/presentation/widgets/auth_button.dart';
 import 'birth_date_selector.dart';
 import 'upload_id_button.dart';
 
@@ -197,6 +195,13 @@ class _SignUpFormState extends State<SignUpForm> {
                         child: AuthButton(
                           onTap: () {
                             if (cubit.formKey.currentState!.validate()) {
+                              if (CraftAuthCubit.get(context).backId == null ||
+                                  CraftAuthCubit.get(context).frontId == null) {
+                                Fluttertoast.showToast(
+                                    msg:
+                                        "Please upload the National ID card first.");
+                                return;
+                              }
                               CraftAuthCubit.get(context).sendVerificationOtp();
                             }
                           },

@@ -100,6 +100,8 @@ class NationalId extends StatelessWidget {
     try {
       final ImagePicker picker = ImagePicker();
       final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+      print(picker);
+      print(image);
 
       if (image != null) {
         final bytes = await File(image.path).readAsBytes();
@@ -110,11 +112,11 @@ class NationalId extends StatelessWidget {
         return base64Image;
       } else {
         print('No image selected.');
-        return "";
+        return null;
       }
     } catch (e) {
       print('Error picking image: $e');
-      return "";
+      return null;
     }
   }
 }

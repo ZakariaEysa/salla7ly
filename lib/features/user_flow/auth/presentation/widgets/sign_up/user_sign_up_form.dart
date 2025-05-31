@@ -13,12 +13,9 @@ import '../../../../../../widgets/custom_text_field.dart';
 import '../../../../../../widgets/failure_toast.dart';
 import '../../../../../../widgets/label_text.dart';
 import '../../../../../../widgets/loading_indicator.dart';
-import '../../../../../craft_man_flow/auth/presentation/widgets/have_account_row.dart';
-import '../../../../../shared/auth/presentation/views/craft_man_otp.dart';
-import '../../../../../shared/auth/presentation/views/sign_in.dart';
+import '../../../../../shared/auth/presentation/widgets/have_account_row.dart';
 import '../../cubit/cubit/user_auth_cubit.dart';
-import '../../views/user_otp.dart';
-import '../auth_button.dart';
+import '../../../../../shared/auth/presentation/widgets/auth_button.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
