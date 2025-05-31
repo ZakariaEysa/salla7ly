@@ -61,5 +61,8 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>نحتاج إذن لحفظ الصور داخل مكتبة الصور.</string>
 
+	<key>FLTEnableImpeller</key>
+	<true/>
+
 </dict>
 </plist>

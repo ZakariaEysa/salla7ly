@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../config/app_router.dart';
 import '../../../data/hive_keys.dart';
 import '../../../data/hive_storage.dart';
+import '../../../utils/permission_handling.dart';
 import '../../../widgets/scaffold/scaffold_f.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,6 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    PermissionHandling().requestGalleryPermission();
+
     _navigateAfterDelay();
   }
 

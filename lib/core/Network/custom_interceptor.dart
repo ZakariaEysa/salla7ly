@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../utils/app_logs.dart';
 
@@ -61,21 +62,25 @@ class CustomRetryInterceptor extends Interceptor {
 class CustomLogInterceptor extends LogInterceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    AppLogs.debugLog('--> ${options.method} ${options.uri}');
-    options.headers.forEach((key, value) {
-      AppLogs.debugLog('$key: $value');
-    });
-    if (options.data != null) {
-      AppLogs.debugLog('Request body: ${options.data}');
+    if (kDebugMode) {
+      AppLogs.debugLog('--> ${options.method} ${options.uri}');
+      options.headers.forEach((key, value) {
+        AppLogs.debugLog('$key: $value');
+      });
+      if (options.data != null) {
+        AppLogs.debugLog('Request body: ${options.data}');
+      }
     }
     super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    AppLogs.debugLog(
-        '<-- ${response.statusCode} ${response.requestOptions.uri}');
-    AppLogs.debugLog('Response: ${response.data}');
+    if (kDebugMode) {
+      AppLogs.debugLog(
+          '<-- ${response.statusCode} ${response.requestOptions.uri}');
+      AppLogs.debugLog('Response: ${response.data}');
+    }
     super.onResponse(response, handler);
   }
 
