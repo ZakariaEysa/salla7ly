@@ -4,7 +4,7 @@ import 'package:salla7ly/generated/l10n.dart';
 
 /// كلاس لفاصل "أو تسجيل الدخول باستخدام"
 class OrSignInWithDivider extends StatelessWidget {
-  const OrSignInWithDivider({Key? key}) : super(key: key);
+  const OrSignInWithDivider({super.key});
 
   @override
   Widget build(BuildContext context) {

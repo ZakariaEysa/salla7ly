@@ -8,7 +8,6 @@ import '../../../../../config/app_router.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
-import '../../../../shared/auth/presentation/views/home_screen.dart';
 import '../../../../shared/auth/presentation/widgets/otp/otp_textfield.dart';
 import '../../../../shared/auth/presentation/widgets/otp/timer.dart';
 import '../cubit/cubit/user_auth_cubit.dart';
@@ -16,7 +15,7 @@ import '../../../../shared/auth/presentation/widgets/auth_button.dart';
 
 class UserOtp extends StatefulWidget {
   final Future<void> Function()? isSuccessOtp;
-  UserOtp({super.key, this.isSuccessOtp});
+  const UserOtp({super.key, this.isSuccessOtp});
   @override
   _UserOtpState createState() => _UserOtpState();
 }

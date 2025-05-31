@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'custom_interceptor.dart';
 import 'end_points.dart';
+
 @lazySingleton
 class ApiService {
   final Dio dio;

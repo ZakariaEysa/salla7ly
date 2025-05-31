@@ -29,15 +29,14 @@ abstract class AuthRemoteDataSource {
   Future<AuthResponseModel> signIn({required SignInModel signInModel});
 }
 
- @LazySingleton(as: AuthRemoteDataSource)
-
-
+@LazySingleton(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl(this.apiService, this._auth, this._googleSignIn);
   ApiService apiService;
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
 
+  @override
   Future<void> validateForgetPasswordOtp(
       {required ValidateForgetPasswordOtpModel
           validateForgetPasswordOtpModel}) async {
@@ -66,6 +65,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     }
   }
 
+  @override
   Future<void> sendForgetPassword(
       {required SendForgetPasswordModel sendForgetPasswordModel}) async {
     try {
@@ -93,6 +93,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     }
   }
 
+  @override
   Future<void> changePassword({required SignInModel signInModel}) async {
     try {
       final response = await apiService.postWithoutToken(
@@ -174,6 +175,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     }
   }
 
+  @override
   Future<GoogleSignInModel> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();

@@ -8,10 +8,10 @@ class AccountTypeButtonsRow extends StatefulWidget {
   final VoidCallback onCraftsmanPressed;
 
   const AccountTypeButtonsRow({
-    Key? key,
+    super.key,
     required this.onUserPressed,
     required this.onCraftsmanPressed,
-  }) : super(key: key);
+  });
 
   @override
   State<AccountTypeButtonsRow> createState() => _AccountTypeButtonsRowState();

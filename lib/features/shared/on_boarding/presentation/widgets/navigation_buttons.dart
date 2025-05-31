@@ -38,12 +38,12 @@ class OnboardingNavigationButtons extends StatelessWidget {
   /// [onPrevious] إجراء الانتقال للصفحة السابقة
   /// [onStart] إجراء بدء التطبيق من الصفحة الأخيرة
   const OnboardingNavigationButtons({
-    Key? key,
+    super.key,
     required this.type,
     this.onNext,
     this.onPrevious,
     this.onStart,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

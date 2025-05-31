@@ -87,7 +87,7 @@ class AppRouter {
       GoRoute(
         path: userOtp,
         name: 'userOtp',
-        builder: (context, state) => UserOtp(),
+        builder: (context, state) => const UserOtp(),
       ),
 
       // Craftman Flow Routes

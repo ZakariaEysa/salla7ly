@@ -12,7 +12,8 @@ class CustomRetryInterceptor extends Interceptor {
   });
 
   @override
-  Future<void> onError(DioError err, ErrorInterceptorHandler handler) async {
+  Future<void> onError(
+      DioException err, ErrorInterceptorHandler handler) async {
     bool shouldRetry = _shouldRetry(err);
     int attempt = (err.requestOptions.extra['retries'] ?? 0) as int;
 
@@ -47,11 +48,11 @@ class CustomRetryInterceptor extends Interceptor {
     return handler.next(err);
   }
 
-  bool _shouldRetry(DioError err) {
-    return err.type == DioErrorType.connectionTimeout ||
-        err.type == DioErrorType.receiveTimeout ||
-        err.type == DioErrorType.sendTimeout ||
-        err.type == DioErrorType.unknown;
+  bool _shouldRetry(DioException err) {
+    return err.type == DioExceptionType.connectionTimeout ||
+        err.type == DioExceptionType.receiveTimeout ||
+        err.type == DioExceptionType.sendTimeout ||
+        err.type == DioExceptionType.unknown;
   }
 }
 
@@ -76,7 +77,7 @@ class CustomLogInterceptor extends LogInterceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     print('⚠️ Error: ${err.message}');
     super.onError(err, handler);
   }

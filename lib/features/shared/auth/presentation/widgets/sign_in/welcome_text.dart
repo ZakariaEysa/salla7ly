@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 class WelcomeText extends StatelessWidget {
   final String text;
 
-  const WelcomeText({Key? key, required this.text}) : super(key: key);
+  const WelcomeText({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

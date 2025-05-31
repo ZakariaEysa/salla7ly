@@ -104,8 +104,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         : AuthButton(
                             text: 'Send',
                             onTap: () async {
-                              if (!formKeyForgot.currentState!.validate())
+                              if (!formKeyForgot.currentState!.validate()) {
                                 return;
+                              }
 
                               cubit.sendForgetPassword(
                                   sendForgetPasswordModel:

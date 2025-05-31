@@ -12,14 +12,14 @@ class OtpFieldWidget extends StatelessWidget {
   final bool autofocus;
 
   const OtpFieldWidget({
-    Key? key,
+    super.key,
     required this.controller,
     required this.currentFocus,
     required this.nextFocus,
     required this.nextField,
     this.previousFocus, // أضف هذا
     this.autofocus = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

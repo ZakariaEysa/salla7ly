@@ -1,5 +1,3 @@
-
-
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
@@ -10,15 +8,14 @@ import '../remote_data_source/user_auth_remote_data_source.dart';
 
 import '../../../../craft_man_flow/auth/data/model/signup_response_model.dart';
 import '../../data/model/user_signup_body_model.dart';
- @LazySingleton(as: UserAuthRepo)
 
+@LazySingleton(as: UserAuthRepo)
 class UserAuthRepoImpl implements UserAuthRepo {
   final UserAuthRemoteDataSource userAuthRemoteDataSource;
 
   UserAuthRepoImpl(this.userAuthRemoteDataSource);
 
   @override
-
   Future<Either<FailureService, void>> sendVerificationOtpModel(
       {required SendVerificationOtpModel sendVerificationOtpModel}) async {
     try {
@@ -32,7 +29,8 @@ class UserAuthRepoImpl implements UserAuthRepo {
   }
 
   @override
-  Future<Either<FailureService, SignupResponseModel>> userSignUp({required UserSignupBodyModel userSignupBodyModel})  async{
+  Future<Either<FailureService, SignupResponseModel>> userSignUp(
+      {required UserSignupBodyModel userSignupBodyModel}) async {
     try {
       final result = await userAuthRemoteDataSource.userSignUp(
           userSignupBodyModel: userSignupBodyModel);
@@ -42,6 +40,4 @@ class UserAuthRepoImpl implements UserAuthRepo {
       return Left(ServiceFailure(e.toString()));
     }
   }
-
- 
 }

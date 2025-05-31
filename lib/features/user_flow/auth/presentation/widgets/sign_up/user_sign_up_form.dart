@@ -1,8 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:salla7ly/generated/l10n.dart';
 import 'package:salla7ly/services/failure_service.dart';
 import 'package:salla7ly/utils/app_logs.dart';
@@ -18,7 +16,7 @@ import '../../cubit/cubit/user_auth_cubit.dart';
 import '../../../../../shared/auth/presentation/widgets/auth_button.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({Key? key}) : super(key: key);
+  const SignUpForm({super.key});
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();

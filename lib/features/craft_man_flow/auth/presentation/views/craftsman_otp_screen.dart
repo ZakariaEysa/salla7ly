@@ -13,7 +13,6 @@ import '../../../../shared/auth/presentation/widgets/auth_button.dart';
 import '../../../../shared/auth/presentation/widgets/otp/otp_textfield.dart';
 import '../../../../shared/auth/presentation/widgets/otp/timer.dart';
 
-
 class CraftsmanOtpScreen extends StatefulWidget {
   final Future<void> Function()? isSuccessOtp;
   const CraftsmanOtpScreen({super.key, this.isSuccessOtp});

@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +11,7 @@ import '../../../data/model/craft_signup_body_model.dart';
 import '../../../data/model/send_verification_otp_model.dart';
 
 part 'craft_auth_state.dart';
+
 @injectable
 class CraftAuthCubit extends Cubit<CraftAuthState> {
   CraftAuthRepo craftAuthRepo;
@@ -32,7 +32,7 @@ class CraftAuthCubit extends Cubit<CraftAuthState> {
   String? selectedYear = '2002';
   bool isLoaded = false;
   String otp = "";
-    bool isFirstOtp = true;
+  bool isFirstOtp = true;
 
   Future<void> sendVerificationOtp() async {
     emit(OtpLoadingState());

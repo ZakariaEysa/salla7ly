@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:salla7ly/features/shared/auth/presentation/cubit/auth_cubit.dart';
 import 'package:salla7ly/widgets/failure_toast.dart';
 import 'package:salla7ly/widgets/loading_indicator.dart';
@@ -24,7 +23,7 @@ import '../widgets/sign_in/welcome_text.dart';
 import '../widgets/sign_in/forgot_password_button.dart';
 
 class SignInScreen extends StatefulWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+  const SignInScreen({super.key});
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
@@ -130,7 +129,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       },
                       builder: (context, state) {
                         return state is SignInLoadingState
-                            ? LoadingIndicator()
+                            ? const LoadingIndicator()
                             : Align(
                                 alignment: Alignment.center,
                                 child: AuthButton(
@@ -159,7 +158,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       },
                       builder: (context, state) {
                         return state is GoogleAuthLoadingState
-                            ? LoadingIndicator()
+                            ? const LoadingIndicator()
                             : GoogleSignInButton(
                                 onTap: () {
                                   AuthCubit.get(context).signInWithGoogle();

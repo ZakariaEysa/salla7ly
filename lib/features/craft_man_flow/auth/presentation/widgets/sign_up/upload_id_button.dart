@@ -6,11 +6,11 @@ import '../../../../../../widgets/application_theme/theme_extention.dart';
 
 class UploadIdButton extends StatefulWidget {
   const UploadIdButton({
-    Key? key,
+    super.key,
     required this.width,
     required this.height,
     this.onTap,
-  }) : super(key: key);
+  });
   final double width;
   final double height;
   final void Function()? onTap;

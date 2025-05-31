@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/auth_button.dart';
 
-import '../../../../../data/hive_storage.dart';
 import '../../../../../utils/app_logs.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../config/app_router.dart';
@@ -12,11 +11,9 @@ import '../../../../../widgets/custom_text_field.dart';
 import '../../../../../widgets/label_text.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
-import '../../../../../data/hive_keys.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/loading_indicator.dart';
 
-import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 import '../../data/model/sign_in_model.dart';
 import '../cubit/auth_cubit.dart';
 

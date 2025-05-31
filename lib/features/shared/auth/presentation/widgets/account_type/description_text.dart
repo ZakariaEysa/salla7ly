@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class DescriptionText extends StatelessWidget {
   final String text;
 
-  const DescriptionText({Key? key, required this.text}) : super(key: key);
+  const DescriptionText({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

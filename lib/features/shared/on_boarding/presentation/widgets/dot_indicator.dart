@@ -24,12 +24,12 @@ class DotIndicator extends StatelessWidget {
   /// [inactiveColor] لون النقطة غير النشطة، الافتراضي أبيض
   /// [size] حجم النقطة بالبكسل، الافتراضي 12
   const DotIndicator({
-    Key? key,
+    super.key,
     required this.isActive,
     this.activeColor,
     this.inactiveColor,
     this.size = 12.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -76,13 +76,13 @@ class DotIndicatorRow extends StatelessWidget {
   /// [count] عدد النقاط/الصفحات
   /// [currentIndex] الفهرس الحالي النشط
   const DotIndicatorRow({
-    Key? key,
+    super.key,
     required this.count,
     required this.currentIndex,
     this.activeColor,
     this.inactiveColor,
     this.dotSize = 12.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

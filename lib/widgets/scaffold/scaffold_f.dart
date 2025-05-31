@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../application_theme/theme_extention.dart';
 
 class ScaffoldF extends StatelessWidget {

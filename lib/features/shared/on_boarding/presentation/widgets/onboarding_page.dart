@@ -15,10 +15,10 @@ class OnboardingPage extends StatelessWidget {
   /// [content] محتوى الصفحة من نص وصورة
   /// [padding] المساحة حول المحتوى
   const OnboardingPage({
-    Key? key,
+    super.key,
     required this.content,
     this.padding = const EdgeInsets.all(30),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

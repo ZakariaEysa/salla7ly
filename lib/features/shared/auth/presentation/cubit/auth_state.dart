@@ -16,9 +16,13 @@ final class SignInSuccessState extends AuthState {}
 final class GoogleAuthLoadingState extends AuthState {}
 
 final class GoogleAuthSuccessState extends AuthState {}
+
 final class ValidateOtpSuccessState extends AuthState {}
+
 final class SendForgetOtpSuccessState extends AuthState {}
+
 final class ResetPasswordSuccessState extends AuthState {}
+
 final class ResetPasswordLoadingState extends AuthState {}
 
 final class AuthErrorState extends AuthState {

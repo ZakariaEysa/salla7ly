@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,12 +10,11 @@ import '../../../../../craft_man_flow/auth/data/model/send_verification_otp_mode
 import '../../../data/model/user_signup_body_model.dart';
 import '../../../domain/repos/user_auth_repo.dart';
 
-
 part 'user_auth_state.dart';
-@injectable
 
+@injectable
 class UserAuthCubit extends Cubit<UserAuthState> {
-   UserAuthRepo userAuthRepo;
+  UserAuthRepo userAuthRepo;
   UserAuthCubit(this.userAuthRepo) : super(AuthInitial());
   static UserAuthCubit get(context) => BlocProvider.of<UserAuthCubit>(context);
 
@@ -44,15 +42,14 @@ class UserAuthCubit extends Cubit<UserAuthState> {
   Future<void> userSignUp() async {
     emit(SignUpLoadingState());
     final result = await userAuthRepo.userSignUp(
-        userSignupBodyModel: UserSignupBodyModel (
+        userSignupBodyModel: UserSignupBodyModel(
       confirmPassword: passwordController.text,
       email: emailController.text,
-     
+
       password: passwordController.text,
       userName: userNameController.text,
       otp: otp,
       // otp: "6209846",
-  
     ));
     result.fold(
         (l) => emit(SignUpErrorState(message: ServiceFailure(l.errorMsg))),

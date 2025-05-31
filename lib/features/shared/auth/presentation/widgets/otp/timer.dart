@@ -10,10 +10,10 @@ class CountdownTimer extends StatefulWidget {
   final VoidCallback onResend;
 
   const CountdownTimer({
-    Key? key,
+    super.key,
     this.startSeconds = 120,
     required this.onResend,
-  }) : super(key: key);
+  });
 
   @override
   State<CountdownTimer> createState() => _CountdownTimerState();
