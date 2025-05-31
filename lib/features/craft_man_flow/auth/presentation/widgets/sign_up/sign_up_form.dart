@@ -7,7 +7,8 @@ import 'package:salla7ly/features/craft_man_flow/auth/presentation/views/nationa
 import 'package:salla7ly/generated/l10n.dart';
 import 'package:salla7ly/services/failure_service.dart';
 import 'package:salla7ly/utils/app_logs.dart';
-import 'package:salla7ly/utils/navigation.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../../config/app_router.dart';
 import 'package:salla7ly/utils/validation_utils.dart';
 import '../../../../../../widgets/custom_text_field.dart';
 import '../../../../../../widgets/failure_toast.dart';
@@ -119,59 +120,55 @@ class _SignUpFormState extends State<SignUpForm> {
             UploadIdButton(
               onTap: () {
                 AppLogs.scussessLog("Upload ID");
-                navigateTo(
-                    context: context,
-                    screen: NationalId(
-                        onTap: () {
-                          AppLogs.scussessLog("front");
-                          AppLogs.scussessLog(
-                              CraftAuthCubit.get(context).frontId ?? "");
-                          AppLogs.scussessLog("Back");
+                context.push(
+                  AppRouter.nationalId,
+                  extra: {
+                    'text': "Upload the front of the National ID card.",
+                    'buttonText': "continue",
+                    'onTap': () {
+                      AppLogs.scussessLog("front");
+                      AppLogs.scussessLog(
+                          CraftAuthCubit.get(context).frontId ?? "");
+                      AppLogs.scussessLog("Back");
 
-                          AppLogs.scussessLog(
-                              CraftAuthCubit.get(context).backId ?? "");
-                          AppLogs.scussessLog("NextPage");
-                          if (CraftAuthCubit.get(context).frontId != null) {
-                            navigateTo(
-                                context: context,
-                                screen: NationalId(
-                                    onTap: () {
-                                      if (CraftAuthCubit.get(context).backId !=
-                                          null) {
-                                        int count = 0;
-                                        Navigator.popUntil(context, (route) {
-                                          return count++ == 2;
-                                        });
-                                        AppLogs.scussessLog("front");
-                                        AppLogs.scussessLog(
-                                            CraftAuthCubit.get(context)
-                                                    .frontId ??
-                                                "");
-                                        AppLogs.scussessLog("Back");
-
-                                        AppLogs.scussessLog(
-                                            CraftAuthCubit.get(context)
-                                                    .backId ??
-                                                "");
-                                      } else {
-                                        Fluttertoast.showToast(
-                                            msg:
-                                                "Please upload the back of the National ID card first.");
-                                      }
-                                    },
-                                    buttonText: "SignUp",
-                                    text:
-                                        "Upload the Back of the National ID card."));
-                          } else {
-                            AppLogs.scussessLog(
-                                CraftAuthCubit.get(context).frontId.toString());
-                            Fluttertoast.showToast(
-                                msg:
-                                    "Please upload the front of the National ID card first.");
-                          }
-                        },
-                        buttonText: "continue",
-                        text: "Upload the front of the National ID card."));
+                      AppLogs.scussessLog(
+                          CraftAuthCubit.get(context).backId ?? "");
+                      AppLogs.scussessLog("NextPage");
+                      if (CraftAuthCubit.get(context).frontId != null) {
+                        context.push(
+                          AppRouter.nationalId,
+                          extra: {
+                            'text': "Upload the Back of the National ID card.",
+                            'buttonText': "SignUp",
+                            'onTap': () {
+                              if (CraftAuthCubit.get(context).backId != null) {
+                                // Pop back to the signup form (2 screens back)
+                                context.pop(); // Pop back screen
+                                context.pop(); // Pop front screen
+                                AppLogs.scussessLog("front");
+                                AppLogs.scussessLog(
+                                    CraftAuthCubit.get(context).frontId ?? "");
+                                AppLogs.scussessLog("Back");
+                                AppLogs.scussessLog(
+                                    CraftAuthCubit.get(context).backId ?? "");
+                              } else {
+                                Fluttertoast.showToast(
+                                    msg:
+                                        "Please upload the back of the National ID card first.");
+                              }
+                            },
+                          },
+                        );
+                      } else {
+                        AppLogs.scussessLog(
+                            CraftAuthCubit.get(context).frontId.toString());
+                        Fluttertoast.showToast(
+                            msg:
+                                "Please upload the front of the National ID card first.");
+                      }
+                    },
+                  },
+                );
               },
               width: 300.w,
               height: 48.h,
@@ -183,7 +180,10 @@ class _SignUpFormState extends State<SignUpForm> {
                 AppLogs.scussessLog(state.toString());
 
                 if (state is OtpSuccessState) {
-                  navigateTo(context: context, screen: CraftManOtp());
+                  if (CraftAuthCubit.get(context).isFirstOtp) {
+                    CraftAuthCubit.get(context).isFirstOtp = false;
+                    context.push(AppRouter.craftmanOtp);
+                  }
                 } else if (state is SignUpErrorState) {
                   FailureToast.showToast(
                       ServiceFailure(state.message.errorMsg).errorMsg);
@@ -209,8 +209,9 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(height: 20.h),
             AccountRow(
               title: S.of(context).alreadyHaveAccount,
-              navigationWidget: const SignInScreen(),
+              navigationRoute: AppRouter.signIn,
               text: S.of(context).signIn,
+              isReplace: true,
             ),
           ],
         ),

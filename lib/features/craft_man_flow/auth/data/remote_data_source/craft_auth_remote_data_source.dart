@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:salla7ly/core/Network/api_service.dart';
 import 'package:salla7ly/core/Network/end_points.dart';
 import 'package:salla7ly/features/craft_man_flow/auth/data/model/send_verification_otp_model.dart';
@@ -16,6 +17,7 @@ abstract class CraftAuthRemoteDataSource {
       {required CraftSignupBodyModel craftSignupBodyModel});
 }
 
+@LazySingleton(as: CraftAuthRemoteDataSource)
 class CraftAuthRemoteDataSourceImpl implements CraftAuthRemoteDataSource {
   CraftAuthRemoteDataSourceImpl(this.apiService);
   ApiService apiService;

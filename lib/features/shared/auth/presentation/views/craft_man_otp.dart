@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../utils/app_logs.dart';
-import '../../../../../utils/navigation.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../config/app_router.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
@@ -58,6 +59,17 @@ class _CraftManOtpState extends State<CraftManOtp> {
         centerTitle: true,
         title: Text(lang.confirm_otp_code,
             style: theme.textTheme.bodyMedium?.copyWith(fontSize: 23.sp)),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            CraftAuthCubit.get(context).isFirstOtp = true;
+
+            context.pop();
+          },
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -157,7 +169,7 @@ class _CraftManOtpState extends State<CraftManOtp> {
             listener: (context, state) {
               AppLogs.scussessLog(state.toString());
               if (state is SignUpSuccessState) {
-                navigateAndRemoveUntil(context: context, screen: HomeScreen());
+                context.go(AppRouter.home);
               } else if (state is SignUpErrorState) {
                 // Fluttertoast.showToast(
                 //     msg: ServiceFailure(state.message.errorMsg).errorMsg);

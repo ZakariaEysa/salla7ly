@@ -15,7 +15,8 @@ import '../cubit/auth_cubit.dart';
 import 'new_password.dart';
 import 'craft_man_otp.dart';
 
-import '../../../../../utils/navigation.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../config/app_router.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/validation_utils.dart';
@@ -93,7 +94,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   listener: (context, state) {
                     AppLogs.scussessLog(state.toString());
                     if (state is SendForgetOtpSuccessState) {
-                      navigateTo(context: context, screen: ForgetPasswordOtp());
+                      if (AuthCubit.get(context).isFirstOtp) {
+                        AuthCubit.get(context).isFirstOtp = false;
+
+                        context.push(AppRouter.forgotPasswordOtp);
+                      }
 
                       // navigateAndRemoveUntil(
                       //     context: context,

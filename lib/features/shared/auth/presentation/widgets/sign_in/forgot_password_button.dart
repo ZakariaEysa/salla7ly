@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/generated/l10n.dart';
 
-import '../../../../../../utils/navigation.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../../config/app_router.dart';
 import '../../views/forget.dart';
 
 /// كلاس لزر نسيت كلمة المرور
@@ -17,7 +18,7 @@ class ForgotPasswordButton extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {
-          navigateTo(context: context, screen: ForgotPassword());
+          context.push(AppRouter.forgotPassword);
         },
         child: Text(
           S.of(context).forgotPassword,

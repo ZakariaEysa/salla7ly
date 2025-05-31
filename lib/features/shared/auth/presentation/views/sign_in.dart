@@ -11,7 +11,8 @@ import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
 import 'package:salla7ly/generated/l10n.dart';
 import '../../../../../services/failure_service.dart';
 import '../../../../../utils/app_logs.dart';
-import '../../../../../utils/navigation.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../config/app_router.dart';
 import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/custom_text_field.dart';
 import '../../../../../widgets/label_text.dart';
@@ -127,8 +128,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         AppLogs.scussessLog(state.toString());
 
                         if (state is SignInSuccessState) {
-                          navigateAndRemoveUntil(
-                              context: context, screen: HomeScreen());
+                          context.go(AppRouter.home);
                         } else if (state is AuthErrorState) {
                           FailureToast.showToast(
                               ServiceFailure(state.message.errorMsg).errorMsg);
@@ -157,8 +157,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         AppLogs.scussessLog(state.toString());
 
                         if (state is GoogleAuthSuccessState) {
-                          navigateAndRemoveUntil(
-                              context: context, screen: HomeScreen());
+                          context.go(AppRouter.home);
                         } else if (state is AuthErrorState) {
                           FailureToast.showToast(
                               ServiceFailure(state.message.errorMsg).errorMsg);
@@ -177,8 +176,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 30.h),
                     AccountRow(
                       title: S.of(context).dontHaveAccount,
-                      navigationWidget: const AccountTypeScreen(),
+                      navigationRoute: AppRouter.accountType,
                       text: S.of(context).signUp,
+                      isReplace: false,
                       // التنقل إلى صفحة اختيار نوع الحساب
                     ),
                   ],

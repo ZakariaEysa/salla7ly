@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/features/shared/auth/presentation/views/sign_in.dart';
+import 'package:go_router/go_router.dart';
 import '../../../data/hive_keys.dart';
 import '../../../data/hive_storage.dart';
-import '../../../utils/navigation.dart';
 import '../../../widgets/scaffold/scaffold_f.dart';
-import '../auth/presentation/views/home_screen.dart';
-import '../on_boarding/presentation/views/on_boarding.dart';
+import '../../../config/app_router.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,17 +16,23 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    super.initState();
+    _navigateAfterDelay();
+  }
+
+  void _navigateAfterDelay() {
     Future.delayed(const Duration(seconds: 3), () {
-      if (HiveStorage.get(
-            HiveKeys.passUserOnboarding,
-          ) ==
-          true) {
-        navigateAndReplace(context: context, screen: const SignInScreen());
+      if (!mounted) return;
+
+      final bool hasCompletedOnboarding =
+          HiveStorage.get(HiveKeys.passUserOnboarding) ?? false;
+
+      if (!hasCompletedOnboarding) {
+        context.go(AppRouter.onboarding);
       } else {
-        navigateAndReplace(context: context, screen: const OnBoarding());
+        context.go(AppRouter.signIn);
       }
     });
-    super.initState();
   }
 
   @override

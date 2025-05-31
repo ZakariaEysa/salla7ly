@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:salla7ly/core/Network/api_service.dart';
 import 'package:salla7ly/core/Network/end_points.dart';
 
@@ -16,6 +17,7 @@ abstract class UserAuthRemoteDataSource {
       {required UserSignupBodyModel userSignupBodyModel});
 }
 
+@LazySingleton(as: UserAuthRemoteDataSource)
 class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource {
   UserAuthRemoteDataSourceImpl(this.apiService);
   ApiService apiService;

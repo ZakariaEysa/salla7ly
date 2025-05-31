@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:salla7ly/features/shared/auth/domain/repos/auth_repo.dart';
 import 'package:salla7ly/services/failure_service.dart';
 
@@ -16,15 +17,18 @@ import '../../data/model/validate_forget_password_otp_model.dart';
 
 part 'auth_state.dart';
 
+@injectable
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this.authRepo) : super(AuthInitial());
   static AuthCubit get(context) => BlocProvider.of<AuthCubit>(context);
   final passwordController = TextEditingController();
-    final confirmPasswordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   bool obscurePassword = true;
   bool obscureConfirmPassword = true;
   final emailController = TextEditingController();
   AuthRepo authRepo;
+  bool isFirstOtp = true;
+
   Future<void> signIn() async {
     emit(SignInLoadingState());
     final result = await authRepo.signIn(

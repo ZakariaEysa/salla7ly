@@ -1,6 +1,7 @@
 
 
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../../services/failure_service.dart';
 import '../../../../craft_man_flow/auth/data/model/send_verification_otp_model.dart';
@@ -9,6 +10,8 @@ import '../remote_data_source/user_auth_remote_data_source.dart';
 
 import '../../../../craft_man_flow/auth/data/model/signup_response_model.dart';
 import '../../data/model/user_signup_body_model.dart';
+ @LazySingleton(as: UserAuthRepo)
+
 class UserAuthRepoImpl implements UserAuthRepo {
   final UserAuthRemoteDataSource userAuthRemoteDataSource;
 

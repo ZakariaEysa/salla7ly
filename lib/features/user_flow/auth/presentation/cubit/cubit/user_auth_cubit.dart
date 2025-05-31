@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:salla7ly/data/hive_storage.dart';
 import 'package:salla7ly/services/failure_service.dart';
 
@@ -12,6 +13,7 @@ import '../../../domain/repos/user_auth_repo.dart';
 
 
 part 'user_auth_state.dart';
+@injectable
 
 class UserAuthCubit extends Cubit<UserAuthState> {
    UserAuthRepo userAuthRepo;
@@ -25,6 +27,7 @@ class UserAuthCubit extends Cubit<UserAuthState> {
   final userFormKey = GlobalKey<FormState>();
   bool obscurePassword = true;
   bool obscureConfirmPassword = true;
+  bool isFirstOtp = true;
 
   bool isLoaded = false;
   String otp = "";
