@@ -118,7 +118,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 10.h),
                     BlocConsumer<AuthCubit, AuthState>(
                       listener: (context, state) {
-                        AppLogs.scussessLog(state.toString());
+                        AppLogs.successLog(state.toString());
 
                         if (state is SignInSuccessState) {
                           context.go(AppRouter.home);
@@ -147,7 +147,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 30.h),
                     BlocConsumer<AuthCubit, AuthState>(
                       listener: (context, state) {
-                        AppLogs.scussessLog(state.toString());
+                        AppLogs.successLog(state.toString());
 
                         if (state is GoogleAuthSuccessState) {
                           context.go(AppRouter.home);

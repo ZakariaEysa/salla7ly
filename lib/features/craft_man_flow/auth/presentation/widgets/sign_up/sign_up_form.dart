@@ -116,21 +116,21 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(height: 20.h),
             UploadIdButton(
               onTap: () {
-                AppLogs.scussessLog("Upload ID");
+                AppLogs.successLog("Upload ID");
                 context.push(
                   AppRouter.nationalId,
                   extra: {
                     'text': "Upload the front of the National ID card.",
                     'buttonText': "continue",
                     'onTap': () {
-                      AppLogs.scussessLog("front");
-                      AppLogs.scussessLog(
+                      AppLogs.successLog("front");
+                      AppLogs.successLog(
                           CraftAuthCubit.get(context).frontId ?? "");
-                      AppLogs.scussessLog("Back");
+                      AppLogs.successLog("Back");
 
-                      AppLogs.scussessLog(
+                      AppLogs.successLog(
                           CraftAuthCubit.get(context).backId ?? "");
-                      AppLogs.scussessLog("NextPage");
+                      AppLogs.successLog("NextPage");
                       if (CraftAuthCubit.get(context).frontId != null) {
                         context.push(
                           AppRouter.nationalId,
@@ -142,11 +142,11 @@ class _SignUpFormState extends State<SignUpForm> {
                                 // Pop back to the signup form (2 screens back)
                                 context.pop(); // Pop back screen
                                 context.pop(); // Pop front screen
-                                AppLogs.scussessLog("front");
-                                AppLogs.scussessLog(
+                                AppLogs.successLog("front");
+                                AppLogs.successLog(
                                     CraftAuthCubit.get(context).frontId ?? "");
-                                AppLogs.scussessLog("Back");
-                                AppLogs.scussessLog(
+                                AppLogs.successLog("Back");
+                                AppLogs.successLog(
                                     CraftAuthCubit.get(context).backId ?? "");
                               } else {
                                 Fluttertoast.showToast(
@@ -157,7 +157,7 @@ class _SignUpFormState extends State<SignUpForm> {
                           },
                         );
                       } else {
-                        AppLogs.scussessLog(
+                        AppLogs.successLog(
                             CraftAuthCubit.get(context).frontId.toString());
                         Fluttertoast.showToast(
                             msg:
@@ -174,7 +174,7 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(height: 30.h),
             BlocConsumer<CraftAuthCubit, CraftAuthState>(
               listener: (context, state) {
-                AppLogs.scussessLog(state.toString());
+                AppLogs.successLog(state.toString());
 
                 if (state is OtpSuccessState) {
                   if (CraftAuthCubit.get(context).isFirstOtp) {

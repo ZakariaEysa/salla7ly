@@ -84,13 +84,13 @@ class NationalId extends StatelessWidget {
   }
 
   Future<String> uploadFrontId(context) async {
-    AppLogs.scussessLog("this is front");
+    AppLogs.successLog("this is front");
     CraftAuthCubit.get(context).frontId = await pickImageAndConvertToBase64();
     return CraftAuthCubit.get(context).frontId!;
   }
 
   Future<String> uploadBackId(context) async {
-    AppLogs.scussessLog("this is back");
+    AppLogs.successLog("this is back");
     CraftAuthCubit.get(context).backId = await pickImageAndConvertToBase64();
     return CraftAuthCubit.get(context).backId!;
   }
@@ -99,22 +99,20 @@ class NationalId extends StatelessWidget {
     try {
       final ImagePicker picker = ImagePicker();
       final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-      print(picker);
-      print(image);
 
       if (image != null) {
         final bytes = await File(image.path).readAsBytes();
         final base64Image = base64Encode(bytes);
 
-        print(' image selected.');
+        AppLogs.debugLog(' image selected.');
 
         return base64Image;
       } else {
-        print('No image selected.');
+        AppLogs.debugLog('No image selected.');
         return null;
       }
     } catch (e) {
-      print('Error picking image: $e');
+      AppLogs.debugLog('Error picking image: $e');
       return null;
     }
   }

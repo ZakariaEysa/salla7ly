@@ -33,8 +33,7 @@ class _UploadIdButtonState extends State<UploadIdButton>
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(
-          milliseconds: 3500), // تصحيح: استخدام ميلي ثانية (4 ثواني) لحركة أبطأ
-    );
+          milliseconds: 3500), );
 
     _shimmerAnimation = Tween<double>(
       begin: -0.5,
@@ -42,8 +41,7 @@ class _UploadIdButtonState extends State<UploadIdButton>
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Curves.easeInOutSine, // منحنى حركة أكثر سلاسة
-      ),
+        curve: Curves.easeInOutSine, ),
     );
 
     _animationController.repeat();
@@ -55,7 +53,6 @@ class _UploadIdButtonState extends State<UploadIdButton>
     super.dispose();
   }
 
-  // تشغيل أنيميشن الضغط
   void _handleTapDown(TapDownDetails details) {
     if (!_isPressed) {
       setState(() {
@@ -64,7 +61,6 @@ class _UploadIdButtonState extends State<UploadIdButton>
     }
   }
 
-  // تشغيل أنيميشن إنهاء الضغط
   void _handleTapUp(TapUpDetails details) {
     if (_isPressed) {
       setState(() {
@@ -73,7 +69,6 @@ class _UploadIdButtonState extends State<UploadIdButton>
     }
   }
 
-  // تشغيل أنيميشن إلغاء الضغط
   void _handleTapCancel() {
     if (_isPressed) {
       setState(() {
@@ -82,17 +77,15 @@ class _UploadIdButtonState extends State<UploadIdButton>
     }
   }
 
-  // إنشاء تدرج الضوء المتحرك
   LinearGradient _createShimmerGradient(bool isRTL) {
     return LinearGradient(
-      // اختيار اتجاه الحركة حسب لغة التطبيق
       begin: isRTL ? Alignment.centerRight : Alignment.centerLeft,
       end: isRTL ? Alignment.centerLeft : Alignment.centerRight,
       colors: const [
         Colors.transparent,
-        Color(0x66B3E5FC), // لون أزرق فاتح شفاف مناسب للتصميم العام
-        Color(0x66B3E5FC), // لون أزرق فاتح شفاف مناسب للتصميم العام
-        Color(0x66B3E5FC), // لون أزرق فاتح شفاف مناسب للتصميم العام
+        Color(0x66B3E5FC), 
+        Color(0x66B3E5FC),  
+        Color(0x66B3E5FC), 
         Colors.transparent,
       ],
       stops: [
@@ -105,7 +98,6 @@ class _UploadIdButtonState extends State<UploadIdButton>
     );
   }
 
-  // بناء زر نصي مع أيقونة للأمام
   Widget _buildTextButton(ThemeData theme, bool isRTL) {
     return GestureDetector(
       onTap: widget.onTap,
@@ -149,7 +141,6 @@ class _UploadIdButtonState extends State<UploadIdButton>
                   ),
                 ),
 
-                // طبقة تأثير الضوء المتحرك
                 Positioned.fill(
                   child: AnimatedBuilder(
                     animation: _shimmerAnimation,
@@ -171,7 +162,6 @@ class _UploadIdButtonState extends State<UploadIdButton>
     );
   }
 
-  // بناء زر أيقونة للرجوع (بدون تأثير الضوء)
   Widget _buildIconButton(bool isRTL) {
     return RepaintBoundary(
       child: AnimatedScale(
@@ -201,7 +191,6 @@ class _UploadIdButtonState extends State<UploadIdButton>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    // تحديد اتجاه النص (RTL للعربية، LTR للإنجليزية)
     final isRTL = Directionality.of(context) == TextDirection.rtl;
 
     return Row(

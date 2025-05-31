@@ -46,7 +46,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           body: validateForgetPasswordOtpModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         AppLogs.infoLog(response.data.toString());
         // AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
         // return validateForgetPasswordOtpModel.fromJson(response.data);
@@ -74,7 +74,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           body: sendForgetPasswordModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         AppLogs.infoLog(response.data.toString());
         // AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
         // return AuthResponseModel.fromJson(response.data);
@@ -100,7 +100,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           endPoint: EndPoints.resetPassword, body: signInModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         AppLogs.infoLog(response.data.toString());
         // AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
         // return AuthResponseModel.fromJson(response.data);
@@ -130,7 +130,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       });
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         AppLogs.infoLog(response.data.toString());
         AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
         return AuthResponseModel.fromJson(response.data);
@@ -156,7 +156,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           endPoint: EndPoints.login, body: signInModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         AppLogs.infoLog(response.data.toString());
         AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
         return AuthResponseModel.fromJson(response.data);

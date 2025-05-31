@@ -15,8 +15,8 @@ class AppLogs {
     }
   }
 
-//*scussess
-  static void scussessLog(String message, [String tag = 'Success']) {
+//*Success
+  static void successLog(String message, [String tag = 'Success']) {
     if (kDebugMode) {
       print('$tag✅✅✅✅✅✅✅✅✅✅✅✅✅: $message');
     }

@@ -94,7 +94,7 @@ class _UploadImageContainerState extends State<UploadImageContainer> {
                 GestureDetector(
                   onTap: () async {
                     String? image = await widget.onTap();
-                    print("image");
+                 
                     if (image != "") {
                       isLoaded = true;
                     }
@@ -221,7 +221,7 @@ class _UploadImageContainerState extends State<UploadImageContainer> {
 
     showDialog(
       context: context,
-      barrierDismissible: true, // تقدر تقفله بالضغط برا
+      barrierDismissible: true,   
       builder: (context) {
         return Dialog(
           backgroundColor: Colors.transparent,

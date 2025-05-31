@@ -128,7 +128,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                       ),
                       BlocConsumer<AuthCubit, AuthState>(
                         listener: (context, state) {
-                          AppLogs.scussessLog(state.toString());
+                          AppLogs.successLog(state.toString());
                           if (state is ResetPasswordSuccessState) {
                             context.go(AppRouter.home);
                           } else if (state is AuthErrorState) {

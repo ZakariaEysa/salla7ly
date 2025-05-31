@@ -108,7 +108,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
             BlocConsumer<UserAuthCubit, UserAuthState>(
               listener: (context, state) {
-                AppLogs.scussessLog(state.toString());
+                AppLogs.successLog(state.toString());
 
                 if (state is OtpSuccessState) {
                   if (UserAuthCubit.get(context).isFirstOtp) {

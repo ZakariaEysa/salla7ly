@@ -169,7 +169,7 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
           SizedBox(height: 5.h),
           BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
-              AppLogs.scussessLog(state.toString());
+              AppLogs.successLog(state.toString());
               if (state is ValidateOtpSuccessState) {
                 context.pushReplacement(AppRouter.newPassword);
               } else if (state is AuthErrorState) {
@@ -201,7 +201,7 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
                               otpController4.text +
                               otpController5.text +
                               otpController6.text;
-                          AppLogs.scussessLog("sending");
+                          AppLogs.successLog("sending");
                           AuthCubit.get(context).validateForgetPasswordOtp(
                               validateForgetPasswordOtpModel:
                                   ValidateForgetPasswordOtpModel(

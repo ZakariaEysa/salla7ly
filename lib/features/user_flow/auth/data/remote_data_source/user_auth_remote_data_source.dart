@@ -30,7 +30,7 @@ class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource {
           body: sendVerificationOtpModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         // return response.data["results"] ?? []; // إرجاع المعاملات
       } else {
         AppLogs.errorLog(response.data.toString());
@@ -51,7 +51,7 @@ class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource {
           endPoint: EndPoints.userSignUp, body: userSignupBodyModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         return SignupResponseModel.fromJson(response.data);
       } else {
         AppLogs.errorLog(response.data.toString());

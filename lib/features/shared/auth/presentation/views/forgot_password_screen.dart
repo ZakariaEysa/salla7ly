@@ -85,7 +85,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
                 BlocConsumer<AuthCubit, AuthState>(
                   listener: (context, state) {
-                    AppLogs.scussessLog(state.toString());
+                    AppLogs.successLog(state.toString());
                     if (state is SendForgetOtpSuccessState) {
                       if (AuthCubit.get(context).isFirstOtp) {
                         AuthCubit.get(context).isFirstOtp = false;

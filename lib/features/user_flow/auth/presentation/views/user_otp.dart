@@ -166,7 +166,7 @@ class _UserOtpState extends State<UserOtp> {
           SizedBox(height: 5.h),
           BlocConsumer<UserAuthCubit, UserAuthState>(
             listener: (context, state) {
-              AppLogs.scussessLog(state.toString());
+              AppLogs.successLog(state.toString());
               if (state is SignUpSuccessState) {
                 context.go(AppRouter.home);
               } else if (state is SignUpErrorState) {
@@ -199,7 +199,7 @@ class _UserOtpState extends State<UserOtp> {
                               otpController4.text +
                               otpController5.text +
                               otpController6.text;
-                          AppLogs.scussessLog("sending");
+                          AppLogs.successLog("sending");
                           UserAuthCubit.get(context).userSignUp();
 
                           // verifyOtp(context, otp);
@@ -220,7 +220,6 @@ class _UserOtpState extends State<UserOtp> {
           //       );
           //     } else {
           //       String otp = N1.text + N2.text + N3.text + N4.text + N5.text + N6.text;
-          //       print("OTP entered: $otp");
           //       verifyOtp(context, otp);
           //     }
           //   },

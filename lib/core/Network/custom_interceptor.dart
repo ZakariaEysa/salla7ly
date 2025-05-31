@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 
+import '../../utils/app_logs.dart';
+
 class CustomRetryInterceptor extends Interceptor {
   final Dio dio;
   final int retries;
@@ -41,7 +43,7 @@ class CustomRetryInterceptor extends Interceptor {
         );
         return handler.resolve(response);
       } catch (e) {
-        return handler.next(err); // حاول وفشل
+        return handler.next(err);   
       }
     }
 
@@ -59,26 +61,27 @@ class CustomRetryInterceptor extends Interceptor {
 class CustomLogInterceptor extends LogInterceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    print('--> ${options.method} ${options.uri}');
+    AppLogs.debugLog('--> ${options.method} ${options.uri}');
     options.headers.forEach((key, value) {
-      print('$key: $value');
+      AppLogs.debugLog('$key: $value');
     });
     if (options.data != null) {
-      print('Request body: ${options.data}');
+      AppLogs.debugLog('Request body: ${options.data}');
     }
     super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    print('<-- ${response.statusCode} ${response.requestOptions.uri}');
-    print('Response: ${response.data}');
+    AppLogs.debugLog(
+        '<-- ${response.statusCode} ${response.requestOptions.uri}');
+    AppLogs.debugLog('Response: ${response.data}');
     super.onResponse(response, handler);
   }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    print('⚠️ Error: ${err.message}');
+    AppLogs.debugLog('⚠️ Error: ${err.message}');
     super.onError(err, handler);
   }
 }
