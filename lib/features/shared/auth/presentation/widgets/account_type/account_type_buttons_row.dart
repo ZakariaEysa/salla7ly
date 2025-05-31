@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/generated/l10n.dart';
+import '../../../../../../generated/l10n.dart';
 
 /// كلاس لصف أزرار اختيار نوع الحساب
 class AccountTypeButtonsRow extends StatefulWidget {
@@ -8,10 +8,10 @@ class AccountTypeButtonsRow extends StatefulWidget {
   final VoidCallback onCraftsmanPressed;
 
   const AccountTypeButtonsRow({
-    Key? key,
+    super.key,
     required this.onUserPressed,
     required this.onCraftsmanPressed,
-  }) : super(key: key);
+  });
 
   @override
   State<AccountTypeButtonsRow> createState() => _AccountTypeButtonsRowState();

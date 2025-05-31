@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../../services/failure_service.dart';
 import '../../domain/repos/auth_repo.dart';
 import '../model/auth_response_model.dart';
@@ -9,7 +10,7 @@ import '../model/sign_in_model.dart';
 import '../model/validate_forget_password_otp_model.dart';
 import '../remote_data_source/auth_remote_data_source.dart';
 
- @LazySingleton(as: AuthRepo)
+@LazySingleton(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {
   final AuthRemoteDataSource authRemoteDataSource;
 

@@ -1,9 +1,8 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:salla7ly/core/Network/api_service.dart';
-import 'package:salla7ly/core/Network/end_points.dart';
+import '../../../../../core/Network/api_service.dart';
+import '../../../../../core/Network/end_points.dart';
 
 import '../../../../../utils/app_logs.dart';
 import '../../../../craft_man_flow/auth/data/model/send_verification_otp_model.dart';
@@ -31,7 +30,7 @@ class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource {
           body: sendVerificationOtpModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         // return response.data["results"] ?? []; // إرجاع المعاملات
       } else {
         AppLogs.errorLog(response.data.toString());
@@ -52,7 +51,7 @@ class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource {
           endPoint: EndPoints.userSignUp, body: userSignupBodyModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         return SignupResponseModel.fromJson(response.data);
       } else {
         AppLogs.errorLog(response.data.toString());

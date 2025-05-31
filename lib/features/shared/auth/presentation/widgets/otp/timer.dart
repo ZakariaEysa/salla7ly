@@ -10,10 +10,10 @@ class CountdownTimer extends StatefulWidget {
   final VoidCallback onResend;
 
   const CountdownTimer({
-    Key? key,
+    super.key,
     this.startSeconds = 120,
     required this.onResend,
-  }) : super(key: key);
+  });
 
   @override
   State<CountdownTimer> createState() => _CountdownTimerState();
@@ -40,23 +40,23 @@ class _CountdownTimerState extends State<CountdownTimer> {
   }
 
   Future<void> _initializeResendCount() async {
-    final prefs = await SharedPreferences.getInstance();
+    final preferences = await SharedPreferences.getInstance();
     final currentDate = DateTime.now().toString().split(' ')[0]; // YYYY-MM-DD
-    final storedDate = prefs.getString('resend_date');
+    final storedDate = preferences.getString('resend_date');
     if (storedDate != currentDate) {
       // Reset count if date has changed
-      await prefs.setString('resend_date', currentDate);
-      await prefs.setInt('resend_count', 0);
+      await preferences.setString('resend_date', currentDate);
+      await preferences.setInt('resend_count', 0);
     }
     setState(() {
-      resendCount = prefs.getInt('resend_count') ?? 0;
+      resendCount = preferences.getInt('resend_count') ?? 0;
     });
   }
 
   Future<void> _incrementResendCount() async {
-    final prefs = await SharedPreferences.getInstance();
+    final preferences = await SharedPreferences.getInstance();
     resendCount++;
-    await prefs.setInt('resend_count', resendCount);
+    await preferences.setInt('resend_count', resendCount);
   }
 
   void startTimer() {

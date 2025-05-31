@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:salla7ly/core/Network/api_service.dart';
-import 'package:salla7ly/core/Network/end_points.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/data/model/send_verification_otp_model.dart';
+import '../../../../../core/Network/api_service.dart';
+import '../../../../../core/Network/end_points.dart';
+import '../model/send_verification_otp_model.dart';
 
 import '../../../../../utils/app_logs.dart';
 import '../model/craft_signup_body_model.dart';
@@ -31,7 +30,7 @@ class CraftAuthRemoteDataSourceImpl implements CraftAuthRemoteDataSource {
           body: sendVerificationOtpModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         // return response.data["results"] ?? []; // إرجاع المعاملات
       } else {
         AppLogs.errorLog(response.data.toString());
@@ -53,7 +52,7 @@ class CraftAuthRemoteDataSourceImpl implements CraftAuthRemoteDataSource {
           body: craftSignupBodyModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         return SignupResponseModel.fromJson(response.data);
       } else {
         AppLogs.errorLog(response.data.toString());

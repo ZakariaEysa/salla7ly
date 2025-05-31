@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/generated/l10n.dart';
 
 /// كلاس لزر تسجيل الدخول
 class AuthButton extends StatelessWidget {
-  const AuthButton({Key? key, this.onTap, required this.text})
-      : super(key: key);
+  const AuthButton({super.key, this.onTap, required this.text});
   final void Function()? onTap;
   final String text;
   @override

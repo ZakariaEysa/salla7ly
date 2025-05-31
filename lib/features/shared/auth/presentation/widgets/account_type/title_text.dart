@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/generated/l10n.dart';
+import '../../../../../../generated/l10n.dart';
 
 /// كلاس لعرض عنوان صفحة اختيار نوع الحساب
 class TitleText extends StatelessWidget {
-  const TitleText({Key? key}) : super(key: key);
+  const TitleText({super.key});
 
   @override
   Widget build(BuildContext context) {

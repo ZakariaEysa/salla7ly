@@ -4,7 +4,7 @@ import '../../../../../widgets/page_title.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../shared/auth/presentation/widgets/sign_in/welcome_text.dart';
 import '../widgets/sign_up/user_sign_up_form.dart';
-import 'package:salla7ly/generated/l10n.dart';
+import '../../../../../generated/l10n.dart';
 
 class UserSignUpView extends StatefulWidget {
   const UserSignUpView({super.key});

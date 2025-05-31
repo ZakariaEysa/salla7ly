@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class LabelText extends StatelessWidget {
   final String text;
 
-  const LabelText({Key? key, required this.text}) : super(key: key);
+  const LabelText({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

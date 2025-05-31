@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/generated/l10n.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../../utils/app_logs.dart';
 
 class AccountRow extends StatelessWidget {
   const AccountRow(
-      {Key? key,
+      {super.key,
       required this.text,
       required this.navigationRoute,
       required this.title,
-      this.isReplace = false})
-      : super(key: key);
+      this.isReplace = false});
   final String text;
   final String title;
   final String navigationRoute;
@@ -28,7 +24,7 @@ class AccountRow extends StatelessWidget {
           title,
           style: TextStyle(
             color: theme.textTheme.bodyMedium?.color,
-            fontSize: 20.sp,
+            fontSize: 18.sp,
             fontFamily: 'Inter',
             fontWeight: FontWeight.w400,
           ),
@@ -43,7 +39,6 @@ class AccountRow extends StatelessWidget {
           },
           style: TextButton.styleFrom(
             minimumSize: Size.zero,
-            padding: EdgeInsets.only(left: 8.w),
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
@@ -53,8 +48,6 @@ class AccountRow extends StatelessWidget {
               fontSize: 20.sp,
               fontFamily: 'Inter',
               fontWeight: FontWeight.w900,
-              height: 1.10,
-              letterSpacing: -0.41,
             ),
           ),
         ),

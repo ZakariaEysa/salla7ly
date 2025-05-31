@@ -1,4 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+
+import '../../utils/app_logs.dart';
 
 class CustomRetryInterceptor extends Interceptor {
   final Dio dio;
@@ -12,7 +15,8 @@ class CustomRetryInterceptor extends Interceptor {
   });
 
   @override
-  Future<void> onError(DioError err, ErrorInterceptorHandler handler) async {
+  Future<void> onError(
+      DioException err, ErrorInterceptorHandler handler) async {
     bool shouldRetry = _shouldRetry(err);
     int attempt = (err.requestOptions.extra['retries'] ?? 0) as int;
 
@@ -40,44 +44,49 @@ class CustomRetryInterceptor extends Interceptor {
         );
         return handler.resolve(response);
       } catch (e) {
-        return handler.next(err); // حاول وفشل
+        return handler.next(err);   
       }
     }
 
     return handler.next(err);
   }
 
-  bool _shouldRetry(DioError err) {
-    return err.type == DioErrorType.connectionTimeout ||
-        err.type == DioErrorType.receiveTimeout ||
-        err.type == DioErrorType.sendTimeout ||
-        err.type == DioErrorType.unknown;
+  bool _shouldRetry(DioException err) {
+    return err.type == DioExceptionType.connectionTimeout ||
+        err.type == DioExceptionType.receiveTimeout ||
+        err.type == DioExceptionType.sendTimeout ||
+        err.type == DioExceptionType.unknown;
   }
 }
 
 class CustomLogInterceptor extends LogInterceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    print('--> ${options.method} ${options.uri}');
-    options.headers.forEach((key, value) {
-      print('$key: $value');
-    });
-    if (options.data != null) {
-      print('Request body: ${options.data}');
+    if (kDebugMode) {
+      AppLogs.debugLog('--> ${options.method} ${options.uri}');
+      options.headers.forEach((key, value) {
+        AppLogs.debugLog('$key: $value');
+      });
+      if (options.data != null) {
+        AppLogs.debugLog('Request body: ${options.data}');
+      }
     }
     super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    print('<-- ${response.statusCode} ${response.requestOptions.uri}');
-    print('Response: ${response.data}');
+    if (kDebugMode) {
+      AppLogs.debugLog(
+          '<-- ${response.statusCode} ${response.requestOptions.uri}');
+      AppLogs.debugLog('Response: ${response.data}');
+    }
     super.onResponse(response, handler);
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
-    print('⚠️ Error: ${err.message}');
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    AppLogs.debugLog('⚠️ Error: ${err.message}');
     super.onError(err, handler);
   }
 }

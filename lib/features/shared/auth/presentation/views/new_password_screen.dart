@@ -1,36 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/presentation/widgets/auth_button.dart';
-import 'package:salla7ly/features/shared/auth/presentation/views/sign_in.dart';
-
-import '../../../../../data/hive_storage.dart';
-import '../../../../../utils/app_logs.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../../../config/app_router.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/custom_text_field.dart';
 import '../../../../../widgets/label_text.dart';
-import '../../../../../widgets/scaffold/scaffold_f.dart';
-
-import '../../../../../data/hive_keys.dart';
-import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/loading_indicator.dart';
-
-import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../data/model/sign_in_model.dart';
 import '../cubit/auth_cubit.dart';
-import 'forget.dart';
-import 'home_screen.dart';
+import '../widgets/auth_button.dart';
 
-class NewPassword extends StatefulWidget {
-  const NewPassword({super.key});
+class NewPasswordScreen extends StatefulWidget {
+  const NewPasswordScreen({super.key});
 
   @override
-  State<NewPassword> createState() => _NewPasswordState();
+  State<NewPasswordScreen> createState() => _NewPasswordScreenState();
 }
 
-class _NewPasswordState extends State<NewPassword> {
+class _NewPasswordScreenState extends State<NewPasswordScreen> {
   bool obscure = true;
   bool obscure2 = true;
   TextEditingController newPasswordController = TextEditingController();
@@ -108,7 +100,6 @@ class _NewPasswordState extends State<NewPassword> {
                         },
                         prefixWidget: Image.asset("assets/icons/lockIcon.png"),
                         suffixWidget: Image.asset("assets/icons/EyeIcon.png"),
-                        // prefixIcon: Icons.lockcubit.outline,
                         hintText: S.of(context).passwordHint,
                         isPassword: true,
                         obscureText: cubit.obscurePassword,
@@ -137,28 +128,11 @@ class _NewPasswordState extends State<NewPassword> {
                       ),
                       BlocConsumer<AuthCubit, AuthState>(
                         listener: (context, state) {
-                          AppLogs.scussessLog(state.toString());
+                          AppLogs.successLog(state.toString());
                           if (state is ResetPasswordSuccessState) {
-                            // if (!mounted) return;
-                            // Navigator.pushAndRemoveUntil(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => HomeScreen()),
-                            //   (Route<dynamic> route) => false,
-                            // );
-
-                            // )
-
                             context.go(AppRouter.home);
-
-                            // navigateAndRemoveUntil(
-                            //     context: context,
-                            //     screen: Container(
-                            //       child: Text("home Page"),
-                            //     ));
                           } else if (state is AuthErrorState) {
-                            // Fluttertoast.showToast(
-                            //     msg: ServiceFailure(state.message.errorMsg).errorMsg);
+                            // Handle error
                           }
                         },
                         builder: (context, state) {
@@ -167,11 +141,6 @@ class _NewPasswordState extends State<NewPassword> {
                               : Align(
                                   alignment: Alignment.center,
                                   child: AuthButton(
-                                    // width: 220.w,
-                                    // height: 52.h,
-                                    // image: HiveStorage.get(HiveKeys.isArabic)
-                                    //     ? "assets/icons/save1_arabic.png"
-                                    //     : "assets/icons/save1111.png",
                                     text: lang.Change_Password,
                                     onTap: () async {
                                       if (!newPasswordUniqueKey.currentState!
@@ -182,10 +151,6 @@ class _NewPasswordState extends State<NewPassword> {
                                               email: cubit.emailController.text,
                                               password: cubit
                                                   .passwordController.text));
-
-                                      // await cubit.updateUserPassword(
-                                      // cubit.emailController.text,
-                                      // newPasswordController.text);
                                     },
                                   ),
                                 );
@@ -198,18 +163,6 @@ class _NewPasswordState extends State<NewPassword> {
                   ),
                 ),
               )
-
-              // BlocBuilder<AuthCubit, AuthState>(
-              //   builder: (context, state) {
-              //     if (state is UpdatePasswordLoading) {
-              //       return const AbsorbPointer(
-              //         absorbing: true,
-              //         child: LoadingIndicator(),
-              //       );
-              //     }
-              //     return const SizedBox.shrink();
-              //   },
-              // ),
             ],
           ),
         ));

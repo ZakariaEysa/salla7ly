@@ -1,17 +1,18 @@
 import 'package:go_router/go_router.dart';
-import '../features/shared/splash_screen/splash_screen.dart';
-import '../features/shared/on_boarding/presentation/views/on_boarding.dart';
-import '../features/shared/auth/presentation/views/sign_in.dart';
-import '../features/shared/auth/presentation/views/account_type_screen.dart';
-import '../features/shared/auth/presentation/views/home_screen.dart';
-import '../features/shared/auth/presentation/views/forget.dart';
-import '../features/shared/auth/presentation/views/forget_password_otp.dart';
-import '../features/shared/auth/presentation/views/new_password.dart';
-import '../features/shared/auth/presentation/views/craft_man_otp.dart';
-import '../features/user_flow/auth/presentation/views/user_sign_up_view.dart';
-import '../features/user_flow/auth/presentation/views/user_otp.dart';
+
 import '../features/craft_man_flow/auth/presentation/views/craftman_sign_up_view.dart';
+import '../features/craft_man_flow/auth/presentation/views/craftsman_otp_screen.dart';
 import '../features/craft_man_flow/auth/presentation/views/national_id.dart';
+import '../features/shared/auth/presentation/views/account_type_screen.dart';
+import '../features/shared/auth/presentation/views/forgot_password_otp_screen.dart';
+import '../features/shared/auth/presentation/views/forgot_password_screen.dart';
+import '../features/shared/auth/presentation/views/home_screen.dart';
+import '../features/shared/auth/presentation/views/new_password_screen.dart';
+import '../features/shared/auth/presentation/views/sign_in_screen.dart';
+import '../features/shared/on_boarding/presentation/views/on_boarding.dart';
+import '../features/shared/splash_screen/splash_screen.dart';
+import '../features/user_flow/auth/presentation/views/user_otp.dart';
+import '../features/user_flow/auth/presentation/views/user_sign_up_view.dart';
 
 /// App Router Configuration using GoRouter
 class AppRouter {
@@ -62,19 +63,19 @@ class AppRouter {
       GoRoute(
         path: forgotPassword,
         name: 'forgotPassword',
-        builder: (context, state) => const ForgotPassword(),
+        builder: (context, state) => const ForgotPasswordScreen(),
       ),
 
       GoRoute(
         path: forgotPasswordOtp,
         name: 'forgotPasswordOtp',
-        builder: (context, state) => ForgetPasswordOtp(),
+        builder: (context, state) => const ForgotPasswordOtpScreen(),
       ),
 
       GoRoute(
         path: newPassword,
         name: 'newPassword',
-        builder: (context, state) => const NewPassword(),
+        builder: (context, state) => const NewPasswordScreen(),
       ),
 
       // User Flow Routes
@@ -87,7 +88,7 @@ class AppRouter {
       GoRoute(
         path: userOtp,
         name: 'userOtp',
-        builder: (context, state) => UserOtp(),
+        builder: (context, state) => const UserOtp(),
       ),
 
       // Craftman Flow Routes
@@ -100,7 +101,7 @@ class AppRouter {
       GoRoute(
         path: craftmanOtp,
         name: 'craftmanOtp',
-        builder: (context, state) => CraftManOtp(),
+        builder: (context, state) => const CraftsmanOtpScreen(),
       ),
 
       GoRoute(

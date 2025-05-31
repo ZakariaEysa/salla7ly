@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:injectable/injectable.dart';
-import 'package:salla7ly/core/Network/api_service.dart';
-import 'package:salla7ly/core/Network/end_points.dart';
+import '../../../../../core/Network/api_service.dart';
+import '../../../../../core/Network/end_points.dart';
 
 import '../../../../../utils/app_logs.dart';
 import '../model/auth_response_model.dart';
@@ -29,15 +29,14 @@ abstract class AuthRemoteDataSource {
   Future<AuthResponseModel> signIn({required SignInModel signInModel});
 }
 
- @LazySingleton(as: AuthRemoteDataSource)
-
-
+@LazySingleton(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl(this.apiService, this._auth, this._googleSignIn);
   ApiService apiService;
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
 
+  @override
   Future<void> validateForgetPasswordOtp(
       {required ValidateForgetPasswordOtpModel
           validateForgetPasswordOtpModel}) async {
@@ -47,7 +46,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           body: validateForgetPasswordOtpModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         AppLogs.infoLog(response.data.toString());
         // AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
         // return validateForgetPasswordOtpModel.fromJson(response.data);
@@ -66,6 +65,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     }
   }
 
+  @override
   Future<void> sendForgetPassword(
       {required SendForgetPasswordModel sendForgetPasswordModel}) async {
     try {
@@ -74,7 +74,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           body: sendForgetPasswordModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         AppLogs.infoLog(response.data.toString());
         // AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
         // return AuthResponseModel.fromJson(response.data);
@@ -93,13 +93,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     }
   }
 
+  @override
   Future<void> changePassword({required SignInModel signInModel}) async {
     try {
       final response = await apiService.postWithoutToken(
           endPoint: EndPoints.resetPassword, body: signInModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         AppLogs.infoLog(response.data.toString());
         // AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
         // return AuthResponseModel.fromJson(response.data);
@@ -129,7 +130,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       });
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         AppLogs.infoLog(response.data.toString());
         AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
         return AuthResponseModel.fromJson(response.data);
@@ -155,7 +156,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           endPoint: EndPoints.login, body: signInModel.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        AppLogs.scussessLog("success");
+        AppLogs.successLog("success");
         AppLogs.infoLog(response.data.toString());
         AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
         return AuthResponseModel.fromJson(response.data);
@@ -174,6 +175,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     }
   }
 
+  @override
   Future<GoogleSignInModel> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
+import '../../cubit/cubit/craft_auth_cubit.dart';
 
 class BirthDateSelector extends StatefulWidget {
   const BirthDateSelector({super.key});

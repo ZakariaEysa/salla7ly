@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../widgets/custom_button.dart';
+
 import '../../../../../generated/l10n.dart';
+import '../../../../../widgets/custom_button.dart';
 
 /// أنواع أزرار التنقل في الأونبوردينج
 enum NavigationButtonsType {
@@ -38,12 +39,12 @@ class OnboardingNavigationButtons extends StatelessWidget {
   /// [onPrevious] إجراء الانتقال للصفحة السابقة
   /// [onStart] إجراء بدء التطبيق من الصفحة الأخيرة
   const OnboardingNavigationButtons({
-    Key? key,
+    super.key,
     required this.type,
     this.onNext,
     this.onPrevious,
     this.onStart,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

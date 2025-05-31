@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../generated/l10n.dart';
 
 /// يقدم هذا الملف مجموعة من دوال التحقق المستخدمة في التطبيق

@@ -6,8 +6,8 @@ import '../model/craft_signup_body_model.dart';
 import '../model/signup_response_model.dart';
 import '../model/send_verification_otp_model.dart';
 import '../remote_data_source/craft_auth_remote_data_source.dart';
- @LazySingleton(as: CraftAuthRepo)
 
+@LazySingleton(as: CraftAuthRepo)
 class CraftAuthRepoImpl implements CraftAuthRepo {
   final CraftAuthRemoteDataSource craftAuthRemoteDataSource;
 
@@ -37,6 +37,7 @@ class CraftAuthRepoImpl implements CraftAuthRepo {
     }
   }
 
+  @override
   Future<Either<FailureService, SignupResponseModel>> craftManSignUp(
       {required CraftSignupBodyModel craftSignupBodyModel}) async {
     try {

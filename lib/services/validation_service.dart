@@ -1,3 +1,5 @@
+import '../utils/app_logs.dart';
+
 class ValidationService {
   String? validateEmail(String? value, context) {
     String pattern =
@@ -44,10 +46,9 @@ class ValidationService {
       return 'Required';
     } else if (!phone.hasMatch(value) && !email.hasMatch(value)) {
       return 'Enter a valid email address or a valid phone number';
-      // print('$value is a valid phone number');
     } else {
       // ignore: avoid_print
-      print('done');
+      AppLogs.debugLog('done');
       return null;
     }
   }
@@ -55,7 +56,7 @@ class ValidationService {
   String? validatePassword(String? value, context) {
     RegExp upperCase = RegExp('(?=.*?[A-Z])');
     RegExp lowerCase = RegExp('(?=.*[a-z])');
-    RegExp numric = RegExp(
+    RegExp number = RegExp(
         r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[+_%!@#\$&*~]).{8,}$');
     if (value == null || value.isEmpty) {
       return 'Required';
@@ -65,7 +66,7 @@ class ValidationService {
       return 'please enter uppercase letter or lowercase letter or special letter';
     } else if (!lowerCase.hasMatch(value)) {
       return 'please enter uppercase letter or lowercase letter or special letter';
-    } else if (!numric.hasMatch(value)) {
+    } else if (!number.hasMatch(value)) {
       return 'please enter uppercase letter or lowercase letter or special letter';
     } else {
       return null;
@@ -75,7 +76,7 @@ class ValidationService {
   String? validateRePassword(String? value, context, String value2) {
     RegExp upperCase = RegExp('(?=.*?[A-Z])');
     RegExp lowerCase = RegExp('(?=.*[a-z])');
-    RegExp numric = RegExp(
+    RegExp number = RegExp(
         r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[+_%!@#\$&*~]).{8,}$');
     if (value == null || value.isEmpty) {
       return 'Required';
@@ -83,7 +84,7 @@ class ValidationService {
       return 'please enter uppercase letter or lowercase letter or special letter';
     } else if (!lowerCase.hasMatch(value)) {
       return 'please enter uppercase letter or lowercase letter or special letter';
-    } else if (!numric.hasMatch(value)) {
+    } else if (!number.hasMatch(value)) {
       return 'please enter uppercase letter or lowercase letter or special letter';
     } else {
       return null;

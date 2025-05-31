@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:salla7ly/features/shared/auth/presentation/cubit/auth_cubit.dart';
-import 'package:salla7ly/widgets/failure_toast.dart';
-import 'package:salla7ly/widgets/loading_indicator.dart';
-import 'package:salla7ly/widgets/page_title.dart';
+import '../cubit/auth_cubit.dart';
+import '../../../../../widgets/failure_toast.dart';
+import '../../../../../widgets/loading_indicator.dart';
+import '../../../../../widgets/page_title.dart';
 
-import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
-import 'package:salla7ly/generated/l10n.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../../../services/failure_service.dart';
 import '../../../../../utils/app_logs.dart';
 import 'package:go_router/go_router.dart';
@@ -16,18 +15,15 @@ import '../../../../../config/app_router.dart';
 import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/custom_text_field.dart';
 import '../../../../../widgets/label_text.dart';
-
 import '../widgets/have_account_row.dart';
-import '../widgets/sign_in/forgot_password_button.dart';
 import '../widgets/sign_in/google_sign_in_button.dart';
 import '../widgets/sign_in/or_sign_in_with_divider.dart';
 import '../widgets/auth_button.dart';
 import '../widgets/sign_in/welcome_text.dart';
-import 'account_type_screen.dart';
-import 'home_screen.dart';
+import '../widgets/sign_in/forgot_password_button.dart';
 
 class SignInScreen extends StatefulWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+  const SignInScreen({super.key});
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
@@ -101,7 +97,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         return ValidationUtils.validateEmail(value, context);
                       },
                       prefixWidget: Image.asset("assets/icons/emailIcon.png"),
-                      // prefixIcon: Icons.mail,
                       hintText: S.of(context).emailHint,
                     ),
                     SizedBox(height: 20.h),
@@ -109,13 +104,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 10.h),
                     CustomTextField(
                       controller: AuthCubit.get(context).passwordController,
-
                       validator: (value) {
                         return ValidationUtils.validatePassword(value, context);
                       },
                       prefixWidget: Image.asset("assets/icons/lockIcon.png"),
                       suffixWidget: Image.asset("assets/icons/EyeIcon.png"),
-                      // prefixIcon: Icons.lock_outline,
                       hintText: S.of(context).passwordHint,
                       isPassword: true,
                       obscureText: _obscurePassword,
@@ -125,7 +118,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 10.h),
                     BlocConsumer<AuthCubit, AuthState>(
                       listener: (context, state) {
-                        AppLogs.scussessLog(state.toString());
+                        AppLogs.successLog(state.toString());
 
                         if (state is SignInSuccessState) {
                           context.go(AppRouter.home);
@@ -136,7 +129,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       },
                       builder: (context, state) {
                         return state is SignInLoadingState
-                            ? LoadingIndicator()
+                            ? const LoadingIndicator()
                             : Align(
                                 alignment: Alignment.center,
                                 child: AuthButton(
@@ -154,7 +147,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 30.h),
                     BlocConsumer<AuthCubit, AuthState>(
                       listener: (context, state) {
-                        AppLogs.scussessLog(state.toString());
+                        AppLogs.successLog(state.toString());
 
                         if (state is GoogleAuthSuccessState) {
                           context.go(AppRouter.home);
@@ -165,7 +158,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       },
                       builder: (context, state) {
                         return state is GoogleAuthLoadingState
-                            ? LoadingIndicator()
+                            ? const LoadingIndicator()
                             : GoogleSignInButton(
                                 onTap: () {
                                   AuthCubit.get(context).signInWithGoogle();
@@ -179,7 +172,6 @@ class _SignInScreenState extends State<SignInScreen> {
                       navigationRoute: AppRouter.accountType,
                       text: S.of(context).signUp,
                       isReplace: false,
-                      // التنقل إلى صفحة اختيار نوع الحساب
                     ),
                   ],
                 ),

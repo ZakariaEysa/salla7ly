@@ -1,27 +1,22 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:salla7ly/generated/l10n.dart';
-import 'package:salla7ly/services/failure_service.dart';
-import 'package:salla7ly/utils/app_logs.dart';
+import '../../../../../../generated/l10n.dart';
+import '../../../../../../services/failure_service.dart';
+import '../../../../../../utils/app_logs.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../../config/app_router.dart';
-import 'package:salla7ly/utils/validation_utils.dart';
+import '../../../../../../utils/validation_utils.dart';
 import '../../../../../../widgets/custom_text_field.dart';
 import '../../../../../../widgets/failure_toast.dart';
 import '../../../../../../widgets/label_text.dart';
 import '../../../../../../widgets/loading_indicator.dart';
-import '../../../../../craft_man_flow/auth/presentation/widgets/have_account_row.dart';
-import '../../../../../shared/auth/presentation/views/craft_man_otp.dart';
-import '../../../../../shared/auth/presentation/views/sign_in.dart';
+import '../../../../../shared/auth/presentation/widgets/have_account_row.dart';
 import '../../cubit/cubit/user_auth_cubit.dart';
-import '../../views/user_otp.dart';
-import '../auth_button.dart';
+import '../../../../../shared/auth/presentation/widgets/auth_button.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({Key? key}) : super(key: key);
+  const SignUpForm({super.key});
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
@@ -113,7 +108,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
             BlocConsumer<UserAuthCubit, UserAuthState>(
               listener: (context, state) {
-                AppLogs.scussessLog(state.toString());
+                AppLogs.successLog(state.toString());
 
                 if (state is OtpSuccessState) {
                   if (UserAuthCubit.get(context).isFirstOtp) {

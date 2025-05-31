@@ -6,12 +6,12 @@ import 'application_theme/theme_extention.dart';
 /// زر مخصص مع تأثيرات حركية جميلة
 class CustomButton extends StatefulWidget {
   const CustomButton({
-    Key? key,
+    super.key,
     required this.width,
     required this.height,
     this.text,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final double width;
   final double height;

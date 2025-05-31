@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:salla7ly/generated/l10n.dart';
-import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../config/app_router.dart';
 import '../widgets/account_type/account_type_buttons_row.dart';
 import '../widgets/account_type/description_text.dart';

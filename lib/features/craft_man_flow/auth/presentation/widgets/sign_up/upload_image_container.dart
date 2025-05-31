@@ -7,11 +7,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 
 class UploadImageContainer extends StatefulWidget {
-  UploadImageContainer({
-    Key? key,
+  const UploadImageContainer({
+    super.key,
     required this.onTap,
     required this.isFront,
-  }) : super(key: key);
+  });
   final Future<String?> Function() onTap;
   final bool isFront;
 
@@ -94,7 +94,7 @@ class _UploadImageContainerState extends State<UploadImageContainer> {
                 GestureDetector(
                   onTap: () async {
                     String? image = await widget.onTap();
-                    print("image");
+                 
                     if (image != "") {
                       isLoaded = true;
                     }
@@ -221,11 +221,11 @@ class _UploadImageContainerState extends State<UploadImageContainer> {
 
     showDialog(
       context: context,
-      barrierDismissible: true, // تقدر تقفله بالضغط برا
+      barrierDismissible: true,   
       builder: (context) {
         return Dialog(
           backgroundColor: Colors.transparent,
-          insetPadding: EdgeInsets.all(10),
+          insetPadding: const EdgeInsets.all(10),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.memory(

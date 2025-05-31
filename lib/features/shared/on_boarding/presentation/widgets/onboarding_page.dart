@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'onboarding_content.dart';
 
 /// مكوّن لعرض صفحة فردية في الأونبوردينج
@@ -15,10 +16,10 @@ class OnboardingPage extends StatelessWidget {
   /// [content] محتوى الصفحة من نص وصورة
   /// [padding] المساحة حول المحتوى
   const OnboardingPage({
-    Key? key,
+    super.key,
     required this.content,
     this.padding = const EdgeInsets.all(30),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

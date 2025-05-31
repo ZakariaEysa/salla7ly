@@ -1,45 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../utils/app_logs.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../../../config/app_router.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../../../utils/app_logs.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
-import '../../../../../generated/l10n.dart';
 import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
-import '../../../../craft_man_flow/auth/presentation/widgets/auth_button.dart';
-import '../widgets/otp/otp_textfield.dart';
-import '../widgets/otp/timer.dart';
-import 'home_screen.dart';
+import '../../../../shared/auth/presentation/widgets/auth_button.dart';
+import '../../../../shared/auth/presentation/widgets/otp/otp_textfield.dart';
+import '../../../../shared/auth/presentation/widgets/otp/timer.dart';
 
-class CraftManOtp extends StatefulWidget {
+class CraftsmanOtpScreen extends StatefulWidget {
   final Future<void> Function()? isSuccessOtp;
-  CraftManOtp({super.key, this.isSuccessOtp});
+  const CraftsmanOtpScreen({super.key, this.isSuccessOtp});
+
   @override
-  _CraftManOtpState createState() => _CraftManOtpState();
+  State<CraftsmanOtpScreen> createState() => _CraftsmanOtpScreenState();
 }
 
-class _CraftManOtpState extends State<CraftManOtp> {
+class _CraftsmanOtpScreenState extends State<CraftsmanOtpScreen> {
   @override
   void initState() {
     super.initState();
   }
 
-  TextEditingController N1 = TextEditingController();
-  TextEditingController N2 = TextEditingController();
-  TextEditingController N3 = TextEditingController();
-  TextEditingController N4 = TextEditingController();
-  TextEditingController N5 = TextEditingController();
-  TextEditingController N6 = TextEditingController();
+  TextEditingController otpController1 = TextEditingController();
+  TextEditingController otpController2 = TextEditingController();
+  TextEditingController otpController3 = TextEditingController();
+  TextEditingController otpController4 = TextEditingController();
+  TextEditingController otpController5 = TextEditingController();
+  TextEditingController otpController6 = TextEditingController();
 
-  final FocusNode F1 = FocusNode();
-  final FocusNode F2 = FocusNode();
-  final FocusNode F3 = FocusNode();
-  final FocusNode F4 = FocusNode();
-  final FocusNode F5 = FocusNode();
-  final FocusNode F6 = FocusNode();
+  final FocusNode focusNode1 = FocusNode();
+  final FocusNode focusNode2 = FocusNode();
+  final FocusNode focusNode3 = FocusNode();
+  final FocusNode focusNode4 = FocusNode();
+  final FocusNode focusNode5 = FocusNode();
+  final FocusNode focusNode6 = FocusNode();
 
   void nextField({
     required String value,
@@ -66,7 +66,6 @@ class _CraftManOtpState extends State<CraftManOtp> {
           ),
           onPressed: () {
             CraftAuthCubit.get(context).isFirstOtp = true;
-
             context.pop();
           },
         ),
@@ -87,46 +86,46 @@ class _CraftManOtpState extends State<CraftManOtp> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 OtpFieldWidget(
-                  controller: N1,
-                  currentFocus: F1,
-                  nextFocus: F2,
-                  previousFocus: null, // أول حقل، مفيش قبله
+                  controller: otpController1,
+                  currentFocus: focusNode1,
+                  nextFocus: focusNode2,
+                  previousFocus: null,
                   nextField: nextField,
                   autofocus: true,
                 ),
                 OtpFieldWidget(
-                  controller: N2,
-                  currentFocus: F2,
-                  nextFocus: F3,
-                  previousFocus: F1,
+                  controller: otpController2,
+                  currentFocus: focusNode2,
+                  nextFocus: focusNode3,
+                  previousFocus: focusNode1,
                   nextField: nextField,
                 ),
                 OtpFieldWidget(
-                  controller: N3,
-                  currentFocus: F3,
-                  nextFocus: F4,
-                  previousFocus: F2,
+                  controller: otpController3,
+                  currentFocus: focusNode3,
+                  nextFocus: focusNode4,
+                  previousFocus: focusNode2,
                   nextField: nextField,
                 ),
                 OtpFieldWidget(
-                  controller: N4,
-                  currentFocus: F4,
-                  nextFocus: F5,
-                  previousFocus: F3,
+                  controller: otpController4,
+                  currentFocus: focusNode4,
+                  nextFocus: focusNode5,
+                  previousFocus: focusNode3,
                   nextField: nextField,
                 ),
                 OtpFieldWidget(
-                  controller: N5,
-                  currentFocus: F5,
-                  nextFocus: F6,
-                  previousFocus: F4,
+                  controller: otpController5,
+                  currentFocus: focusNode5,
+                  nextFocus: focusNode6,
+                  previousFocus: focusNode4,
                   nextField: nextField,
                 ),
                 OtpFieldWidget(
-                  controller: N6,
-                  currentFocus: F6,
+                  controller: otpController6,
+                  currentFocus: focusNode6,
                   nextFocus: null,
-                  previousFocus: F5,
+                  previousFocus: focusNode5,
                   nextField: nextField,
                 ),
               ],
@@ -143,7 +142,6 @@ class _CraftManOtpState extends State<CraftManOtp> {
                     String email =
                         CraftAuthCubit.get(context).emailController.text;
                     if (email.isNotEmpty) {
-                      // AuthCubit.get(context).sendOtp(email);
                       CraftAuthCubit.get(context).sendVerificationOtp();
 
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -167,12 +165,11 @@ class _CraftManOtpState extends State<CraftManOtp> {
           SizedBox(height: 5.h),
           BlocConsumer<CraftAuthCubit, CraftAuthState>(
             listener: (context, state) {
-              AppLogs.scussessLog(state.toString());
+              AppLogs.successLog(state.toString());
               if (state is SignUpSuccessState) {
                 context.go(AppRouter.home);
               } else if (state is SignUpErrorState) {
-                // Fluttertoast.showToast(
-                //     msg: ServiceFailure(state.message.errorMsg).errorMsg);
+                // Handle error
               }
             },
             builder: (context, state) {
@@ -181,12 +178,12 @@ class _CraftManOtpState extends State<CraftManOtp> {
                   : AuthButton(
                       text: lang.Continue,
                       onTap: () {
-                        if (N1.text.isEmpty ||
-                            N2.text.isEmpty ||
-                            N3.text.isEmpty ||
-                            N4.text.isEmpty ||
-                            N5.text.isEmpty ||
-                            N6.text.isEmpty) {
+                        if (otpController1.text.isEmpty ||
+                            otpController2.text.isEmpty ||
+                            otpController3.text.isEmpty ||
+                            otpController4.text.isEmpty ||
+                            otpController5.text.isEmpty ||
+                            otpController6.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(lang.please_enter_all_numbers_otp),
@@ -194,38 +191,20 @@ class _CraftManOtpState extends State<CraftManOtp> {
                             ),
                           );
                         } else {
-                          CraftAuthCubit.get(context).otp = N1.text +
-                              N2.text +
-                              N3.text +
-                              N4.text +
-                              N5.text +
-                              N6.text;
-                          AppLogs.scussessLog("sending");
+                          CraftAuthCubit.get(context).otp =
+                              otpController1.text +
+                                  otpController2.text +
+                                  otpController3.text +
+                                  otpController4.text +
+                                  otpController5.text +
+                                  otpController6.text;
+                          AppLogs.successLog("sending");
                           CraftAuthCubit.get(context).craftManSignUp();
-
-                          // verifyOtp(context, otp);
                         }
                       },
                     );
             },
           )
-          // ButtonBuilder(
-          //   text: 'Continue',
-          //   onTap: () {
-          //     if (N1.text.isEmpty || N2.text.isEmpty || N3.text.isEmpty || N4.text.isEmpty || N5.text.isEmpty || N6.text.isEmpty) {
-          //       ScaffoldMessenger.of(context).showSnackBar(
-          //         const SnackBar(
-          //           content: Text('Please enter all numbers OTP'),
-          //           backgroundColor: Colors.red,
-          //         ),
-          //       );
-          //     } else {
-          //       String otp = N1.text + N2.text + N3.text + N4.text + N5.text + N6.text;
-          //       print("OTP entered: $otp");
-          //       verifyOtp(context, otp);
-          //     }
-          //   },
-          // )
         ],
       ),
     );

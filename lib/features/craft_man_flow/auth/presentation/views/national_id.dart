@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
-import 'package:salla7ly/features/craft_man_flow/auth/presentation/views/craftman_sign_up_view.dart';
-import 'package:salla7ly/utils/app_logs.dart';
-import 'package:salla7ly/widgets/scaffold/scaffold_f.dart';
+import '../cubit/cubit/craft_auth_cubit.dart';
+import '../../../../../utils/app_logs.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
 
 import '../widgets/sign_up/upload_image_container.dart';
 import 'dart:convert';
@@ -22,7 +21,7 @@ class NationalId extends StatelessWidget {
     final theme = Theme.of(context);
     return ScaffoldF(
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,7 +60,7 @@ class NationalId extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    shadows: [
+                    shadows: const [
                       BoxShadow(
                         color: Color(0x3F000000),
                         blurRadius: 4,
@@ -85,13 +84,13 @@ class NationalId extends StatelessWidget {
   }
 
   Future<String> uploadFrontId(context) async {
-    AppLogs.scussessLog("this is front");
+    AppLogs.successLog("this is front");
     CraftAuthCubit.get(context).frontId = await pickImageAndConvertToBase64();
     return CraftAuthCubit.get(context).frontId!;
   }
 
   Future<String> uploadBackId(context) async {
-    AppLogs.scussessLog("this is back");
+    AppLogs.successLog("this is back");
     CraftAuthCubit.get(context).backId = await pickImageAndConvertToBase64();
     return CraftAuthCubit.get(context).backId!;
   }
@@ -105,16 +104,16 @@ class NationalId extends StatelessWidget {
         final bytes = await File(image.path).readAsBytes();
         final base64Image = base64Encode(bytes);
 
-        print(' image selected.');
+        AppLogs.debugLog(' image selected.');
 
         return base64Image;
       } else {
-        print('No image selected.');
-        return "";
+        AppLogs.debugLog('No image selected.');
+        return null;
       }
     } catch (e) {
-      print('Error picking image: $e');
-      return "";
+      AppLogs.debugLog('Error picking image: $e');
+      return null;
     }
   }
 }

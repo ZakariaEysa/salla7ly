@@ -1,31 +1,31 @@
 import 'package:flutter/foundation.dart';
 
 class AppLogs {
-//*info
+  //*info
   static void infoLog(String message, [String tag = 'Info']) {
     if (kDebugMode) {
-      print('$tag 📣📣📣📣📣📣📣📣📣📣📣📣📣: $message');
+      print('$tag 📣📣: $message');
     }
   }
 
   //*error
   static void errorLog(String message, [String tag = 'Error']) {
     if (kDebugMode) {
-      print('$tag ❌❌❌❌❌❌❌❌❌❌❌❌❌: $message');
+      print('$tag ❌❌: $message');
     }
   }
 
-//*scussess
-  static void scussessLog(String message, [String tag = 'Success']) {
+  //*Success
+  static void successLog(String message, [String tag = 'Success']) {
     if (kDebugMode) {
-      print('$tag✅✅✅✅✅✅✅✅✅✅✅✅✅: $message');
+      print('$tag✅✅: $message');
     }
   }
 
-//*debug
+  //*debug
   static void debugLog(String message, [String tag = 'Debug']) {
     if (kDebugMode) {
-      print('$tag 🐛🐛🐛🐛🐛🐛🐛🐛🐛🐛🐛🐛🐛🐛: $message');
+      print('$tag 🐛🐛: $message');
     }
   }
 }
