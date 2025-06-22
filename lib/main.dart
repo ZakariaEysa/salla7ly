@@ -12,6 +12,7 @@ import 'config/app_router.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
 import 'data/hive_storage.dart';
+import 'data/secure_storage_service.dart';
 import 'features/craft_man_flow/auth/domain/repos/craft_auth_repo.dart';
 import 'features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 import 'features/shared/auth/domain/repos/auth_repo.dart';
@@ -49,8 +50,10 @@ void main() async {
 
   await HiveStorage.init();
   configureDependencies();
-  AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.accessToken)}');
-  AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.refreshToken)}');
+  final storage = SecureStorageService();
+
+  AppLogs.infoLog(': ${await storage.read(key: HiveKeys.accessToken)}');
+  AppLogs.infoLog(': ${await storage.read(key: HiveKeys.refreshToken)}');
   AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.email)}');
   AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.id)}');
   AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.username)}');

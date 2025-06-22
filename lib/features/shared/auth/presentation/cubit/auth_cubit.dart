@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import '../../../../../data/secure_storage_service.dart';
 import '../../domain/repos/auth_repo.dart';
 import '../../../../../services/failure_service.dart';
 
@@ -124,8 +125,14 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> saveData(AuthResponseModel r) async {
-    HiveStorage.set(HiveKeys.accessToken, r.token);
-    HiveStorage.set(HiveKeys.refreshToken, r.refreshToken);
+      final storage = SecureStorageService();
+
+
+await storage.write(key: HiveKeys.accessToken, value:  r.token??"");
+await storage.write(key: HiveKeys.refreshToken, value: r.refreshToken??"");
+
+    // HiveStorage.set(HiveKeys.accessToken, r.token);
+    // HiveStorage.set(HiveKeys.refreshToken, r.refreshToken);
     HiveStorage.set(HiveKeys.id, r.id);
     HiveStorage.set(HiveKeys.email, r.email);
     HiveStorage.set(HiveKeys.username, r.userName);
@@ -134,8 +141,14 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> signOut() async {
-    HiveStorage.set(HiveKeys.accessToken, null);
-    HiveStorage.set(HiveKeys.refreshToken, null);
+      final storage = SecureStorageService();
+
+
+await storage.write(key: HiveKeys.accessToken, value: "");
+await storage.write(key: HiveKeys.refreshToken, value: "");
+
+    // HiveStorage.set(HiveKeys.accessToken, null);
+    // HiveStorage.set(HiveKeys.refreshToken, null);
     HiveStorage.set(HiveKeys.id, null);
     HiveStorage.set(HiveKeys.email, null);
     HiveStorage.set(HiveKeys.username, null);
