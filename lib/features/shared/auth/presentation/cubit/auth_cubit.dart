@@ -8,11 +8,11 @@ import '../../../../../services/failure_service.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_storage.dart';
 import '../../../../../utils/app_logs.dart';
-import '../../data/model/auth_response_model.dart';
-import '../../data/model/google_sign_in_model.dart';
-import '../../data/model/send_forget_password_model.dart';
-import '../../data/model/sign_in_model.dart';
-import '../../data/model/validate_forget_password_otp_model.dart';
+import '../../data/model/auth_response_model/auth_response_model.dart';
+import '../../data/model/google_sign_in_model/google_sign_in_model.dart';
+import '../../data/model/send_forget_password_model/send_forget_password_model.dart';
+import '../../data/model/sign_in_model/sign_in_model.dart';
+import '../../data/model/validate_forget_password_otp_model/validate_forget_password_otp_model.dart';
 
 part 'auth_state.dart';
 

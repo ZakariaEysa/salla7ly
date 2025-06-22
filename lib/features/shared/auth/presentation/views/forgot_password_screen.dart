@@ -11,7 +11,7 @@ import '../../../../../widgets/custom_text_field.dart';
 import '../../../../../widgets/label_text.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
-import '../../data/model/send_forget_password_model.dart';
+import '../../data/model/send_forget_password_model/send_forget_password_model.dart';
 import '../cubit/auth_cubit.dart';
 import '../widgets/auth_button.dart';
 

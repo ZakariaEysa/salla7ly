@@ -7,8 +7,8 @@ import '../../../domain/repos/craft_auth_repo.dart';
 import '../../../../../../services/failure_service.dart';
 
 import '../../../../../../data/hive_keys.dart';
-import '../../../data/model/craft_signup_body_model.dart';
-import '../../../data/model/send_verification_otp_model.dart';
+import '../../../data/model/craft_signup_body_model/craft_signup_body_model.dart';
+import '../../../data/model/send_verification_otp_model/send_verification_otp_model.dart';
 
 part 'craft_auth_state.dart';
 

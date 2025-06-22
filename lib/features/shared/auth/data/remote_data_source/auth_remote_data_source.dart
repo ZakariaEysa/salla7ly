@@ -5,14 +5,14 @@ import '../../../../../core/Network/api_service.dart';
 import '../../../../../core/Network/end_points.dart';
 
 import '../../../../../utils/app_logs.dart';
-import '../model/auth_response_model.dart';
-import '../model/google_sign_in_model.dart';
-import '../model/send_forget_password_model.dart';
-import '../model/sign_in_model.dart';
+import '../model/auth_response_model/auth_response_model.dart';
+import '../model/google_sign_in_model/google_sign_in_model.dart';
+import '../model/send_forget_password_model/send_forget_password_model.dart';
+import '../model/sign_in_model/sign_in_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../model/validate_forget_password_otp_model.dart';
+import '../model/validate_forget_password_otp_model/validate_forget_password_otp_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<void> validateForgetPasswordOtp(

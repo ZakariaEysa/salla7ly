@@ -10,8 +10,8 @@ import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
 import '../widgets/auth_button.dart';
-import '../../data/model/send_forget_password_model.dart';
-import '../../data/model/validate_forget_password_otp_model.dart';
+import '../../data/model/send_forget_password_model/send_forget_password_model.dart';
+import '../../data/model/validate_forget_password_otp_model/validate_forget_password_otp_model.dart';
 import '../widgets/otp/otp_textfield.dart';
 import '../widgets/otp/timer.dart';
 

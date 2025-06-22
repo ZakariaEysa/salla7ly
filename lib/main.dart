@@ -29,6 +29,7 @@ import 'widgets/application_theme/theme_provider.dart';
 //  client id
 //968497369177-jm8e12fp5ll1n7e710tmvd5r69uqcm6j.apps.googleusercontent.com
 
+//https://app.quicktype.io/
 ThemeMode getThemeMode(bool isDark) =>
     isDark ? ThemeMode.dark : ThemeMode.light;
 

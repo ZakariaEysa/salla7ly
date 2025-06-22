@@ -6,8 +6,8 @@ import '../../../../../../data/hive_storage.dart';
 import '../../../../../../services/failure_service.dart';
 
 import '../../../../../../data/hive_keys.dart';
-import '../../../../../craft_man_flow/auth/data/model/send_verification_otp_model.dart';
-import '../../../data/model/user_signup_body_model.dart';
+import '../../../../../craft_man_flow/auth/data/model/send_verification_otp_model/send_verification_otp_model.dart';
+import '../../../data/model/user_signup_body_model/user_signup_body_model.dart';
 import '../../../domain/repos/user_auth_repo.dart';
 
 part 'user_auth_state.dart';

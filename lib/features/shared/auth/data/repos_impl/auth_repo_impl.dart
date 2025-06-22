@@ -3,11 +3,11 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../services/failure_service.dart';
 import '../../domain/repos/auth_repo.dart';
-import '../model/auth_response_model.dart';
-import '../model/google_sign_in_model.dart';
-import '../model/send_forget_password_model.dart';
-import '../model/sign_in_model.dart';
-import '../model/validate_forget_password_otp_model.dart';
+import '../model/auth_response_model/auth_response_model.dart';
+import '../model/google_sign_in_model/google_sign_in_model.dart';
+import '../model/send_forget_password_model/send_forget_password_model.dart';
+import '../model/sign_in_model/sign_in_model.dart';
+import '../model/validate_forget_password_otp_model/validate_forget_password_otp_model.dart';
 import '../remote_data_source/auth_remote_data_source.dart';
 
 @LazySingleton(as: AuthRepo)

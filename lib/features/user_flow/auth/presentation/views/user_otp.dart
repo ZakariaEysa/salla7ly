@@ -208,22 +208,7 @@ class _UserOtpState extends State<UserOtp> {
                     );
             },
           )
-          // ButtonBuilder(
-          //   text: 'Continue',
-          //   onTap: () {
-          //     if (N1.text.isEmpty || N2.text.isEmpty || N3.text.isEmpty || N4.text.isEmpty || N5.text.isEmpty || N6.text.isEmpty) {
-          //       ScaffoldMessenger.of(context).showSnackBar(
-          //         const SnackBar(
-          //           content: Text('Please enter all numbers OTP'),
-          //           backgroundColor: Colors.red,
-          //         ),
-          //       );
-          //     } else {
-          //       String otp = N1.text + N2.text + N3.text + N4.text + N5.text + N6.text;
-          //       verifyOtp(context, otp);
-          //     }
-          //   },
-          // )
+          
         ],
       ),
     );
