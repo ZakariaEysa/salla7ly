@@ -14,5 +14,4 @@ class UserSignupBodyModel with _$UserSignupBodyModel {
 
   factory UserSignupBodyModel.fromJson(Map<String, dynamic> json) =>
       _$UserSignupBodyModelFromJson(json);
-
 }

@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'config/app_router.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
@@ -40,7 +39,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // Warm up shaders to reduce jank
   await Future.delayed(Duration.zero, () {
     final renderView = RendererBinding.instance.renderView;
     renderView.automaticSystemUiAdjustment = false;
@@ -72,8 +70,7 @@ void main() async {
     HiveStorage.set(HiveKeys.isDark, true);
   }
 
-  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-  //     overlays: [SystemUiOverlay.top]);
+
 
   runApp(
     MultiBlocProvider(

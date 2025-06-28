@@ -61,14 +61,13 @@ class CraftAuthCubit extends Cubit<CraftAuthState> {
     ));
     result.fold(
         (l) => emit(SignUpErrorState(message: ServiceFailure(l.errorMsg))),
-        (r)  async{
-            final storage = SecureStorageService();
+        (r) async {
+      final storage = SecureStorageService();
 
+      await storage.write(key: HiveKeys.accessToken, value: r.token ?? "");
+      await storage.write(
+          key: HiveKeys.refreshToken, value: r.refreshToken ?? "");
 
-await storage.write(key: HiveKeys.accessToken, value:  r.token??"");
-await storage.write(key: HiveKeys.refreshToken, value: r.refreshToken??"");
-
-    
       HiveStorage.set(HiveKeys.id, r.id);
       HiveStorage.set(HiveKeys.email, r.email);
       HiveStorage.set(HiveKeys.username, r.userName);

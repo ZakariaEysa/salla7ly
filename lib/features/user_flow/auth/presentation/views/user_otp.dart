@@ -208,7 +208,6 @@ class _UserOtpState extends State<UserOtp> {
                     );
             },
           )
-          
         ],
       ),
     );

@@ -44,7 +44,7 @@ class CustomRetryInterceptor extends Interceptor {
         );
         return handler.resolve(response);
       } catch (e) {
-        return handler.next(err);   
+        return handler.next(err);
       }
     }
 

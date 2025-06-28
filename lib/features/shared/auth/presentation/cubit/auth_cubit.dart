@@ -125,11 +125,11 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> saveData(AuthResponseModel r) async {
-      final storage = SecureStorageService();
+    final storage = SecureStorageService();
 
-
-await storage.write(key: HiveKeys.accessToken, value:  r.token??"");
-await storage.write(key: HiveKeys.refreshToken, value: r.refreshToken??"");
+    await storage.write(key: HiveKeys.accessToken, value: r.token ?? "");
+    await storage.write(
+        key: HiveKeys.refreshToken, value: r.refreshToken ?? "");
 
     // HiveStorage.set(HiveKeys.accessToken, r.token);
     // HiveStorage.set(HiveKeys.refreshToken, r.refreshToken);
@@ -141,11 +141,10 @@ await storage.write(key: HiveKeys.refreshToken, value: r.refreshToken??"");
   }
 
   Future<void> signOut() async {
-      final storage = SecureStorageService();
+    final storage = SecureStorageService();
 
-
-await storage.write(key: HiveKeys.accessToken, value: "");
-await storage.write(key: HiveKeys.refreshToken, value: "");
+    await storage.write(key: HiveKeys.accessToken, value: "");
+    await storage.write(key: HiveKeys.refreshToken, value: "");
 
     // HiveStorage.set(HiveKeys.accessToken, null);
     // HiveStorage.set(HiveKeys.refreshToken, null);

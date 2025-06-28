@@ -54,15 +54,15 @@ class UserAuthCubit extends Cubit<UserAuthState> {
     ));
     result.fold(
         (l) => emit(SignUpErrorState(message: ServiceFailure(l.errorMsg))),
-        (r)  async{
+        (r) async {
       // HiveStorage.set(HiveKeys.accessToken, r.token);
       // HiveStorage.set(HiveKeys.refreshToken, r.refreshToken);
 
       final storage = SecureStorageService();
 
-
-await storage.write(key: HiveKeys.accessToken, value:  r.token??"");
-await storage.write(key: HiveKeys.refreshToken, value: r.refreshToken??"");
+      await storage.write(key: HiveKeys.accessToken, value: r.token ?? "");
+      await storage.write(
+          key: HiveKeys.refreshToken, value: r.refreshToken ?? "");
 
       HiveStorage.set(HiveKeys.id, r.id);
       HiveStorage.set(HiveKeys.email, r.email);
