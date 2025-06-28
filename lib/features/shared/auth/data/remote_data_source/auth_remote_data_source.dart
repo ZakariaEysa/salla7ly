@@ -76,8 +76,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (response.statusCode == 200 || response.statusCode == 201) {
         AppLogs.successLog("success");
         AppLogs.infoLog(response.data.toString());
-        // AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
-        // return AuthResponseModel.fromJson(response.data);
+        
       } else {
         AppLogs.errorLog(response.data.toString());
 
@@ -102,8 +101,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (response.statusCode == 200 || response.statusCode == 201) {
         AppLogs.successLog("success");
         AppLogs.infoLog(response.data.toString());
-        // AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
-        // return AuthResponseModel.fromJson(response.data);
+        
       } else {
         AppLogs.errorLog(response.data.toString());
 
@@ -199,16 +197,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (user != null) {
      
         
-        // if (HiveStorage.get(HiveKeys.role) == null) {
-        //   HiveStorage.set(
-        //     HiveKeys.role,
-        //     Role.google.toString(),
-        //   );
-        // }
+      
         AppLogs.infoLog(user.toString());
 
-        // AppLogs.infoLog(GoogleUserModel.fromFirebaseUser(user).toString());
-        // AppLogs.debugLog(GoogleUserModel.fromFirebaseUser(user).toString());
+        
 
         return GoogleSignInModel(
           name: user.displayName ?? 'Unknown',
