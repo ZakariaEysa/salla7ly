@@ -15,6 +15,7 @@ import '../../../../../config/app_router.dart';
 import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/custom_text_field.dart';
 import '../../../../../widgets/label_text.dart';
+import '../cubit/auth_state.dart';
 import '../widgets/have_account_row.dart';
 import '../widgets/sign_in/google_sign_in_button.dart';
 import '../widgets/sign_in/or_sign_in_with_divider.dart';
@@ -119,27 +120,25 @@ class _SignInScreenState extends State<SignInScreen> {
                     BlocConsumer<AuthCubit, AuthState>(
                       listener: (context, state) {
                         AppLogs.successLog(state.toString());
-
-                        if (state is SignInSuccessState) {
-                          context.go(AppRouter.home);
-                        } else if (state is AuthErrorState) {
-                          FailureToast.showToast(
-                              ServiceFailure(state.message.errorMsg).errorMsg);
-                        }
+                        state.whenOrNull(
+                            signInSuccess: () => context.go(AppRouter.home),
+                            authError: (errorMsg) =>
+                                FailureToast.showToast(errorMsg));
                       },
                       builder: (context, state) {
-                        return state is SignInLoadingState
-                            ? const LoadingIndicator()
-                            : Align(
-                                alignment: Alignment.center,
-                                child: AuthButton(
-                                  text: S.of(context).signInButton,
-                                  onTap: () {
-                                    if (signInKey.currentState!.validate()) {
-                                      AuthCubit.get(context).signIn();
-                                    }
-                                  },
-                                ));
+                        return state.maybeWhen(
+                          signInLoading: () => LoadingIndicator(),
+                          orElse: () => Align(
+                              alignment: Alignment.center,
+                              child: AuthButton(
+                                text: S.of(context).signInButton,
+                                onTap: () {
+                                  if (signInKey.currentState!.validate()) {
+                                    AuthCubit.get(context).signIn();
+                                  }
+                                },
+                              )),
+                        );
                       },
                     ),
                     SizedBox(height: 30.h),
@@ -147,23 +146,19 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 30.h),
                     BlocConsumer<AuthCubit, AuthState>(
                       listener: (context, state) {
-                        AppLogs.successLog(state.toString());
-
-                        if (state is GoogleAuthSuccessState) {
-                          context.go(AppRouter.home);
-                        } else if (state is AuthErrorState) {
-                          FailureToast.showToast(
-                              ServiceFailure(state.message.errorMsg).errorMsg);
-                        }
+                        state.whenOrNull(
+                            googleAuthSuccess: () => context.go(AppRouter.home),
+                            authError: (errorMsg) =>
+                                FailureToast.showToast(errorMsg));
                       },
                       builder: (context, state) {
-                        return state is GoogleAuthLoadingState
-                            ? const LoadingIndicator()
-                            : GoogleSignInButton(
-                                onTap: () {
-                                  AuthCubit.get(context).signInWithGoogle();
-                                },
-                              );
+                        return state.maybeWhen(
+                            googleAuthLoading: () => const LoadingIndicator(),
+                            orElse: () => GoogleSignInButton(
+                                  onTap: () {
+                                    AuthCubit.get(context).signInWithGoogle();
+                                  },
+                                ));
                       },
                     ),
                     SizedBox(height: 30.h),
