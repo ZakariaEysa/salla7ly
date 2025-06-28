@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../config/app_router.dart';
+import '../../../../user_flow/auth/presentation/cubit/cubit/user_auth_cubit.dart';
 import '../cubit/auth_cubit.dart';
 
 import '../../../../../utils/app_logs.dart';
@@ -29,6 +30,7 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
   @override
   void initState() {
     super.initState();
+    UserAuthCubit.get(context).isFirstOtp = false;
   }
 
   TextEditingController otpController1 = TextEditingController();

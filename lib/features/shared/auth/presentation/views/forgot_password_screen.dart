@@ -87,10 +87,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
                     state.whenOrNull(
                       sendForgetOtpSuccess: () {
-                        if (cubit.isFirstOtp) {
-                          cubit.isFirstOtp = false;
+                      
                           context.push(AppRouter.forgotPasswordOtp);
-                        }
+                        
                       },
                       authError: (msg) => FailureToast.showToast(msg),
                     );

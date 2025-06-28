@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../user_flow/auth/presentation/cubit/cubit/user_auth_cubit.dart';
 import '../cubit/auth_cubit.dart';
 import '../../../../../widgets/failure_toast.dart';
 import '../../../../../widgets/loading_indicator.dart';
@@ -32,6 +33,13 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   bool _obscurePassword = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    UserAuthCubit.get(context).isFirstOtp = true;
+  }
 
   void _togglePasswordVisibility() {
     setState(() {
