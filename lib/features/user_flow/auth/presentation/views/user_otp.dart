@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../config/app_router.dart';
@@ -12,6 +13,7 @@ import '../../../../shared/auth/presentation/widgets/auth_button.dart';
 import '../../../../shared/auth/presentation/widgets/otp/otp_textfield.dart';
 import '../../../../shared/auth/presentation/widgets/otp/timer.dart';
 import '../cubit/cubit/user_auth_cubit.dart';
+import '../cubit/cubit/user_auth_state.dart';
 
 class UserOtp extends StatefulWidget {
   final Future<void> Function()? isSuccessOtp;
@@ -166,46 +168,45 @@ class _UserOtpState extends State<UserOtp> {
           SizedBox(height: 5.h),
           BlocConsumer<UserAuthCubit, UserAuthState>(
             listener: (context, state) {
+              state.whenOrNull(
+                  signUpSuccess: () => context.go(AppRouter.home),
+                  // Todo : if error duplicated remove this
+                  signUpError: (error) => Fluttertoast.showToast(msg: error));
               AppLogs.successLog(state.toString());
-              if (state is SignUpSuccessState) {
-                context.go(AppRouter.home);
-              } else if (state is SignUpErrorState) {
-                // Fluttertoast.showToast(
-                //     msg: ServiceFailure(state.message.errorMsg).errorMsg);
-              }
             },
             builder: (context, state) {
-              return state is SignUpLoadingState
-                  ? const LoadingIndicator()
-                  : AuthButton(
-                      text: lang.Continue,
-                      onTap: () {
-                        if (otpController1.text.isEmpty ||
-                            otpController2.text.isEmpty ||
-                            otpController3.text.isEmpty ||
-                            otpController4.text.isEmpty ||
-                            otpController5.text.isEmpty ||
-                            otpController6.text.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(lang.please_enter_all_numbers_otp),
-                              backgroundColor: Colors.white,
-                            ),
-                          );
-                        } else {
-                          UserAuthCubit.get(context).otp = otpController1.text +
-                              otpController2.text +
-                              otpController3.text +
-                              otpController4.text +
-                              otpController5.text +
-                              otpController6.text;
-                          AppLogs.successLog("sending");
-                          UserAuthCubit.get(context).userSignUp();
+              return state.maybeWhen(
+                signUpLoading: () => const LoadingIndicator(),
+                orElse: () => AuthButton(
+                  text: lang.Continue,
+                  onTap: () {
+                    if (otpController1.text.isEmpty ||
+                        otpController2.text.isEmpty ||
+                        otpController3.text.isEmpty ||
+                        otpController4.text.isEmpty ||
+                        otpController5.text.isEmpty ||
+                        otpController6.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(lang.please_enter_all_numbers_otp),
+                          backgroundColor: Colors.white,
+                        ),
+                      );
+                    } else {
+                      UserAuthCubit.get(context).otp = otpController1.text +
+                          otpController2.text +
+                          otpController3.text +
+                          otpController4.text +
+                          otpController5.text +
+                          otpController6.text;
+                      AppLogs.successLog("sending");
+                      UserAuthCubit.get(context).userSignUp();
 
-                          // verifyOtp(context, otp);
-                        }
-                      },
-                    );
+                      // verifyOtp(context, otp);
+                    }
+                  },
+                ),
+              );
             },
           )
         ],
