@@ -1,78 +1,113 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../../data/hive_storage.dart';
 import '../../../../../../data/secure_storage_service.dart';
-import '../../../domain/repos/craft_auth_repo.dart';
-import '../../../../../../services/failure_service.dart';
-
 import '../../../../../../data/hive_keys.dart';
+import '../../../data/model/signup_response_model/signup_response_model.dart';
+import '../../../domain/repos/craft_auth_repo.dart';
 import '../../../data/model/craft_signup_body_model/craft_signup_body_model.dart';
 import '../../../data/model/send_verification_otp_model/send_verification_otp_model.dart';
-
-part 'craft_auth_state.dart';
+import 'craft_auth_state.dart';
 
 @injectable
 class CraftAuthCubit extends Cubit<CraftAuthState> {
-  CraftAuthRepo craftAuthRepo;
-  CraftAuthCubit(this.craftAuthRepo) : super(AuthInitial());
-  static CraftAuthCubit get(context) =>
-      BlocProvider.of<CraftAuthCubit>(context);
-  String? backId;
-  String? frontId;
+  final CraftAuthRepo craftAuthRepo;
+
+  CraftAuthCubit(this.craftAuthRepo) : super(const CraftAuthState.initial());
+
+  static CraftAuthCubit get(context) => BlocProvider.of<CraftAuthCubit>(context);
+
+  // Form Fields
   final confirmPasswordController = TextEditingController();
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
   final userNameController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
+  // Password visibility
   bool obscurePassword = true;
   bool obscureConfirmPassword = true;
-  String? selectedMonth = 'May';
+
+  // Date of Birth
+  String? selectedMonth = '05'; // الأفضل تستخدم أرقام للسهولة
   String? selectedDay = '12';
   String? selectedYear = '2002';
-  bool isLoaded = false;
-  String otp = "";
+
+  // IDs
+  String? backId;
+  String? frontId;
+
+  // OTP
+  String otp = '';
   bool isFirstOtp = true;
 
+  // Flags
+  bool isLoaded = false;
+
+
   Future<void> sendVerificationOtp() async {
-    emit(OtpLoadingState());
+    emit(const CraftAuthState.otpLoading());
+
     final result = await craftAuthRepo.sendVerificationOtpModel(
-        sendVerificationOtpModel: SendVerificationOtpModel(
-            email: emailController.text, userName: userNameController.text));
+      sendVerificationOtpModel: SendVerificationOtpModel(
+        email: emailController.text,
+        userName: userNameController.text,
+      ),
+    );
+
     result.fold(
-        (l) => emit(SignUpErrorState(message: ServiceFailure(l.errorMsg))),
-        (r) => emit(OtpSuccessState()));
+      (l) => emit(CraftAuthState.signUpError(message: l.errorMsg)),
+      (r) => emit(const CraftAuthState.otpSuccess()),
+    );
   }
 
   Future<void> craftManSignUp() async {
-    emit(SignUpLoadingState());
-    final result = await craftAuthRepo.craftManSignUp(
-        craftSignupBodyModel: CraftSignupBodyModel(
+    emit(const CraftAuthState.signUpLoading());
+
+    final model = CraftSignupBodyModel(
       confirmPassword: passwordController.text,
       email: emailController.text,
-      idCardBackUrl: backId,
-      idCardFrontUrl: frontId,
       password: passwordController.text,
       userName: userNameController.text,
       otp: otp,
-      // otp: "6209846",
-      dateOfBirth: '$selectedYear-$selectedMonth-$selectedDay',
-    ));
+      idCardBackUrl: backId,
+      idCardFrontUrl: frontId,
+      dateOfBirth: _getFormattedBirthDate(
+        year: selectedYear!,
+        month: selectedMonth!,
+        day: selectedDay!,
+      ),
+    );
+
+    final result = await craftAuthRepo.craftManSignUp(craftSignupBodyModel: model);
+
     result.fold(
-        (l) => emit(SignUpErrorState(message: ServiceFailure(l.errorMsg))),
-        (r) async {
-      final storage = SecureStorageService();
+      (l) => emit(CraftAuthState.signUpError(message: l.errorMsg)),
+      (r) async {
+        await _storeUserCredentials(r);
+        emit(const CraftAuthState.signUpSuccess());
+      },
+    );
+  }
 
-      await storage.write(key: HiveKeys.accessToken, value: r.token ?? "");
-      await storage.write(
-          key: HiveKeys.refreshToken, value: r.refreshToken ?? "");
 
-      HiveStorage.set(HiveKeys.id, r.id);
-      HiveStorage.set(HiveKeys.email, r.email);
-      HiveStorage.set(HiveKeys.username, r.userName);
+  String _getFormattedBirthDate({
+    required String year,
+    required String month,
+    required String day,
+  }) {
+    return '$year-$month-$day';
+  }
 
-      emit(SignUpSuccessState());
-    });
+  Future<void> _storeUserCredentials(SignupResponseModel  response) async {
+    final storage = SecureStorageService();
+
+    await storage.write(key: HiveKeys.accessToken, value: response.token ?? '');
+    await storage.write(key: HiveKeys.refreshToken, value: response.refreshToken ?? '');
+
+    HiveStorage.set(HiveKeys.id, response.id);
+    HiveStorage.set(HiveKeys.email, response.email);
+    HiveStorage.set(HiveKeys.username, response.userName);
   }
 }
