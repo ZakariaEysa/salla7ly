@@ -130,6 +130,16 @@ class S {
     );
   }
 
+  /// `send`
+  String get send {
+    return Intl.message(
+      'send',
+      name: 'send',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Start`
   String get Start {
     return Intl.message(

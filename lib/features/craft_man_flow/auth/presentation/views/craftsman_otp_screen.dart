@@ -12,6 +12,7 @@ import '../../../../craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubi
 import '../../../../shared/auth/presentation/widgets/auth_button.dart';
 import '../../../../shared/auth/presentation/widgets/otp/otp_textfield.dart';
 import '../../../../shared/auth/presentation/widgets/otp/timer.dart';
+import '../cubit/cubit/craft_auth_state.dart';
 
 class CraftsmanOtpScreen extends StatefulWidget {
   final Future<void> Function()? isSuccessOtp;
@@ -142,7 +143,7 @@ class _CraftsmanOtpScreenState extends State<CraftsmanOtpScreen> {
                     String email =
                         CraftAuthCubit.get(context).emailController.text;
                     if (email.isNotEmpty) {
-                      CraftAuthCubit.get(context).sendVerificationOtp();
+                      CraftAuthCubit.get(context).resendVerificationOtp();
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -165,44 +166,41 @@ class _CraftsmanOtpScreenState extends State<CraftsmanOtpScreen> {
           SizedBox(height: 5.h),
           BlocConsumer<CraftAuthCubit, CraftAuthState>(
             listener: (context, state) {
-              AppLogs.successLog(state.toString());
-              if (state is SignUpSuccessState) {
-                context.go(AppRouter.home);
-              } else if (state is SignUpErrorState) {
-                // Handle error
-              }
+              state.whenOrNull(signUpSuccess: () => context.go(AppRouter.home));
+              //  TODO : error not handeled  SignUpErrorState
             },
             builder: (context, state) {
-              return state is SignUpLoadingState
-                  ? const LoadingIndicator()
-                  : AuthButton(
-                      text: lang.Continue,
-                      onTap: () {
-                        if (otpController1.text.isEmpty ||
-                            otpController2.text.isEmpty ||
-                            otpController3.text.isEmpty ||
-                            otpController4.text.isEmpty ||
-                            otpController5.text.isEmpty ||
-                            otpController6.text.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(lang.please_enter_all_numbers_otp),
-                              backgroundColor: Colors.white,
-                            ),
-                          );
-                        } else {
-                          CraftAuthCubit.get(context).otp =
-                              otpController1.text +
-                                  otpController2.text +
-                                  otpController3.text +
-                                  otpController4.text +
-                                  otpController5.text +
-                                  otpController6.text;
-                          AppLogs.successLog("sending");
-                          CraftAuthCubit.get(context).craftManSignUp();
-                        }
-                      },
-                    );
+              return state.maybeWhen(
+                  signUpLoading: () => const LoadingIndicator(),
+                  orElse: () => AuthButton(
+                        text: lang.Continue,
+                        onTap: () {
+                          if (otpController1.text.isEmpty ||
+                              otpController2.text.isEmpty ||
+                              otpController3.text.isEmpty ||
+                              otpController4.text.isEmpty ||
+                              otpController5.text.isEmpty ||
+                              otpController6.text.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content:
+                                    Text(lang.please_enter_all_numbers_otp),
+                                backgroundColor: Colors.white,
+                              ),
+                            );
+                          } else {
+                            CraftAuthCubit.get(context).otp =
+                                otpController1.text +
+                                    otpController2.text +
+                                    otpController3.text +
+                                    otpController4.text +
+                                    otpController5.text +
+                                    otpController6.text;
+                            AppLogs.successLog("sending");
+                            CraftAuthCubit.get(context).craftManSignUp();
+                          }
+                        },
+                      ));
             },
           )
         ],

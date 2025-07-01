@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/Network/api_service.dart';
 import '../../../../../core/Network/end_points.dart';
-import '../model/send_verification_otp_model.dart';
+import '../model/send_verification_otp_model/send_verification_otp_model.dart';
 
 import '../../../../../utils/app_logs.dart';
-import '../model/craft_signup_body_model.dart';
-import '../model/signup_response_model.dart';
+import '../model/craft_signup_body_model/craft_signup_body_model.dart';
+import '../model/signup_response_model/signup_response_model.dart';
 
 abstract class CraftAuthRemoteDataSource {
   Future<void> sendVerificationOtpModel(

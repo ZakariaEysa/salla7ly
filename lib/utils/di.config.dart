@@ -38,7 +38,7 @@ import 'package:salla7ly/features/user_flow/auth/domain/repos/user_auth_repo.dar
     as _i369;
 import 'package:salla7ly/features/user_flow/auth/presentation/cubit/cubit/user_auth_cubit.dart'
     as _i455;
-import 'package:salla7ly/utils/register_module.dart' as _i1012;
+import 'package:salla7ly/utils/register_module.dart' as _i548;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -82,4 +82,4 @@ extension GetItInjectableX on _i174.GetIt {
   }
 }
 
-class _$RegisterModule extends _i1012.RegisterModule {}
+class _$RegisterModule extends _i548.RegisterModule {}

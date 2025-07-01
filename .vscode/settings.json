@@ -1,4 +1,7 @@
 {
     "cmake.ignoreCMakeListsMissing": true,
-    "CodeGPT.apiKey": "CodeGPT Plus Beta"
+    "CodeGPT.apiKey": "CodeGPT Plus Beta",
+    "cSpell.words": [
+        "craftman"
+    ]
 }

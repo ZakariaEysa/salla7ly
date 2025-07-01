@@ -7,11 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'config/app_router.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
 import 'data/hive_storage.dart';
+import 'data/secure_storage_service.dart';
 import 'features/craft_man_flow/auth/domain/repos/craft_auth_repo.dart';
 import 'features/craft_man_flow/auth/presentation/cubit/cubit/craft_auth_cubit.dart';
 import 'features/shared/auth/domain/repos/auth_repo.dart';
@@ -29,6 +29,7 @@ import 'widgets/application_theme/theme_provider.dart';
 //  client id
 //968497369177-jm8e12fp5ll1n7e710tmvd5r69uqcm6j.apps.googleusercontent.com
 
+//https://app.quicktype.io/
 ThemeMode getThemeMode(bool isDark) =>
     isDark ? ThemeMode.dark : ThemeMode.light;
 
@@ -38,7 +39,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // Warm up shaders to reduce jank
   await Future.delayed(Duration.zero, () {
     final renderView = RendererBinding.instance.renderView;
     renderView.automaticSystemUiAdjustment = false;
@@ -48,8 +48,10 @@ void main() async {
 
   await HiveStorage.init();
   configureDependencies();
-  AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.accessToken)}');
-  AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.refreshToken)}');
+  final storage = SecureStorageService();
+
+  AppLogs.infoLog(': ${await storage.read(key: HiveKeys.accessToken)}');
+  AppLogs.infoLog(': ${await storage.read(key: HiveKeys.refreshToken)}');
   AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.email)}');
   AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.id)}');
   AppLogs.infoLog(': ${HiveStorage.get(HiveKeys.username)}');
@@ -62,14 +64,11 @@ void main() async {
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(HiveKeys.isArabic, false);
   }
-
+  // HiveStorage.set(HiveKeys.isDark, null);
   AppLogs.infoLog('isDark: ${HiveStorage.get(HiveKeys.isDark)}');
-  if (HiveStorage.get(HiveKeys.isDark) == null) {
-    HiveStorage.set(HiveKeys.isDark, true);
-  }
-
-  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-  //     overlays: [SystemUiOverlay.top]);
+  // if (HiveStorage.get(HiveKeys.isDark) == null) {
+  //   HiveStorage.set(HiveKeys.isDark, true);
+  // }
 
   runApp(
     MultiBlocProvider(

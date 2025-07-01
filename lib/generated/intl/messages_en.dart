@@ -130,6 +130,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Resend limit reached for today"),
         "selectAccountType": MessageLookupByLibrary.simpleMessage(
             "Please select your account type to continue:"),
+        "send": MessageLookupByLibrary.simpleMessage("send"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
         "signInButton": MessageLookupByLibrary.simpleMessage("sign in"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),

@@ -132,6 +132,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم الوصول للحد الأقصى للإرسال اليوم"),
         "selectAccountType": MessageLookupByLibrary.simpleMessage(
             "يرجى تحديد نوع حسابك للمتابعة:"),
+        "send": MessageLookupByLibrary.simpleMessage("إرسال"),
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signInButton": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),

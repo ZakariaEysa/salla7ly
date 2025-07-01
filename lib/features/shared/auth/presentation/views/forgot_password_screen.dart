@@ -11,8 +11,11 @@ import '../../../../../widgets/custom_text_field.dart';
 import '../../../../../widgets/label_text.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
-import '../../data/model/send_forget_password_model.dart';
+import '../../../../../widgets/failure_toast.dart';
+
+import '../../data/model/send_forget_password_model/send_forget_password_model.dart';
 import '../cubit/auth_cubit.dart';
+import '../cubit/auth_state.dart';
 import '../widgets/auth_button.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -23,14 +26,14 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  GlobalKey<FormState> formKeyForgot = GlobalKey();
+  final formKeyForgot = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    AuthCubit cubit = AuthCubit.get(context);
+    final cubit = AuthCubit.get(context);
+    final lang = S.of(context);
 
-    var lang = S.of(context);
     return ScaffoldF(
       appBar: AppBar(
         centerTitle: true,
@@ -55,68 +58,61 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     height: 250.h,
                   ),
                 ),
-                SizedBox(
-                  height: 50.h,
-                ),
+                SizedBox(height: 50.h),
                 Text(
-                    lang.please_enter_your_email_to_receive_a_verification_card,
-                    style: theme.textTheme.bodyMedium!.copyWith(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center),
-                SizedBox(
-                  height: 25.h,
+                  lang.please_enter_your_email_to_receive_a_verification_card,
+                  style: theme.textTheme.bodyMedium!.copyWith(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
+                SizedBox(height: 25.h),
                 Align(
-                    alignment: Alignment.bottomLeft,
-                    child: LabelText(text: S.of(context).emailLabel)),
+                  alignment: Alignment.bottomLeft,
+                  child: LabelText(text: lang.emailLabel),
+                ),
                 SizedBox(height: 10.h),
                 CustomTextField(
                   controller: cubit.emailController,
-                  validator: (value) {
-                    return ValidationUtils.validateEmail(value, context);
-                  },
+                  validator: (value) =>
+                      ValidationUtils.validateEmail(value, context),
                   prefixWidget: Image.asset("assets/icons/emailIcon.png"),
-                  hintText: S.of(context).emailHint,
+                  hintText: lang.emailHint,
                 ),
-                SizedBox(
-                  height: 60.h,
-                ),
+                SizedBox(height: 60.h),
                 BlocConsumer<AuthCubit, AuthState>(
                   listener: (context, state) {
                     AppLogs.successLog(state.toString());
-                    if (state is SendForgetOtpSuccessState) {
-                      if (AuthCubit.get(context).isFirstOtp) {
-                        AuthCubit.get(context).isFirstOtp = false;
 
-                        context.push(AppRouter.forgotPasswordOtp);
-                      }
-                    } else if (state is AuthErrorState) {
-                      // Handle error
-                    }
+                    state.whenOrNull(
+                      sendForgetOtpSuccess: () {
+                      
+                          context.push(AppRouter.forgotPasswordOtp);
+                        
+                      },
+                      authError: (msg) => FailureToast.showToast(msg),
+                    );
                   },
                   builder: (context, state) {
-                    return state is ResetPasswordLoadingState
-                        ? const LoadingIndicator()
-                        : AuthButton(
-                            text: 'Send',
-                            onTap: () async {
-                              if (!formKeyForgot.currentState!.validate()) {
-                                return;
-                              }
+                    return state.maybeWhen(
+                      resetPasswordLoading: () => const LoadingIndicator(),
+                      orElse: () => AuthButton(
+                        text: lang.send,
+                        onTap: () {
+                          if (!formKeyForgot.currentState!.validate()) return;
 
-                              cubit.sendForgetPassword(
-                                  sendForgetPasswordModel:
-                                      SendForgetPasswordModel(
-                                          email: cubit.emailController.text));
-                            },
+                          cubit.sendForgetPassword(
+                            sendForgetPasswordModel: SendForgetPasswordModel(
+                              email: cubit.emailController.text,
+                            ),
                           );
+                        },
+                      ),
+                    );
                   },
                 ),
-                SizedBox(
-                  height: 60.h,
-                ),
+                SizedBox(height: 60.h),
               ],
             ),
           ),

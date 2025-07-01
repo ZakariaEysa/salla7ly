@@ -3,15 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../config/app_router.dart';
+import '../../../../user_flow/auth/presentation/cubit/cubit/user_auth_cubit.dart';
 import '../cubit/auth_cubit.dart';
 
 import '../../../../../utils/app_logs.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
+import '../cubit/auth_state.dart';
 import '../widgets/auth_button.dart';
-import '../../data/model/send_forget_password_model.dart';
-import '../../data/model/validate_forget_password_otp_model.dart';
+import '../../data/model/send_forget_password_model/send_forget_password_model.dart';
+import '../../data/model/validate_forget_password_otp_model/validate_forget_password_otp_model.dart';
 import '../widgets/otp/otp_textfield.dart';
 import '../widgets/otp/timer.dart';
 
@@ -28,6 +30,7 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
   @override
   void initState() {
     super.initState();
+    UserAuthCubit.get(context).isFirstOtp = false;
   }
 
   TextEditingController otpController1 = TextEditingController();
@@ -144,7 +147,7 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
                   onResend: () async {
                     String email = AuthCubit.get(context).emailController.text;
                     if (email.isNotEmpty) {
-                      AuthCubit.get(context).sendForgetPassword(
+                      AuthCubit.get(context).resendForgetPassword(
                           sendForgetPasswordModel:
                               SendForgetPasswordModel(email: email));
 
@@ -170,48 +173,56 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
           BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
               AppLogs.successLog(state.toString());
-              if (state is ValidateOtpSuccessState) {
-                context.pushReplacement(AppRouter.newPassword);
-              } else if (state is AuthErrorState) {
-                // Handle error
-              }
+              state.whenOrNull(
+                validateOtpSuccess: () {
+                  context.pushReplacement(AppRouter.newPassword);
+                },
+                // authError: (msg) {
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //     SnackBar(content: Text(msg)),
+                //   );
+                // },
+              );
             },
             builder: (context, state) {
-              return state is ResetPasswordLoadingState
-                  ? const LoadingIndicator()
-                  : AuthButton(
-                      text: lang.Continue,
-                      onTap: () {
-                        if (otpController1.text.isEmpty ||
-                            otpController2.text.isEmpty ||
-                            otpController3.text.isEmpty ||
-                            otpController4.text.isEmpty ||
-                            otpController5.text.isEmpty ||
-                            otpController6.text.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(lang.please_enter_all_numbers_otp),
-                              backgroundColor: Colors.white,
-                            ),
-                          );
-                        } else {
-                          String otp = otpController1.text +
-                              otpController2.text +
-                              otpController3.text +
-                              otpController4.text +
-                              otpController5.text +
-                              otpController6.text;
-                          AppLogs.successLog("sending");
-                          AuthCubit.get(context).validateForgetPasswordOtp(
-                              validateForgetPasswordOtpModel:
-                                  ValidateForgetPasswordOtpModel(
-                                      email: AuthCubit.get(context)
-                                          .emailController
-                                          .text,
-                                      otp: otp));
-                        }
-                      },
-                    );
+              return state.maybeWhen(
+                resetPasswordLoading: () => const LoadingIndicator(),
+                orElse: () => AuthButton(
+                  text: lang.Continue,
+                  onTap: () {
+                    if (otpController1.text.isEmpty ||
+                        otpController2.text.isEmpty ||
+                        otpController3.text.isEmpty ||
+                        otpController4.text.isEmpty ||
+                        otpController5.text.isEmpty ||
+                        otpController6.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(lang.please_enter_all_numbers_otp),
+                          backgroundColor: Colors.white,
+                        ),
+                      );
+                    } else {
+                      String otp = otpController1.text +
+                          otpController2.text +
+                          otpController3.text +
+                          otpController4.text +
+                          otpController5.text +
+                          otpController6.text;
+
+                      AppLogs.successLog("sending");
+
+                      AuthCubit.get(context).validateForgetPasswordOtp(
+                        validateForgetPasswordOtpModel:
+                            ValidateForgetPasswordOtpModel(
+                          email: AuthCubit.get(context).emailController.text,
+                          otp: otp,
+                        ),
+                      );
+                    }
+                  },
+                ),
+              );
             },
           )
         ],

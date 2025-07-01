@@ -15,6 +15,7 @@ import '../../../../../../widgets/label_text.dart';
 import '../../../../../../widgets/loading_indicator.dart';
 import '../../../../../shared/auth/presentation/widgets/have_account_row.dart';
 import '../../../../../shared/auth/presentation/widgets/auth_button.dart';
+import '../../cubit/cubit/craft_auth_state.dart';
 import 'birth_date_selector.dart';
 import 'upload_id_button.dart';
 
@@ -174,22 +175,21 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(height: 30.h),
             BlocConsumer<CraftAuthCubit, CraftAuthState>(
               listener: (context, state) {
+                state.whenOrNull(
+                    otpSuccess: () {
+                      if (CraftAuthCubit.get(context).isFirstOtp) {
+                        CraftAuthCubit.get(context).isFirstOtp = false;
+                        context.push(AppRouter.craftmanOtp);
+                      }
+                    },
+                    signUpError: (errorMsg) =>
+                        FailureToast.showToast(errorMsg));
                 AppLogs.successLog(state.toString());
-
-                if (state is OtpSuccessState) {
-                  if (CraftAuthCubit.get(context).isFirstOtp) {
-                    CraftAuthCubit.get(context).isFirstOtp = false;
-                    context.push(AppRouter.craftmanOtp);
-                  }
-                } else if (state is SignUpErrorState) {
-                  FailureToast.showToast(
-                      ServiceFailure(state.message.errorMsg).errorMsg);
-                }
               },
               builder: (context, state) {
-                return state is OtpLoadingState
-                    ? const LoadingIndicator()
-                    : Align(
+                return state.maybeWhen(
+                    otpLoading: () => const LoadingIndicator(),
+                    orElse: () => Align(
                         alignment: Alignment.center,
                         child: AuthButton(
                           onTap: () {
@@ -205,7 +205,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             }
                           },
                           text: S.of(context).signUpButton,
-                        ));
+                        )));
               },
             ),
             //signUpButton

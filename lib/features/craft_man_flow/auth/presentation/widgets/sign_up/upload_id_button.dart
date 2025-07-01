@@ -32,8 +32,8 @@ class _UploadIdButtonState extends State<UploadIdButton>
 
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(
-          milliseconds: 3500), );
+      duration: const Duration(milliseconds: 3500),
+    );
 
     _shimmerAnimation = Tween<double>(
       begin: -0.5,
@@ -41,7 +41,8 @@ class _UploadIdButtonState extends State<UploadIdButton>
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Curves.easeInOutSine, ),
+        curve: Curves.easeInOutSine,
+      ),
     );
 
     _animationController.repeat();
@@ -83,9 +84,9 @@ class _UploadIdButtonState extends State<UploadIdButton>
       end: isRTL ? Alignment.centerLeft : Alignment.centerRight,
       colors: const [
         Colors.transparent,
-        Color(0x66B3E5FC), 
-        Color(0x66B3E5FC),  
-        Color(0x66B3E5FC), 
+        Color(0x66B3E5FC),
+        Color(0x66B3E5FC),
+        Color(0x66B3E5FC),
         Colors.transparent,
       ],
       stops: [
@@ -140,7 +141,6 @@ class _UploadIdButtonState extends State<UploadIdButton>
                     ],
                   ),
                 ),
-
                 Positioned.fill(
                   child: AnimatedBuilder(
                     animation: _shimmerAnimation,

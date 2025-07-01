@@ -1,31 +1,19 @@
-part of 'auth_cubit.dart';
+// ملف الحالة باستخدام Freezed
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-sealed class AuthState extends Equatable {
-  const AuthState();
+part 'auth_state.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
-
-final class AuthInitial extends AuthState {}
-
-final class SignInLoadingState extends AuthState {}
-
-final class SignInSuccessState extends AuthState {}
-
-final class GoogleAuthLoadingState extends AuthState {}
-
-final class GoogleAuthSuccessState extends AuthState {}
-
-final class ValidateOtpSuccessState extends AuthState {}
-
-final class SendForgetOtpSuccessState extends AuthState {}
-
-final class ResetPasswordSuccessState extends AuthState {}
-
-final class ResetPasswordLoadingState extends AuthState {}
-
-final class AuthErrorState extends AuthState {
-  final ServiceFailure message;
-  const AuthErrorState({required this.message});
+@freezed
+class AuthState with _$AuthState {
+  const factory AuthState.initial() = AuthInitial;
+  const factory AuthState.signInLoading() = SignInLoadingState;
+  const factory AuthState.signInSuccess() = SignInSuccessState;
+  const factory AuthState.googleAuthLoading() = GoogleAuthLoadingState;
+  const factory AuthState.googleAuthSuccess() = GoogleAuthSuccessState;
+  const factory AuthState.validateOtpSuccess() = ValidateOtpSuccessState;
+  const factory AuthState.sendForgetOtpSuccess() = SendForgetOtpSuccessState;
+  const factory AuthState.resendForgetOtpSuccess() = ReSendForgetOtpSuccessState;
+  const factory AuthState.resetPasswordSuccess() = ResetPasswordSuccessState;
+  const factory AuthState.resetPasswordLoading() = ResetPasswordLoadingState;
+  const factory AuthState.authError({required String message}) = AuthErrorState;
 }

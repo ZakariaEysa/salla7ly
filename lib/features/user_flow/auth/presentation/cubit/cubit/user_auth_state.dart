@@ -1,23 +1,14 @@
-part of 'user_auth_cubit.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-sealed class UserAuthState extends Equatable {
-  const UserAuthState();
+part 'user_auth_state.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
-
-final class AuthInitial extends UserAuthState {}
-
-final class OtpLoadingState extends UserAuthState {}
-
-final class OtpSuccessState extends UserAuthState {}
-
-final class SignUpLoadingState extends UserAuthState {}
-
-final class SignUpSuccessState extends UserAuthState {}
-
-final class SignUpErrorState extends UserAuthState {
-  final ServiceFailure message;
-  const SignUpErrorState({required this.message});
+@freezed
+class UserAuthState with _$UserAuthState {
+  const factory UserAuthState.initial() = AuthInitial;
+  const factory UserAuthState.otpLoading() = OtpLoadingState;
+  const factory UserAuthState.otpSuccess() = OtpSuccessState;
+  const factory UserAuthState.resendOtpSuccess() = ResendOtpSuccessState;
+  const factory UserAuthState.signUpLoading() = SignUpLoadingState;
+  const factory UserAuthState.signUpSuccess() = SignUpSuccessState;
+  const factory UserAuthState.signUpError({required String message}) = SignUpErrorState;
 }

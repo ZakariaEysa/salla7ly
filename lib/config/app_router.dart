@@ -14,7 +14,6 @@ import '../features/shared/splash_screen/splash_screen.dart';
 import '../features/user_flow/auth/presentation/views/user_otp.dart';
 import '../features/user_flow/auth/presentation/views/user_sign_up_view.dart';
 
-/// App Router Configuration using GoRouter
 class AppRouter {
   static const String splash = '/';
   static const String onboarding = '/onboarding';

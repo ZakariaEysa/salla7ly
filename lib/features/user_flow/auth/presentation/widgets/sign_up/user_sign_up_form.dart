@@ -14,6 +14,7 @@ import '../../../../../../widgets/loading_indicator.dart';
 import '../../../../../shared/auth/presentation/widgets/have_account_row.dart';
 import '../../cubit/cubit/user_auth_cubit.dart';
 import '../../../../../shared/auth/presentation/widgets/auth_button.dart';
+import '../../cubit/cubit/user_auth_state.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -109,22 +110,21 @@ class _SignUpFormState extends State<SignUpForm> {
             BlocConsumer<UserAuthCubit, UserAuthState>(
               listener: (context, state) {
                 AppLogs.successLog(state.toString());
+                state.whenOrNull(
+                  otpSuccess: () {
+                    if (UserAuthCubit.get(context).isFirstOtp) {
+                      UserAuthCubit.get(context).isFirstOtp = false;
 
-                if (state is OtpSuccessState) {
-                  if (UserAuthCubit.get(context).isFirstOtp) {
-                    UserAuthCubit.get(context).isFirstOtp = false;
-
-                    context.push(AppRouter.userOtp);
-                  }
-                } else if (state is SignUpErrorState) {
-                  FailureToast.showToast(
-                      ServiceFailure(state.message.errorMsg).errorMsg);
-                }
+                      context.push(AppRouter.userOtp);
+                    }
+                  },
+                  signUpError: (message) => FailureToast.showToast((message)),
+                );
               },
               builder: (context, state) {
-                return state is OtpLoadingState
-                    ? const LoadingIndicator()
-                    : Align(
+                return state.maybeWhen(
+                    otpLoading: () => const LoadingIndicator(),
+                    orElse: () => Align(
                         alignment: Alignment.center,
                         child: AuthButton(
                           onTap: () {
@@ -133,7 +133,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             }
                           },
                           text: S.of(context).signUpButton,
-                        ));
+                        )));
               },
             ),
             //signUpButton

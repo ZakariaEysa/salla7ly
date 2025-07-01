@@ -5,14 +5,14 @@ import '../../../../../core/Network/api_service.dart';
 import '../../../../../core/Network/end_points.dart';
 
 import '../../../../../utils/app_logs.dart';
-import '../model/auth_response_model.dart';
-import '../model/google_sign_in_model.dart';
-import '../model/send_forget_password_model.dart';
-import '../model/sign_in_model.dart';
+import '../model/auth_response_model/auth_response_model.dart';
+import '../model/google_sign_in_model/google_sign_in_model.dart';
+import '../model/send_forget_password_model/send_forget_password_model.dart';
+import '../model/sign_in_model/sign_in_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../model/validate_forget_password_otp_model.dart';
+import '../model/validate_forget_password_otp_model/validate_forget_password_otp_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<void> validateForgetPasswordOtp(
@@ -76,8 +76,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (response.statusCode == 200 || response.statusCode == 201) {
         AppLogs.successLog("success");
         AppLogs.infoLog(response.data.toString());
-        // AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
-        // return AuthResponseModel.fromJson(response.data);
+        
       } else {
         AppLogs.errorLog(response.data.toString());
 
@@ -102,8 +101,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (response.statusCode == 200 || response.statusCode == 201) {
         AppLogs.successLog("success");
         AppLogs.infoLog(response.data.toString());
-        // AppLogs.infoLog(AuthResponseModel.fromJson(response.data).toString());
-        // return AuthResponseModel.fromJson(response.data);
+        
       } else {
         AppLogs.errorLog(response.data.toString());
 
@@ -197,16 +195,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final user = userCredential.user;
 
       if (user != null) {
-        // if (HiveStorage.get(HiveKeys.role) == null) {
-        //   HiveStorage.set(
-        //     HiveKeys.role,
-        //     Role.google.toString(),
-        //   );
-        // }
+     
+        
+      
         AppLogs.infoLog(user.toString());
 
-        // AppLogs.infoLog(GoogleUserModel.fromFirebaseUser(user).toString());
-        // AppLogs.debugLog(GoogleUserModel.fromFirebaseUser(user).toString());
+        
 
         return GoogleSignInModel(
           name: user.displayName ?? 'Unknown',
