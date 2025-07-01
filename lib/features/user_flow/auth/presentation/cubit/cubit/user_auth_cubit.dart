@@ -47,6 +47,23 @@ class UserAuthCubit extends Cubit<UserAuthState> {
     );
   }
 
+
+    Future<void> resendVerificationOtp() async {
+    emit(const UserAuthState.otpLoading());
+
+    final result = await userAuthRepo.sendVerificationOtpModel(
+      sendVerificationOtpModel: SendVerificationOtpModel(
+        email: emailController.text,
+        userName: userNameController.text,
+      ),
+    );
+
+    result.fold(
+      (l) => emit(UserAuthState.signUpError(message: l.errorMsg)),
+      (r) => emit(const UserAuthState.resendOtpSuccess()),
+    );
+  }
+
   Future<void> userSignUp() async {
     emit(const UserAuthState.signUpLoading());
 

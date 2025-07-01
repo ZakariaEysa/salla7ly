@@ -126,7 +126,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                         AppLogs.successLog(state.toString());
                         state.whenOrNull(
                           resetPasswordSuccess: () =>
-                              context.go(AppRouter.home),
+                              context.go(AppRouter.signIn),
                           authError: (msg) => FailureToast.showToast(msg),
                         );
                       },

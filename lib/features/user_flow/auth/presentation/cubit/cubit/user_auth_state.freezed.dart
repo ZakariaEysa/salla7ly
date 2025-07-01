@@ -21,6 +21,7 @@ mixin _$UserAuthState {
     required TResult Function() initial,
     required TResult Function() otpLoading,
     required TResult Function() otpSuccess,
+    required TResult Function() resendOtpSuccess,
     required TResult Function() signUpLoading,
     required TResult Function() signUpSuccess,
     required TResult Function(String message) signUpError,
@@ -31,6 +32,7 @@ mixin _$UserAuthState {
     TResult? Function()? initial,
     TResult? Function()? otpLoading,
     TResult? Function()? otpSuccess,
+    TResult? Function()? resendOtpSuccess,
     TResult? Function()? signUpLoading,
     TResult? Function()? signUpSuccess,
     TResult? Function(String message)? signUpError,
@@ -41,6 +43,7 @@ mixin _$UserAuthState {
     TResult Function()? initial,
     TResult Function()? otpLoading,
     TResult Function()? otpSuccess,
+    TResult Function()? resendOtpSuccess,
     TResult Function()? signUpLoading,
     TResult Function()? signUpSuccess,
     TResult Function(String message)? signUpError,
@@ -52,6 +55,7 @@ mixin _$UserAuthState {
     required TResult Function(AuthInitial value) initial,
     required TResult Function(OtpLoadingState value) otpLoading,
     required TResult Function(OtpSuccessState value) otpSuccess,
+    required TResult Function(ResendOtpSuccessState value) resendOtpSuccess,
     required TResult Function(SignUpLoadingState value) signUpLoading,
     required TResult Function(SignUpSuccessState value) signUpSuccess,
     required TResult Function(SignUpErrorState value) signUpError,
@@ -62,6 +66,7 @@ mixin _$UserAuthState {
     TResult? Function(AuthInitial value)? initial,
     TResult? Function(OtpLoadingState value)? otpLoading,
     TResult? Function(OtpSuccessState value)? otpSuccess,
+    TResult? Function(ResendOtpSuccessState value)? resendOtpSuccess,
     TResult? Function(SignUpLoadingState value)? signUpLoading,
     TResult? Function(SignUpSuccessState value)? signUpSuccess,
     TResult? Function(SignUpErrorState value)? signUpError,
@@ -72,6 +77,7 @@ mixin _$UserAuthState {
     TResult Function(AuthInitial value)? initial,
     TResult Function(OtpLoadingState value)? otpLoading,
     TResult Function(OtpSuccessState value)? otpSuccess,
+    TResult Function(ResendOtpSuccessState value)? resendOtpSuccess,
     TResult Function(SignUpLoadingState value)? signUpLoading,
     TResult Function(SignUpSuccessState value)? signUpSuccess,
     TResult Function(SignUpErrorState value)? signUpError,
@@ -145,6 +151,7 @@ class _$AuthInitialImpl implements AuthInitial {
     required TResult Function() initial,
     required TResult Function() otpLoading,
     required TResult Function() otpSuccess,
+    required TResult Function() resendOtpSuccess,
     required TResult Function() signUpLoading,
     required TResult Function() signUpSuccess,
     required TResult Function(String message) signUpError,
@@ -158,6 +165,7 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult? Function()? initial,
     TResult? Function()? otpLoading,
     TResult? Function()? otpSuccess,
+    TResult? Function()? resendOtpSuccess,
     TResult? Function()? signUpLoading,
     TResult? Function()? signUpSuccess,
     TResult? Function(String message)? signUpError,
@@ -171,6 +179,7 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult Function()? initial,
     TResult Function()? otpLoading,
     TResult Function()? otpSuccess,
+    TResult Function()? resendOtpSuccess,
     TResult Function()? signUpLoading,
     TResult Function()? signUpSuccess,
     TResult Function(String message)? signUpError,
@@ -188,6 +197,7 @@ class _$AuthInitialImpl implements AuthInitial {
     required TResult Function(AuthInitial value) initial,
     required TResult Function(OtpLoadingState value) otpLoading,
     required TResult Function(OtpSuccessState value) otpSuccess,
+    required TResult Function(ResendOtpSuccessState value) resendOtpSuccess,
     required TResult Function(SignUpLoadingState value) signUpLoading,
     required TResult Function(SignUpSuccessState value) signUpSuccess,
     required TResult Function(SignUpErrorState value) signUpError,
@@ -201,6 +211,7 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult? Function(AuthInitial value)? initial,
     TResult? Function(OtpLoadingState value)? otpLoading,
     TResult? Function(OtpSuccessState value)? otpSuccess,
+    TResult? Function(ResendOtpSuccessState value)? resendOtpSuccess,
     TResult? Function(SignUpLoadingState value)? signUpLoading,
     TResult? Function(SignUpSuccessState value)? signUpSuccess,
     TResult? Function(SignUpErrorState value)? signUpError,
@@ -214,6 +225,7 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult Function(AuthInitial value)? initial,
     TResult Function(OtpLoadingState value)? otpLoading,
     TResult Function(OtpSuccessState value)? otpSuccess,
+    TResult Function(ResendOtpSuccessState value)? resendOtpSuccess,
     TResult Function(SignUpLoadingState value)? signUpLoading,
     TResult Function(SignUpSuccessState value)? signUpSuccess,
     TResult Function(SignUpErrorState value)? signUpError,
@@ -274,6 +286,7 @@ class _$OtpLoadingStateImpl implements OtpLoadingState {
     required TResult Function() initial,
     required TResult Function() otpLoading,
     required TResult Function() otpSuccess,
+    required TResult Function() resendOtpSuccess,
     required TResult Function() signUpLoading,
     required TResult Function() signUpSuccess,
     required TResult Function(String message) signUpError,
@@ -287,6 +300,7 @@ class _$OtpLoadingStateImpl implements OtpLoadingState {
     TResult? Function()? initial,
     TResult? Function()? otpLoading,
     TResult? Function()? otpSuccess,
+    TResult? Function()? resendOtpSuccess,
     TResult? Function()? signUpLoading,
     TResult? Function()? signUpSuccess,
     TResult? Function(String message)? signUpError,
@@ -300,6 +314,7 @@ class _$OtpLoadingStateImpl implements OtpLoadingState {
     TResult Function()? initial,
     TResult Function()? otpLoading,
     TResult Function()? otpSuccess,
+    TResult Function()? resendOtpSuccess,
     TResult Function()? signUpLoading,
     TResult Function()? signUpSuccess,
     TResult Function(String message)? signUpError,
@@ -317,6 +332,7 @@ class _$OtpLoadingStateImpl implements OtpLoadingState {
     required TResult Function(AuthInitial value) initial,
     required TResult Function(OtpLoadingState value) otpLoading,
     required TResult Function(OtpSuccessState value) otpSuccess,
+    required TResult Function(ResendOtpSuccessState value) resendOtpSuccess,
     required TResult Function(SignUpLoadingState value) signUpLoading,
     required TResult Function(SignUpSuccessState value) signUpSuccess,
     required TResult Function(SignUpErrorState value) signUpError,
@@ -330,6 +346,7 @@ class _$OtpLoadingStateImpl implements OtpLoadingState {
     TResult? Function(AuthInitial value)? initial,
     TResult? Function(OtpLoadingState value)? otpLoading,
     TResult? Function(OtpSuccessState value)? otpSuccess,
+    TResult? Function(ResendOtpSuccessState value)? resendOtpSuccess,
     TResult? Function(SignUpLoadingState value)? signUpLoading,
     TResult? Function(SignUpSuccessState value)? signUpSuccess,
     TResult? Function(SignUpErrorState value)? signUpError,
@@ -343,6 +360,7 @@ class _$OtpLoadingStateImpl implements OtpLoadingState {
     TResult Function(AuthInitial value)? initial,
     TResult Function(OtpLoadingState value)? otpLoading,
     TResult Function(OtpSuccessState value)? otpSuccess,
+    TResult Function(ResendOtpSuccessState value)? resendOtpSuccess,
     TResult Function(SignUpLoadingState value)? signUpLoading,
     TResult Function(SignUpSuccessState value)? signUpSuccess,
     TResult Function(SignUpErrorState value)? signUpError,
@@ -403,6 +421,7 @@ class _$OtpSuccessStateImpl implements OtpSuccessState {
     required TResult Function() initial,
     required TResult Function() otpLoading,
     required TResult Function() otpSuccess,
+    required TResult Function() resendOtpSuccess,
     required TResult Function() signUpLoading,
     required TResult Function() signUpSuccess,
     required TResult Function(String message) signUpError,
@@ -416,6 +435,7 @@ class _$OtpSuccessStateImpl implements OtpSuccessState {
     TResult? Function()? initial,
     TResult? Function()? otpLoading,
     TResult? Function()? otpSuccess,
+    TResult? Function()? resendOtpSuccess,
     TResult? Function()? signUpLoading,
     TResult? Function()? signUpSuccess,
     TResult? Function(String message)? signUpError,
@@ -429,6 +449,7 @@ class _$OtpSuccessStateImpl implements OtpSuccessState {
     TResult Function()? initial,
     TResult Function()? otpLoading,
     TResult Function()? otpSuccess,
+    TResult Function()? resendOtpSuccess,
     TResult Function()? signUpLoading,
     TResult Function()? signUpSuccess,
     TResult Function(String message)? signUpError,
@@ -446,6 +467,7 @@ class _$OtpSuccessStateImpl implements OtpSuccessState {
     required TResult Function(AuthInitial value) initial,
     required TResult Function(OtpLoadingState value) otpLoading,
     required TResult Function(OtpSuccessState value) otpSuccess,
+    required TResult Function(ResendOtpSuccessState value) resendOtpSuccess,
     required TResult Function(SignUpLoadingState value) signUpLoading,
     required TResult Function(SignUpSuccessState value) signUpSuccess,
     required TResult Function(SignUpErrorState value) signUpError,
@@ -459,6 +481,7 @@ class _$OtpSuccessStateImpl implements OtpSuccessState {
     TResult? Function(AuthInitial value)? initial,
     TResult? Function(OtpLoadingState value)? otpLoading,
     TResult? Function(OtpSuccessState value)? otpSuccess,
+    TResult? Function(ResendOtpSuccessState value)? resendOtpSuccess,
     TResult? Function(SignUpLoadingState value)? signUpLoading,
     TResult? Function(SignUpSuccessState value)? signUpSuccess,
     TResult? Function(SignUpErrorState value)? signUpError,
@@ -472,6 +495,7 @@ class _$OtpSuccessStateImpl implements OtpSuccessState {
     TResult Function(AuthInitial value)? initial,
     TResult Function(OtpLoadingState value)? otpLoading,
     TResult Function(OtpSuccessState value)? otpSuccess,
+    TResult Function(ResendOtpSuccessState value)? resendOtpSuccess,
     TResult Function(SignUpLoadingState value)? signUpLoading,
     TResult Function(SignUpSuccessState value)? signUpSuccess,
     TResult Function(SignUpErrorState value)? signUpError,
@@ -486,6 +510,143 @@ class _$OtpSuccessStateImpl implements OtpSuccessState {
 
 abstract class OtpSuccessState implements UserAuthState {
   const factory OtpSuccessState() = _$OtpSuccessStateImpl;
+}
+
+/// @nodoc
+abstract class _$$ResendOtpSuccessStateImplCopyWith<$Res> {
+  factory _$$ResendOtpSuccessStateImplCopyWith(
+          _$ResendOtpSuccessStateImpl value,
+          $Res Function(_$ResendOtpSuccessStateImpl) then) =
+      __$$ResendOtpSuccessStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResendOtpSuccessStateImplCopyWithImpl<$Res>
+    extends _$UserAuthStateCopyWithImpl<$Res, _$ResendOtpSuccessStateImpl>
+    implements _$$ResendOtpSuccessStateImplCopyWith<$Res> {
+  __$$ResendOtpSuccessStateImplCopyWithImpl(_$ResendOtpSuccessStateImpl _value,
+      $Res Function(_$ResendOtpSuccessStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserAuthState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ResendOtpSuccessStateImpl implements ResendOtpSuccessState {
+  const _$ResendOtpSuccessStateImpl();
+
+  @override
+  String toString() {
+    return 'UserAuthState.resendOtpSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ResendOtpSuccessStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() otpLoading,
+    required TResult Function() otpSuccess,
+    required TResult Function() resendOtpSuccess,
+    required TResult Function() signUpLoading,
+    required TResult Function() signUpSuccess,
+    required TResult Function(String message) signUpError,
+  }) {
+    return resendOtpSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? otpLoading,
+    TResult? Function()? otpSuccess,
+    TResult? Function()? resendOtpSuccess,
+    TResult? Function()? signUpLoading,
+    TResult? Function()? signUpSuccess,
+    TResult? Function(String message)? signUpError,
+  }) {
+    return resendOtpSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? otpLoading,
+    TResult Function()? otpSuccess,
+    TResult Function()? resendOtpSuccess,
+    TResult Function()? signUpLoading,
+    TResult Function()? signUpSuccess,
+    TResult Function(String message)? signUpError,
+    required TResult orElse(),
+  }) {
+    if (resendOtpSuccess != null) {
+      return resendOtpSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(OtpLoadingState value) otpLoading,
+    required TResult Function(OtpSuccessState value) otpSuccess,
+    required TResult Function(ResendOtpSuccessState value) resendOtpSuccess,
+    required TResult Function(SignUpLoadingState value) signUpLoading,
+    required TResult Function(SignUpSuccessState value) signUpSuccess,
+    required TResult Function(SignUpErrorState value) signUpError,
+  }) {
+    return resendOtpSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(OtpLoadingState value)? otpLoading,
+    TResult? Function(OtpSuccessState value)? otpSuccess,
+    TResult? Function(ResendOtpSuccessState value)? resendOtpSuccess,
+    TResult? Function(SignUpLoadingState value)? signUpLoading,
+    TResult? Function(SignUpSuccessState value)? signUpSuccess,
+    TResult? Function(SignUpErrorState value)? signUpError,
+  }) {
+    return resendOtpSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(OtpLoadingState value)? otpLoading,
+    TResult Function(OtpSuccessState value)? otpSuccess,
+    TResult Function(ResendOtpSuccessState value)? resendOtpSuccess,
+    TResult Function(SignUpLoadingState value)? signUpLoading,
+    TResult Function(SignUpSuccessState value)? signUpSuccess,
+    TResult Function(SignUpErrorState value)? signUpError,
+    required TResult orElse(),
+  }) {
+    if (resendOtpSuccess != null) {
+      return resendOtpSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ResendOtpSuccessState implements UserAuthState {
+  const factory ResendOtpSuccessState() = _$ResendOtpSuccessStateImpl;
 }
 
 /// @nodoc
@@ -532,6 +693,7 @@ class _$SignUpLoadingStateImpl implements SignUpLoadingState {
     required TResult Function() initial,
     required TResult Function() otpLoading,
     required TResult Function() otpSuccess,
+    required TResult Function() resendOtpSuccess,
     required TResult Function() signUpLoading,
     required TResult Function() signUpSuccess,
     required TResult Function(String message) signUpError,
@@ -545,6 +707,7 @@ class _$SignUpLoadingStateImpl implements SignUpLoadingState {
     TResult? Function()? initial,
     TResult? Function()? otpLoading,
     TResult? Function()? otpSuccess,
+    TResult? Function()? resendOtpSuccess,
     TResult? Function()? signUpLoading,
     TResult? Function()? signUpSuccess,
     TResult? Function(String message)? signUpError,
@@ -558,6 +721,7 @@ class _$SignUpLoadingStateImpl implements SignUpLoadingState {
     TResult Function()? initial,
     TResult Function()? otpLoading,
     TResult Function()? otpSuccess,
+    TResult Function()? resendOtpSuccess,
     TResult Function()? signUpLoading,
     TResult Function()? signUpSuccess,
     TResult Function(String message)? signUpError,
@@ -575,6 +739,7 @@ class _$SignUpLoadingStateImpl implements SignUpLoadingState {
     required TResult Function(AuthInitial value) initial,
     required TResult Function(OtpLoadingState value) otpLoading,
     required TResult Function(OtpSuccessState value) otpSuccess,
+    required TResult Function(ResendOtpSuccessState value) resendOtpSuccess,
     required TResult Function(SignUpLoadingState value) signUpLoading,
     required TResult Function(SignUpSuccessState value) signUpSuccess,
     required TResult Function(SignUpErrorState value) signUpError,
@@ -588,6 +753,7 @@ class _$SignUpLoadingStateImpl implements SignUpLoadingState {
     TResult? Function(AuthInitial value)? initial,
     TResult? Function(OtpLoadingState value)? otpLoading,
     TResult? Function(OtpSuccessState value)? otpSuccess,
+    TResult? Function(ResendOtpSuccessState value)? resendOtpSuccess,
     TResult? Function(SignUpLoadingState value)? signUpLoading,
     TResult? Function(SignUpSuccessState value)? signUpSuccess,
     TResult? Function(SignUpErrorState value)? signUpError,
@@ -601,6 +767,7 @@ class _$SignUpLoadingStateImpl implements SignUpLoadingState {
     TResult Function(AuthInitial value)? initial,
     TResult Function(OtpLoadingState value)? otpLoading,
     TResult Function(OtpSuccessState value)? otpSuccess,
+    TResult Function(ResendOtpSuccessState value)? resendOtpSuccess,
     TResult Function(SignUpLoadingState value)? signUpLoading,
     TResult Function(SignUpSuccessState value)? signUpSuccess,
     TResult Function(SignUpErrorState value)? signUpError,
@@ -661,6 +828,7 @@ class _$SignUpSuccessStateImpl implements SignUpSuccessState {
     required TResult Function() initial,
     required TResult Function() otpLoading,
     required TResult Function() otpSuccess,
+    required TResult Function() resendOtpSuccess,
     required TResult Function() signUpLoading,
     required TResult Function() signUpSuccess,
     required TResult Function(String message) signUpError,
@@ -674,6 +842,7 @@ class _$SignUpSuccessStateImpl implements SignUpSuccessState {
     TResult? Function()? initial,
     TResult? Function()? otpLoading,
     TResult? Function()? otpSuccess,
+    TResult? Function()? resendOtpSuccess,
     TResult? Function()? signUpLoading,
     TResult? Function()? signUpSuccess,
     TResult? Function(String message)? signUpError,
@@ -687,6 +856,7 @@ class _$SignUpSuccessStateImpl implements SignUpSuccessState {
     TResult Function()? initial,
     TResult Function()? otpLoading,
     TResult Function()? otpSuccess,
+    TResult Function()? resendOtpSuccess,
     TResult Function()? signUpLoading,
     TResult Function()? signUpSuccess,
     TResult Function(String message)? signUpError,
@@ -704,6 +874,7 @@ class _$SignUpSuccessStateImpl implements SignUpSuccessState {
     required TResult Function(AuthInitial value) initial,
     required TResult Function(OtpLoadingState value) otpLoading,
     required TResult Function(OtpSuccessState value) otpSuccess,
+    required TResult Function(ResendOtpSuccessState value) resendOtpSuccess,
     required TResult Function(SignUpLoadingState value) signUpLoading,
     required TResult Function(SignUpSuccessState value) signUpSuccess,
     required TResult Function(SignUpErrorState value) signUpError,
@@ -717,6 +888,7 @@ class _$SignUpSuccessStateImpl implements SignUpSuccessState {
     TResult? Function(AuthInitial value)? initial,
     TResult? Function(OtpLoadingState value)? otpLoading,
     TResult? Function(OtpSuccessState value)? otpSuccess,
+    TResult? Function(ResendOtpSuccessState value)? resendOtpSuccess,
     TResult? Function(SignUpLoadingState value)? signUpLoading,
     TResult? Function(SignUpSuccessState value)? signUpSuccess,
     TResult? Function(SignUpErrorState value)? signUpError,
@@ -730,6 +902,7 @@ class _$SignUpSuccessStateImpl implements SignUpSuccessState {
     TResult Function(AuthInitial value)? initial,
     TResult Function(OtpLoadingState value)? otpLoading,
     TResult Function(OtpSuccessState value)? otpSuccess,
+    TResult Function(ResendOtpSuccessState value)? resendOtpSuccess,
     TResult Function(SignUpLoadingState value)? signUpLoading,
     TResult Function(SignUpSuccessState value)? signUpSuccess,
     TResult Function(SignUpErrorState value)? signUpError,
@@ -818,6 +991,7 @@ class _$SignUpErrorStateImpl implements SignUpErrorState {
     required TResult Function() initial,
     required TResult Function() otpLoading,
     required TResult Function() otpSuccess,
+    required TResult Function() resendOtpSuccess,
     required TResult Function() signUpLoading,
     required TResult Function() signUpSuccess,
     required TResult Function(String message) signUpError,
@@ -831,6 +1005,7 @@ class _$SignUpErrorStateImpl implements SignUpErrorState {
     TResult? Function()? initial,
     TResult? Function()? otpLoading,
     TResult? Function()? otpSuccess,
+    TResult? Function()? resendOtpSuccess,
     TResult? Function()? signUpLoading,
     TResult? Function()? signUpSuccess,
     TResult? Function(String message)? signUpError,
@@ -844,6 +1019,7 @@ class _$SignUpErrorStateImpl implements SignUpErrorState {
     TResult Function()? initial,
     TResult Function()? otpLoading,
     TResult Function()? otpSuccess,
+    TResult Function()? resendOtpSuccess,
     TResult Function()? signUpLoading,
     TResult Function()? signUpSuccess,
     TResult Function(String message)? signUpError,
@@ -861,6 +1037,7 @@ class _$SignUpErrorStateImpl implements SignUpErrorState {
     required TResult Function(AuthInitial value) initial,
     required TResult Function(OtpLoadingState value) otpLoading,
     required TResult Function(OtpSuccessState value) otpSuccess,
+    required TResult Function(ResendOtpSuccessState value) resendOtpSuccess,
     required TResult Function(SignUpLoadingState value) signUpLoading,
     required TResult Function(SignUpSuccessState value) signUpSuccess,
     required TResult Function(SignUpErrorState value) signUpError,
@@ -874,6 +1051,7 @@ class _$SignUpErrorStateImpl implements SignUpErrorState {
     TResult? Function(AuthInitial value)? initial,
     TResult? Function(OtpLoadingState value)? otpLoading,
     TResult? Function(OtpSuccessState value)? otpSuccess,
+    TResult? Function(ResendOtpSuccessState value)? resendOtpSuccess,
     TResult? Function(SignUpLoadingState value)? signUpLoading,
     TResult? Function(SignUpSuccessState value)? signUpSuccess,
     TResult? Function(SignUpErrorState value)? signUpError,
@@ -887,6 +1065,7 @@ class _$SignUpErrorStateImpl implements SignUpErrorState {
     TResult Function(AuthInitial value)? initial,
     TResult Function(OtpLoadingState value)? otpLoading,
     TResult Function(OtpSuccessState value)? otpSuccess,
+    TResult Function(ResendOtpSuccessState value)? resendOtpSuccess,
     TResult Function(SignUpLoadingState value)? signUpLoading,
     TResult Function(SignUpSuccessState value)? signUpSuccess,
     TResult Function(SignUpErrorState value)? signUpError,

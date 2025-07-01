@@ -64,13 +64,11 @@ void main() async {
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(HiveKeys.isArabic, false);
   }
-
+  // HiveStorage.set(HiveKeys.isDark, null);
   AppLogs.infoLog('isDark: ${HiveStorage.get(HiveKeys.isDark)}');
-  if (HiveStorage.get(HiveKeys.isDark) == null) {
-    HiveStorage.set(HiveKeys.isDark, true);
-  }
-
-
+  // if (HiveStorage.get(HiveKeys.isDark) == null) {
+  //   HiveStorage.set(HiveKeys.isDark, true);
+  // }
 
   runApp(
     MultiBlocProvider(

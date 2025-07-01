@@ -62,6 +62,21 @@ class CraftAuthCubit extends Cubit<CraftAuthState> {
       (r) => emit(const CraftAuthState.otpSuccess()),
     );
   }
+  Future<void> resendVerificationOtp() async {
+    emit(const CraftAuthState.otpLoading());
+
+    final result = await craftAuthRepo.sendVerificationOtpModel(
+      sendVerificationOtpModel: SendVerificationOtpModel(
+        email: emailController.text,
+        userName: userNameController.text,
+      ),
+    );
+
+    result.fold(
+      (l) => emit(CraftAuthState.signUpError(message: l.errorMsg)),
+      (r) => emit(const CraftAuthState.resendOtpSuccess()),
+    );
+  }
 
   Future<void> craftManSignUp() async {
     emit(const CraftAuthState.signUpLoading());

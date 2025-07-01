@@ -4,15 +4,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/hive_keys.dart';
 import '../../data/hive_storage.dart';
 
-// Provider للتحكم في الـ Theme Mode مع قيمة افتراضية
 final themeProvider = StateProvider<bool>((ref) {
-  // جلب القيمة من Hive، ولو غير موجودة، ضبطها على true (Dark) كقيمة افتراضية
   final isDark = HiveStorage.get(HiveKeys.isDark);
   if (isDark == null) {
-    HiveStorage.set(HiveKeys.isDark, true); // القيمة الافتراضية هي Dark
-    return true;
+    final platformBrightness =
+        WidgetsBinding.instance.window.platformBrightness;
+    final systemIsDark = platformBrightness == Brightness.dark;
+
+    HiveStorage.set(HiveKeys.isDark, systemIsDark);
+    return systemIsDark;
   }
-  return isDark as bool; // تحويل القيمة لـ bool
+  return isDark as bool;
 });
 
 // دالة لتحديد الـ ThemeMode بناءً على القيمة

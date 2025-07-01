@@ -147,7 +147,7 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
                   onResend: () async {
                     String email = AuthCubit.get(context).emailController.text;
                     if (email.isNotEmpty) {
-                      AuthCubit.get(context).sendForgetPassword(
+                      AuthCubit.get(context).resendForgetPassword(
                           sendForgetPasswordModel:
                               SendForgetPasswordModel(email: email));
 

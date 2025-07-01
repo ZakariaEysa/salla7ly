@@ -25,6 +25,7 @@ mixin _$AuthState {
     required TResult Function() googleAuthSuccess,
     required TResult Function() validateOtpSuccess,
     required TResult Function() sendForgetOtpSuccess,
+    required TResult Function() resendForgetOtpSuccess,
     required TResult Function() resetPasswordSuccess,
     required TResult Function() resetPasswordLoading,
     required TResult Function(String message) authError,
@@ -39,6 +40,7 @@ mixin _$AuthState {
     TResult? Function()? googleAuthSuccess,
     TResult? Function()? validateOtpSuccess,
     TResult? Function()? sendForgetOtpSuccess,
+    TResult? Function()? resendForgetOtpSuccess,
     TResult? Function()? resetPasswordSuccess,
     TResult? Function()? resetPasswordLoading,
     TResult? Function(String message)? authError,
@@ -53,6 +55,7 @@ mixin _$AuthState {
     TResult Function()? googleAuthSuccess,
     TResult Function()? validateOtpSuccess,
     TResult Function()? sendForgetOtpSuccess,
+    TResult Function()? resendForgetOtpSuccess,
     TResult Function()? resetPasswordSuccess,
     TResult Function()? resetPasswordLoading,
     TResult Function(String message)? authError,
@@ -69,6 +72,8 @@ mixin _$AuthState {
     required TResult Function(ValidateOtpSuccessState value) validateOtpSuccess,
     required TResult Function(SendForgetOtpSuccessState value)
         sendForgetOtpSuccess,
+    required TResult Function(ReSendForgetOtpSuccessState value)
+        resendForgetOtpSuccess,
     required TResult Function(ResetPasswordSuccessState value)
         resetPasswordSuccess,
     required TResult Function(ResetPasswordLoadingState value)
@@ -85,6 +90,8 @@ mixin _$AuthState {
     TResult? Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult? Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult? Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult? Function(ReSendForgetOtpSuccessState value)?
+        resendForgetOtpSuccess,
     TResult? Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult? Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult? Function(AuthErrorState value)? authError,
@@ -99,6 +106,7 @@ mixin _$AuthState {
     TResult Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult Function(ReSendForgetOtpSuccessState value)? resendForgetOtpSuccess,
     TResult Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult Function(AuthErrorState value)? authError,
@@ -175,6 +183,7 @@ class _$AuthInitialImpl implements AuthInitial {
     required TResult Function() googleAuthSuccess,
     required TResult Function() validateOtpSuccess,
     required TResult Function() sendForgetOtpSuccess,
+    required TResult Function() resendForgetOtpSuccess,
     required TResult Function() resetPasswordSuccess,
     required TResult Function() resetPasswordLoading,
     required TResult Function(String message) authError,
@@ -192,6 +201,7 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult? Function()? googleAuthSuccess,
     TResult? Function()? validateOtpSuccess,
     TResult? Function()? sendForgetOtpSuccess,
+    TResult? Function()? resendForgetOtpSuccess,
     TResult? Function()? resetPasswordSuccess,
     TResult? Function()? resetPasswordLoading,
     TResult? Function(String message)? authError,
@@ -209,6 +219,7 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult Function()? googleAuthSuccess,
     TResult Function()? validateOtpSuccess,
     TResult Function()? sendForgetOtpSuccess,
+    TResult Function()? resendForgetOtpSuccess,
     TResult Function()? resetPasswordSuccess,
     TResult Function()? resetPasswordLoading,
     TResult Function(String message)? authError,
@@ -231,6 +242,8 @@ class _$AuthInitialImpl implements AuthInitial {
     required TResult Function(ValidateOtpSuccessState value) validateOtpSuccess,
     required TResult Function(SendForgetOtpSuccessState value)
         sendForgetOtpSuccess,
+    required TResult Function(ReSendForgetOtpSuccessState value)
+        resendForgetOtpSuccess,
     required TResult Function(ResetPasswordSuccessState value)
         resetPasswordSuccess,
     required TResult Function(ResetPasswordLoadingState value)
@@ -250,6 +263,8 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult? Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult? Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult? Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult? Function(ReSendForgetOtpSuccessState value)?
+        resendForgetOtpSuccess,
     TResult? Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult? Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult? Function(AuthErrorState value)? authError,
@@ -267,6 +282,7 @@ class _$AuthInitialImpl implements AuthInitial {
     TResult Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult Function(ReSendForgetOtpSuccessState value)? resendForgetOtpSuccess,
     TResult Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult Function(AuthErrorState value)? authError,
@@ -331,6 +347,7 @@ class _$SignInLoadingStateImpl implements SignInLoadingState {
     required TResult Function() googleAuthSuccess,
     required TResult Function() validateOtpSuccess,
     required TResult Function() sendForgetOtpSuccess,
+    required TResult Function() resendForgetOtpSuccess,
     required TResult Function() resetPasswordSuccess,
     required TResult Function() resetPasswordLoading,
     required TResult Function(String message) authError,
@@ -348,6 +365,7 @@ class _$SignInLoadingStateImpl implements SignInLoadingState {
     TResult? Function()? googleAuthSuccess,
     TResult? Function()? validateOtpSuccess,
     TResult? Function()? sendForgetOtpSuccess,
+    TResult? Function()? resendForgetOtpSuccess,
     TResult? Function()? resetPasswordSuccess,
     TResult? Function()? resetPasswordLoading,
     TResult? Function(String message)? authError,
@@ -365,6 +383,7 @@ class _$SignInLoadingStateImpl implements SignInLoadingState {
     TResult Function()? googleAuthSuccess,
     TResult Function()? validateOtpSuccess,
     TResult Function()? sendForgetOtpSuccess,
+    TResult Function()? resendForgetOtpSuccess,
     TResult Function()? resetPasswordSuccess,
     TResult Function()? resetPasswordLoading,
     TResult Function(String message)? authError,
@@ -387,6 +406,8 @@ class _$SignInLoadingStateImpl implements SignInLoadingState {
     required TResult Function(ValidateOtpSuccessState value) validateOtpSuccess,
     required TResult Function(SendForgetOtpSuccessState value)
         sendForgetOtpSuccess,
+    required TResult Function(ReSendForgetOtpSuccessState value)
+        resendForgetOtpSuccess,
     required TResult Function(ResetPasswordSuccessState value)
         resetPasswordSuccess,
     required TResult Function(ResetPasswordLoadingState value)
@@ -406,6 +427,8 @@ class _$SignInLoadingStateImpl implements SignInLoadingState {
     TResult? Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult? Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult? Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult? Function(ReSendForgetOtpSuccessState value)?
+        resendForgetOtpSuccess,
     TResult? Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult? Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult? Function(AuthErrorState value)? authError,
@@ -423,6 +446,7 @@ class _$SignInLoadingStateImpl implements SignInLoadingState {
     TResult Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult Function(ReSendForgetOtpSuccessState value)? resendForgetOtpSuccess,
     TResult Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult Function(AuthErrorState value)? authError,
@@ -487,6 +511,7 @@ class _$SignInSuccessStateImpl implements SignInSuccessState {
     required TResult Function() googleAuthSuccess,
     required TResult Function() validateOtpSuccess,
     required TResult Function() sendForgetOtpSuccess,
+    required TResult Function() resendForgetOtpSuccess,
     required TResult Function() resetPasswordSuccess,
     required TResult Function() resetPasswordLoading,
     required TResult Function(String message) authError,
@@ -504,6 +529,7 @@ class _$SignInSuccessStateImpl implements SignInSuccessState {
     TResult? Function()? googleAuthSuccess,
     TResult? Function()? validateOtpSuccess,
     TResult? Function()? sendForgetOtpSuccess,
+    TResult? Function()? resendForgetOtpSuccess,
     TResult? Function()? resetPasswordSuccess,
     TResult? Function()? resetPasswordLoading,
     TResult? Function(String message)? authError,
@@ -521,6 +547,7 @@ class _$SignInSuccessStateImpl implements SignInSuccessState {
     TResult Function()? googleAuthSuccess,
     TResult Function()? validateOtpSuccess,
     TResult Function()? sendForgetOtpSuccess,
+    TResult Function()? resendForgetOtpSuccess,
     TResult Function()? resetPasswordSuccess,
     TResult Function()? resetPasswordLoading,
     TResult Function(String message)? authError,
@@ -543,6 +570,8 @@ class _$SignInSuccessStateImpl implements SignInSuccessState {
     required TResult Function(ValidateOtpSuccessState value) validateOtpSuccess,
     required TResult Function(SendForgetOtpSuccessState value)
         sendForgetOtpSuccess,
+    required TResult Function(ReSendForgetOtpSuccessState value)
+        resendForgetOtpSuccess,
     required TResult Function(ResetPasswordSuccessState value)
         resetPasswordSuccess,
     required TResult Function(ResetPasswordLoadingState value)
@@ -562,6 +591,8 @@ class _$SignInSuccessStateImpl implements SignInSuccessState {
     TResult? Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult? Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult? Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult? Function(ReSendForgetOtpSuccessState value)?
+        resendForgetOtpSuccess,
     TResult? Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult? Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult? Function(AuthErrorState value)? authError,
@@ -579,6 +610,7 @@ class _$SignInSuccessStateImpl implements SignInSuccessState {
     TResult Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult Function(ReSendForgetOtpSuccessState value)? resendForgetOtpSuccess,
     TResult Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult Function(AuthErrorState value)? authError,
@@ -646,6 +678,7 @@ class _$GoogleAuthLoadingStateImpl implements GoogleAuthLoadingState {
     required TResult Function() googleAuthSuccess,
     required TResult Function() validateOtpSuccess,
     required TResult Function() sendForgetOtpSuccess,
+    required TResult Function() resendForgetOtpSuccess,
     required TResult Function() resetPasswordSuccess,
     required TResult Function() resetPasswordLoading,
     required TResult Function(String message) authError,
@@ -663,6 +696,7 @@ class _$GoogleAuthLoadingStateImpl implements GoogleAuthLoadingState {
     TResult? Function()? googleAuthSuccess,
     TResult? Function()? validateOtpSuccess,
     TResult? Function()? sendForgetOtpSuccess,
+    TResult? Function()? resendForgetOtpSuccess,
     TResult? Function()? resetPasswordSuccess,
     TResult? Function()? resetPasswordLoading,
     TResult? Function(String message)? authError,
@@ -680,6 +714,7 @@ class _$GoogleAuthLoadingStateImpl implements GoogleAuthLoadingState {
     TResult Function()? googleAuthSuccess,
     TResult Function()? validateOtpSuccess,
     TResult Function()? sendForgetOtpSuccess,
+    TResult Function()? resendForgetOtpSuccess,
     TResult Function()? resetPasswordSuccess,
     TResult Function()? resetPasswordLoading,
     TResult Function(String message)? authError,
@@ -702,6 +737,8 @@ class _$GoogleAuthLoadingStateImpl implements GoogleAuthLoadingState {
     required TResult Function(ValidateOtpSuccessState value) validateOtpSuccess,
     required TResult Function(SendForgetOtpSuccessState value)
         sendForgetOtpSuccess,
+    required TResult Function(ReSendForgetOtpSuccessState value)
+        resendForgetOtpSuccess,
     required TResult Function(ResetPasswordSuccessState value)
         resetPasswordSuccess,
     required TResult Function(ResetPasswordLoadingState value)
@@ -721,6 +758,8 @@ class _$GoogleAuthLoadingStateImpl implements GoogleAuthLoadingState {
     TResult? Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult? Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult? Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult? Function(ReSendForgetOtpSuccessState value)?
+        resendForgetOtpSuccess,
     TResult? Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult? Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult? Function(AuthErrorState value)? authError,
@@ -738,6 +777,7 @@ class _$GoogleAuthLoadingStateImpl implements GoogleAuthLoadingState {
     TResult Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult Function(ReSendForgetOtpSuccessState value)? resendForgetOtpSuccess,
     TResult Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult Function(AuthErrorState value)? authError,
@@ -805,6 +845,7 @@ class _$GoogleAuthSuccessStateImpl implements GoogleAuthSuccessState {
     required TResult Function() googleAuthSuccess,
     required TResult Function() validateOtpSuccess,
     required TResult Function() sendForgetOtpSuccess,
+    required TResult Function() resendForgetOtpSuccess,
     required TResult Function() resetPasswordSuccess,
     required TResult Function() resetPasswordLoading,
     required TResult Function(String message) authError,
@@ -822,6 +863,7 @@ class _$GoogleAuthSuccessStateImpl implements GoogleAuthSuccessState {
     TResult? Function()? googleAuthSuccess,
     TResult? Function()? validateOtpSuccess,
     TResult? Function()? sendForgetOtpSuccess,
+    TResult? Function()? resendForgetOtpSuccess,
     TResult? Function()? resetPasswordSuccess,
     TResult? Function()? resetPasswordLoading,
     TResult? Function(String message)? authError,
@@ -839,6 +881,7 @@ class _$GoogleAuthSuccessStateImpl implements GoogleAuthSuccessState {
     TResult Function()? googleAuthSuccess,
     TResult Function()? validateOtpSuccess,
     TResult Function()? sendForgetOtpSuccess,
+    TResult Function()? resendForgetOtpSuccess,
     TResult Function()? resetPasswordSuccess,
     TResult Function()? resetPasswordLoading,
     TResult Function(String message)? authError,
@@ -861,6 +904,8 @@ class _$GoogleAuthSuccessStateImpl implements GoogleAuthSuccessState {
     required TResult Function(ValidateOtpSuccessState value) validateOtpSuccess,
     required TResult Function(SendForgetOtpSuccessState value)
         sendForgetOtpSuccess,
+    required TResult Function(ReSendForgetOtpSuccessState value)
+        resendForgetOtpSuccess,
     required TResult Function(ResetPasswordSuccessState value)
         resetPasswordSuccess,
     required TResult Function(ResetPasswordLoadingState value)
@@ -880,6 +925,8 @@ class _$GoogleAuthSuccessStateImpl implements GoogleAuthSuccessState {
     TResult? Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult? Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult? Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult? Function(ReSendForgetOtpSuccessState value)?
+        resendForgetOtpSuccess,
     TResult? Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult? Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult? Function(AuthErrorState value)? authError,
@@ -897,6 +944,7 @@ class _$GoogleAuthSuccessStateImpl implements GoogleAuthSuccessState {
     TResult Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult Function(ReSendForgetOtpSuccessState value)? resendForgetOtpSuccess,
     TResult Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult Function(AuthErrorState value)? authError,
@@ -964,6 +1012,7 @@ class _$ValidateOtpSuccessStateImpl implements ValidateOtpSuccessState {
     required TResult Function() googleAuthSuccess,
     required TResult Function() validateOtpSuccess,
     required TResult Function() sendForgetOtpSuccess,
+    required TResult Function() resendForgetOtpSuccess,
     required TResult Function() resetPasswordSuccess,
     required TResult Function() resetPasswordLoading,
     required TResult Function(String message) authError,
@@ -981,6 +1030,7 @@ class _$ValidateOtpSuccessStateImpl implements ValidateOtpSuccessState {
     TResult? Function()? googleAuthSuccess,
     TResult? Function()? validateOtpSuccess,
     TResult? Function()? sendForgetOtpSuccess,
+    TResult? Function()? resendForgetOtpSuccess,
     TResult? Function()? resetPasswordSuccess,
     TResult? Function()? resetPasswordLoading,
     TResult? Function(String message)? authError,
@@ -998,6 +1048,7 @@ class _$ValidateOtpSuccessStateImpl implements ValidateOtpSuccessState {
     TResult Function()? googleAuthSuccess,
     TResult Function()? validateOtpSuccess,
     TResult Function()? sendForgetOtpSuccess,
+    TResult Function()? resendForgetOtpSuccess,
     TResult Function()? resetPasswordSuccess,
     TResult Function()? resetPasswordLoading,
     TResult Function(String message)? authError,
@@ -1020,6 +1071,8 @@ class _$ValidateOtpSuccessStateImpl implements ValidateOtpSuccessState {
     required TResult Function(ValidateOtpSuccessState value) validateOtpSuccess,
     required TResult Function(SendForgetOtpSuccessState value)
         sendForgetOtpSuccess,
+    required TResult Function(ReSendForgetOtpSuccessState value)
+        resendForgetOtpSuccess,
     required TResult Function(ResetPasswordSuccessState value)
         resetPasswordSuccess,
     required TResult Function(ResetPasswordLoadingState value)
@@ -1039,6 +1092,8 @@ class _$ValidateOtpSuccessStateImpl implements ValidateOtpSuccessState {
     TResult? Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult? Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult? Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult? Function(ReSendForgetOtpSuccessState value)?
+        resendForgetOtpSuccess,
     TResult? Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult? Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult? Function(AuthErrorState value)? authError,
@@ -1056,6 +1111,7 @@ class _$ValidateOtpSuccessStateImpl implements ValidateOtpSuccessState {
     TResult Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult Function(ReSendForgetOtpSuccessState value)? resendForgetOtpSuccess,
     TResult Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult Function(AuthErrorState value)? authError,
@@ -1123,6 +1179,7 @@ class _$SendForgetOtpSuccessStateImpl implements SendForgetOtpSuccessState {
     required TResult Function() googleAuthSuccess,
     required TResult Function() validateOtpSuccess,
     required TResult Function() sendForgetOtpSuccess,
+    required TResult Function() resendForgetOtpSuccess,
     required TResult Function() resetPasswordSuccess,
     required TResult Function() resetPasswordLoading,
     required TResult Function(String message) authError,
@@ -1140,6 +1197,7 @@ class _$SendForgetOtpSuccessStateImpl implements SendForgetOtpSuccessState {
     TResult? Function()? googleAuthSuccess,
     TResult? Function()? validateOtpSuccess,
     TResult? Function()? sendForgetOtpSuccess,
+    TResult? Function()? resendForgetOtpSuccess,
     TResult? Function()? resetPasswordSuccess,
     TResult? Function()? resetPasswordLoading,
     TResult? Function(String message)? authError,
@@ -1157,6 +1215,7 @@ class _$SendForgetOtpSuccessStateImpl implements SendForgetOtpSuccessState {
     TResult Function()? googleAuthSuccess,
     TResult Function()? validateOtpSuccess,
     TResult Function()? sendForgetOtpSuccess,
+    TResult Function()? resendForgetOtpSuccess,
     TResult Function()? resetPasswordSuccess,
     TResult Function()? resetPasswordLoading,
     TResult Function(String message)? authError,
@@ -1179,6 +1238,8 @@ class _$SendForgetOtpSuccessStateImpl implements SendForgetOtpSuccessState {
     required TResult Function(ValidateOtpSuccessState value) validateOtpSuccess,
     required TResult Function(SendForgetOtpSuccessState value)
         sendForgetOtpSuccess,
+    required TResult Function(ReSendForgetOtpSuccessState value)
+        resendForgetOtpSuccess,
     required TResult Function(ResetPasswordSuccessState value)
         resetPasswordSuccess,
     required TResult Function(ResetPasswordLoadingState value)
@@ -1198,6 +1259,8 @@ class _$SendForgetOtpSuccessStateImpl implements SendForgetOtpSuccessState {
     TResult? Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult? Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult? Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult? Function(ReSendForgetOtpSuccessState value)?
+        resendForgetOtpSuccess,
     TResult? Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult? Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult? Function(AuthErrorState value)? authError,
@@ -1215,6 +1278,7 @@ class _$SendForgetOtpSuccessStateImpl implements SendForgetOtpSuccessState {
     TResult Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult Function(ReSendForgetOtpSuccessState value)? resendForgetOtpSuccess,
     TResult Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult Function(AuthErrorState value)? authError,
@@ -1229,6 +1293,174 @@ class _$SendForgetOtpSuccessStateImpl implements SendForgetOtpSuccessState {
 
 abstract class SendForgetOtpSuccessState implements AuthState {
   const factory SendForgetOtpSuccessState() = _$SendForgetOtpSuccessStateImpl;
+}
+
+/// @nodoc
+abstract class _$$ReSendForgetOtpSuccessStateImplCopyWith<$Res> {
+  factory _$$ReSendForgetOtpSuccessStateImplCopyWith(
+          _$ReSendForgetOtpSuccessStateImpl value,
+          $Res Function(_$ReSendForgetOtpSuccessStateImpl) then) =
+      __$$ReSendForgetOtpSuccessStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ReSendForgetOtpSuccessStateImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$ReSendForgetOtpSuccessStateImpl>
+    implements _$$ReSendForgetOtpSuccessStateImplCopyWith<$Res> {
+  __$$ReSendForgetOtpSuccessStateImplCopyWithImpl(
+      _$ReSendForgetOtpSuccessStateImpl _value,
+      $Res Function(_$ReSendForgetOtpSuccessStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ReSendForgetOtpSuccessStateImpl implements ReSendForgetOtpSuccessState {
+  const _$ReSendForgetOtpSuccessStateImpl();
+
+  @override
+  String toString() {
+    return 'AuthState.resendForgetOtpSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ReSendForgetOtpSuccessStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() signInLoading,
+    required TResult Function() signInSuccess,
+    required TResult Function() googleAuthLoading,
+    required TResult Function() googleAuthSuccess,
+    required TResult Function() validateOtpSuccess,
+    required TResult Function() sendForgetOtpSuccess,
+    required TResult Function() resendForgetOtpSuccess,
+    required TResult Function() resetPasswordSuccess,
+    required TResult Function() resetPasswordLoading,
+    required TResult Function(String message) authError,
+  }) {
+    return resendForgetOtpSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? signInLoading,
+    TResult? Function()? signInSuccess,
+    TResult? Function()? googleAuthLoading,
+    TResult? Function()? googleAuthSuccess,
+    TResult? Function()? validateOtpSuccess,
+    TResult? Function()? sendForgetOtpSuccess,
+    TResult? Function()? resendForgetOtpSuccess,
+    TResult? Function()? resetPasswordSuccess,
+    TResult? Function()? resetPasswordLoading,
+    TResult? Function(String message)? authError,
+  }) {
+    return resendForgetOtpSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? signInLoading,
+    TResult Function()? signInSuccess,
+    TResult Function()? googleAuthLoading,
+    TResult Function()? googleAuthSuccess,
+    TResult Function()? validateOtpSuccess,
+    TResult Function()? sendForgetOtpSuccess,
+    TResult Function()? resendForgetOtpSuccess,
+    TResult Function()? resetPasswordSuccess,
+    TResult Function()? resetPasswordLoading,
+    TResult Function(String message)? authError,
+    required TResult orElse(),
+  }) {
+    if (resendForgetOtpSuccess != null) {
+      return resendForgetOtpSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitial value) initial,
+    required TResult Function(SignInLoadingState value) signInLoading,
+    required TResult Function(SignInSuccessState value) signInSuccess,
+    required TResult Function(GoogleAuthLoadingState value) googleAuthLoading,
+    required TResult Function(GoogleAuthSuccessState value) googleAuthSuccess,
+    required TResult Function(ValidateOtpSuccessState value) validateOtpSuccess,
+    required TResult Function(SendForgetOtpSuccessState value)
+        sendForgetOtpSuccess,
+    required TResult Function(ReSendForgetOtpSuccessState value)
+        resendForgetOtpSuccess,
+    required TResult Function(ResetPasswordSuccessState value)
+        resetPasswordSuccess,
+    required TResult Function(ResetPasswordLoadingState value)
+        resetPasswordLoading,
+    required TResult Function(AuthErrorState value) authError,
+  }) {
+    return resendForgetOtpSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitial value)? initial,
+    TResult? Function(SignInLoadingState value)? signInLoading,
+    TResult? Function(SignInSuccessState value)? signInSuccess,
+    TResult? Function(GoogleAuthLoadingState value)? googleAuthLoading,
+    TResult? Function(GoogleAuthSuccessState value)? googleAuthSuccess,
+    TResult? Function(ValidateOtpSuccessState value)? validateOtpSuccess,
+    TResult? Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult? Function(ReSendForgetOtpSuccessState value)?
+        resendForgetOtpSuccess,
+    TResult? Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
+    TResult? Function(ResetPasswordLoadingState value)? resetPasswordLoading,
+    TResult? Function(AuthErrorState value)? authError,
+  }) {
+    return resendForgetOtpSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitial value)? initial,
+    TResult Function(SignInLoadingState value)? signInLoading,
+    TResult Function(SignInSuccessState value)? signInSuccess,
+    TResult Function(GoogleAuthLoadingState value)? googleAuthLoading,
+    TResult Function(GoogleAuthSuccessState value)? googleAuthSuccess,
+    TResult Function(ValidateOtpSuccessState value)? validateOtpSuccess,
+    TResult Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult Function(ReSendForgetOtpSuccessState value)? resendForgetOtpSuccess,
+    TResult Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
+    TResult Function(ResetPasswordLoadingState value)? resetPasswordLoading,
+    TResult Function(AuthErrorState value)? authError,
+    required TResult orElse(),
+  }) {
+    if (resendForgetOtpSuccess != null) {
+      return resendForgetOtpSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ReSendForgetOtpSuccessState implements AuthState {
+  const factory ReSendForgetOtpSuccessState() =
+      _$ReSendForgetOtpSuccessStateImpl;
 }
 
 /// @nodoc
@@ -1282,6 +1514,7 @@ class _$ResetPasswordSuccessStateImpl implements ResetPasswordSuccessState {
     required TResult Function() googleAuthSuccess,
     required TResult Function() validateOtpSuccess,
     required TResult Function() sendForgetOtpSuccess,
+    required TResult Function() resendForgetOtpSuccess,
     required TResult Function() resetPasswordSuccess,
     required TResult Function() resetPasswordLoading,
     required TResult Function(String message) authError,
@@ -1299,6 +1532,7 @@ class _$ResetPasswordSuccessStateImpl implements ResetPasswordSuccessState {
     TResult? Function()? googleAuthSuccess,
     TResult? Function()? validateOtpSuccess,
     TResult? Function()? sendForgetOtpSuccess,
+    TResult? Function()? resendForgetOtpSuccess,
     TResult? Function()? resetPasswordSuccess,
     TResult? Function()? resetPasswordLoading,
     TResult? Function(String message)? authError,
@@ -1316,6 +1550,7 @@ class _$ResetPasswordSuccessStateImpl implements ResetPasswordSuccessState {
     TResult Function()? googleAuthSuccess,
     TResult Function()? validateOtpSuccess,
     TResult Function()? sendForgetOtpSuccess,
+    TResult Function()? resendForgetOtpSuccess,
     TResult Function()? resetPasswordSuccess,
     TResult Function()? resetPasswordLoading,
     TResult Function(String message)? authError,
@@ -1338,6 +1573,8 @@ class _$ResetPasswordSuccessStateImpl implements ResetPasswordSuccessState {
     required TResult Function(ValidateOtpSuccessState value) validateOtpSuccess,
     required TResult Function(SendForgetOtpSuccessState value)
         sendForgetOtpSuccess,
+    required TResult Function(ReSendForgetOtpSuccessState value)
+        resendForgetOtpSuccess,
     required TResult Function(ResetPasswordSuccessState value)
         resetPasswordSuccess,
     required TResult Function(ResetPasswordLoadingState value)
@@ -1357,6 +1594,8 @@ class _$ResetPasswordSuccessStateImpl implements ResetPasswordSuccessState {
     TResult? Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult? Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult? Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult? Function(ReSendForgetOtpSuccessState value)?
+        resendForgetOtpSuccess,
     TResult? Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult? Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult? Function(AuthErrorState value)? authError,
@@ -1374,6 +1613,7 @@ class _$ResetPasswordSuccessStateImpl implements ResetPasswordSuccessState {
     TResult Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult Function(ReSendForgetOtpSuccessState value)? resendForgetOtpSuccess,
     TResult Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult Function(AuthErrorState value)? authError,
@@ -1441,6 +1681,7 @@ class _$ResetPasswordLoadingStateImpl implements ResetPasswordLoadingState {
     required TResult Function() googleAuthSuccess,
     required TResult Function() validateOtpSuccess,
     required TResult Function() sendForgetOtpSuccess,
+    required TResult Function() resendForgetOtpSuccess,
     required TResult Function() resetPasswordSuccess,
     required TResult Function() resetPasswordLoading,
     required TResult Function(String message) authError,
@@ -1458,6 +1699,7 @@ class _$ResetPasswordLoadingStateImpl implements ResetPasswordLoadingState {
     TResult? Function()? googleAuthSuccess,
     TResult? Function()? validateOtpSuccess,
     TResult? Function()? sendForgetOtpSuccess,
+    TResult? Function()? resendForgetOtpSuccess,
     TResult? Function()? resetPasswordSuccess,
     TResult? Function()? resetPasswordLoading,
     TResult? Function(String message)? authError,
@@ -1475,6 +1717,7 @@ class _$ResetPasswordLoadingStateImpl implements ResetPasswordLoadingState {
     TResult Function()? googleAuthSuccess,
     TResult Function()? validateOtpSuccess,
     TResult Function()? sendForgetOtpSuccess,
+    TResult Function()? resendForgetOtpSuccess,
     TResult Function()? resetPasswordSuccess,
     TResult Function()? resetPasswordLoading,
     TResult Function(String message)? authError,
@@ -1497,6 +1740,8 @@ class _$ResetPasswordLoadingStateImpl implements ResetPasswordLoadingState {
     required TResult Function(ValidateOtpSuccessState value) validateOtpSuccess,
     required TResult Function(SendForgetOtpSuccessState value)
         sendForgetOtpSuccess,
+    required TResult Function(ReSendForgetOtpSuccessState value)
+        resendForgetOtpSuccess,
     required TResult Function(ResetPasswordSuccessState value)
         resetPasswordSuccess,
     required TResult Function(ResetPasswordLoadingState value)
@@ -1516,6 +1761,8 @@ class _$ResetPasswordLoadingStateImpl implements ResetPasswordLoadingState {
     TResult? Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult? Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult? Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult? Function(ReSendForgetOtpSuccessState value)?
+        resendForgetOtpSuccess,
     TResult? Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult? Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult? Function(AuthErrorState value)? authError,
@@ -1533,6 +1780,7 @@ class _$ResetPasswordLoadingStateImpl implements ResetPasswordLoadingState {
     TResult Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult Function(ReSendForgetOtpSuccessState value)? resendForgetOtpSuccess,
     TResult Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult Function(AuthErrorState value)? authError,
@@ -1625,6 +1873,7 @@ class _$AuthErrorStateImpl implements AuthErrorState {
     required TResult Function() googleAuthSuccess,
     required TResult Function() validateOtpSuccess,
     required TResult Function() sendForgetOtpSuccess,
+    required TResult Function() resendForgetOtpSuccess,
     required TResult Function() resetPasswordSuccess,
     required TResult Function() resetPasswordLoading,
     required TResult Function(String message) authError,
@@ -1642,6 +1891,7 @@ class _$AuthErrorStateImpl implements AuthErrorState {
     TResult? Function()? googleAuthSuccess,
     TResult? Function()? validateOtpSuccess,
     TResult? Function()? sendForgetOtpSuccess,
+    TResult? Function()? resendForgetOtpSuccess,
     TResult? Function()? resetPasswordSuccess,
     TResult? Function()? resetPasswordLoading,
     TResult? Function(String message)? authError,
@@ -1659,6 +1909,7 @@ class _$AuthErrorStateImpl implements AuthErrorState {
     TResult Function()? googleAuthSuccess,
     TResult Function()? validateOtpSuccess,
     TResult Function()? sendForgetOtpSuccess,
+    TResult Function()? resendForgetOtpSuccess,
     TResult Function()? resetPasswordSuccess,
     TResult Function()? resetPasswordLoading,
     TResult Function(String message)? authError,
@@ -1681,6 +1932,8 @@ class _$AuthErrorStateImpl implements AuthErrorState {
     required TResult Function(ValidateOtpSuccessState value) validateOtpSuccess,
     required TResult Function(SendForgetOtpSuccessState value)
         sendForgetOtpSuccess,
+    required TResult Function(ReSendForgetOtpSuccessState value)
+        resendForgetOtpSuccess,
     required TResult Function(ResetPasswordSuccessState value)
         resetPasswordSuccess,
     required TResult Function(ResetPasswordLoadingState value)
@@ -1700,6 +1953,8 @@ class _$AuthErrorStateImpl implements AuthErrorState {
     TResult? Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult? Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult? Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult? Function(ReSendForgetOtpSuccessState value)?
+        resendForgetOtpSuccess,
     TResult? Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult? Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult? Function(AuthErrorState value)? authError,
@@ -1717,6 +1972,7 @@ class _$AuthErrorStateImpl implements AuthErrorState {
     TResult Function(GoogleAuthSuccessState value)? googleAuthSuccess,
     TResult Function(ValidateOtpSuccessState value)? validateOtpSuccess,
     TResult Function(SendForgetOtpSuccessState value)? sendForgetOtpSuccess,
+    TResult Function(ReSendForgetOtpSuccessState value)? resendForgetOtpSuccess,
     TResult Function(ResetPasswordSuccessState value)? resetPasswordSuccess,
     TResult Function(ResetPasswordLoadingState value)? resetPasswordLoading,
     TResult Function(AuthErrorState value)? authError,

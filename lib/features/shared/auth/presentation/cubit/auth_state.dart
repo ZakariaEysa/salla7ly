@@ -12,6 +12,7 @@ class AuthState with _$AuthState {
   const factory AuthState.googleAuthSuccess() = GoogleAuthSuccessState;
   const factory AuthState.validateOtpSuccess() = ValidateOtpSuccessState;
   const factory AuthState.sendForgetOtpSuccess() = SendForgetOtpSuccessState;
+  const factory AuthState.resendForgetOtpSuccess() = ReSendForgetOtpSuccessState;
   const factory AuthState.resetPasswordSuccess() = ResetPasswordSuccessState;
   const factory AuthState.resetPasswordLoading() = ResetPasswordLoadingState;
   const factory AuthState.authError({required String message}) = AuthErrorState;

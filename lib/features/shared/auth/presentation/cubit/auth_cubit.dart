@@ -87,6 +87,18 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
+  Future<void> resendForgetPassword(
+      {required SendForgetPasswordModel sendForgetPasswordModel}) async {
+    emit(const AuthState.resetPasswordLoading());
+    final response = await authRepo.sendForgetPassword(
+        sendForgetPasswordModel: sendForgetPasswordModel);
+
+    response.fold(
+      (failure) => emit(AuthState.authError(message: failure.errorMsg)),
+      (_) => emit(const AuthState.resendForgetOtpSuccess()),
+    );
+  }
+
   Future<void> validateForgetPasswordOtp({
     required ValidateForgetPasswordOtpModel validateForgetPasswordOtpModel,
   }) async {

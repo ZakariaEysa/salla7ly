@@ -143,7 +143,7 @@ class _CraftsmanOtpScreenState extends State<CraftsmanOtpScreen> {
                     String email =
                         CraftAuthCubit.get(context).emailController.text;
                     if (email.isNotEmpty) {
-                      CraftAuthCubit.get(context).sendVerificationOtp();
+                      CraftAuthCubit.get(context).resendVerificationOtp();
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

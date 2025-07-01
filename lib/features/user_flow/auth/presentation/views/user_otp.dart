@@ -145,7 +145,7 @@ class _UserOtpState extends State<UserOtp> {
                         UserAuthCubit.get(context).emailController.text;
                     if (email.isNotEmpty) {
                       // AuthCubit.get(context).sendOtp(email);
-                      UserAuthCubit.get(context).sendVerificationOtp();
+                      UserAuthCubit.get(context).resendVerificationOtp();
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -168,11 +168,10 @@ class _UserOtpState extends State<UserOtp> {
           SizedBox(height: 5.h),
           BlocConsumer<UserAuthCubit, UserAuthState>(
             listener: (context, state) {
-              state.whenOrNull(
-                  signUpSuccess: () => context.go(AppRouter.home),
-                  // Todo : if error duplicated remove this
-                  signUpError: (error) => Fluttertoast.showToast(msg: error));
-              AppLogs.successLog(state.toString());
+              state.whenOrNull(signUpSuccess: () => context.go(AppRouter.home));
+              //     // Todo : if error duplicated remove this
+              //     signUpError: (error) => Fluttertoast.showToast(msg: error));
+              // AppLogs.successLog(state.toString());
             },
             builder: (context, state) {
               return state.maybeWhen(
