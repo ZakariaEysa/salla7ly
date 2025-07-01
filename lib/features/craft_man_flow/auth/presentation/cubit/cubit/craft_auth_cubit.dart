@@ -16,7 +16,8 @@ class CraftAuthCubit extends Cubit<CraftAuthState> {
 
   CraftAuthCubit(this.craftAuthRepo) : super(const CraftAuthState.initial());
 
-  static CraftAuthCubit get(context) => BlocProvider.of<CraftAuthCubit>(context);
+  static CraftAuthCubit get(context) =>
+      BlocProvider.of<CraftAuthCubit>(context);
 
   // Form Fields
   final confirmPasswordController = TextEditingController();
@@ -30,9 +31,10 @@ class CraftAuthCubit extends Cubit<CraftAuthState> {
   bool obscureConfirmPassword = true;
 
   // Date of Birth
-  String? selectedMonth = '05'; // الأفضل تستخدم أرقام للسهولة
-  String? selectedDay = '12';
-  String? selectedYear = '2002';
+  String? selectedMonth = "March";
+  String? selectedDay = "5";
+
+  String? selectedYear = "2010";
 
   // IDs
   String? backId;
@@ -44,7 +46,6 @@ class CraftAuthCubit extends Cubit<CraftAuthState> {
 
   // Flags
   bool isLoaded = false;
-
 
   Future<void> sendVerificationOtp() async {
     emit(const CraftAuthState.otpLoading());
@@ -80,7 +81,8 @@ class CraftAuthCubit extends Cubit<CraftAuthState> {
       ),
     );
 
-    final result = await craftAuthRepo.craftManSignUp(craftSignupBodyModel: model);
+    final result =
+        await craftAuthRepo.craftManSignUp(craftSignupBodyModel: model);
 
     result.fold(
       (l) => emit(CraftAuthState.signUpError(message: l.errorMsg)),
@@ -91,7 +93,6 @@ class CraftAuthCubit extends Cubit<CraftAuthState> {
     );
   }
 
-
   String _getFormattedBirthDate({
     required String year,
     required String month,
@@ -100,11 +101,12 @@ class CraftAuthCubit extends Cubit<CraftAuthState> {
     return '$year-$month-$day';
   }
 
-  Future<void> _storeUserCredentials(SignupResponseModel  response) async {
+  Future<void> _storeUserCredentials(SignupResponseModel response) async {
     final storage = SecureStorageService();
 
     await storage.write(key: HiveKeys.accessToken, value: response.token ?? '');
-    await storage.write(key: HiveKeys.refreshToken, value: response.refreshToken ?? '');
+    await storage.write(
+        key: HiveKeys.refreshToken, value: response.refreshToken ?? '');
 
     HiveStorage.set(HiveKeys.id, response.id);
     HiveStorage.set(HiveKeys.email, response.email);

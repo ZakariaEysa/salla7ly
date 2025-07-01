@@ -177,11 +177,11 @@ class _ForgotPasswordOtpScreenState extends State<ForgotPasswordOtpScreen> {
                 validateOtpSuccess: () {
                   context.pushReplacement(AppRouter.newPassword);
                 },
-                authError: (msg) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(msg)),
-                  );
-                },
+                // authError: (msg) {
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //     SnackBar(content: Text(msg)),
+                //   );
+                // },
               );
             },
             builder: (context, state) {

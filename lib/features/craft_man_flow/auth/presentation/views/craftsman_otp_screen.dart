@@ -166,10 +166,8 @@ class _CraftsmanOtpScreenState extends State<CraftsmanOtpScreen> {
           SizedBox(height: 5.h),
           BlocConsumer<CraftAuthCubit, CraftAuthState>(
             listener: (context, state) {
-              state.whenOrNull(signUpSuccess: () => context.go(AppRouter.home)
-                  //  TODO : error not handeled  SignUpErrorState
-
-                  );
+              state.whenOrNull(signUpSuccess: () => context.go(AppRouter.home));
+              //  TODO : error not handeled  SignUpErrorState
             },
             builder: (context, state) {
               return state.maybeWhen(
